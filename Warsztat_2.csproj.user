@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserControls\BarMenu\ScheduleCar\UC_ScheduleCar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\BarMenu\ScheduleCar\UC_ScheduleCarSelectTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\BarMenu\Settings\UC_Settings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\BarMenu\UC_CreateData\UC_AddCar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\BarMenu\UC_CreateData\UC_AddClient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\BarMenu\UC_CreateData\UC_AddData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\BarMenu\UC_CreateData\UC_AddOrderManagement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\BarMenu\UC_CreateData\UC_AddOrderRepair.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\BarMenu\ViewData\UC_ViewDataCar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\BarMenu\Warehouse\UC_Warehouse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\BarMenu\Warehouse\WarehouseAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

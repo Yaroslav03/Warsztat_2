@@ -1,0 +1,81 @@
+﻿public class Client
+{
+    public byte ID { get; set; }
+    public string? Name { get; set; }
+    public string? Surname { get; set; }
+    public string? PhoneNumber { get; set; }
+    public string? NIP { get; set; }
+    public string? AdressCompany { get; set; }
+    public static Client Reset()
+    {
+        return new Client();
+    }
+}
+public class Car
+{
+    public string? Marka { get; set; }
+    public string? Model { get; set; }
+    public string? Engine { get; set; }
+    public string? YearOfProduktion { get; set; }
+    public string? NumberofRegister { get; set; }
+    public string? Mileage { get; set; }
+    public string? VIN { get; set; }
+
+    public static Car Reset()
+    {
+        return new Car();
+    }
+}
+class Pay
+{
+    public ushort PriceFinall { get; set; }
+    public ushort PricePartMarg { get; set; }
+    public ushort EstimatedCost { get; set; }
+    public bool PaymentMethod { get; set; } // if true card, if false then cash
+    public string? CardCode { get; set; }
+
+    public static Pay Reset()
+    {
+        return new Pay();
+    }
+}
+
+public class OrderRepair
+{
+    public string? Problem { get; set; }
+    public string? ScheduleCar { get; set; }
+    public string? AdmissionDateCar { get; set; }
+    public bool LeftDocument { get; set; }
+    public bool TestDrive { get; set; }
+    public bool KeyCar { get; set; }
+
+
+    public string? Zlecenie { get; set; }
+    public string? Diagnostic { get; set; }
+    public string? Repair { get; set; }
+    public string? Description { get; set; }
+    public string? NrPart { get; set; }
+
+    public ushort Price { get; set; }
+    public byte Ilość { get; set; }
+    public bool Stan { get; set; }
+    public static OrderRepair Reset()
+    {
+        return new OrderRepair();
+    }
+}
+public class WarehouseData
+{
+    public ushort? Id { get; set; }
+    public string? Type { get; set; }
+    public string? PartNumber { get; set; } //Numer części
+    public string? Name { get; set; } //nazwa
+    public string? Description { get; set; } //opis
+    public ushort Price { get; set; }
+    public ushort Quantity { get; set; } // ilość
+
+    public static WarehouseData Reset()
+    {
+        return new WarehouseData();
+    }
+}

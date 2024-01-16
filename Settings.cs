@@ -1,0 +1,135 @@
+﻿using System.Data;
+using System.Data.SQLite;
+
+namespace Warsztat_2._0
+{
+    internal class Settings
+    {
+        public static void ChangeWindow(UserControl userControl, Panel panel)
+        {
+            panel.Controls.Clear();
+            userControl.Dock = DockStyle.Fill;
+            panel.Controls.Add(userControl);
+            userControl.BringToFront();
+        }
+        public static void CheckScheduleCar()
+        {
+            string path = "Data Source=WarsztatData.db;Version=3;New=False;Compress=True;";
+
+            Cursor.Current = Cursors.WaitCursor;
+            string today = DateTime.Today.ToString("dddd, dd MMMM yyyy");
+
+            MessageBox.Show(today);
+            try
+            {
+                using SQLiteConnection conn = new(path);
+
+                conn.Open();
+
+                using SQLiteCommand cmd = new("SELECT Imię, Nazwisko, Telefon, Marka, Model, Problem, DataPrzyjęcia FROM ZaplanowaneSamochody WHERE DataPrzyjęcia = @DataPrzyjęcia", conn);
+
+                cmd.Parameters.AddWithValue("@DataPrzyjęcia", today);
+
+                using SQLiteDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)//перевірка чи є стовпці в базі даних, якщо немає то код не буде засмічувати пам'ять коли не потрібно
+                {
+                    while (reader.Read())
+                    {
+                        Client client = new()
+                        {
+                            Name = reader["Imię"].ToString(),
+                            Surname = reader["Nazwisko"].ToString(),
+                            PhoneNumber = reader["Telefon"].ToString()
+                        };
+
+                        Car car = new()
+                        {
+                            Marka = reader["Marka"].ToString(),
+                            Model = reader["Model"].ToString(),
+                        };
+
+                        OrderRepair order = new()
+                        {
+                            Problem = reader["Problem"].ToString(),
+                            ScheduleCar = reader["DataPrzyjęcia"].ToString()
+                        };
+
+                        MessageBox.Show($"Uwaga na dzisiaj {order.ScheduleCar} zaplanowano {car.Marka} {car.Model} klienta {client.Name} ({client.PhoneNumber}). Klient ma następujący problem: {order.Problem}",
+                            "Zaplanowana praca na dzisiaj", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Wystąpił błąd: " + ex.Message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Car.Reset();
+                Client.Reset();
+                OrderRepair.Reset();
+                Cursor.Current = Cursors.Default;
+                //GC.Collect();
+            }
+        }
+        public static async Task Error(Exception ex, Queue<string> dataValue, string title_log, string category_log)
+        {
+            MessageBox.Show("Coś poszło nie tak: " + ex);
+            if (!File.Exists("Error"))
+            {
+                Directory.CreateDirectory("Error");
+            }
+            string Time = DateTime.Now.ToString("dd.MM.yyyy.H.mm");
+            await using StreamWriter sw = File.AppendText($"Error/{title_log}_log_{Time}.txt");
+
+            sw.WriteLine($"=================================================={category_log.ToUpper()}==================================================");
+            sw.WriteLine($"Timestamp: {Time}");
+            sw.WriteLine("----------------------------------------------------------------------------------------------------");
+            if (dataValue != null && dataValue.Count > 0)
+            {
+                sw.WriteLine("Data:");
+                while (dataValue.Count > 0)
+                {
+                    sw.WriteLine(dataValue.Dequeue());
+                }
+
+                sw.WriteLine("----------------------------------------------------------------------------------------------------");
+            }
+            sw.WriteLine($"Error Message: {ex.Message}");
+            sw.WriteLine("----------------------------------------------------------------------------------------------------");
+            sw.WriteLine($"StackTrace:\n{ex.StackTrace}");
+            sw.WriteLine("====================================================================================================");
+        }
+        public static void ClearTextBox(Panel panel)
+        {
+            foreach (Control control in panel.Controls)
+            {
+                if (control is TextBox)
+                    ((TextBox)control).Clear();
+                else if (control is MaskedTextBox)
+                    ((MaskedTextBox)control).Clear();
+            }
+        }
+        public static async Task LoadData(string path, string cmd, DataGridView view, string categoryError, string textError)
+        {
+            try
+            {
+                using SQLiteConnection conn = new(path);
+
+                await conn.OpenAsync();
+
+                using SQLiteDataAdapter adapter = new(cmd, conn);
+                {
+                    using DataTable dataTable = new();
+                    dataTable.Clear();// Очищаємо дані, якщо вони вже були завантажені
+                    adapter.Fill(dataTable);
+                    view.DataSource = dataTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                await Settings.Error(ex, null, categoryError, textError);
+            }
+        }
+    }
+}
