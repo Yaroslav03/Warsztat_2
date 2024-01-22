@@ -63,9 +63,7 @@ public partial class UC_AddCar : UserControl
     }
     private void NrNadwoziaTextBox_TextChanged(object sender, EventArgs e)
     {
-        VINTextBox.MaxLength = 17;
-        VINTextBox.Text = String.Concat(VINTextBox.Text.Where(char.IsLetterOrDigit));
-        NumLenghtNadwoziaLabel.Text = VINTextBox.Text.Length.ToString();
+        
     }
     private void HandleTextBoxChanged(object? sender, EventArgs e)
     {
@@ -170,7 +168,7 @@ public partial class UC_AddCar : UserControl
         {
             // Використовуйте IF NOT EXISTS для створення таблиці лише у випадку, якщо вона не існує
             using SQLiteCommand createTable = new($"CREATE TABLE IF NOT EXISTS {car.VIN} " +
-"(NrRejestracji TEXT, Przebieg INTEGER, DokumentySamochodu TEXT, KluczykiSamochodu TEXT, TestDrive TEXT);", conn);
+"(ID INTEGER PRIMARY KEY AUTOINCREMENT, NrRejestracji TEXT, Przebieg INTEGER, DokumentySamochodu TEXT, KluczykiSamochodu TEXT, TestDrive TEXT, Zlecenie TEXT, Diagnostyka TEXT, Naprawa TEXT, Opis TEXT, NumerCzęści TEXT, Cena TEXT, Ilość TEXT, Wykonane TEXT);", conn);
             await createTable.ExecuteNonQueryAsync();
 
 
@@ -376,7 +374,8 @@ public partial class UC_AddCar : UserControl
     }
     #endregion
 
-    private async void button1_Click(object sender, EventArgs e)
+
+    private async void AddVinToClient_Click(object sender, EventArgs e)
     {
         try
         {
@@ -387,5 +386,12 @@ public partial class UC_AddCar : UserControl
         {
             await Settings.Error(ex, null, "AddCar", "Add VIN To Client");
         }
+    }
+
+    private void VINTextBox_TextChanged(object sender, EventArgs e)
+    {
+        VINTextBox.MaxLength = 17;
+        VINTextBox.Text = String.Concat(VINTextBox.Text.Where(char.IsLetterOrDigit));
+        NumLenghtNadwoziaLabel.Text = VINTextBox.Text.Length.ToString();
     }
 }

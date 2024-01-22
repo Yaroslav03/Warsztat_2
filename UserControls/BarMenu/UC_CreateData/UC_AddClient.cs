@@ -334,16 +334,17 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             }
             catch (Exception ex)
             {
-                Queue<string> value = new(); 
-                if(setCarToClient.Count==0){
+                Queue<string> value = new();
+                if (setCarToClient.Count == 0)
+                {
                     value.Enqueue("Brak zmiennych, dane zostali usunięte");
                 }
-                else if(setCarToClient.Count>0 )
+                else if (setCarToClient.Count > 0)
                 {
                     value.Enqueue($"\n\tID_CLient:{setCarToClient[0]}");
                     value.Enqueue($"\n\tVIN:{setCarToClient[1]}");
                 }
-                
+
                 await Settings.Error(ex, value, "client", "set car to client");
             }
             setCarToClient.Clear();
@@ -384,7 +385,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         {
             MessageBox.Show("Żeby przypisać samochód potrzebno wykonać następujące czyności:\n" +
                 "\n [1]Ustawić flagę [Przypisz samochód do klienta]" +
-                "\n [2]Kliknąć x2 razy po wybranym kliencie, wtedy wyskoczy powiadomienie o wybranym kliencie."+
+                "\n [2]Kliknąć x2 razy po wybranym kliencie, wtedy wyskoczy powiadomienie o wybranym kliencie." +
                 "\n [3]Kliknąć wybrany samochód wtedy pojawi się przycisk [Przypisz], wtedy wyskoczy powiadomienie o wybranym samochodzie." +
                 "\n\n Żeby pokasować zmienne w pamięci programu należy usunąć flagę z [Przypisz samochód do klienta]");
         }

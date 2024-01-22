@@ -105,7 +105,7 @@
             ViewClients.Location = new Point(10, 45);
             ViewClients.Name = "ViewClients";
             ViewClients.RowTemplate.Height = 25;
-            ViewClients.Size = new Size(775, 262);
+            ViewClients.Size = new Size(801, 262);
             ViewClients.TabIndex = 3;
             ViewClients.CellContentClick += ViewClients_CellContentClick;
             ViewClients.CellDoubleClick += ViewClients_CellDoubleClick;
@@ -180,7 +180,7 @@
             ViewCar.Location = new Point(10, 365);
             ViewCar.Name = "ViewCar";
             ViewCar.RowTemplate.Height = 25;
-            ViewCar.Size = new Size(775, 273);
+            ViewCar.Size = new Size(801, 273);
             ViewCar.TabIndex = 22;
             ViewCar.CellContentClick += ViewCar_CellContentClick;
             // 
@@ -364,7 +364,7 @@
             ButtonClientSave.ForeColor = Color.LightGray;
             ButtonClientSave.Location = new Point(0, 3);
             ButtonClientSave.Name = "ButtonClientSave";
-            ButtonClientSave.Size = new Size(152, 35);
+            ButtonClientSave.Size = new Size(178, 35);
             ButtonClientSave.TabIndex = 17;
             ButtonClientSave.Text = "Zapisz";
             ButtonClientSave.TextAlign = ContentAlignment.MiddleRight;
@@ -383,7 +383,7 @@
             panelDodatkowy.Controls.Add(ID_Client_label_0);
             panelDodatkowy.Controls.Add(label3);
             panelDodatkowy.ForeColor = Color.DimGray;
-            panelDodatkowy.Location = new Point(492, 3);
+            panelDodatkowy.Location = new Point(518, 3);
             panelDodatkowy.Name = "panelDodatkowy";
             panelDodatkowy.Size = new Size(322, 203);
             panelDodatkowy.TabIndex = 4;
@@ -471,7 +471,7 @@
             panel1.ForeColor = Color.DimGray;
             panel1.Location = new Point(3, 235);
             panel1.Name = "panel1";
-            panel1.Size = new Size(811, 666);
+            panel1.Size = new Size(837, 666);
             panel1.TabIndex = 4;
             // 
             // ViewClientsWithVinCheckBox
@@ -494,7 +494,7 @@
             setCarToClientButton.FlatStyle = FlatStyle.Flat;
             setCarToClientButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             setCarToClientButton.ForeColor = Color.LightGray;
-            setCarToClientButton.Location = new Point(691, 324);
+            setCarToClientButton.Location = new Point(717, 324);
             setCarToClientButton.Name = "setCarToClientButton";
             setCarToClientButton.Size = new Size(94, 35);
             setCarToClientButton.TabIndex = 26;
@@ -583,7 +583,7 @@
             panel10.Controls.Add(ButtonClientSave);
             panel10.Location = new Point(331, 11);
             panel10.Name = "panel10";
-            panel10.Size = new Size(155, 195);
+            panel10.Size = new Size(181, 195);
             panel10.TabIndex = 25;
             // 
             // label1
@@ -620,7 +620,7 @@
             ClearPanel.ForeColor = Color.LightGray;
             ClearPanel.Location = new Point(3, 157);
             ClearPanel.Name = "ClearPanel";
-            ClearPanel.Size = new Size(151, 35);
+            ClearPanel.Size = new Size(177, 35);
             ClearPanel.TabIndex = 17;
             ClearPanel.Text = "Wyczyść";
             ClearPanel.TextAlign = ContentAlignment.MiddleRight;
@@ -637,7 +637,7 @@
             ButtonClientUpdate.ForeColor = Color.LightGray;
             ButtonClientUpdate.Location = new Point(3, 78);
             ButtonClientUpdate.Name = "ButtonClientUpdate";
-            ButtonClientUpdate.Size = new Size(148, 35);
+            ButtonClientUpdate.Size = new Size(174, 35);
             ButtonClientUpdate.TabIndex = 17;
             ButtonClientUpdate.Text = "Odśwież";
             ButtonClientUpdate.TextAlign = ContentAlignment.MiddleRight;
@@ -655,7 +655,7 @@
             Controls.Add(panelKontaktowy);
             Controls.Add(panelDodatkowy);
             Name = "UC_AddClient";
-            Size = new Size(837, 580);
+            Size = new Size(863, 580);
             Load += UC_AddClient_Load;
             ((System.ComponentModel.ISupportInitialize)ViewClients).EndInit();
             ((System.ComponentModel.ISupportInitialize)ViewCar).EndInit();

@@ -112,6 +112,7 @@ namespace Warsztat_2._0
         }
         public static async Task LoadData(string path, string cmd, DataGridView view, string categoryError, string textError)
         {
+            Cursor.Current = Cursors.WaitCursor;
             try
             {
                 using SQLiteConnection conn = new(path);
@@ -130,6 +131,24 @@ namespace Warsztat_2._0
             {
                 await Settings.Error(ex, null, categoryError, textError);
             }
+            Cursor.Current = Cursors.Default;
         }
+        public static bool TableExists(string path, string tableName)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection($"{path}"))
+            {
+                connection.Open();
+
+                using (SQLiteCommand command = new SQLiteCommand(connection))
+                {
+                    // Виконання запиту для перевірки наявності таблиці у базі даних
+                    command.CommandText = $"SELECT name FROM sqlite_master WHERE type='table' AND name='{tableName}';";
+                    object result = command.ExecuteScalar();
+
+                    return (result != null && result.ToString() == tableName);
+                }
+            }
+        }
+
     }
 }

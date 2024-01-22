@@ -40,7 +40,7 @@
             RokProdukcjitextBox = new TextBox();
             LeftDocumentsCheck = new CheckBox();
             label6 = new Label();
-            button2 = new Button();
+            AddVinToClient = new Button();
             VINTextBox = new TextBox();
             panel2 = new Panel();
             MileageTextBox = new TextBox();
@@ -194,21 +194,22 @@
             label6.TabIndex = 20;
             label6.Text = "Dane Techniczne";
             // 
-            // button2
+            // AddVinToClient
             // 
-            button2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            button2.BackColor = Color.FromArgb(94, 148, 255);
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.ForeColor = Color.LightGray;
-            button2.Location = new Point(15, 335);
-            button2.Name = "button2";
-            button2.Size = new Size(243, 35);
-            button2.TabIndex = 19;
-            button2.Text = "Przypisz samochód do klienta";
-            button2.TextAlign = ContentAlignment.MiddleLeft;
-            button2.UseVisualStyleBackColor = false;
+            AddVinToClient.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            AddVinToClient.BackColor = Color.FromArgb(94, 148, 255);
+            AddVinToClient.FlatAppearance.BorderSize = 0;
+            AddVinToClient.FlatStyle = FlatStyle.Flat;
+            AddVinToClient.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            AddVinToClient.ForeColor = Color.LightGray;
+            AddVinToClient.Location = new Point(15, 335);
+            AddVinToClient.Name = "AddVinToClient";
+            AddVinToClient.Size = new Size(243, 35);
+            AddVinToClient.TabIndex = 19;
+            AddVinToClient.Text = "Przypisz samochód do klienta";
+            AddVinToClient.TextAlign = ContentAlignment.MiddleLeft;
+            AddVinToClient.UseVisualStyleBackColor = false;
+            AddVinToClient.Click += AddVinToClient_Click;
             // 
             // VINTextBox
             // 
@@ -224,6 +225,7 @@
             VINTextBox.PlaceholderText = "VIN";
             VINTextBox.Size = new Size(199, 23);
             VINTextBox.TabIndex = 17;
+            VINTextBox.TextChanged += VINTextBox_TextChanged;
             // 
             // panel2
             // 
@@ -318,7 +320,7 @@
             panel3.Controls.Add(LeftDocumentsCheck);
             panel3.Controls.Add(label6);
             panel3.Controls.Add(NumLenghtNadwoziaLabel);
-            panel3.Controls.Add(button2);
+            panel3.Controls.Add(AddVinToClient);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(VINTextBox);
             panel3.Controls.Add(panel2);
@@ -392,7 +394,7 @@
         private Panel panelDodatkowy;
         private CheckBox LeftDocumentsCheck;
         private Label label6;
-        private Button button2;
+        private Button AddVinToClient;
         private TextBox VINTextBox;
         private Panel panel2;
         private TextBox MileageTextBox;
