@@ -12,7 +12,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
 
         private Client client = new();
         private Car car = new();
-        private OrderRepair orderRepair = new();
+        private Repair repair = new();
 
         public UC_ScheduleCarSelectTab()
         {
@@ -48,7 +48,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
                 EditDataScheduleCar edit = new();
 
                 PrepareDataToEdit();
-                edit.SetDataEdit(client, car, orderRepair);
+                edit.SetDataEdit(client, car, repair);
                 edit.AutocompleteData(this);
 
                 ControlPanel(EditData, ViewData);
@@ -146,7 +146,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
                 Model = DataScheduleView.CurrentRow.Cells["Model_Column"].Value.ToString()
             };
 
-            orderRepair = new OrderRepair
+            repair = new Repair
             {
                 Problem = DataScheduleView.CurrentRow.Cells["Problem_Column"].Value.ToString(),
                 ScheduleCar = DataScheduleView.CurrentRow.Cells["DataPrzyjecia_Column"].Value.ToString()

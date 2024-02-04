@@ -22,10 +22,13 @@
     <Compile Update="UserControls\BarMenu\UC_CreateData\UC_AddData.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControls\BarMenu\UC_CreateData\UC_AddHistoryCar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControls\BarMenu\UC_CreateData\UC_AddOrderManagement.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="UserControls\BarMenu\UC_CreateData\UC_AddOrderRepair.cs">
+    <Compile Update="UserControls\BarMenu\UC_CreateData\UC_AddRepair.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControls\BarMenu\ViewData\UC_ViewDataCar.cs">

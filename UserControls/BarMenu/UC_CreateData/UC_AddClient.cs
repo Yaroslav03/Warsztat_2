@@ -173,6 +173,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 setCarToClient[1] = ViewCar.CurrentRow.Cells["VIN_Column"].Value.ToString();
                 MessageBox.Show(setCarToClient[1]); //показати користувачу що він вибрав              
             }
+            setCarToClientButton.Show();
         }
         private async void ButtonClientUpdate_Click(object sender, EventArgs e)
         {
@@ -306,6 +307,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             await LoadDataCar();
 
             ButtonClientUpdate.Hide();
+            setCarToClientButton.Hide();
             label2.Hide();
         }
 
@@ -313,11 +315,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
         private void SetCarToClientCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (SetCarToClientCheckBox.Checked == true)
-            {
-                setCarToClientButton.Show();
-            }
-            else
+            if (SetCarToClientCheckBox.Checked == false)
             {
                 MessageBox.Show("Ilość danych:" + setCarToClient.Count);
                 setCarToClientButton.Hide();
@@ -348,6 +346,8 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 await Settings.Error(ex, value, "client", "set car to client");
             }
             setCarToClient.Clear();
+            setCarToClientButton.Hide();
+            SetCarToClientCheckBox.Checked = false;
 
         }
         private async Task AddCarToClient()

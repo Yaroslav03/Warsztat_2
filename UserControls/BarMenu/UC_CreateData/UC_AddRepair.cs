@@ -9,12 +9,14 @@ using System.Windows.Forms;
 
 namespace Warsztat_2._0.UserControls.UC_CreateData
 {
-    public partial class UC_AddOrderRepair : UserControl
+    public partial class UC_AddRepair : UserControl
     {
         #region variables
         readonly string pathCarClients = "Data Source=Warsztat_CarClients.db;Version=3;New=False;Compress=True;";
         readonly string pathHistoryRepair = "Data Source=Warsztat_HistoryRepair.db;Version=3;New=False;Compress=True;";
-        OrderRepair orderRepair = new();
+        private Queue<string> dataError = new();
+        Repair repair = new();
+
         #endregion
         #region Event
         private async void UC_AddOrderRepair_Load(object sender, EventArgs e)
@@ -24,7 +26,6 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
         private void ViewCar_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            ID_label.Text = ViewCar.CurrentRow.Cells["ID_Column"].Value.ToString();
             VIN_label.Text = ViewCar.CurrentRow.Cells["VIN_Column"].Value.ToString();
         }
 
@@ -40,11 +41,8 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
         private void CollectData()
         {
-            orderRepair = new()
+            repair = new()
             {
-                Zlecenie = OrderTextBox.Text,
-                Diagnostic = DiagnosticTextBox.Text,
-                Repair = RepairTextBox.Text,
                 Description = DescriptionTextBox.Text,
                 NrPart = NrPartTextBox.Text,
                 Price = (ushort)PriceNumericUpDown.Value,
@@ -53,7 +51,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
         }
         private async void SaveData()
-        {
+        {/*
             Cursor.Current = Cursors.WaitCursor;
 
             CollectData();
@@ -67,7 +65,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             {
                 SQLiteCommand add = new($"INSERT INTO {VIN_label.Text} (Zlecenie, Diagnostyka, Naprawa, Opis, NumerCzęści, Cena, Ilość, Wykonane) VALUES(@Zlecenie, @Diagnostyka, @Naprawa, @Opis, @NumerCzęści, @Cena, @Ilość, @Wykonane)", conn);
 
-                add.Parameters.AddWithValue("@Zlecenie", orderRepair.Zlecenie);
+                add.Parameters.AddWithValue("@Zlecenie", repair.Zlecenie);
                 add.Parameters.AddWithValue("@Diagnostyka", orderRepair.Diagnostic);
                 add.Parameters.AddWithValue("@Naprawa", orderRepair.Repair);
                 add.Parameters.AddWithValue("@Opis", orderRepair.Description);
@@ -86,7 +84,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 transaction.Rollback();
                 throw;
             }
-            Cursor.Current = Cursors.Default;
+            Cursor.Current = Cursors.Default;*/
             /*ViewHistoriRepair.Rows.Add(orderRepair)
             ViewHistoriRepair.Rows.Add.Cells["Diagnostyka_Column"].Value = orderRepair.Diagnostic;
             ViewHistoriRepair.Rows[rowCount].Cells["Naprawa_Column"].Value = orderRepair.Repair;
@@ -98,37 +96,14 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
         private async Task LoadCarData()
         {
-            await Settings.LoadData(pathCarClients, "SELECT ID, Marka, Model, Silnik, RokProdukcji, VIN FROM Samochód", ViewCar, "client", "Load table Car From DB");
-            await Settings.LoadData(pathHistoryRepair, "SELECT NrRejestracji, Przebieg, DokumentySamochodu, KluczykiSamochodu, TestDrive",,)
+            await Settings.LoadData(pathCarClients, "SELECT ID, Marka, Model, RokProdukcji, VIN FROM Samochód", ViewCar, "history", "Load table Car From DB");
         }
-        private async Task LoadDoubleTableToOne()
-        {
-            Cursor.Current = Cursors.WaitCursor;
-            try
-            {
-                using SQLiteConnection conn = new(path);
 
-                await conn.OpenAsync();
-
-                using SQLiteDataAdapter adapter = new(cmd, conn);
-                {
-                    using DataTable dataTable = new();
-                    dataTable.Clear();// Очищаємо дані, якщо вони вже були завантажені
-                    adapter.Fill(dataTable);
-                    view.DataSource = dataTable;
-                }
-            }
-            catch (Exception ex)
-            {
-                await Settings.Error(ex, null, categoryError, textError);
-            }
-            Cursor.Current = Cursors.Default;
-        }
         private async Task LoadHistoryRepair()
         {
-            if (Settings.TableExists(pathHistoryRepair, VIN_label.Text))
+            /*if (await Settings.TableExistHistory(pathHistoryRepair, VIN_label.Text))
             {
-                await Settings.LoadData(pathHistoryRepair, $"SELECT ID, Zlecenie, Diagnostyka, Naprawa, Opis, NumerCzęści, Cena, Ilość, Wykonane FROM {VIN_label.Text}", ViewHistoriRepair, "history repair", "Load table form History repair from DB");
+                await Settings.LoadData(pathHistoryRepair, $"SELECT ID, Zlecenie, Diagnostyka, Naprawa, Opis, NumerCzęści, Cena, Ilość, Wykonane FROM {VIN_label.Text}", ViewRepair, "history repair", "Load table form History repair from DB");
             }
             else
             {
@@ -141,22 +116,77 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                     AttentionLabel.Text = string.Empty;
                 });
 
-            }
+            }*/
             
         }
         #endregion
-        public UC_AddOrderRepair()
+        public UC_AddRepair()
         {
             InitializeComponent();
         }
 
-        private void ButtonOrderRepairSave_Click(object sender, EventArgs e)
+        private async void ButtonOrderRepairSave_Click(object sender, EventArgs e)
         {
+            await SaveRepair();
+        }
+        private async Task SaveRepair()
+        {
+            CollectData();
+
+            using SQLiteConnection conn = new(pathHistoryRepair);
+
+            await conn.OpenAsync();
+
+            using var transaction = conn.BeginTransaction();
+
+            try
+            {
+                // Використовуйте IF NOT EXISTS для створення таблиці лише у випадку, якщо вона не існує
+                using SQLiteCommand createTable = new($"CREATE TABLE IF NOT EXISTS Repair_{VIN_label.Text} (ID INTEGER PRIMARY KEY AUTOINCREMENT, Opis TEXT, NumerCzęści TEXT, Cena INTEGER, Ilość INTEGER, Stan TEXT);", conn);
+
+                await createTable.ExecuteNonQueryAsync();
+
+
+                using SQLiteCommand insert = new($"INSERT INTO Repair_{VIN_label.Text} (Opis, NumerCzęści, Cena, Ilość, Stan)" +
+                        "VALUES (@Opis, @NumerCzęści, @Cena, @Ilość, @Stan)", conn);
+
+                insert.Parameters.AddWithValue("@Opis", repair.Description);
+                insert.Parameters.AddWithValue("@NumerCzęści", repair.NrPart);
+                insert.Parameters.AddWithValue("@Cena", repair.Price);
+                insert.Parameters.AddWithValue("@Ilość", repair.Ilość);
+                insert.Parameters.AddWithValue("@Stan", repair.Stan);
+
+                await insert.ExecuteNonQueryAsync();
+
+                await transaction.CommitAsync();
+
+                await LoadRepair();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                dataError.Enqueue($"VIN:{VIN_label.Text}");
+                dataError.Enqueue($"Opis:{repair.Description}");
+                dataError.Enqueue($"Numer części:{repair.NrPart}");
+                dataError.Enqueue($"Cena:{repair.Price}");
+                dataError.Enqueue($"Ilość:{repair.Ilość}");
+                dataError.Enqueue($"Stan:{repair.Stan}");
+
+                await Settings.Error(ex, dataError, "AddRepair", "problem with saving data or cmd SQL to Repair");
+                throw;
+            }
+            finally
+            {
+                HistoryCar.Reset();
+            }
 
         }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async Task LoadRepair()
         {
-
+            if (await Settings.TableExistHistory(pathHistoryRepair, VIN_label.Text))
+            {
+                await Settings.LoadData(pathHistoryRepair, $"SELECT ID, DataPrzyjęcia, NrRejestracji, Przebieg, DokumentySamochodu, KluczykiSamochodu, TestDrive, Zlecenie, Diagnostyka, Naprawa FROM Repair_{VIN_label.Text}", ViewRepair, "history", "Load table history from DB");
+            }
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using Warsztat_2._0.UserControls.UC_CreateData;
+using Warsztat_2.UserControls.BarMenu.UC_CreateData;
 
 namespace Warsztat_2._0.UserControls
 {
@@ -6,8 +7,9 @@ namespace Warsztat_2._0.UserControls
     {
         readonly UC_AddCar addCar = new();
         readonly UC_AddClient addClient = new();
-        readonly UC_AddOrderRepair addOrderRepair = new();
+        readonly UC_AddRepair addRepair = new();
         readonly UC_AddOrderManagement addOrderManagement = new();
+        readonly UC_AddHistoryCar addHistoryCar = new();
 
         public UC_AddData()
         {
@@ -25,9 +27,9 @@ namespace Warsztat_2._0.UserControls
             Settings.ChangeWindow(addClient, splitContainer1.Panel2);
         }
 
-        private void CommisionRepairButton_Click(object sender, EventArgs e)
+        private void RepairButton_Click(object sender, EventArgs e)
         {
-            Settings.ChangeWindow(addOrderRepair, splitContainer1.Panel2);
+            Settings.ChangeWindow(addRepair, splitContainer1.Panel2);
         }
 
         private void OrderManagementButton_Click(object sender, EventArgs e)
@@ -40,6 +42,11 @@ namespace Warsztat_2._0.UserControls
         private void CustommerButton_Click(object sender, EventArgs e)
         {
             Settings.ChangeWindow(addClient, splitContainer1.Panel2);
+        }
+
+        private void HistoryButton_Click(object sender, EventArgs e)
+        {
+            Settings.ChangeWindow(addHistoryCar, splitContainer1.Panel2);
         }
     }
 }

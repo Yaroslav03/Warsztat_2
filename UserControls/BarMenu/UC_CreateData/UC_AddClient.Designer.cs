@@ -65,7 +65,6 @@
             ID_Client_label_0 = new Label();
             label3 = new Label();
             panel1 = new Panel();
-            ViewClientsWithVinCheckBox = new CheckBox();
             setCarToClientButton = new Button();
             HelpMessage = new Label();
             SetCarToClientCheckBox = new CheckBox();
@@ -90,7 +89,6 @@
             // 
             ViewClients.AllowUserToAddRows = false;
             ViewClients.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            ViewClients.BackgroundColor = Color.LightGray;
             ViewClients.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(94, 148, 255);
@@ -105,7 +103,7 @@
             ViewClients.Location = new Point(10, 45);
             ViewClients.Name = "ViewClients";
             ViewClients.RowTemplate.Height = 25;
-            ViewClients.Size = new Size(801, 262);
+            ViewClients.Size = new Size(898, 262);
             ViewClients.TabIndex = 3;
             ViewClients.CellContentClick += ViewClients_CellContentClick;
             ViewClients.CellDoubleClick += ViewClients_CellDoubleClick;
@@ -180,7 +178,7 @@
             ViewCar.Location = new Point(10, 365);
             ViewCar.Name = "ViewCar";
             ViewCar.RowTemplate.Height = 25;
-            ViewCar.Size = new Size(801, 273);
+            ViewCar.Size = new Size(898, 273);
             ViewCar.TabIndex = 22;
             ViewCar.CellContentClick += ViewCar_CellContentClick;
             // 
@@ -306,9 +304,9 @@
             DaneKlientaTxt.BackColor = Color.FromArgb(94, 148, 255);
             DaneKlientaTxt.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
             DaneKlientaTxt.ForeColor = Color.LightGray;
-            DaneKlientaTxt.Location = new Point(11, 8);
+            DaneKlientaTxt.Location = new Point(5, 4);
             DaneKlientaTxt.Name = "DaneKlientaTxt";
-            DaneKlientaTxt.Size = new Size(128, 25);
+            DaneKlientaTxt.Size = new Size(119, 25);
             DaneKlientaTxt.TabIndex = 0;
             DaneKlientaTxt.Tag = "";
             DaneKlientaTxt.Text = "Dane Klienta";
@@ -362,9 +360,10 @@
             ButtonClientSave.FlatStyle = FlatStyle.Flat;
             ButtonClientSave.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             ButtonClientSave.ForeColor = Color.LightGray;
-            ButtonClientSave.Location = new Point(0, 3);
+            ButtonClientSave.Location = new Point(5, 4);
+            ButtonClientSave.MinimumSize = new Size(203, 35);
             ButtonClientSave.Name = "ButtonClientSave";
-            ButtonClientSave.Size = new Size(178, 35);
+            ButtonClientSave.Size = new Size(203, 35);
             ButtonClientSave.TabIndex = 17;
             ButtonClientSave.Text = "Zapisz";
             ButtonClientSave.TextAlign = ContentAlignment.MiddleRight;
@@ -383,9 +382,9 @@
             panelDodatkowy.Controls.Add(ID_Client_label_0);
             panelDodatkowy.Controls.Add(label3);
             panelDodatkowy.ForeColor = Color.DimGray;
-            panelDodatkowy.Location = new Point(518, 3);
+            panelDodatkowy.Location = new Point(626, 3);
             panelDodatkowy.Name = "panelDodatkowy";
-            panelDodatkowy.Size = new Size(322, 203);
+            panelDodatkowy.Size = new Size(301, 203);
             panelDodatkowy.TabIndex = 4;
             // 
             // NIPTextBox
@@ -458,7 +457,6 @@
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(64, 64, 68);
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(ViewClientsWithVinCheckBox);
             panel1.Controls.Add(setCarToClientButton);
             panel1.Controls.Add(HelpMessage);
             panel1.Controls.Add(SetCarToClientCheckBox);
@@ -471,20 +469,8 @@
             panel1.ForeColor = Color.DimGray;
             panel1.Location = new Point(3, 235);
             panel1.Name = "panel1";
-            panel1.Size = new Size(837, 666);
+            panel1.Size = new Size(918, 666);
             panel1.TabIndex = 4;
-            // 
-            // ViewClientsWithVinCheckBox
-            // 
-            ViewClientsWithVinCheckBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            ViewClientsWithVinCheckBox.AutoSize = true;
-            ViewClientsWithVinCheckBox.Location = new Point(460, 25);
-            ViewClientsWithVinCheckBox.Name = "ViewClientsWithVinCheckBox";
-            ViewClientsWithVinCheckBox.Size = new Size(235, 19);
-            ViewClientsWithVinCheckBox.TabIndex = 27;
-            ViewClientsWithVinCheckBox.Text = "Wyświetlaj tylko przypisany samochody";
-            ViewClientsWithVinCheckBox.UseVisualStyleBackColor = true;
-            ViewClientsWithVinCheckBox.CheckedChanged += ViewClientsWithVinCheckBox_CheckedChanged;
             // 
             // setCarToClientButton
             // 
@@ -494,9 +480,9 @@
             setCarToClientButton.FlatStyle = FlatStyle.Flat;
             setCarToClientButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             setCarToClientButton.ForeColor = Color.LightGray;
-            setCarToClientButton.Location = new Point(717, 324);
+            setCarToClientButton.Location = new Point(789, 9);
             setCarToClientButton.Name = "setCarToClientButton";
-            setCarToClientButton.Size = new Size(94, 35);
+            setCarToClientButton.Size = new Size(119, 35);
             setCarToClientButton.TabIndex = 26;
             setCarToClientButton.Text = "Przypisz";
             setCarToClientButton.UseVisualStyleBackColor = false;
@@ -507,8 +493,8 @@
             HelpMessage.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             HelpMessage.AutoSize = true;
             HelpMessage.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            HelpMessage.ForeColor = Color.FromArgb(224, 224, 224);
-            HelpMessage.Location = new Point(710, 18);
+            HelpMessage.ForeColor = Color.Gray;
+            HelpMessage.Location = new Point(480, 20);
             HelpMessage.Name = "HelpMessage";
             HelpMessage.Size = new Size(86, 24);
             HelpMessage.TabIndex = 25;
@@ -518,6 +504,7 @@
             // SetCarToClientCheckBox
             // 
             SetCarToClientCheckBox.AutoSize = true;
+            SetCarToClientCheckBox.ForeColor = Color.FromArgb(224, 224, 224);
             SetCarToClientCheckBox.Location = new Point(460, 3);
             SetCarToClientCheckBox.Name = "SetCarToClientCheckBox";
             SetCarToClientCheckBox.Size = new Size(182, 19);
@@ -583,7 +570,7 @@
             panel10.Controls.Add(ButtonClientSave);
             panel10.Location = new Point(331, 11);
             panel10.Name = "panel10";
-            panel10.Size = new Size(181, 195);
+            panel10.Size = new Size(289, 195);
             panel10.TabIndex = 25;
             // 
             // label1
@@ -603,9 +590,9 @@
             label2.BackColor = Color.FromArgb(94, 148, 255);
             label2.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.LightGray;
-            label2.Location = new Point(5, 79);
+            label2.Location = new Point(7, 82);
             label2.Name = "label2";
-            label2.Size = new Size(114, 25);
+            label2.Size = new Size(117, 25);
             label2.TabIndex = 0;
             label2.Tag = "";
             label2.Text = "Dane Klienta";
@@ -618,9 +605,10 @@
             ClearPanel.FlatStyle = FlatStyle.Flat;
             ClearPanel.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             ClearPanel.ForeColor = Color.LightGray;
-            ClearPanel.Location = new Point(3, 157);
+            ClearPanel.Location = new Point(5, 157);
+            ClearPanel.MinimumSize = new Size(203, 35);
             ClearPanel.Name = "ClearPanel";
-            ClearPanel.Size = new Size(177, 35);
+            ClearPanel.Size = new Size(203, 35);
             ClearPanel.TabIndex = 17;
             ClearPanel.Text = "Wyczyść";
             ClearPanel.TextAlign = ContentAlignment.MiddleRight;
@@ -635,9 +623,10 @@
             ButtonClientUpdate.FlatStyle = FlatStyle.Flat;
             ButtonClientUpdate.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             ButtonClientUpdate.ForeColor = Color.LightGray;
-            ButtonClientUpdate.Location = new Point(3, 78);
+            ButtonClientUpdate.Location = new Point(5, 81);
+            ButtonClientUpdate.MinimumSize = new Size(203, 35);
             ButtonClientUpdate.Name = "ButtonClientUpdate";
-            ButtonClientUpdate.Size = new Size(174, 35);
+            ButtonClientUpdate.Size = new Size(203, 35);
             ButtonClientUpdate.TabIndex = 17;
             ButtonClientUpdate.Text = "Odśwież";
             ButtonClientUpdate.TextAlign = ContentAlignment.MiddleRight;
@@ -654,8 +643,9 @@
             Controls.Add(panel10);
             Controls.Add(panelKontaktowy);
             Controls.Add(panelDodatkowy);
+            MinimumSize = new Size(870, 580);
             Name = "UC_AddClient";
-            Size = new Size(863, 580);
+            Size = new Size(944, 580);
             Load += UC_AddClient_Load;
             ((System.ComponentModel.ISupportInitialize)ViewClients).EndInit();
             ((System.ComponentModel.ISupportInitialize)ViewCar).EndInit();
@@ -709,8 +699,6 @@
         private DataGridViewTextBoxColumn VIN_Column;
         private CheckBox SetCarToClientCheckBox;
         private Label HelpMessage;
-        private Button setCarToClientButton;
-        private CheckBox ViewClientsWithVinCheckBox;
         private DataGridViewButtonColumn BtnDelete;
         private DataGridViewTextBoxColumn ID_Column;
         private DataGridViewTextBoxColumn Name_Column;
@@ -719,5 +707,6 @@
         private DataGridViewTextBoxColumn Adress_Column;
         private DataGridViewTextBoxColumn NIP_Column;
         private DataGridViewTextBoxColumn VIN_Client_Column;
+        private Button setCarToClientButton;
     }
 }

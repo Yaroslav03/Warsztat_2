@@ -6,15 +6,14 @@ public partial class UC_AddCar : UserControl
     #region variables
     readonly string pathDBCAR = "Data Source=DBCar.db;Version=3;New=False;Compress=True;";
     readonly string pathCarClients = "Data Source=Warsztat_CarClients.db;Version=3;New=False;Compress=True;";
-    readonly string pathHistoryRepair = "Data Source=Warsztat_HistoryRepair.db;Version=3;New=False;Compress=True;";
+
 
     private List<string?> carData = new();
     private Queue<string> dataError = new();
 
     private Car car = new();
-    private OrderRepair orderRepair = new();
-
-    byte selectError;
+    private Repair orderRepair = new();
+    private HistoryCar HistoryCar = new();
 
     #endregion
 
@@ -23,7 +22,7 @@ public partial class UC_AddCar : UserControl
     private async void UC_AddCar_Load(object sender, EventArgs e)
     {
         AttachEventHandlers();
-        LoadData();
+        //LoadData();
         await LoadDataClient();
         Verefy();
     }
@@ -36,34 +35,37 @@ public partial class UC_AddCar : UserControl
         {
             await SaveCar();
 
-            await SaveHistoryRepair();
         }
         catch (Exception ex)
         {
-            if (selectError == 0)
-            {
-                await Settings.Error(ex, null, "AddCar", "problem with opening db car");
-            }
-            else if (selectError == 1)
-            {
-                await Settings.Error(ex, null, "AddCar", "problem with opening db History Repair");
-            }
-            selectError = 0;
+            await Settings.Error(ex, null, "AddCar", "problem with opening db car");
         }
 
         Cursor.Current = Cursors.Default;
     }
-    private void MarkaListBox_Click(object sender, EventArgs e)
+    private async void MarkaListBox_Click(object sender, EventArgs e)
     {
-        SearchData(MarkaListBox, ModelListBox, "Model");
+        if (await Settings.TableExist(pathDBCAR, MarkaListBox.Text.ToString()))
+        {
+            SearchData(MarkaListBox, ModelListBox, "Model");
+        }
+        else
+        {
+            ModelListBox.Items.Clear();
+        }
+
     }
-    private void ModelListBox_Click(object sender, EventArgs e)
+    private async void ModelListBox_Click(object sender, EventArgs e)
     {
-        SearchDataEngine();
-    }
-    private void NrNadwoziaTextBox_TextChanged(object sender, EventArgs e)
-    {
+        if (await Settings.TableExist(pathDBCAR, MarkaListBox.Text.ToString()))
+        {
+            SearchDataEngine();
+        }
         
+        else 
+        {
+            
+        }
     }
     private void HandleTextBoxChanged(object? sender, EventArgs e)
     {
@@ -76,48 +78,31 @@ public partial class UC_AddCar : UserControl
     #endregion
 
     #region methods
-    private void CollectCarData(bool check)
+    private void CollectCarData()
     {
-        if (check == true)
-        {
-            carData = new List<string?>
+
+        carData = new List<string?>
         {
             string.IsNullOrEmpty(MarkaSearch.Text) ? MarkaListBox.SelectedItem?.ToString() : MarkaSearch.Text,
             string.IsNullOrEmpty(ModelSearch.Text) ? ModelListBox.SelectedItem?.ToString() : ModelSearch.Text,
             string.IsNullOrEmpty(PojemnośćSilnikaSearch.Text) ? EngineListBox.SelectedItem?.ToString() : PojemnośćSilnikaSearch.Text,
             string.IsNullOrEmpty(RokProdukcjitextBox.Text) ? RokProdukcjiListBox.SelectedItem?.ToString() :RokProdukcjitextBox.Text
         };
-            car = new()
-            {
-                Marka = carData[0],
-                Model = carData[1],
-                Engine = carData[2],
-                YearOfProduktion = carData[3],
-
-                VIN = VINTextBox.Text
-            };
-        }
-        // File.ReadAllText("tempFile.txt")
-        else
+        car = new()
         {
-            car = new()
-            {
-                NumberofRegister = RegistrationNumberTextBox.Text,
-                Mileage = MileageTextBox.Text,
-                VIN = VINTextBox.Text
-            };
-            orderRepair = new()
-            {
-                LeftDocument = LeftDocumentsCheck.Checked,
-                TestDrive = TestDriveChceck.Checked,
-                KeyCar = LeftKeyChceck.Checked
-            };
-        }
+            Marka = carData[0],
+            Model = carData[1],
+            Engine = carData[2],
+            YearOfProduktion = carData[3],
+
+            VIN = VINTextBox.Text
+        };
+        // File.ReadAllText("tempFile.txt")
+
     }
     private async Task SaveCar()
     {
-        selectError = 0;
-        CollectCarData(true);
+        CollectCarData();
 
         using SQLiteConnection conn = new(pathCarClients);
 
@@ -144,7 +129,6 @@ public partial class UC_AddCar : UserControl
             transaction.Rollback();
             MessageBox.Show("Coś poszło nie tak w czasie zapisu samochodu: " + ex);
             throw;
-
         }
         finally
         {
@@ -153,57 +137,7 @@ public partial class UC_AddCar : UserControl
         }
     }
 
-    private async Task SaveHistoryRepair()
-    {
-        selectError = 1;
-        CollectCarData(false);
 
-        using SQLiteConnection conn = new(pathHistoryRepair);
-
-        await conn.OpenAsync();
-
-        using var transaction = conn.BeginTransaction();
-
-        try
-        {
-            // Використовуйте IF NOT EXISTS для створення таблиці лише у випадку, якщо вона не існує
-            using SQLiteCommand createTable = new($"CREATE TABLE IF NOT EXISTS {car.VIN} " +
-"(ID INTEGER PRIMARY KEY AUTOINCREMENT, NrRejestracji TEXT, Przebieg INTEGER, DokumentySamochodu TEXT, KluczykiSamochodu TEXT, TestDrive TEXT, Zlecenie TEXT, Diagnostyka TEXT, Naprawa TEXT, Opis TEXT, NumerCzęści TEXT, Cena TEXT, Ilość TEXT, Wykonane TEXT);", conn);
-            await createTable.ExecuteNonQueryAsync();
-
-
-            using SQLiteCommand insert = new($"INSERT INTO {car.VIN} (NrRejestracji, Przebieg, DokumentySamochodu, KluczykiSamochodu, TestDrive)" +
-                    "VALUES (@NrRejestracji, @Przebieg, @DokumentySamochodu, @KluczykiSamochodu, @TestDrive)", conn);
-
-            insert.Parameters.AddWithValue("@NrRejestracji", car.NumberofRegister);
-            insert.Parameters.AddWithValue("@Przebieg", car.Mileage);
-            insert.Parameters.AddWithValue("@DokumentySamochodu", orderRepair.LeftDocument);
-            insert.Parameters.AddWithValue("@KluczykiSamochodu", orderRepair.KeyCar);
-            insert.Parameters.AddWithValue("@TestDrive", orderRepair.TestDrive);
-
-            await insert.ExecuteNonQueryAsync();
-
-            await transaction.CommitAsync();
-        }
-        catch (Exception ex)
-        {
-            transaction.Rollback();
-            dataError.Enqueue($"VIN:{car.VIN}");
-            dataError.Enqueue($"NrRejestracji:{car.NumberofRegister}");
-            dataError.Enqueue($"Przebieg:{car.Mileage}");
-            dataError.Enqueue($"DokumentySamochodu:{orderRepair.LeftDocument}");
-            dataError.Enqueue($"KluczykiSamochodu:{orderRepair.KeyCar}");
-            dataError.Enqueue($"TestDrive:{orderRepair.TestDrive}");
-
-            await Settings.Error(ex, dataError, "AddCar", "problem with saving data or cmd SQL to History Repair");
-            throw;
-        }
-        finally
-        {
-            Car.Reset();
-            OrderRepair.Reset();
-        }
-    }
     private void AttachEventHandlers()
     {
         MarkaSearch.TextChanged += HandleTextBoxChanged;
@@ -393,5 +327,10 @@ public partial class UC_AddCar : UserControl
         VINTextBox.MaxLength = 17;
         VINTextBox.Text = String.Concat(VINTextBox.Text.Where(char.IsLetterOrDigit));
         NumLenghtNadwoziaLabel.Text = VINTextBox.Text.Length.ToString();
+    }
+
+    private void MarkaSearch_TextChanged(object sender, EventArgs e)
+    {
+
     }
 }

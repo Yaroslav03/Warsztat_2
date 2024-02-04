@@ -48,7 +48,7 @@ namespace Warsztat_2._0
                             Model = reader["Model"].ToString(),
                         };
 
-                        OrderRepair order = new()
+                        Repair order = new()
                         {
                             Problem = reader["Problem"].ToString(),
                             ScheduleCar = reader["DataPrzyjęcia"].ToString()
@@ -67,7 +67,7 @@ namespace Warsztat_2._0
             {
                 Car.Reset();
                 Client.Reset();
-                OrderRepair.Reset();
+                Repair.Reset();
                 Cursor.Current = Cursors.Default;
                 //GC.Collect();
             }
@@ -133,21 +133,24 @@ namespace Warsztat_2._0
             }
             Cursor.Current = Cursors.Default;
         }
-        public static bool TableExists(string path, string tableName)
+
+        public static async Task<bool> TableExistHistory(string path, string tableName)
         {
-            using (SQLiteConnection connection = new SQLiteConnection($"{path}"))
-            {
-                connection.Open();
+            using SQLiteConnection conn = new(path);
+            await conn.OpenAsync();
+            using SQLiteCommand search = new($"SELECT name FROM sqlite_master WHERE type='table' AND name='_{tableName}'", conn);
 
-                using (SQLiteCommand command = new SQLiteCommand(connection))
-                {
-                    // Виконання запиту для перевірки наявності таблиці у базі даних
-                    command.CommandText = $"SELECT name FROM sqlite_master WHERE type='table' AND name='{tableName}';";
-                    object result = command.ExecuteScalar();
+            string? result = (string?)await search.ExecuteScalarAsync();
+            return result != null && result.ToString() == "_" + tableName;
+        }
+        public static async Task<bool> TableExist(string path, string tableName)
+        {
+            using SQLiteConnection conn = new(path);
+            await conn.OpenAsync();
+            using SQLiteCommand search = new($"SELECT name FROM sqlite_master WHERE type='table' AND name='{tableName}'", conn);
 
-                    return (result != null && result.ToString() == tableName);
-                }
-            }
+            string? result = (string?)await search.ExecuteScalarAsync();
+            return result != null && result.ToString() == tableName;
         }
 
     }

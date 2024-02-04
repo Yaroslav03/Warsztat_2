@@ -6,7 +6,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
     {
         private readonly string path = "Data Source=WarsztatData.db;Version=3;New=False;Compress=True;";
         private Car car = new();
-        private OrderRepair orderRepair = new();
+        private Repair repair = new();
         public Client client = new();
         public UC_ScheduleCar()
         {
@@ -33,8 +33,8 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
 
                 cmd.Parameters.AddWithValue("@Marka", car.Marka);
                 cmd.Parameters.AddWithValue("@Model", car.Model);
-                cmd.Parameters.AddWithValue("@Problem", orderRepair.Problem);
-                cmd.Parameters.AddWithValue("@DataPrzyjęcia", orderRepair.ScheduleCar);
+                cmd.Parameters.AddWithValue("@Problem", repair.Problem);
+                cmd.Parameters.AddWithValue("@DataPrzyjęcia", repair.ScheduleCar);
 
                 cmd.ExecuteNonQuery();
 
@@ -48,7 +48,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
             {
                 // client.Reset();
                 Car.Reset();
-                OrderRepair.Reset();
+                Repair.Reset();
                 Cursor.Current = Cursors.Default;
             }
         }
@@ -65,7 +65,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
                 Marka = CarComboBox1.Text,
                 Model = ModelTextBox.Text,
             };
-            orderRepair = new OrderRepair
+            repair = new Repair
             {
                 Problem = ProblemCar.Text,
                 ScheduleCar = ScheduleTime.Text
@@ -80,11 +80,11 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
         private void CarButton_Click(object sender, EventArgs e)
         {
         }
-        public void SetDataEdit(Client clientToEdit, Car carToEdit, OrderRepair orderRepairToEdit)
+        public void SetDataEdit(Client clientToEdit, Car carToEdit, Repair repairToEdit)
         {//сетування даних при переході між класами
             client = clientToEdit;
             car = carToEdit;
-            orderRepair = orderRepairToEdit;
+            repair = repairToEdit;
 
             AutocompleteData();
         }
@@ -97,7 +97,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
             CarComboBox1.SelectedItem = car.Marka;
             ModelTextBox.Text = car.Model;
 
-            ProblemCar.Text = orderRepair.Problem;
+            ProblemCar.Text = repair.Problem;
 
             //ScheduleTime.Text = orderRepair.ScheduleCar;
         }

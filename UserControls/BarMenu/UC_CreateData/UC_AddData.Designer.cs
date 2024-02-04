@@ -31,9 +31,10 @@
             OrderManagementButton = new Button();
             splitContainer1 = new SplitContainer();
             panel1 = new Panel();
+            RepairButton = new Button();
+            HistoryButton = new Button();
             CustommerButton = new Button();
             CarButton = new Button();
-            CommisionRepairButton = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.SuspendLayout();
@@ -48,9 +49,9 @@
             OrderManagementButton.FlatStyle = FlatStyle.Flat;
             OrderManagementButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             OrderManagementButton.ForeColor = Color.LightGray;
-            OrderManagementButton.Location = new Point(741, 14);
+            OrderManagementButton.Location = new Point(787, 7);
             OrderManagementButton.Name = "OrderManagementButton";
-            OrderManagementButton.Size = new Size(230, 30);
+            OrderManagementButton.Size = new Size(188, 30);
             OrderManagementButton.TabIndex = 16;
             OrderManagementButton.Text = "Zarządzanie Zleceniami";
             OrderManagementButton.UseVisualStyleBackColor = false;
@@ -81,16 +82,52 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(RepairButton);
+            panel1.Controls.Add(OrderManagementButton);
+            panel1.Controls.Add(HistoryButton);
             panel1.Controls.Add(CustommerButton);
             panel1.Controls.Add(CarButton);
-            panel1.Controls.Add(OrderManagementButton);
-            panel1.Controls.Add(CommisionRepairButton);
             panel1.ForeColor = Color.Black;
             panel1.ImeMode = ImeMode.Off;
-            panel1.Location = new Point(3, -8);
+            panel1.Location = new Point(3, 0);
+            panel1.MinimumSize = new Size(920, 43);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1016, 51);
+            panel1.Size = new Size(1016, 43);
             panel1.TabIndex = 0;
+            // 
+            // RepairButton
+            // 
+            RepairButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            RepairButton.BackColor = Color.FromArgb(94, 148, 255);
+            RepairButton.FlatAppearance.BorderSize = 0;
+            RepairButton.FlatStyle = FlatStyle.Flat;
+            RepairButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            RepairButton.ForeColor = Color.LightGray;
+            RepairButton.Location = new Point(576, 7);
+            RepairButton.MinimumSize = new Size(140, 30);
+            RepairButton.Name = "RepairButton";
+            RepairButton.Size = new Size(188, 30);
+            RepairButton.TabIndex = 16;
+            RepairButton.Text = "Zamówione części";
+            RepairButton.UseVisualStyleBackColor = false;
+            RepairButton.Click += RepairButton_Click;
+            // 
+            // HistoryButton
+            // 
+            HistoryButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            HistoryButton.BackColor = Color.FromArgb(94, 148, 255);
+            HistoryButton.FlatAppearance.BorderSize = 0;
+            HistoryButton.FlatStyle = FlatStyle.Flat;
+            HistoryButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            HistoryButton.ForeColor = Color.LightGray;
+            HistoryButton.Location = new Point(388, 7);
+            HistoryButton.MinimumSize = new Size(80, 30);
+            HistoryButton.Name = "HistoryButton";
+            HistoryButton.Size = new Size(175, 30);
+            HistoryButton.TabIndex = 16;
+            HistoryButton.Text = "Historia";
+            HistoryButton.UseVisualStyleBackColor = false;
+            HistoryButton.Click += HistoryButton_Click;
             // 
             // CustommerButton
             // 
@@ -99,9 +136,9 @@
             CustommerButton.FlatStyle = FlatStyle.Flat;
             CustommerButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             CustommerButton.ForeColor = Color.LightGray;
-            CustommerButton.Location = new Point(30, 14);
+            CustommerButton.Location = new Point(3, 7);
             CustommerButton.Name = "CustommerButton";
-            CustommerButton.Size = new Size(200, 30);
+            CustommerButton.Size = new Size(177, 30);
             CustommerButton.TabIndex = 16;
             CustommerButton.Text = "Klient";
             CustommerButton.UseVisualStyleBackColor = false;
@@ -114,29 +151,13 @@
             CarButton.FlatStyle = FlatStyle.Flat;
             CarButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             CarButton.ForeColor = Color.LightGray;
-            CarButton.Location = new Point(277, 14);
+            CarButton.Location = new Point(200, 7);
             CarButton.Name = "CarButton";
-            CarButton.Size = new Size(199, 30);
+            CarButton.Size = new Size(174, 30);
             CarButton.TabIndex = 16;
             CarButton.Text = "Samochód";
             CarButton.UseVisualStyleBackColor = false;
             CarButton.Click += CarButton_Click;
-            // 
-            // CommisionRepairButton
-            // 
-            CommisionRepairButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            CommisionRepairButton.BackColor = Color.FromArgb(94, 148, 255);
-            CommisionRepairButton.FlatAppearance.BorderSize = 0;
-            CommisionRepairButton.FlatStyle = FlatStyle.Flat;
-            CommisionRepairButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            CommisionRepairButton.ForeColor = Color.LightGray;
-            CommisionRepairButton.Location = new Point(516, 14);
-            CommisionRepairButton.Name = "CommisionRepairButton";
-            CommisionRepairButton.Size = new Size(199, 30);
-            CommisionRepairButton.TabIndex = 16;
-            CommisionRepairButton.Text = "Zlecenie i Naprawa";
-            CommisionRepairButton.UseVisualStyleBackColor = false;
-            CommisionRepairButton.Click += CommisionRepairButton_Click;
             // 
             // UC_AddData
             // 
@@ -159,8 +180,9 @@
         private Button OrderManagementButton;
         private SplitContainer splitContainer1;
         private Button CarButton;
-        private Button CommisionRepairButton;
+        private Button RepairButton;
         private Button CustommerButton;
         private Panel panel1;
+        private Button HistoryButton;
     }
 }

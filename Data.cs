@@ -17,8 +17,7 @@ public class Car
     public string? Model { get; set; }
     public string? Engine { get; set; }
     public string? YearOfProduktion { get; set; }
-    public string? NumberofRegister { get; set; }
-    public string? Mileage { get; set; }
+    
     public string? VIN { get; set; }
 
     public static Car Reset()
@@ -39,29 +38,37 @@ class Pay
         return new Pay();
     }
 }
-
-public class OrderRepair
+class HistoryCar
 {
-    public string? Problem { get; set; }
-    public string? ScheduleCar { get; set; }
-    public string? AdmissionDateCar { get; set; }
+    string? DateofAdoption {get;set;}
+    public string? NumberofRegister { get; set; }
+    public string? Mileage { get; set; }
     public bool LeftDocument { get; set; }
     public bool TestDrive { get; set; }
     public bool KeyCar { get; set; }
-
-
     public string? Zlecenie { get; set; }
     public string? Diagnostic { get; set; }
     public string? Repair { get; set; }
+    public string? VIN { get; set; }
+    public string? DateOfAcceptance { get; set; }
+
+    public static HistoryCar Reset() { return new HistoryCar(); }
+}
+
+public class Repair
+{
+    public string? Problem { get; set; }
+    public string? ScheduleCar { get; set; }
+    public string? AdmissionDateCar { get; set; }  
     public string? Description { get; set; }
     public string? NrPart { get; set; }
 
     public ushort Price { get; set; }
     public byte Ilość { get; set; }
     public bool Stan { get; set; }
-    public static OrderRepair Reset()
+    public static Repair Reset()
     {
-        return new OrderRepair();
+        return new Repair();
     }
 }
 public class WarehouseData
