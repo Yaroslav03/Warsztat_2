@@ -49,9 +49,9 @@
             OrderManagementButton.FlatStyle = FlatStyle.Flat;
             OrderManagementButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             OrderManagementButton.ForeColor = Color.LightGray;
-            OrderManagementButton.Location = new Point(787, 7);
+            OrderManagementButton.Location = new Point(880, 7);
             OrderManagementButton.Name = "OrderManagementButton";
-            OrderManagementButton.Size = new Size(188, 30);
+            OrderManagementButton.Size = new Size(128, 30);
             OrderManagementButton.TabIndex = 16;
             OrderManagementButton.Text = "Zarządzanie Zleceniami";
             OrderManagementButton.UseVisualStyleBackColor = false;
@@ -92,7 +92,7 @@
             panel1.Location = new Point(3, 0);
             panel1.MinimumSize = new Size(920, 43);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1016, 43);
+            panel1.Size = new Size(1013, 43);
             panel1.TabIndex = 0;
             // 
             // RepairButton
@@ -103,10 +103,10 @@
             RepairButton.FlatStyle = FlatStyle.Flat;
             RepairButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             RepairButton.ForeColor = Color.LightGray;
-            RepairButton.Location = new Point(576, 7);
+            RepairButton.Location = new Point(691, 7);
             RepairButton.MinimumSize = new Size(140, 30);
             RepairButton.Name = "RepairButton";
-            RepairButton.Size = new Size(188, 30);
+            RepairButton.Size = new Size(153, 30);
             RepairButton.TabIndex = 16;
             RepairButton.Text = "Zamówione części";
             RepairButton.UseVisualStyleBackColor = false;
@@ -123,7 +123,7 @@
             HistoryButton.Location = new Point(388, 7);
             HistoryButton.MinimumSize = new Size(80, 30);
             HistoryButton.Name = "HistoryButton";
-            HistoryButton.Size = new Size(175, 30);
+            HistoryButton.Size = new Size(268, 30);
             HistoryButton.TabIndex = 16;
             HistoryButton.Text = "Historia";
             HistoryButton.UseVisualStyleBackColor = false;
@@ -138,7 +138,7 @@
             CustommerButton.ForeColor = Color.LightGray;
             CustommerButton.Location = new Point(3, 7);
             CustommerButton.Name = "CustommerButton";
-            CustommerButton.Size = new Size(177, 30);
+            CustommerButton.Size = new Size(142, 30);
             CustommerButton.TabIndex = 16;
             CustommerButton.Text = "Klient";
             CustommerButton.UseVisualStyleBackColor = false;
@@ -153,7 +153,7 @@
             CarButton.ForeColor = Color.LightGray;
             CarButton.Location = new Point(200, 7);
             CarButton.Name = "CarButton";
-            CarButton.Size = new Size(174, 30);
+            CarButton.Size = new Size(139, 30);
             CarButton.TabIndex = 16;
             CarButton.Text = "Samochód";
             CarButton.UseVisualStyleBackColor = false;

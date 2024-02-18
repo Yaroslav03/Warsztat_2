@@ -32,8 +32,15 @@ namespace Warsztat_2._0.UserControls
             Settings.ChangeWindow(addRepair, splitContainer1.Panel2);
         }
 
-        private void OrderManagementButton_Click(object sender, EventArgs e)
+        private  void OrderManagementButton_Click(object sender, EventArgs e)
         {
+            // Використовуємо існуючий екземпляр UC_AddRepair
+            
+            //await  Task.Delay(1000);
+            if(addRepair != null)
+            {
+                addRepair.VINChanged += AddRepairVinChanged;
+            }
             Settings.ChangeWindow(addOrderManagement, splitContainer1.Panel2);
         }
 
@@ -47,6 +54,17 @@ namespace Warsztat_2._0.UserControls
         private void HistoryButton_Click(object sender, EventArgs e)
         {
             Settings.ChangeWindow(addHistoryCar, splitContainer1.Panel2);
+        }
+
+
+        public void AddRepairVinChanged(object sender, string VIN)
+        {
+
+            addOrderManagement.UpdateVIN(VIN);
+        }
+        public void ChangeWindowToOrderManagement()
+        {
+            //addRepair.VINChanged += UpdateOrderManagementVIN;
         }
     }
 }

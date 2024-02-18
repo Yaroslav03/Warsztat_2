@@ -60,6 +60,7 @@
             NrPartTextBox = new TextBox();
             DescriptionTextBox = new TextBox();
             RepairTimePicker = new DateTimePicker();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)IloscNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ViewRepair).BeginInit();
@@ -366,6 +367,17 @@
             RepairTimePicker.TabIndex = 37;
             RepairTimePicker.Value = new DateTime(2024, 1, 16, 0, 0, 0, 0);
             // 
+            // label1
+            // 
+            label1.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(224, 224, 224);
+            label1.Location = new Point(818, 270);
+            label1.Name = "label1";
+            label1.Size = new Size(170, 28);
+            label1.TabIndex = 25;
+            label1.Text = "Zarządzenie Zleceniem";
+            label1.Click += label1_Click;
+            // 
             // UC_AddRepair
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -376,6 +388,7 @@
             Controls.Add(panelDodatkowy);
             Controls.Add(ViewCar);
             Controls.Add(ViewRepair);
+            Controls.Add(label1);
             Controls.Add(label6);
             Controls.Add(VIN_label);
             Name = "UC_AddRepair";
@@ -417,5 +430,6 @@
         private DataGridViewTextBoxColumn NrCzęści_Column;
         private DataGridViewTextBoxColumn Cena_Column;
         private DataGridViewTextBoxColumn Ilość_Column;
+        private Label label1;
     }
 }

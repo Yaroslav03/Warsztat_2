@@ -1,4 +1,6 @@
-﻿using System.Data.SQLite;
+﻿using System.Data;
+using System.Data.SQLite;
+using Warsztat_2._0;
 internal class SqlCmd
     {
     
@@ -26,4 +28,46 @@ internal class SqlCmd
         }
         Cursor.Current = Cursors.Default;
     }
+    public static async Task LoadData(string path, string cmd, DataGridView view, string categoryError, string textError)
+    {
+        Cursor.Current = Cursors.WaitCursor;
+        try
+        {
+            using SQLiteConnection conn = new(path);
+
+            await conn.OpenAsync();
+
+            using SQLiteDataAdapter adapter = new(cmd, conn);
+            {
+                using DataTable dataTable = new();
+                dataTable.Clear();// Очищаємо дані, якщо вони вже були завантажені
+                adapter.Fill(dataTable);
+                view.DataSource = dataTable;
+            }
+        }
+        catch (Exception ex)
+        {
+            await Settings.Error(ex, null, categoryError, textError);
+        }
+        Cursor.Current = Cursors.Default;
     }
+
+    public static async Task<bool> TableExistHistory(string path, string tableName)
+    {
+        using SQLiteConnection conn = new(path);
+        await conn.OpenAsync();
+        using SQLiteCommand search = new($"SELECT name FROM sqlite_master WHERE type='table' AND name='_{tableName}'", conn);
+
+        string? result = (string?)await search.ExecuteScalarAsync();
+        return result != null && result.ToString() == "_" + tableName;
+    }
+    public static async Task<bool> TableExist(string path, string tableName)
+    {
+        using SQLiteConnection conn = new(path);
+        await conn.OpenAsync();
+        using SQLiteCommand search = new($"SELECT name FROM sqlite_master WHERE type='table' AND name='{tableName}'", conn);
+
+        string? result = (string?)await search.ExecuteScalarAsync();
+        return result != null && result.ToString() == tableName;
+    }
+}

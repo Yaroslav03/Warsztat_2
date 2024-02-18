@@ -281,11 +281,11 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         }
         private async Task LoadDataClient()
         {
-            await Settings.LoadData(pathAddClient, "SELECT ID, Imię, Nazwisko, NrTelefonu, AdresFirmy, NIP, VIN_Samochodu FROM Klienty", ViewClients, "client", "Load table Clients From DB");
+            await SqlCmd.LoadData(pathAddClient, "SELECT ID, Imię, Nazwisko, NrTelefonu, AdresFirmy, NIP, VIN_Samochodu FROM Klienty", ViewClients, "client", "Load table Clients From DB");
         }
         private async Task LoadDataCar()
         {
-            await Settings.LoadData(pathAddClient, "SELECT ID, Marka, Model, Silnik, RokProdukcji, VIN FROM Samochód", ViewCar, "client", "Load table Car From DB");
+            await SqlCmd.LoadData(pathAddClient, "SELECT ID, Marka, Model, Silnik, RokProdukcji, VIN FROM Samochód", ViewCar, "client", "Load table Car From DB");
         }
 
         private async void UC_AddClient_Load(object sender, EventArgs e)

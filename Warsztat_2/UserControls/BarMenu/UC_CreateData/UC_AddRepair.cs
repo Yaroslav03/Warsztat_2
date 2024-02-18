@@ -20,9 +20,11 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         Repair repair = new();
 
         private protected ushort Id_Repair;
+        private string VIN;
 
         #endregion
         #region Event
+        public event EventHandler<string> VINChanged;
         private async void UC_AddOrderRepair_Load(object sender, EventArgs e)
         {
             await LoadCarData();
@@ -34,6 +36,8 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             VIN_label.Text = ViewCar.CurrentRow.Cells["VIN_Column"].Value.ToString();
 
             await LoadRepair();
+
+            VINChanged?.Invoke(this, VIN_label.Text);
         }
         #endregion
         #region Methods
@@ -60,7 +64,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
             StanCheckBox.Checked = ViewRepair.CurrentRow.Cells["Wykonane_Checked"].Value.ToString() == "1";
         }
-        private  void SaveData()
+        private void SaveData()
         {/*
             Cursor.Current = Cursors.WaitCursor;
 
@@ -106,7 +110,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
         private async Task LoadCarData()
         {
-            await Settings.LoadData(pathCarClients, "SELECT ID, Marka, Model, RokProdukcji, VIN FROM Samochód", ViewCar, "history", "Load table Car From DB");
+            await SqlCmd.LoadData(pathCarClients, "SELECT ID, Marka, Model, RokProdukcji, VIN FROM Samochód", ViewCar, "history", "Load table Car From DB");
         }
 
         /*private async Task LoadHistoryRepair()
@@ -137,7 +141,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
         private async void ButtonOrderRepairSave_Click(object sender, EventArgs e)
         {
-            if(ButtonRepairSave.Text == "Zapisz")
+            if (ButtonRepairSave.Text == "Zapisz")
             {
                 await SaveRepair();
             }
@@ -146,7 +150,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 await UpdateRepair();
                 ButtonRepairSave.Text = "Zapisz";
             }
-            
+
         }
         private async Task UpdateRepair()
         {
@@ -171,12 +175,13 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 await update.ExecuteNonQueryAsync();
 
                 await transaction.CommitAsync();
-                                
+
                 await conn.CloseAsync();
-                
+
                 await LoadRepair();
-            }            
-            catch(Exception ex){
+            }
+            catch (Exception ex)
+            {
                 transaction.Rollback();
                 dataError.Enqueue($"VIN:{VIN_label.Text}");
                 dataError.Enqueue($"Opis:{repair.Description}");
@@ -197,7 +202,6 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 ButtonRepairSave.Text = "Zapisz";
                 PriceNumericUpDown.Value = IloscNumericUpDown.Value = 0;
             }
-            
         }
         private async Task SaveRepair()
         {
@@ -256,11 +260,11 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         }
         private async Task LoadRepair()
         {
-            if (await Settings.TableExistHistory(pathHistoryRepair, VIN_label.Text))
+            if (await SqlCmd.TableExistHistory(pathHistoryRepair, VIN_label.Text))
             {
-                await Settings.LoadData(pathHistoryRepair, $"SELECT ID, Opis, NumerCzęści, Cena, Ilość, Stan FROM Repair_{VIN_label.Text}", ViewRepair, "Repair", "Load table Repair from DB");
+                await SqlCmd.LoadData(pathHistoryRepair, $"SELECT ID, Opis, NumerCzęści, Cena, Ilość, Stan FROM Repair_{VIN_label.Text}", ViewRepair, "Repair", "Load table Repair from DB");
             }
-            else if(ViewRepair.DataSource != null) 
+            else if (ViewRepair.DataSource != null)
             {
                 ((DataTable)ViewRepair.DataSource).Clear();
             }
@@ -306,6 +310,15 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         {
             CollectDataFromTable();
             ButtonRepairSave.Text = "Odśwież";
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            
+        }
+        private void SumRepair()
+        {
+
         }
     }
 }

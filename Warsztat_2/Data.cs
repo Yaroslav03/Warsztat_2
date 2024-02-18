@@ -71,6 +71,27 @@ public class Repair
         return new Repair();
     }
 }
+public class OrderManagment
+{
+    /// <summary>
+    /// Status zlecnia
+    /// </summary>
+    public bool OrderAddopted { get; set; }
+    public bool realiseOrder { get;set;}
+    public string DateOrderAddopted { get; set;}
+    public string DateRealiseOrder { get; set; }
+    /// <summary>
+    /// Płatność
+    /// </summary>
+    public string DateOfPay { get; set; }
+    public string TypeOfPay { get; set; }
+    public ushort EstimatedCost { get; set; }
+    public ushort Cost { get; set; }
+    public ushort CostWithMarge { get; set; }
+    public string WorkPerfomed { get; set; }
+    public string Employer { get; set; }
+    public static OrderManagment Reset() { return new OrderManagment(); }
+}
 public class WarehouseData
 {
     public ushort? Id { get; set; }

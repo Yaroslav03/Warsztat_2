@@ -215,14 +215,14 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
         }
         private async Task LoadDataCar()
         {
-            await Settings.LoadData(pathAddClient, "SELECT ID, Marka, Model, RokProdukcji, VIN FROM Samochód", ViewAllCar, "history", "Load table Car From DB");
+            await SqlCmd.LoadData(pathAddClient, "SELECT ID, Marka, Model, RokProdukcji, VIN FROM Samochód", ViewAllCar, "history", "Load table Car From DB");
         }
         private async Task LoadOfHistoryCar()
         {
             // ViewHistory.DataSource = null;
-            if (await Settings.TableExistHistory(pathHistoryRepair, VINTextBox.Text))
+            if (await SqlCmd.TableExistHistory(pathHistoryRepair, VINTextBox.Text))
             {
-                await Settings.LoadData(pathHistoryRepair, $"SELECT ID, DataPrzyjęcia, NrRejestracji, Przebieg, DokumentySamochodu, KluczykiSamochodu, TestDrive, Zlecenie, Diagnostyka, Naprawa FROM _{VINTextBox.Text}", ViewHistory, "history", "Load table history from DB");
+                await SqlCmd.LoadData(pathHistoryRepair, $"SELECT ID, DataPrzyjęcia, NrRejestracji, Przebieg, DokumentySamochodu, KluczykiSamochodu, TestDrive, Zlecenie, Diagnostyka, Naprawa FROM _{VINTextBox.Text}", ViewHistory, "history", "Load table history from DB");
             }
             else if (ViewHistory.DataSource != null)
             {

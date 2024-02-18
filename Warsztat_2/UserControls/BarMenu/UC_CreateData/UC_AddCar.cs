@@ -62,7 +62,7 @@ public partial class UC_AddCar : UserControl
     }
     private async void ModelListBox_Click(object sender, EventArgs e)
     {
-        if (await Settings.TableExist(pathDBCAR, MarkaListBox.Text.ToString()))
+        if (await SqlCmd.TableExist(pathDBCAR, MarkaListBox.Text.ToString()))
         {
             SearchDataEngine();
         }
@@ -367,7 +367,7 @@ public partial class UC_AddCar : UserControl
 
     private async void MarkaListBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (await Settings.TableExist(pathDBCAR, MarkaListBox.Text.ToString()))
+        if (await SqlCmd.TableExist(pathDBCAR, MarkaListBox.Text.ToString()))
         {
             SearchData(MarkaListBox, ModelListBox, "Model");
         }
