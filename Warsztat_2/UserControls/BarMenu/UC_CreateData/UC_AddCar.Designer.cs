@@ -65,7 +65,6 @@
             MarkaSearch.Name = "MarkaSearch";
             MarkaSearch.Size = new Size(169, 23);
             MarkaSearch.TabIndex = 5;
-            MarkaSearch.TextChanged += MarkaSearch_TextChanged;
             // 
             // ModelSearch
             // 
@@ -97,7 +96,7 @@
             ModelListBox.Name = "ModelListBox";
             ModelListBox.Size = new Size(169, 361);
             ModelListBox.TabIndex = 4;
-            ModelListBox.Click += ModelListBox_Click;
+            ModelListBox.SelectedIndexChanged += ModelListBox_SelectedIndexChanged;
             // 
             // EngineListBox
             // 
@@ -115,12 +114,10 @@
             MarkaListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             MarkaListBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             MarkaListBox.ItemHeight = 21;
-            MarkaListBox.Items.AddRange(new object[] { "AlfaRomeo", "AstonMartin", "Audi", "Bentley", "BMW", "Bugatti", "Citroën", "Dacia", "Ferrari", "Fiat", "Ford", "Jaguar", "Lamborghini", "Land Rover", "Maserati", "Mercedes-Benz", "Mini", "Opel/Vauxhall", "Peugeot", "Porsche", "Renault", "Rolls-Royce", "Saab", "Seat", "Skoda", "Tesla", "Volkswagen", "Volvo" });
             MarkaListBox.Location = new Point(34, 57);
             MarkaListBox.Name = "MarkaListBox";
             MarkaListBox.Size = new Size(169, 361);
             MarkaListBox.TabIndex = 4;
-            MarkaListBox.Click += MarkaListBox_Click;
             MarkaListBox.SelectedIndexChanged += MarkaListBox_SelectedIndexChanged;
             MarkaListBox.MouseUp += MarkaListBox_MouseUp;
             // 

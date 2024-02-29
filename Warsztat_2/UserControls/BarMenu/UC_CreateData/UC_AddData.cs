@@ -32,19 +32,22 @@ namespace Warsztat_2._0.UserControls
             Settings.ChangeWindow(addRepair, splitContainer1.Panel2);
         }
 
-        private  void OrderManagementButton_Click(object sender, EventArgs e)
+        private void OrderManagementButton_Click(object sender, EventArgs e)
         {
             // Використовуємо існуючий екземпляр UC_AddRepair
-            
-            //await  Task.Delay(1000);
-            if(addRepair != null)
+
+            if (addRepair != null)
             {
                 addRepair.VINChanged += AddRepairVinChanged;
+                addRepair.Price += TransferData;
             }
             Settings.ChangeWindow(addOrderManagement, splitContainer1.Panel2);
         }
 
-
+        private void AddRepair_Price(object? sender, ushort e)
+        {
+            throw new NotImplementedException();
+        }
 
         private void CustommerButton_Click(object sender, EventArgs e)
         {
@@ -61,6 +64,11 @@ namespace Warsztat_2._0.UserControls
         {
 
             addOrderManagement.UpdateVIN(VIN);
+
+        }
+        public void TransferData(object sender, ushort pricePart)
+        {
+            addOrderManagement.AddPricePart(pricePart);
         }
         public void ChangeWindowToOrderManagement()
         {

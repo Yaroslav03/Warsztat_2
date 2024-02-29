@@ -28,41 +28,27 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            label3 = new Label();
             label1 = new Label();
-            DataGridViewCar = new Guna.UI2.WinForms.Guna2DataGridView();
-            BtnDelete = new DataGridViewButtonColumn();
-            BtnRead = new DataGridViewButtonColumn();
-            StatusZlecenia_Column_Main = new DataGridViewTextBoxColumn();
-            DataPrzyjecia_Column_Main = new DataGridViewTextBoxColumn();
-            DataWydania_Column_Main = new DataGridViewTextBoxColumn();
-            Marka_Column_Main = new DataGridViewTextBoxColumn();
-            Model_Column_Main = new DataGridViewTextBoxColumn();
-            NumerRejestracji_Column_Main = new DataGridViewTextBoxColumn();
-            Imie_Column_Main = new DataGridViewTextBoxColumn();
-            Nazwisko_Column_Main = new DataGridViewTextBoxColumn();
-            Telefon_Column_Main = new DataGridViewTextBoxColumn();
-            KosztKoncowy_Column_Main = new DataGridViewTextBoxColumn();
-            guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            label3 = new Label();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewCar).BeginInit();
+            ViewActualData = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            BtnDelete = new DataGridViewButtonColumn();
+            BtnFinish = new DataGridViewButtonColumn();
+            Przyjęty_Column = new DataGridViewCheckBoxColumn();
+            OczekujeNaOdbiór_Column = new DataGridViewCheckBoxColumn();
+            Column1 = new DataGridViewTextBoxColumn();
+            Imię_Column = new DataGridViewTextBoxColumn();
+            Nazwisko_Column = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
+            Marka_Column = new DataGridViewTextBoxColumn();
+            Model_Column = new DataGridViewTextBoxColumn();
+            Column7 = new DataGridViewTextBoxColumn();
+            Column8 = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)ViewActualData).BeginInit();
             SuspendLayout();
-            // 
-            // label3
-            // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label3.AutoSize = true;
-            label3.ForeColor = Color.Silver;
-            label3.Location = new Point(902, 20);
-            label3.Name = "label3";
-            label3.Size = new Size(66, 15);
-            label3.TabIndex = 3;
-            label3.Text = "Stwórz PDF";
             // 
             // label1
             // 
@@ -75,151 +61,16 @@
             label1.TabIndex = 3;
             label1.Text = "Plik PDF";
             // 
-            // DataGridViewCar
+            // label3
             // 
-            dataGridViewCellStyle1.BackColor = Color.White;
-            DataGridViewCar.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            DataGridViewCar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            DataGridViewCar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            DataGridViewCar.ColumnHeadersHeight = 17;
-            DataGridViewCar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            DataGridViewCar.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, BtnRead, StatusZlecenia_Column_Main, DataPrzyjecia_Column_Main, DataWydania_Column_Main, Marka_Column_Main, Model_Column_Main, NumerRejestracji_Column_Main, Imie_Column_Main, Nazwisko_Column_Main, Telefon_Column_Main, KosztKoncowy_Column_Main });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            DataGridViewCar.DefaultCellStyle = dataGridViewCellStyle3;
-            DataGridViewCar.GridColor = Color.FromArgb(231, 229, 255);
-            DataGridViewCar.Location = new Point(0, 67);
-            DataGridViewCar.Name = "DataGridViewCar";
-            DataGridViewCar.RowHeadersVisible = false;
-            DataGridViewCar.RowTemplate.Height = 25;
-            DataGridViewCar.Size = new Size(1043, 548);
-            DataGridViewCar.TabIndex = 4;
-            DataGridViewCar.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
-            DataGridViewCar.ThemeStyle.AlternatingRowsStyle.Font = null;
-            DataGridViewCar.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
-            DataGridViewCar.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
-            DataGridViewCar.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
-            DataGridViewCar.ThemeStyle.BackColor = Color.White;
-            DataGridViewCar.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
-            DataGridViewCar.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
-            DataGridViewCar.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-            DataGridViewCar.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            DataGridViewCar.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            DataGridViewCar.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            DataGridViewCar.ThemeStyle.HeaderStyle.Height = 17;
-            DataGridViewCar.ThemeStyle.ReadOnly = false;
-            DataGridViewCar.ThemeStyle.RowsStyle.BackColor = Color.White;
-            DataGridViewCar.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            DataGridViewCar.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            DataGridViewCar.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            DataGridViewCar.ThemeStyle.RowsStyle.Height = 25;
-            DataGridViewCar.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            DataGridViewCar.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            // 
-            // BtnDelete
-            // 
-            BtnDelete.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            BtnDelete.FillWeight = 20.22091F;
-            BtnDelete.HeaderText = "Usuń";
-            BtnDelete.Name = "BtnDelete";
-            BtnDelete.Text = "Usuń";
-            BtnDelete.Width = 60;
-            // 
-            // BtnRead
-            // 
-            BtnRead.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            BtnRead.FillWeight = 178.955F;
-            BtnRead.HeaderText = "Przeczytaj";
-            BtnRead.Name = "BtnRead";
-            BtnRead.Width = 60;
-            // 
-            // StatusZlecenia_Column_Main
-            // 
-            StatusZlecenia_Column_Main.HeaderText = "Status Zlecenia";
-            StatusZlecenia_Column_Main.Name = "StatusZlecenia_Column_Main";
-            // 
-            // DataPrzyjecia_Column_Main
-            // 
-            DataPrzyjecia_Column_Main.HeaderText = "Data Przyjęcia";
-            DataPrzyjecia_Column_Main.Name = "DataPrzyjecia_Column_Main";
-            // 
-            // DataWydania_Column_Main
-            // 
-            DataWydania_Column_Main.HeaderText = "Data Wydania";
-            DataWydania_Column_Main.Name = "DataWydania_Column_Main";
-            // 
-            // Marka_Column_Main
-            // 
-            Marka_Column_Main.HeaderText = "Marka";
-            Marka_Column_Main.Name = "Marka_Column_Main";
-            // 
-            // Model_Column_Main
-            // 
-            Model_Column_Main.HeaderText = "Model";
-            Model_Column_Main.Name = "Model_Column_Main";
-            // 
-            // NumerRejestracji_Column_Main
-            // 
-            NumerRejestracji_Column_Main.HeaderText = "Numer Rejestracji";
-            NumerRejestracji_Column_Main.Name = "NumerRejestracji_Column_Main";
-            // 
-            // Imie_Column_Main
-            // 
-            Imie_Column_Main.HeaderText = "Imię";
-            Imie_Column_Main.Name = "Imie_Column_Main";
-            // 
-            // Nazwisko_Column_Main
-            // 
-            Nazwisko_Column_Main.HeaderText = "Nazwisko";
-            Nazwisko_Column_Main.Name = "Nazwisko_Column_Main";
-            // 
-            // Telefon_Column_Main
-            // 
-            Telefon_Column_Main.HeaderText = "Telefon";
-            Telefon_Column_Main.Name = "Telefon_Column_Main";
-            // 
-            // KosztKoncowy_Column_Main
-            // 
-            KosztKoncowy_Column_Main.HeaderText = "Koszt Końcowy";
-            KosztKoncowy_Column_Main.Name = "KosztKoncowy_Column_Main";
-            // 
-            // guna2TextBox1
-            // 
-            guna2TextBox1.BorderColor = Color.White;
-            guna2TextBox1.BorderRadius = 5;
-            guna2TextBox1.Cursor = Cursors.IBeam;
-            guna2TextBox1.CustomizableEdges = customizableEdges1;
-            guna2TextBox1.DefaultText = "";
-            guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.FillColor = Color.DimGray;
-            guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2TextBox1.ForeColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Location = new Point(3, 29);
-            guna2TextBox1.Margin = new Padding(3, 4, 3, 4);
-            guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PasswordChar = '\0';
-            guna2TextBox1.PlaceholderText = "";
-            guna2TextBox1.SelectedText = "";
-            guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2TextBox1.Size = new Size(184, 31);
-            guna2TextBox1.TabIndex = 14;
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label3.AutoSize = true;
+            label3.ForeColor = Color.Silver;
+            label3.Location = new Point(902, 20);
+            label3.Name = "label3";
+            label3.Size = new Size(66, 15);
+            label3.TabIndex = 3;
+            label3.Text = "Stwórz PDF";
             // 
             // button1
             // 
@@ -260,44 +111,163 @@
             button3.Text = "Faktura";
             button3.UseVisualStyleBackColor = false;
             // 
+            // ViewActualData
+            // 
+            ViewActualData.AllowUserToAddRows = false;
+            ViewActualData.AllowUserToDeleteRows = false;
+            ViewActualData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ViewActualData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ViewActualData.BorderStyle = BorderStyle.None;
+            ViewActualData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            ViewActualData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            ViewActualData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ViewActualData.Columns.AddRange(new DataGridViewColumn[] { ID, BtnDelete, BtnFinish, Przyjęty_Column, OczekujeNaOdbiór_Column, Column1, Imię_Column, Nazwisko_Column, Column4, Marka_Column, Model_Column, Column7, Column8 });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            ViewActualData.DefaultCellStyle = dataGridViewCellStyle2;
+            ViewActualData.EnableHeadersVisualStyles = false;
+            ViewActualData.Location = new Point(3, 67);
+            ViewActualData.Name = "ViewActualData";
+            ViewActualData.RowTemplate.Height = 25;
+            ViewActualData.Size = new Size(1040, 548);
+            ViewActualData.TabIndex = 30;
+            // 
+            // ID
+            // 
+            ID.DataPropertyName = "ID";
+            ID.HeaderText = "ID";
+            ID.Name = "ID";
+            ID.Visible = false;
+            // 
+            // BtnDelete
+            // 
+            BtnDelete.HeaderText = "Usuń zgłoszenie";
+            BtnDelete.Name = "BtnDelete";
+            // 
+            // BtnFinish
+            // 
+            BtnFinish.HeaderText = "Wykonane";
+            BtnFinish.Name = "BtnFinish";
+            // 
+            // Przyjęty_Column
+            // 
+            Przyjęty_Column.DataPropertyName = "Przyjęty";
+            Przyjęty_Column.FalseValue = "0";
+            Przyjęty_Column.HeaderText = "Przyjęty";
+            Przyjęty_Column.Name = "Przyjęty_Column";
+            Przyjęty_Column.Resizable = DataGridViewTriState.True;
+            Przyjęty_Column.SortMode = DataGridViewColumnSortMode.Automatic;
+            Przyjęty_Column.TrueValue = "1";
+            // 
+            // OczekujeNaOdbiór_Column
+            // 
+            OczekujeNaOdbiór_Column.DataPropertyName = "OczekujeNaOdbiór";
+            OczekujeNaOdbiór_Column.FalseValue = "0";
+            OczekujeNaOdbiór_Column.HeaderText = "Oczekuje na odbiór";
+            OczekujeNaOdbiór_Column.Name = "OczekujeNaOdbiór_Column";
+            OczekujeNaOdbiór_Column.Resizable = DataGridViewTriState.True;
+            OczekujeNaOdbiór_Column.SortMode = DataGridViewColumnSortMode.Automatic;
+            OczekujeNaOdbiór_Column.TrueValue = "1";
+            // 
+            // Column1
+            // 
+            Column1.DataPropertyName = "DataPrzyjęcie";
+            Column1.HeaderText = "DataPrzyjęcia";
+            Column1.Name = "Column1";
+            // 
+            // Imię_Column
+            // 
+            Imię_Column.DataPropertyName = "Imię";
+            Imię_Column.HeaderText = "Imię Klienta";
+            Imię_Column.Name = "Imię_Column";
+            // 
+            // Nazwisko_Column
+            // 
+            Nazwisko_Column.DataPropertyName = "Nazwisko";
+            Nazwisko_Column.HeaderText = "Nazwisko Klienta";
+            Nazwisko_Column.Name = "Nazwisko_Column";
+            // 
+            // Column4
+            // 
+            Column4.DataPropertyName = "Telefon";
+            Column4.HeaderText = "Nr. telefonu";
+            Column4.Name = "Column4";
+            // 
+            // Marka_Column
+            // 
+            Marka_Column.DataPropertyName = "Marka";
+            Marka_Column.HeaderText = "Marka";
+            Marka_Column.Name = "Marka_Column";
+            // 
+            // Model_Column
+            // 
+            Model_Column.DataPropertyName = "Model";
+            Model_Column.HeaderText = "Model";
+            Model_Column.Name = "Model_Column";
+            // 
+            // Column7
+            // 
+            Column7.DataPropertyName = "Zlecenie";
+            Column7.HeaderText = "Zlecenie";
+            Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            Column8.DataPropertyName = "KosztZMarżą";
+            Column8.HeaderText = "Koszt naprawy";
+            Column8.Name = "Column8";
+            // 
             // UC_ViewDataCar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
+            Controls.Add(ViewActualData);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(guna2TextBox1);
-            Controls.Add(DataGridViewCar);
             Controls.Add(label3);
             Controls.Add(label1);
             Name = "UC_ViewDataCar";
             Size = new Size(1043, 615);
-            ((System.ComponentModel.ISupportInitialize)DataGridViewCar).EndInit();
+            Load += UC_ViewDataCar_Load;
+            ((System.ComponentModel.ISupportInitialize)ViewActualData).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Label label3;
+
         private Label label1;
-        private Guna.UI2.WinForms.Guna2DataGridView DataGridViewCar;
-        private DataGridViewButtonColumn BtnDelete;
-        private DataGridViewButtonColumn BtnRead;
-        private DataGridViewTextBoxColumn StatusZlecenia_Column_Main;
-        private DataGridViewTextBoxColumn DataPrzyjecia_Column_Main;
-        private DataGridViewTextBoxColumn DataWydania_Column_Main;
-        private DataGridViewTextBoxColumn Marka_Column_Main;
-        private DataGridViewTextBoxColumn Model_Column_Main;
-        private DataGridViewTextBoxColumn NumerRejestracji_Column_Main;
-        private DataGridViewTextBoxColumn Imie_Column_Main;
-        private DataGridViewTextBoxColumn Nazwisko_Column_Main;
-        private DataGridViewTextBoxColumn Telefon_Column_Main;
-        private DataGridViewTextBoxColumn KosztKoncowy_Column_Main;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private Label label3;
         private Button button1;
         private Button button2;
         private Button button3;
+        private DataGridView ViewActualData;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewButtonColumn BtnDelete;
+        private DataGridViewButtonColumn BtnFinish;
+        private DataGridViewCheckBoxColumn Przyjęty_Column;
+        private DataGridViewCheckBoxColumn OczekujeNaOdbiór_Column;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Imię_Column;
+        private DataGridViewTextBoxColumn Nazwisko_Column;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Marka_Column;
+        private DataGridViewTextBoxColumn Model_Column;
+        private DataGridViewTextBoxColumn Column7;
+        private DataGridViewTextBoxColumn Column8;
     }
     }

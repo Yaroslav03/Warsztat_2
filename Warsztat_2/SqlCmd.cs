@@ -2,8 +2,8 @@
 using System.Data.SQLite;
 using Warsztat_2._0;
 internal class SqlCmd
-    {
-    
+{
+
     public static async Task DeleteDataTable(DataGridView table, DataGridViewCellEventArgs e, string path, string nameButtonDel, string cellID, string nameTable)
     {
         Cursor.Current = Cursors.WaitCursor;
@@ -47,19 +47,24 @@ internal class SqlCmd
         }
         catch (Exception ex)
         {
-            await Settings.Error(ex, null, categoryError, textError);
+            Queue<string> dataError = new();
+            await Settings.Error(ex, dataError, categoryError, textError);
         }
         Cursor.Current = Cursors.Default;
     }
 
+    public static bool DataExistsRead(SQLiteDataReader reader)
+    {
+        return reader.Read();
+    }
     public static async Task<bool> TableExistHistory(string path, string tableName)
     {
         using SQLiteConnection conn = new(path);
         await conn.OpenAsync();
-        using SQLiteCommand search = new($"SELECT name FROM sqlite_master WHERE type='table' AND name='_{tableName}'", conn);
+        using SQLiteCommand search = new($"SELECT name FROM sqlite_master WHERE type='table' AND name='{tableName}'", conn);
 
         string? result = (string?)await search.ExecuteScalarAsync();
-        return result != null && result.ToString() == "_" + tableName;
+        return result != null && result.ToString() == tableName;
     }
     public static async Task<bool> TableExist(string path, string tableName)
     {

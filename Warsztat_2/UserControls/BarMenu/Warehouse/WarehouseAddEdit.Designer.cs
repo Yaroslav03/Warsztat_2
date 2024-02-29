@@ -28,30 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             CategoryListBox = new ListBox();
-            NumberPartTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            AddEditWarehouseButton = new Guna.UI2.WinForms.Guna2Button();
-            label2 = new Label();
-            label1 = new Label();
-            NameTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            label3 = new Label();
-            DescriptionTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            QuantityNumericUpDown = new Guna.UI2.WinForms.Guna2NumericUpDown();
-            PriceNumericUpDown = new Guna.UI2.WinForms.Guna2NumericUpDown();
             label4 = new Label();
             label5 = new Label();
+            DescriptionTextBox = new TextBox();
+            label3 = new Label();
+            AddEditWarehouseButton = new Button();
+            NameTextBox = new TextBox();
+            NumberPartTextBox = new TextBox();
+            QuantityNumericUpDown = new NumericUpDown();
+            PriceNumericUpDown = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)QuantityNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).BeginInit();
             SuspendLayout();
@@ -65,162 +51,6 @@
             CategoryListBox.Name = "CategoryListBox";
             CategoryListBox.Size = new Size(120, 109);
             CategoryListBox.TabIndex = 1;
-            // 
-            // NumberPartTextBox
-            // 
-            NumberPartTextBox.BorderColor = Color.White;
-            NumberPartTextBox.BorderRadius = 5;
-            NumberPartTextBox.Cursor = Cursors.IBeam;
-            NumberPartTextBox.CustomizableEdges = customizableEdges1;
-            NumberPartTextBox.DefaultText = "";
-            NumberPartTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            NumberPartTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            NumberPartTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            NumberPartTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            NumberPartTextBox.FillColor = Color.DimGray;
-            NumberPartTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            NumberPartTextBox.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            NumberPartTextBox.ForeColor = Color.FromArgb(94, 148, 255);
-            NumberPartTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            NumberPartTextBox.Location = new Point(167, 35);
-            NumberPartTextBox.Margin = new Padding(3, 4, 3, 4);
-            NumberPartTextBox.Name = "NumberPartTextBox";
-            NumberPartTextBox.PasswordChar = '\0';
-            NumberPartTextBox.PlaceholderText = "";
-            NumberPartTextBox.SelectedText = "";
-            NumberPartTextBox.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            NumberPartTextBox.Size = new Size(129, 30);
-            NumberPartTextBox.TabIndex = 12;
-            // 
-            // AddEditWarehouseButton
-            // 
-            AddEditWarehouseButton.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            AddEditWarehouseButton.BorderRadius = 5;
-            AddEditWarehouseButton.Cursor = Cursors.Hand;
-            AddEditWarehouseButton.CustomizableEdges = customizableEdges3;
-            AddEditWarehouseButton.DisabledState.BorderColor = Color.DarkGray;
-            AddEditWarehouseButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            AddEditWarehouseButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            AddEditWarehouseButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            AddEditWarehouseButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            AddEditWarehouseButton.ForeColor = Color.LightGray;
-            AddEditWarehouseButton.Location = new Point(338, 190);
-            AddEditWarehouseButton.Name = "AddEditWarehouseButton";
-            AddEditWarehouseButton.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            AddEditWarehouseButton.Size = new Size(94, 25);
-            AddEditWarehouseButton.TabIndex = 18;
-            AddEditWarehouseButton.Text = "Dodaj";
-            AddEditWarehouseButton.Click += AddEditWarehouseButton_Click;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.ForeColor = Color.FromArgb(224, 224, 224);
-            label2.Location = new Point(167, 10);
-            label2.Name = "label2";
-            label2.Size = new Size(103, 21);
-            label2.TabIndex = 0;
-            label2.Text = "Numer części";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Enabled = false;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.FromArgb(224, 224, 224);
-            label1.Location = new Point(167, 69);
-            label1.Name = "label1";
-            label1.Size = new Size(57, 21);
-            label1.TabIndex = 0;
-            label1.Text = "Nazwa";
-            // 
-            // NameTextBox
-            // 
-            NameTextBox.BorderColor = Color.White;
-            NameTextBox.BorderRadius = 5;
-            NameTextBox.Cursor = Cursors.IBeam;
-            NameTextBox.CustomizableEdges = customizableEdges5;
-            NameTextBox.DefaultText = "";
-            NameTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            NameTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            NameTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            NameTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            NameTextBox.FillColor = Color.DimGray;
-            NameTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            NameTextBox.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            NameTextBox.ForeColor = Color.FromArgb(94, 148, 255);
-            NameTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            NameTextBox.Location = new Point(167, 94);
-            NameTextBox.Margin = new Padding(3, 4, 3, 4);
-            NameTextBox.Name = "NameTextBox";
-            NameTextBox.PasswordChar = '\0';
-            NameTextBox.PlaceholderText = "";
-            NameTextBox.SelectedText = "";
-            NameTextBox.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            NameTextBox.Size = new Size(129, 30);
-            NameTextBox.TabIndex = 12;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.ForeColor = Color.FromArgb(224, 224, 224);
-            label3.Location = new Point(12, 126);
-            label3.Name = "label3";
-            label3.Size = new Size(42, 21);
-            label3.TabIndex = 0;
-            label3.Text = "Opis";
-            // 
-            // DescriptionTextBox
-            // 
-            DescriptionTextBox.BorderColor = Color.White;
-            DescriptionTextBox.BorderRadius = 5;
-            DescriptionTextBox.Cursor = Cursors.IBeam;
-            DescriptionTextBox.CustomizableEdges = customizableEdges7;
-            DescriptionTextBox.DefaultText = "";
-            DescriptionTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            DescriptionTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            DescriptionTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            DescriptionTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            DescriptionTextBox.FillColor = Color.DimGray;
-            DescriptionTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            DescriptionTextBox.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            DescriptionTextBox.ForeColor = Color.FromArgb(94, 148, 255);
-            DescriptionTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            DescriptionTextBox.Location = new Point(12, 151);
-            DescriptionTextBox.Margin = new Padding(3, 4, 3, 4);
-            DescriptionTextBox.Name = "DescriptionTextBox";
-            DescriptionTextBox.PasswordChar = '\0';
-            DescriptionTextBox.PlaceholderText = "";
-            DescriptionTextBox.SelectedText = "";
-            DescriptionTextBox.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            DescriptionTextBox.Size = new Size(414, 30);
-            DescriptionTextBox.TabIndex = 12;
-            // 
-            // QuantityNumericUpDown
-            // 
-            QuantityNumericUpDown.BackColor = Color.Transparent;
-            QuantityNumericUpDown.CustomizableEdges = customizableEdges9;
-            QuantityNumericUpDown.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            QuantityNumericUpDown.Location = new Point(351, 94);
-            QuantityNumericUpDown.Name = "QuantityNumericUpDown";
-            QuantityNumericUpDown.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            QuantityNumericUpDown.Size = new Size(75, 30);
-            QuantityNumericUpDown.TabIndex = 19;
-            // 
-            // PriceNumericUpDown
-            // 
-            PriceNumericUpDown.BackColor = Color.Transparent;
-            PriceNumericUpDown.CustomizableEdges = customizableEdges11;
-            PriceNumericUpDown.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            PriceNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            PriceNumericUpDown.Location = new Point(351, 35);
-            PriceNumericUpDown.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
-            PriceNumericUpDown.Name = "PriceNumericUpDown";
-            PriceNumericUpDown.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            PriceNumericUpDown.Size = new Size(75, 30);
-            PriceNumericUpDown.TabIndex = 19;
             // 
             // label4
             // 
@@ -244,6 +74,93 @@
             label5.TabIndex = 0;
             label5.Text = "Ilość";
             // 
+            // DescriptionTextBox
+            // 
+            DescriptionTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            DescriptionTextBox.CausesValidation = false;
+            DescriptionTextBox.Cursor = Cursors.IBeam;
+            DescriptionTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            DescriptionTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            DescriptionTextBox.Location = new Point(12, 150);
+            DescriptionTextBox.Name = "DescriptionTextBox";
+            DescriptionTextBox.Size = new Size(420, 30);
+            DescriptionTextBox.TabIndex = 20;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(224, 224, 224);
+            label3.Location = new Point(12, 126);
+            label3.Name = "label3";
+            label3.Size = new Size(42, 21);
+            label3.TabIndex = 0;
+            label3.Text = "Opis";
+            // 
+            // AddEditWarehouseButton
+            // 
+            AddEditWarehouseButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            AddEditWarehouseButton.BackColor = Color.FromArgb(94, 148, 255);
+            AddEditWarehouseButton.FlatAppearance.BorderSize = 0;
+            AddEditWarehouseButton.FlatStyle = FlatStyle.Flat;
+            AddEditWarehouseButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            AddEditWarehouseButton.ForeColor = Color.LightGray;
+            AddEditWarehouseButton.Location = new Point(12, 186);
+            AddEditWarehouseButton.Name = "AddEditWarehouseButton";
+            AddEditWarehouseButton.Size = new Size(420, 30);
+            AddEditWarehouseButton.TabIndex = 23;
+            AddEditWarehouseButton.Text = "Zapisz";
+            AddEditWarehouseButton.UseVisualStyleBackColor = false;
+            AddEditWarehouseButton.Click += AddEditWarehouseButton_Click;
+            // 
+            // NameTextBox
+            // 
+            NameTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            NameTextBox.CausesValidation = false;
+            NameTextBox.Cursor = Cursors.IBeam;
+            NameTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            NameTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            NameTextBox.Location = new Point(156, 94);
+            NameTextBox.Name = "NameTextBox";
+            NameTextBox.PlaceholderText = "Nazwa";
+            NameTextBox.Size = new Size(171, 30);
+            NameTextBox.TabIndex = 20;
+            // 
+            // NumberPartTextBox
+            // 
+            NumberPartTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            NumberPartTextBox.CausesValidation = false;
+            NumberPartTextBox.Cursor = Cursors.IBeam;
+            NumberPartTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            NumberPartTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            NumberPartTextBox.Location = new Point(156, 35);
+            NumberPartTextBox.Name = "NumberPartTextBox";
+            NumberPartTextBox.PlaceholderText = "Numer części";
+            NumberPartTextBox.Size = new Size(171, 30);
+            NumberPartTextBox.TabIndex = 20;
+            // 
+            // QuantityNumericUpDown
+            // 
+            QuantityNumericUpDown.BackColor = Color.White;
+            QuantityNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
+            QuantityNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
+            QuantityNumericUpDown.Location = new Point(351, 101);
+            QuantityNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            QuantityNumericUpDown.Name = "QuantityNumericUpDown";
+            QuantityNumericUpDown.Size = new Size(75, 23);
+            QuantityNumericUpDown.TabIndex = 26;
+            // 
+            // PriceNumericUpDown
+            // 
+            PriceNumericUpDown.BackColor = Color.White;
+            PriceNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
+            PriceNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
+            PriceNumericUpDown.Location = new Point(351, 42);
+            PriceNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            PriceNumericUpDown.Name = "PriceNumericUpDown";
+            PriceNumericUpDown.Size = new Size(75, 23);
+            PriceNumericUpDown.TabIndex = 26;
+            // 
             // WarehouseAddEdit
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -253,15 +170,13 @@
             Controls.Add(PriceNumericUpDown);
             Controls.Add(QuantityNumericUpDown);
             Controls.Add(AddEditWarehouseButton);
-            Controls.Add(CategoryListBox);
+            Controls.Add(NumberPartTextBox);
             Controls.Add(NameTextBox);
             Controls.Add(DescriptionTextBox);
-            Controls.Add(NumberPartTextBox);
+            Controls.Add(CategoryListBox);
             Controls.Add(label3);
-            Controls.Add(label1);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(label2);
             MaximizeBox = false;
             MaximumSize = new Size(460, 266);
             MinimizeBox = false;
@@ -278,17 +193,15 @@
         }
 
         #endregion
-        public Guna.UI2.WinForms.Guna2TextBox NumberPartTextBox;
-        private Guna.UI2.WinForms.Guna2Button AddEditWarehouseButton;
-        private Label label2;
-        private Label label1;
-        public Guna.UI2.WinForms.Guna2TextBox NameTextBox;
-        private Label label3;
-        public Guna.UI2.WinForms.Guna2TextBox DescriptionTextBox;
         private Label label4;
         private Label label5;
         public ListBox CategoryListBox;
-        public Guna.UI2.WinForms.Guna2NumericUpDown QuantityNumericUpDown;
-        public Guna.UI2.WinForms.Guna2NumericUpDown PriceNumericUpDown;
+        private TextBox DescriptionTextBox;
+        private Label label3;
+        private Button AddEditWarehouseButton;
+        private TextBox NameTextBox;
+        private TextBox NumberPartTextBox;
+        private NumericUpDown QuantityNumericUpDown;
+        private NumericUpDown PriceNumericUpDown;
     }
 }

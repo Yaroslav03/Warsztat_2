@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System.Data;
 using System.Data.SQLite;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
 using Warsztat_2._0;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
 {
@@ -19,8 +8,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
     {
 
         #region variables
-        readonly string pathHistoryRepair = "Data Source=Warsztat_HistoryRepair.db;Version=3;New=False;Compress=True;";
-        readonly string pathAddClient = "Data Source=Warsztat_CarClients.db;Version=3;New=False;Compress=True;";
+        private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
 
         private HistoryCar historyCar = new();
 
@@ -80,6 +68,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 TestDrive = TestDriveChceck.Checked,
 
                 DateOfAcceptance = ScheduleTimePicker.Text.ToString()
+
             };
         }
         private void ReadData()
@@ -102,7 +91,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
         {
             CollectData();
 
-            using SQLiteConnection conn = new(pathHistoryRepair);
+            using SQLiteConnection conn = new(connection);
 
             await conn.OpenAsync();
 
@@ -111,7 +100,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             try
             {
                 // Використовуйте IF NOT EXISTS для створення таблиці лише у випадку, якщо вона не існує
-                using SQLiteCommand update = new($"UPDATE _{historyCar.VIN} SET DataPrzyjęcia = @DataPrzyjęcia, NrRejestracji = @NrRejestracji, Przebieg = @Przebieg, DokumentySamochodu = @DokumentySamochodu, KluczykiSamochodu = @KluczykiSamochodu, TestDrive = @TestDrive, Zlecenie = @Zlecenie, Diagnostyka = @Diagnostyka, Naprawa = @Naprawa WHERE ID = @ID", conn);
+                using SQLiteCommand update = new($"UPDATE HistoriaNapraw SET DataPrzyjęcia = @DataPrzyjęcia, NrRejestracji = @NrRejestracji, Przebieg = @Przebieg, DokumentySamochodu = @DokumentySamochodu, KluczykiSamochodu = @KluczykiSamochodu, TestDrive = @TestDrive, Zlecenie = @Zlecenie, Diagnostyka = @Diagnostyka, Naprawa = @Naprawa, VIN=@VIN WHERE ID = @ID", conn);
 
                 update.Parameters.AddWithValue("@ID", Id_Car);
                 update.Parameters.AddWithValue("@NrRejestracji", historyCar.NumberofRegister);
@@ -123,6 +112,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 update.Parameters.AddWithValue("@Diagnostyka", historyCar.Diagnostic);
                 update.Parameters.AddWithValue("@Naprawa", historyCar.Repair);
                 update.Parameters.AddWithValue("@DataPrzyjęcia", historyCar.DateOfAcceptance);
+                update.Parameters.AddWithValue("@VIN", historyCar.VIN);
 
                 await update.ExecuteNonQueryAsync();
 
@@ -158,7 +148,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
         {
             CollectData();
 
-            using SQLiteConnection conn = new(pathHistoryRepair);
+            using SQLiteConnection conn = new(connection);
 
             await conn.OpenAsync();
 
@@ -167,13 +157,13 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             try
             {
                 // Використовуйте IF NOT EXISTS для створення таблиці лише у випадку, якщо вона не існує
-                using SQLiteCommand createTable = new($"CREATE TABLE IF NOT EXISTS _{VINTextBox.Text.Trim()} (ID INTEGER PRIMARY KEY AUTOINCREMENT, DataPrzyjęcia TEXT, NrRejestracji TEXT, Przebieg INTEGER, DokumentySamochodu TEXT, KluczykiSamochodu TEXT, TestDrive TEXT, Zlecenie TEXT, Diagnostyka TEXT, Naprawa TEXT);", conn);
+                using SQLiteCommand createTable = new($"CREATE TABLE IF NOT EXISTS HistoriaNapraw (ID INTEGER PRIMARY KEY AUTOINCREMENT, DataPrzyjęcia TEXT, NrRejestracji TEXT, Przebieg INTEGER, DokumentySamochodu TEXT, KluczykiSamochodu TEXT, TestDrive TEXT, Zlecenie TEXT, Diagnostyka TEXT, Naprawa TEXT);", conn);
 
                 await createTable.ExecuteNonQueryAsync();
 
 
-                using SQLiteCommand insert = new($"INSERT INTO _{historyCar.VIN} (DataPrzyjęcia, NrRejestracji, Przebieg, DokumentySamochodu, KluczykiSamochodu, TestDrive, Zlecenie, Diagnostyka, Naprawa)" +
-                        "VALUES (@DataPrzyjęcia, @NrRejestracji, @Przebieg, @DokumentySamochodu, @KluczykiSamochodu, @TestDrive, @Zlecenie, @Diagnostyka, @Naprawa)", conn);
+                using SQLiteCommand insert = new($"INSERT INTO HistoriaNapraw (DataPrzyjęcia, NrRejestracji, Przebieg, DokumentySamochodu, KluczykiSamochodu, TestDrive, Zlecenie, Diagnostyka, Naprawa, VIN)" +
+                        "VALUES (@DataPrzyjęcia, @NrRejestracji, @Przebieg, @DokumentySamochodu, @KluczykiSamochodu, @TestDrive, @Zlecenie, @Diagnostyka, @Naprawa, @VIN)", conn);
 
                 insert.Parameters.AddWithValue("@NrRejestracji", historyCar.NumberofRegister);
                 insert.Parameters.AddWithValue("@Przebieg", historyCar.Mileage);
@@ -184,6 +174,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 insert.Parameters.AddWithValue("@Diagnostyka", historyCar.Diagnostic);
                 insert.Parameters.AddWithValue("@Naprawa", historyCar.Repair);
                 insert.Parameters.AddWithValue("@DataPrzyjęcia", historyCar.DateOfAcceptance);
+                insert.Parameters.AddWithValue("@VIN", historyCar.VIN);
 
                 await insert.ExecuteNonQueryAsync();
 
@@ -215,21 +206,18 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
         }
         private async Task LoadDataCar()
         {
-            await SqlCmd.LoadData(pathAddClient, "SELECT ID, Marka, Model, RokProdukcji, VIN FROM Samochód", ViewAllCar, "history", "Load table Car From DB");
+            await SqlCmd.LoadData(connection, "SELECT ID, Marka, Model, RokProdukcji, VIN FROM Samochód", ViewAllCar, "history", "Load table Car From DB");
         }
         private async Task LoadOfHistoryCar()
         {
-            // ViewHistory.DataSource = null;
-            if (await SqlCmd.TableExistHistory(pathHistoryRepair, VINTextBox.Text))
-            {
-                await SqlCmd.LoadData(pathHistoryRepair, $"SELECT ID, DataPrzyjęcia, NrRejestracji, Przebieg, DokumentySamochodu, KluczykiSamochodu, TestDrive, Zlecenie, Diagnostyka, Naprawa FROM _{VINTextBox.Text}", ViewHistory, "history", "Load table history from DB");
-            }
-            else if (ViewHistory.DataSource != null)
-            {
-                ((DataTable)ViewHistory.DataSource).Clear();
-            }
+            await SqlCmd.LoadData(connection, $"SELECT ID, DataPrzyjęcia, NrRejestracji, Przebieg, DokumentySamochodu, KluczykiSamochodu, TestDrive, Zlecenie, Diagnostyka, Naprawa FROM HistoriaNapraw WHERE VIN LIKE '%{VINTextBox.Text}'", ViewHistory, "history", "Load table history from DB");
+            /*
+                         if (ViewHistory.DataSource != null)
+                        {
+                            ((DataTable)ViewHistory.DataSource).Clear();
+                        }*/
         }
-        
+
         #endregion
 
 
@@ -243,7 +231,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             catch
             {
 
-            } 
+            }
         }
 
         private void ViewHistory_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -258,19 +246,19 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             if (e.ColumnIndex == ViewHistory.Columns["BtnDelete"].Index && ViewHistory.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value)
             {
                 long idToDelete = (long)ViewHistory.Rows[e.RowIndex].Cells["ID_Column"].Value;
-                using SQLiteConnection conn = new(pathAddClient);
+                using SQLiteConnection conn = new(connection);
                 await conn.OpenAsync();
 
                 using var transaction = conn.BeginTransaction();
 
-                using SQLiteCommand delete = new("DELETE FROM Klienty WHERE ID=@ID", conn);
-                delete.Parameters.AddWithValue("ID", idToDelete);
+                using SQLiteCommand delete = new("DELETE FROM HistoriaNapraw WHERE ID=@ID", conn);
+                MessageBox.Show("idToDelete:" + idToDelete);
 
                 await delete.ExecuteNonQueryAsync();
                 await transaction.CommitAsync();
 
                 ViewHistory.Rows.RemoveAt(e.RowIndex);
-                
+
                 idToDelete = 0;
             }
             Cursor.Current = Cursors.Default;

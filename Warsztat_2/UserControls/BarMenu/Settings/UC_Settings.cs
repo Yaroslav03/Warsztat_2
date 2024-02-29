@@ -5,8 +5,8 @@ namespace Warsztat_2._0.UserControls
     public partial class UC_Settings : UserControl
     {
         // Змінна для збереження рядка підключення до бази даних
-        private readonly string connectionString = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
-        List<string> Employer = new();
+        private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
+        readonly List<string> Employer = new();
         public UC_Settings()
         {
             InitializeComponent();
@@ -15,7 +15,7 @@ namespace Warsztat_2._0.UserControls
         private void SaveDataButton_Click(object sender, EventArgs e)
         {
             // Використовуємо using для автоматичного закриття з'єднання після виходу з блоку
-            using SQLiteConnection conn = new(connectionString);
+            using SQLiteConnection conn = new(connection);
             conn.Open();
 
             if (DataExists(conn))
@@ -28,16 +28,24 @@ namespace Warsztat_2._0.UserControls
             }
         }
 
-        private void UC_Settings_Load(object sender, EventArgs e)
+        private async void UC_Settings_Load(object sender, EventArgs e)
         {
-
-            SaveDataButton.Enabled = EmployerAddButton.Enabled = false;
+            EmployerAddButton.Enabled = false;
             SaveDataButton.Text = "Odśwież";
+            await LoadData();
+        }
+        private async Task LoadData()
+        {
+            await ReadDataEmployer();
+            await LoadDataWarsztat();
+        }
+        private async Task LoadDataWarsztat()
+        {
             try
             {
                 // Використовуємо using для автоматичного закриття з'єднання після виходу з блоку
-                using SQLiteConnection conn = new(connectionString);
-                conn.Open();
+                using SQLiteConnection conn = new(connection);
+                await conn.OpenAsync();
 
                 // Використовуємо using для автоматичного закриття команди після виходу з блоку
                 using SQLiteCommand cmd = new("SELECT * FROM DaneFirmy", conn);
@@ -52,7 +60,7 @@ namespace Warsztat_2._0.UserControls
                     MessageBox.Show("Brak recordów, Proszę wpisać dane firmy, dane wymagane do drukowania zamówień i faktur", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                ReadDataEmployer();
+
                 // Якщо дані є, зчитуємо та відображаємо їх на текстових полях
                 NazwaFirmyTextBox.Text = reader["NazwaFirmy"].ToString();
                 AdresFirmyTextBox.Text = reader["AdresFirmy"].ToString();
@@ -71,25 +79,22 @@ namespace Warsztat_2._0.UserControls
             }
         }
         // Метод для перевірки текстового поля чи він пустий, запобігаючи записанню пустих даних
-        private void NazwaFirmyTextBox_TextChanged(object sender, EventArgs e)
-        {
-            SaveDataButton.Enabled = !string.IsNullOrEmpty(NazwaFirmyTextBox.Text);
-        }
+
         private void NumerTelefonuTextBox_TextChanged(object sender, EventArgs e)
         {
-            EmployerAddButton.Enabled = !string.IsNullOrEmpty(NazwaFirmyTextBox.Text);
+            EmployerAddButton.Enabled = !string.IsNullOrEmpty(NumerTelefonuTextBox.Text);
         }
-        private void EmployerAddButton_Click(object sender, EventArgs e)
+        private async void EmployerAddButton_Click(object sender, EventArgs e)
         {
 
             Employer.Add(ImiePracownikaTextBox.Text);
             Employer.Add(StanowiskoSelect.Text);
             Employer.Add(NumerTelefonuTextBox.Text);
 
-            using SQLiteConnection connection = new(connectionString);
-            connection.Open();
+            using SQLiteConnection conn = new(connection);
+            conn.Open();
             using SQLiteCommand cmd = new("INSERT INTO Pracownicy (Imie, Stanowisko, Telefon) " +
-                "VALUES (@Imie, @Stanowisko, @Telefon)", connection);
+                "VALUES (@Imie, @Stanowisko, @Telefon)", conn);
 
             cmd.Parameters.AddWithValue("@Imie", Employer[0]);
             cmd.Parameters.AddWithValue("@Stanowisko", Employer[1]);
@@ -99,10 +104,10 @@ namespace Warsztat_2._0.UserControls
 
             Employer.Clear();
 
-            ReadDataEmployer();
+            await ReadDataEmployer();
         }
 
-        private void RemoveEmployerButton_Click(object sender, EventArgs e)
+        private async void RemoveEmployerButton_Click(object sender, EventArgs e)
         {
             // Переконатися, що є вибраний елемент у ListBoxEmployer
             if (ListBoxEmployer.SelectedIndex >= 0)
@@ -119,7 +124,7 @@ namespace Warsztat_2._0.UserControls
                     // Отримати номер телефону (третій елемент масиву після розділу)
                     string phoneNumber = rowData[2].Trim();
 
-                    using SQLiteConnection conn = new(connectionString);
+                    using SQLiteConnection conn = new(connection);
                     conn.Open();
 
                     using SQLiteCommand deletecmd = new("DELETE FROM Pracownicy WHERE Telefon = @Telefon", conn);
@@ -138,12 +143,12 @@ namespace Warsztat_2._0.UserControls
             {
                 MessageBox.Show("Brak danych, Proszę dodać pracowników zanim usuwać :D", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            ReadDataEmployer();
+            await ReadDataEmployer();
         }
 
-        private void UpdateEmployerButton_Click(object sender, EventArgs e)
+        private async void UpdateEmployerButton_Click(object sender, EventArgs e)
         {
-            ReadDataEmployer();
+            await ReadDataEmployer();
         }
         #endregion
         #region Methods
@@ -186,15 +191,15 @@ namespace Warsztat_2._0.UserControls
 
             cmd.ExecuteNonQuery();
         }
-        private void ReadDataEmployer()
+        private async Task ReadDataEmployer()
         {
             try
             {
                 List<string> Employer2 = new(); // Створюємо новий список, щоб зберігати дані
 
-                using SQLiteConnection connection = new(connectionString);
-                connection.Open();
-                using SQLiteCommand readEmployer = new("SELECT Imie, Stanowisko, Telefon FROM Pracownicy", connection);
+                using SQLiteConnection conn = new(connection);
+                await conn.OpenAsync();
+                using SQLiteCommand readEmployer = new("SELECT Imie, Stanowisko, Telefon FROM Pracownicy", conn);
                 using SQLiteDataReader reader2 = readEmployer.ExecuteReader();
 
                 if (!DataExistsRead(reader2))

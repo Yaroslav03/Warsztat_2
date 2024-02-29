@@ -48,6 +48,7 @@
             NrCzęści_Column = new DataGridViewTextBoxColumn();
             Cena_Column = new DataGridViewTextBoxColumn();
             Ilość_Column = new DataGridViewTextBoxColumn();
+            DateRepair = new DataGridViewTextBoxColumn();
             label6 = new Label();
             VIN_label = new Label();
             ViewCar = new DataGridView();
@@ -74,9 +75,11 @@
             IloscNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
             IloscNumericUpDown.Location = new Point(102, 190);
             IloscNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            IloscNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             IloscNumericUpDown.Name = "IloscNumericUpDown";
             IloscNumericUpDown.Size = new Size(84, 23);
-            IloscNumericUpDown.TabIndex = 25;
+            IloscNumericUpDown.TabIndex = 3;
+            IloscNumericUpDown.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // PriceNumericUpDown
             // 
@@ -87,7 +90,7 @@
             PriceNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             PriceNumericUpDown.Name = "PriceNumericUpDown";
             PriceNumericUpDown.Size = new Size(70, 23);
-            PriceNumericUpDown.TabIndex = 25;
+            PriceNumericUpDown.TabIndex = 2;
             // 
             // StanCheckBox
             // 
@@ -95,7 +98,7 @@
             StanCheckBox.Location = new Point(12, 229);
             StanCheckBox.Name = "StanCheckBox";
             StanCheckBox.Size = new Size(82, 19);
-            StanCheckBox.TabIndex = 21;
+            StanCheckBox.TabIndex = 4;
             StanCheckBox.Text = "Wykonane";
             StanCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -131,7 +134,7 @@
             ButtonRepairSave.Location = new Point(12, 3);
             ButtonRepairSave.Name = "ButtonRepairSave";
             ButtonRepairSave.Size = new Size(239, 30);
-            ButtonRepairSave.TabIndex = 22;
+            ButtonRepairSave.TabIndex = 6;
             ButtonRepairSave.Text = "Zapisz";
             ButtonRepairSave.UseVisualStyleBackColor = false;
             ButtonRepairSave.Click += ButtonOrderRepairSave_Click;
@@ -154,7 +157,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ViewRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewRepair.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewRepair.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID, Wykonane_Checked, Opis_Column, NrCzęści_Column, Cena_Column, Ilość_Column });
+            ViewRepair.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID, Wykonane_Checked, Opis_Column, NrCzęści_Column, Cena_Column, Ilość_Column, DateRepair });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -219,6 +222,12 @@
             Ilość_Column.HeaderText = "Ilość";
             Ilość_Column.Name = "Ilość_Column";
             // 
+            // DateRepair
+            // 
+            DateRepair.DataPropertyName = "DataNapraw";
+            DateRepair.HeaderText = "DataNapraw";
+            DateRepair.Name = "DateRepair";
+            // 
             // label6
             // 
             label6.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
@@ -238,6 +247,7 @@
             VIN_label.Size = new Size(187, 27);
             VIN_label.TabIndex = 25;
             VIN_label.Text = "Brak";
+            VIN_label.Click += VIN_label_Click;
             // 
             // ViewCar
             // 
@@ -337,7 +347,7 @@
             NrPartTextBox.Name = "NrPartTextBox";
             NrPartTextBox.PlaceholderText = "Numer części";
             NrPartTextBox.Size = new Size(227, 30);
-            NrPartTextBox.TabIndex = 13;
+            NrPartTextBox.TabIndex = 1;
             // 
             // DescriptionTextBox
             // 
@@ -350,7 +360,7 @@
             DescriptionTextBox.Name = "DescriptionTextBox";
             DescriptionTextBox.PlaceholderText = "Opis";
             DescriptionTextBox.Size = new Size(227, 30);
-            DescriptionTextBox.TabIndex = 13;
+            DescriptionTextBox.TabIndex = 0;
             // 
             // RepairTimePicker
             // 
@@ -364,7 +374,7 @@
             RepairTimePicker.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             RepairTimePicker.Name = "RepairTimePicker";
             RepairTimePicker.Size = new Size(239, 23);
-            RepairTimePicker.TabIndex = 37;
+            RepairTimePicker.TabIndex = 5;
             RepairTimePicker.Value = new DateTime(2024, 1, 16, 0, 0, 0, 0);
             // 
             // label1
@@ -376,7 +386,6 @@
             label1.Size = new Size(170, 28);
             label1.TabIndex = 25;
             label1.Text = "Zarządzenie Zleceniem";
-            label1.Click += label1_Click;
             // 
             // UC_AddRepair
             // 
@@ -423,6 +432,7 @@
         private DataGridViewTextBoxColumn VIN_Column;
         public DateTimePicker RepairTimePicker;
         private TextBox NrPartTextBox;
+        private Label label1;
         private DataGridViewButtonColumn BtnDelete;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewCheckBoxColumn Wykonane_Checked;
@@ -430,6 +440,6 @@
         private DataGridViewTextBoxColumn NrCzęści_Column;
         private DataGridViewTextBoxColumn Cena_Column;
         private DataGridViewTextBoxColumn Ilość_Column;
-        private Label label1;
+        private DataGridViewTextBoxColumn DateRepair;
     }
 }

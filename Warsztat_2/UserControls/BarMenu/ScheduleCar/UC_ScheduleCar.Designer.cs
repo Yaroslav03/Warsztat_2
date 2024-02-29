@@ -1,4 +1,4 @@
-﻿namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
+﻿namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
 {
     partial class UC_ScheduleCar
     {
@@ -28,643 +28,694 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            ModelTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            ScheduleTime = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            label5 = new Label();
-            label1 = new Label();
-            CarComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
-            label4 = new Label();
-            label13 = new Label();
-            guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
-            CarButton = new Guna.UI2.WinForms.Guna2Button();
-            label18 = new Label();
-            label25 = new Label();
-            label23 = new Label();
-            label17 = new Label();
-            label24 = new Label();
-            label21 = new Label();
-            label16 = new Label();
-            guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            SurnameTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            TelephonTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            NameTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            label2 = new Label();
-            label3 = new Label();
-            label6 = new Label();
-            label12 = new Label();
-            label28 = new Label();
-            ScheduleCarButton = new Guna.UI2.WinForms.Guna2Button();
-            guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
-            ProblemCar = new Guna.UI2.WinForms.Guna2TextBox();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            ScheduleCarAddButton = new Button();
+            ID_label = new Label();
+            ScheduleCarButton = new Button();
+            helpTelephoneLabel = new Label();
+            label20 = new Label();
             label22 = new Label();
-            guna2ShadowPanel1.SuspendLayout();
-            guna2Panel1.SuspendLayout();
-            guna2Panel5.SuspendLayout();
-            guna2Panel2.SuspendLayout();
-            guna2ShadowPanel2.SuspendLayout();
-            guna2Panel6.SuspendLayout();
+            ProblemCar = new TextBox();
+            label2 = new Label();
+            panel1 = new Panel();
+            ViewScheduleCarButton = new Button();
+            CarComboBox = new ComboBox();
+            CarButton = new Button();
+            ScheduleModelTextBox0 = new TextBox();
+            label28 = new Label();
+            ScheduleTimePicker = new DateTimePicker();
+            label11 = new Label();
+            label18 = new Label();
+            label15 = new Label();
+            TelephonTextBox = new TextBox();
+            label19 = new Label();
+            label16 = new Label();
+            SurnameTextBox = new TextBox();
+            label21 = new Label();
+            label6 = new Label();
+            label25 = new Label();
+            DataScheduleView = new DataGridView();
+            BtnDelete = new DataGridViewButtonColumn();
+            DataPrzyjecia_Column = new DataGridViewTextBoxColumn();
+            ID_Column = new DataGridViewTextBoxColumn();
+            Imie_Column = new DataGridViewTextBoxColumn();
+            Nazwisko_Column = new DataGridViewTextBoxColumn();
+            Telefon_Column = new DataGridViewTextBoxColumn();
+            Marka_Column = new DataGridViewTextBoxColumn();
+            Model_Column = new DataGridViewTextBoxColumn();
+            Problem_Column = new DataGridViewTextBoxColumn();
+            ViewData = new Panel();
+            SearchScheduleCar = new TextBox();
+            helpingLabel = new Label();
+            NameTextBox = new TextBox();
+            label24 = new Label();
+            label17 = new Label();
+            panel2 = new Panel();
+            label23 = new Label();
+            EditData = new Panel();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DataScheduleView).BeginInit();
+            ViewData.SuspendLayout();
+            panel2.SuspendLayout();
+            EditData.SuspendLayout();
             SuspendLayout();
             // 
-            // guna2ShadowPanel1
+            // ScheduleCarAddButton
             // 
-            guna2ShadowPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            guna2ShadowPanel1.BackColor = Color.Transparent;
-            guna2ShadowPanel1.Controls.Add(guna2Panel1);
-            guna2ShadowPanel1.Controls.Add(guna2Panel5);
-            guna2ShadowPanel1.Controls.Add(guna2Panel2);
-            guna2ShadowPanel1.Controls.Add(label28);
-            guna2ShadowPanel1.FillColor = Color.DimGray;
-            guna2ShadowPanel1.ForeColor = Color.DarkGray;
-            guna2ShadowPanel1.Location = new Point(3, 74);
-            guna2ShadowPanel1.Name = "guna2ShadowPanel1";
-            guna2ShadowPanel1.Radius = 10;
-            guna2ShadowPanel1.ShadowColor = Color.Black;
-            guna2ShadowPanel1.ShadowDepth = 200;
-            guna2ShadowPanel1.ShadowShift = 7;
-            guna2ShadowPanel1.Size = new Size(1055, 293);
-            guna2ShadowPanel1.TabIndex = 9;
+            ScheduleCarAddButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ScheduleCarAddButton.BackColor = Color.FromArgb(94, 148, 255);
+            ScheduleCarAddButton.FlatAppearance.BorderSize = 0;
+            ScheduleCarAddButton.FlatStyle = FlatStyle.Flat;
+            ScheduleCarAddButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            ScheduleCarAddButton.ForeColor = Color.LightGray;
+            ScheduleCarAddButton.ImeMode = ImeMode.NoControl;
+            ScheduleCarAddButton.Location = new Point(722, 0);
+            ScheduleCarAddButton.Name = "ScheduleCarAddButton";
+            ScheduleCarAddButton.Size = new Size(280, 32);
+            ScheduleCarAddButton.TabIndex = 30;
+            ScheduleCarAddButton.Text = "Zapłanuj samochód";
+            ScheduleCarAddButton.UseVisualStyleBackColor = false;
+            ScheduleCarAddButton.Click += ScheduleCarAddButton_Click;
             // 
-            // guna2Panel1
+            // ID_label
             // 
-            guna2Panel1.Anchor = AnchorStyles.Right;
-            guna2Panel1.BackColor = Color.DimGray;
-            guna2Panel1.BorderColor = Color.DarkGray;
-            guna2Panel1.BorderRadius = 20;
-            guna2Panel1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            guna2Panel1.BorderThickness = 1;
-            guna2Panel1.Controls.Add(ModelTextBox);
-            guna2Panel1.Controls.Add(ScheduleTime);
-            guna2Panel1.Controls.Add(label5);
-            guna2Panel1.Controls.Add(label1);
-            guna2Panel1.Controls.Add(CarComboBox1);
-            guna2Panel1.Controls.Add(label4);
-            guna2Panel1.Controls.Add(label13);
-            guna2Panel1.CustomizableEdges = customizableEdges7;
-            guna2Panel1.Location = new Point(694, 47);
-            guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2Panel1.Size = new Size(318, 203);
-            guna2Panel1.TabIndex = 3;
-            // 
-            // ModelTextBox
-            // 
-            ModelTextBox.BorderColor = Color.White;
-            ModelTextBox.BorderRadius = 5;
-            ModelTextBox.Cursor = Cursors.IBeam;
-            ModelTextBox.CustomizableEdges = customizableEdges1;
-            ModelTextBox.DefaultText = "";
-            ModelTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            ModelTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            ModelTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            ModelTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            ModelTextBox.FillColor = Color.DimGray;
-            ModelTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            ModelTextBox.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            ModelTextBox.ForeColor = Color.FromArgb(94, 148, 255);
-            ModelTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            ModelTextBox.Location = new Point(169, 82);
-            ModelTextBox.Margin = new Padding(3, 4, 3, 4);
-            ModelTextBox.Name = "ModelTextBox";
-            ModelTextBox.PasswordChar = '\0';
-            ModelTextBox.PlaceholderText = "";
-            ModelTextBox.SelectedText = "";
-            ModelTextBox.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            ModelTextBox.Size = new Size(140, 36);
-            ModelTextBox.TabIndex = 12;
-            // 
-            // ScheduleTime
-            // 
-            ScheduleTime.Checked = true;
-            ScheduleTime.CustomFormat = "dddd, dd MMMM yyyy";
-            ScheduleTime.CustomizableEdges = customizableEdges3;
-            ScheduleTime.FillColor = Color.FromArgb(94, 148, 255);
-            ScheduleTime.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            ScheduleTime.ForeColor = Color.LightGray;
-            ScheduleTime.Format = DateTimePickerFormat.Long;
-            ScheduleTime.Location = new Point(12, 160);
-            ScheduleTime.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
-            ScheduleTime.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
-            ScheduleTime.Name = "ScheduleTime";
-            ScheduleTime.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            ScheduleTime.Size = new Size(204, 30);
-            ScheduleTime.TabIndex = 14;
-            ScheduleTime.Value = new DateTime(2024, 1, 7, 0, 0, 0, 0);
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.ForeColor = Color.FromArgb(224, 224, 224);
-            label5.Location = new Point(12, 138);
-            label5.Name = "label5";
-            label5.Size = new Size(202, 21);
-            label5.TabIndex = 0;
-            label5.Text = "Zaplanowana data przyjęcia";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.FromArgb(224, 224, 224);
-            label1.Location = new Point(169, 58);
-            label1.Name = "label1";
-            label1.Size = new Size(54, 21);
-            label1.TabIndex = 0;
-            label1.Text = "Model";
-            // 
-            // CarComboBox1
-            // 
-            CarComboBox1.BackColor = Color.Transparent;
-            CarComboBox1.CustomizableEdges = customizableEdges5;
-            CarComboBox1.DrawMode = DrawMode.OwnerDrawFixed;
-            CarComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            CarComboBox1.FocusedColor = Color.FromArgb(94, 148, 255);
-            CarComboBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            CarComboBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            CarComboBox1.ForeColor = Color.FromArgb(68, 88, 112);
-            CarComboBox1.ItemHeight = 30;
-            CarComboBox1.Items.AddRange(new object[] { "Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Bugatti", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Citroën", "Dodge", "Ferrari", "Fiat", "Ford", "Genesis", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Lamborghini", "Land Rover", "Lexus", "Lincoln", "Maserati", "Mazda", "McLaren", "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan", "Pagani", "Peugeot", "Porsche", "RAM", "Renault", "Rolls-Royce", "Saab", "Subaru", "Suzuki", "Tesla", "Toyota", "Volkswagen (VW)", "Volvo" });
-            CarComboBox1.Location = new Point(12, 82);
-            CarComboBox1.Name = "CarComboBox1";
-            CarComboBox1.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            CarComboBox1.Size = new Size(140, 36);
-            CarComboBox1.TabIndex = 13;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.ForeColor = Color.FromArgb(224, 224, 224);
-            label4.Location = new Point(12, 58);
-            label4.Name = "label4";
-            label4.Size = new Size(54, 21);
-            label4.TabIndex = 0;
-            label4.Text = "Marka";
-            // 
-            // label13
-            // 
-            label13.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.Location = new Point(133, 7);
-            label13.Name = "label13";
-            label13.Size = new Size(176, 28);
-            label13.TabIndex = 0;
-            label13.Text = "Dane samochodu";
-            // 
-            // guna2Panel5
-            // 
-            guna2Panel5.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            guna2Panel5.BackColor = Color.DimGray;
-            guna2Panel5.BorderColor = Color.DarkGray;
-            guna2Panel5.BorderRadius = 20;
-            guna2Panel5.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            guna2Panel5.BorderThickness = 1;
-            guna2Panel5.Controls.Add(CarButton);
-            guna2Panel5.Controls.Add(label18);
-            guna2Panel5.Controls.Add(label25);
-            guna2Panel5.Controls.Add(label23);
-            guna2Panel5.Controls.Add(label17);
-            guna2Panel5.Controls.Add(label24);
-            guna2Panel5.Controls.Add(label21);
-            guna2Panel5.Controls.Add(label16);
-            guna2Panel5.CustomizableEdges = customizableEdges11;
-            guna2Panel5.Location = new Point(385, 47);
-            guna2Panel5.Name = "guna2Panel5";
-            guna2Panel5.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            guna2Panel5.Size = new Size(273, 175);
-            guna2Panel5.TabIndex = 3;
-            // 
-            // CarButton
-            // 
-            CarButton.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            CarButton.BorderRadius = 5;
-            CarButton.Cursor = Cursors.Hand;
-            CarButton.CustomizableEdges = customizableEdges9;
-            CarButton.DisabledState.BorderColor = Color.DarkGray;
-            CarButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            CarButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            CarButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            CarButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            CarButton.ForeColor = Color.LightGray;
-            CarButton.Location = new Point(16, 138);
-            CarButton.Name = "CarButton";
-            CarButton.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            CarButton.Size = new Size(216, 25);
-            CarButton.TabIndex = 18;
-            CarButton.Text = "Autouzupełnianie";
-            CarButton.Click += CarButton_Click;
-            // 
-            // label18
-            // 
-            label18.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            label18.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label18.Location = new Point(19, 3);
-            label18.Name = "label18";
-            label18.Size = new Size(213, 28);
-            label18.TabIndex = 0;
-            label18.Text = "Zaproponowane dane";
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label25.ForeColor = Color.FromArgb(224, 224, 224);
-            label25.Location = new Point(117, 97);
-            label25.Name = "label25";
-            label25.Size = new Size(41, 21);
-            label25.TabIndex = 0;
-            label25.Text = "brak";
-            // 
-            // label23
-            // 
-            label23.AutoSize = true;
-            label23.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label23.ForeColor = Color.FromArgb(224, 224, 224);
-            label23.Location = new Point(92, 76);
-            label23.Name = "label23";
-            label23.Size = new Size(41, 21);
-            label23.TabIndex = 0;
-            label23.Text = "brak";
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.ForeColor = Color.FromArgb(224, 224, 224);
-            label17.Location = new Point(117, 55);
-            label17.Name = "label17";
-            label17.Size = new Size(41, 21);
-            label17.TabIndex = 0;
-            label17.Text = "brak";
-            // 
-            // label24
-            // 
-            label24.AutoSize = true;
-            label24.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label24.ForeColor = Color.FromArgb(224, 224, 224);
-            label24.Location = new Point(1, 97);
-            label24.Name = "label24";
-            label24.Size = new Size(110, 21);
-            label24.TabIndex = 0;
-            label24.Text = "Marka i model";
-            // 
-            // label21
-            // 
-            label21.AutoSize = true;
-            label21.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label21.ForeColor = Color.FromArgb(224, 224, 224);
-            label21.Location = new Point(1, 76);
-            label21.Name = "label21";
-            label21.Size = new Size(93, 21);
-            label21.TabIndex = 0;
-            label21.Text = "nr. Telefonu:";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label16.ForeColor = Color.FromArgb(224, 224, 224);
-            label16.Location = new Point(1, 55);
-            label16.Name = "label16";
-            label16.Size = new Size(119, 21);
-            label16.TabIndex = 0;
-            label16.Text = "Imię i Nazwisko";
-            // 
-            // guna2Panel2
-            // 
-            guna2Panel2.Anchor = AnchorStyles.Left;
-            guna2Panel2.BackColor = Color.DimGray;
-            guna2Panel2.BorderColor = Color.DarkGray;
-            guna2Panel2.BorderRadius = 20;
-            guna2Panel2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            guna2Panel2.BorderThickness = 1;
-            guna2Panel2.Controls.Add(SurnameTextBox);
-            guna2Panel2.Controls.Add(TelephonTextBox);
-            guna2Panel2.Controls.Add(NameTextBox);
-            guna2Panel2.Controls.Add(label2);
-            guna2Panel2.Controls.Add(label3);
-            guna2Panel2.Controls.Add(label6);
-            guna2Panel2.Controls.Add(label12);
-            guna2Panel2.CustomizableEdges = customizableEdges19;
-            guna2Panel2.Location = new Point(31, 47);
-            guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            guna2Panel2.Size = new Size(318, 203);
-            guna2Panel2.TabIndex = 3;
-            // 
-            // SurnameTextBox
-            // 
-            SurnameTextBox.BorderColor = Color.White;
-            SurnameTextBox.BorderRadius = 5;
-            SurnameTextBox.Cursor = Cursors.IBeam;
-            SurnameTextBox.CustomizableEdges = customizableEdges13;
-            SurnameTextBox.DefaultText = "";
-            SurnameTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            SurnameTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            SurnameTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            SurnameTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            SurnameTextBox.FillColor = Color.DimGray;
-            SurnameTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            SurnameTextBox.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            SurnameTextBox.ForeColor = Color.FromArgb(94, 148, 255);
-            SurnameTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            SurnameTextBox.Location = new Point(11, 104);
-            SurnameTextBox.Margin = new Padding(3, 4, 3, 4);
-            SurnameTextBox.Name = "SurnameTextBox";
-            SurnameTextBox.PasswordChar = '\0';
-            SurnameTextBox.PlaceholderText = "";
-            SurnameTextBox.SelectedText = "";
-            SurnameTextBox.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            SurnameTextBox.Size = new Size(129, 30);
-            SurnameTextBox.TabIndex = 12;
-            // 
-            // TelephonTextBox
-            // 
-            TelephonTextBox.BorderColor = Color.White;
-            TelephonTextBox.BorderRadius = 5;
-            TelephonTextBox.Cursor = Cursors.IBeam;
-            TelephonTextBox.CustomizableEdges = customizableEdges15;
-            TelephonTextBox.DefaultText = "";
-            TelephonTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            TelephonTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            TelephonTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            TelephonTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            TelephonTextBox.FillColor = Color.DimGray;
-            TelephonTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            TelephonTextBox.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            TelephonTextBox.ForeColor = Color.FromArgb(94, 148, 255);
-            TelephonTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TelephonTextBox.Location = new Point(11, 160);
-            TelephonTextBox.Margin = new Padding(3, 4, 3, 4);
-            TelephonTextBox.Name = "TelephonTextBox";
-            TelephonTextBox.PasswordChar = '\0';
-            TelephonTextBox.PlaceholderText = "";
-            TelephonTextBox.SelectedText = "";
-            TelephonTextBox.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            TelephonTextBox.Size = new Size(129, 30);
-            TelephonTextBox.TabIndex = 12;
-            // 
-            // NameTextBox
-            // 
-            NameTextBox.BorderColor = Color.White;
-            NameTextBox.BorderRadius = 5;
-            NameTextBox.Cursor = Cursors.IBeam;
-            NameTextBox.CustomizableEdges = customizableEdges17;
-            NameTextBox.DefaultText = "";
-            NameTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            NameTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            NameTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            NameTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            NameTextBox.FillColor = Color.DimGray;
-            NameTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            NameTextBox.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            NameTextBox.ForeColor = Color.FromArgb(94, 148, 255);
-            NameTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            NameTextBox.Location = new Point(11, 48);
-            NameTextBox.Margin = new Padding(3, 4, 3, 4);
-            NameTextBox.Name = "NameTextBox";
-            NameTextBox.PasswordChar = '\0';
-            NameTextBox.PlaceholderText = "";
-            NameTextBox.SelectedText = "";
-            NameTextBox.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            NameTextBox.Size = new Size(129, 30);
-            NameTextBox.TabIndex = 12;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.ForeColor = Color.FromArgb(224, 224, 224);
-            label2.Location = new Point(11, 26);
-            label2.Name = "label2";
-            label2.Size = new Size(43, 21);
-            label2.TabIndex = 0;
-            label2.Text = "Imię:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.ForeColor = Color.FromArgb(224, 224, 224);
-            label3.Location = new Point(11, 82);
-            label3.Name = "label3";
-            label3.Size = new Size(77, 21);
-            label3.TabIndex = 0;
-            label3.Text = "Nazwisko";
-            // 
-            // label6
-            // 
-            label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(131, 7);
-            label6.Name = "label6";
-            label6.Size = new Size(178, 28);
-            label6.TabIndex = 0;
-            label6.Text = "Dane Kontaktowe";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.ForeColor = Color.FromArgb(224, 224, 224);
-            label12.Location = new Point(11, 138);
-            label12.Name = "label12";
-            label12.Size = new Size(146, 21);
-            label12.TabIndex = 0;
-            label12.Text = "Telefon komórkowy";
-            // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Font = new Font("Segoe UI", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            label28.ForeColor = Color.FromArgb(224, 224, 224);
-            label28.Location = new Point(385, 246);
-            label28.Name = "label28";
-            label28.Size = new Size(273, 34);
-            label28.TabIndex = 0;
-            label28.Text = "* Autouzupełnianie wyszuka osobę po wpisaniu \r\nnumeru numeru telefonu";
+            ID_label.Anchor = AnchorStyles.Top;
+            ID_label.AutoSize = true;
+            ID_label.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ID_label.ForeColor = Color.FromArgb(224, 224, 224);
+            ID_label.ImeMode = ImeMode.NoControl;
+            ID_label.Location = new Point(607, 58);
+            ID_label.Name = "ID_label";
+            ID_label.Size = new Size(19, 21);
+            ID_label.TabIndex = 0;
+            ID_label.Text = "0";
             // 
             // ScheduleCarButton
             // 
             ScheduleCarButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            ScheduleCarButton.BorderRadius = 5;
-            ScheduleCarButton.Cursor = Cursors.Hand;
-            ScheduleCarButton.CustomizableEdges = customizableEdges21;
-            ScheduleCarButton.DisabledState.BorderColor = Color.DarkGray;
-            ScheduleCarButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            ScheduleCarButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            ScheduleCarButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            ScheduleCarButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ScheduleCarButton.BackColor = Color.FromArgb(94, 148, 255);
+            ScheduleCarButton.FlatAppearance.BorderSize = 0;
+            ScheduleCarButton.FlatStyle = FlatStyle.Flat;
+            ScheduleCarButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             ScheduleCarButton.ForeColor = Color.LightGray;
-            ScheduleCarButton.Location = new Point(3, 15);
+            ScheduleCarButton.ImeMode = ImeMode.NoControl;
+            ScheduleCarButton.Location = new Point(0, 14);
             ScheduleCarButton.Name = "ScheduleCarButton";
-            ScheduleCarButton.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            ScheduleCarButton.Size = new Size(1055, 32);
-            ScheduleCarButton.TabIndex = 18;
+            ScheduleCarButton.Size = new Size(1007, 32);
+            ScheduleCarButton.TabIndex = 24;
             ScheduleCarButton.Text = "Zapłanuj samochód";
+            ScheduleCarButton.UseVisualStyleBackColor = false;
             ScheduleCarButton.Click += ScheduleCarButton_Click;
             // 
-            // guna2ShadowPanel2
+            // helpTelephoneLabel
             // 
-            guna2ShadowPanel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            guna2ShadowPanel2.BackColor = Color.Transparent;
-            guna2ShadowPanel2.Controls.Add(guna2Panel6);
-            guna2ShadowPanel2.FillColor = Color.DimGray;
-            guna2ShadowPanel2.ForeColor = Color.DarkGray;
-            guna2ShadowPanel2.Location = new Point(3, 382);
-            guna2ShadowPanel2.Name = "guna2ShadowPanel2";
-            guna2ShadowPanel2.Radius = 10;
-            guna2ShadowPanel2.ShadowColor = Color.Black;
-            guna2ShadowPanel2.ShadowDepth = 200;
-            guna2ShadowPanel2.ShadowShift = 7;
-            guna2ShadowPanel2.Size = new Size(1055, 164);
-            guna2ShadowPanel2.TabIndex = 9;
+            helpTelephoneLabel.AutoSize = true;
+            helpTelephoneLabel.Font = new Font("Segoe UI", 12F, FontStyle.Italic, GraphicsUnit.Point);
+            helpTelephoneLabel.ForeColor = Color.FromArgb(224, 224, 224);
+            helpTelephoneLabel.ImeMode = ImeMode.NoControl;
+            helpTelephoneLabel.Location = new Point(30, 352);
+            helpTelephoneLabel.Name = "helpTelephoneLabel";
+            helpTelephoneLabel.Size = new Size(17, 21);
+            helpTelephoneLabel.TabIndex = 0;
+            helpTelephoneLabel.Text = "*";
             // 
-            // guna2Panel6
+            // label20
             // 
-            guna2Panel6.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            guna2Panel6.BackColor = Color.DimGray;
-            guna2Panel6.BorderColor = Color.DarkGray;
-            guna2Panel6.BorderRadius = 20;
-            guna2Panel6.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            guna2Panel6.BorderThickness = 1;
-            guna2Panel6.Controls.Add(ProblemCar);
-            guna2Panel6.Controls.Add(label22);
-            guna2Panel6.CustomizableEdges = customizableEdges25;
-            guna2Panel6.Location = new Point(23, 40);
-            guna2Panel6.Name = "guna2Panel6";
-            guna2Panel6.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            guna2Panel6.Size = new Size(989, 107);
-            guna2Panel6.TabIndex = 3;
-            // 
-            // ProblemCar
-            // 
-            ProblemCar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            ProblemCar.AutoCompleteMode = AutoCompleteMode.Suggest;
-            ProblemCar.AutoScroll = true;
-            ProblemCar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ProblemCar.BorderColor = Color.White;
-            ProblemCar.BorderRadius = 5;
-            ProblemCar.Cursor = Cursors.IBeam;
-            ProblemCar.CustomizableEdges = customizableEdges23;
-            ProblemCar.DefaultText = "";
-            ProblemCar.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            ProblemCar.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            ProblemCar.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            ProblemCar.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            ProblemCar.FillColor = Color.DimGray;
-            ProblemCar.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            ProblemCar.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            ProblemCar.ForeColor = Color.FromArgb(94, 148, 255);
-            ProblemCar.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            ProblemCar.Location = new Point(11, 24);
-            ProblemCar.Margin = new Padding(3, 4, 3, 4);
-            ProblemCar.Multiline = true;
-            ProblemCar.Name = "ProblemCar";
-            ProblemCar.PasswordChar = '\0';
-            ProblemCar.PlaceholderText = "";
-            ProblemCar.SelectedText = "";
-            ProblemCar.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            ProblemCar.Size = new Size(963, 67);
-            ProblemCar.TabIndex = 12;
+            label20.Anchor = AnchorStyles.Top;
+            label20.AutoSize = true;
+            label20.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label20.ForeColor = Color.FromArgb(224, 224, 224);
+            label20.ImeMode = ImeMode.NoControl;
+            label20.Location = new Point(381, 57);
+            label20.Name = "label20";
+            label20.Size = new Size(230, 21);
+            label20.TabIndex = 0;
+            label20.Text = "ID zaplanowanego samochodu: ";
             // 
             // label22
             // 
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label22.ForeColor = Color.FromArgb(224, 224, 224);
-            label22.Location = new Point(11, 2);
+            label22.ImeMode = ImeMode.NoControl;
+            label22.Location = new Point(77, 16);
             label22.Name = "label22";
             label22.Size = new Size(114, 21);
             label22.TabIndex = 0;
             label22.Text = "Opis Problemu";
             // 
+            // ProblemCar
+            // 
+            ProblemCar.AutoCompleteCustomSource.AddRange(new string[] { "Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Bugatti", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Citroën", "Dodge", "Ferrari", "Fiat", "Ford", "Genesis", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Lamborghini", "Land Rover", "Lexus", "Lincoln", "Maserati", "Mazda", "McLaren", "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan", "Pagani", "Peugeot", "Porsche", "RAM", "Renault", "Rolls-Royce", "Saab", "Subaru", "Suzuki", "Tesla", "Toyota", "Volkswagen (VW)", "Volvo" });
+            ProblemCar.BackColor = Color.FromArgb(64, 64, 70);
+            ProblemCar.CausesValidation = false;
+            ProblemCar.Cursor = Cursors.IBeam;
+            ProblemCar.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            ProblemCar.ForeColor = Color.FromArgb(224, 224, 224);
+            ProblemCar.Location = new Point(55, 63);
+            ProblemCar.Margin = new Padding(3, 4, 3, 4);
+            ProblemCar.Multiline = true;
+            ProblemCar.Name = "ProblemCar";
+            ProblemCar.Size = new Size(867, 78);
+            ProblemCar.TabIndex = 22;
+            // 
+            // label2
+            // 
+            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ImeMode = ImeMode.NoControl;
+            label2.Location = new Point(396, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(159, 28);
+            label2.TabIndex = 0;
+            label2.Text = "Dane Firmy";
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            panel1.BackColor = Color.FromArgb(64, 64, 70);
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label22);
+            panel1.Controls.Add(ProblemCar);
+            panel1.Controls.Add(label2);
+            panel1.ForeColor = Color.DimGray;
+            panel1.Location = new Point(3, 376);
+            panel1.MinimumSize = new Size(923, 216);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1001, 216);
+            panel1.TabIndex = 30;
+            // 
+            // ViewScheduleCarButton
+            // 
+            ViewScheduleCarButton.BackColor = Color.FromArgb(94, 148, 255);
+            ViewScheduleCarButton.FlatAppearance.BorderSize = 0;
+            ViewScheduleCarButton.FlatStyle = FlatStyle.Flat;
+            ViewScheduleCarButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            ViewScheduleCarButton.ForeColor = Color.LightGray;
+            ViewScheduleCarButton.ImeMode = ImeMode.NoControl;
+            ViewScheduleCarButton.Location = new Point(1, 3);
+            ViewScheduleCarButton.Name = "ViewScheduleCarButton";
+            ViewScheduleCarButton.Size = new Size(291, 32);
+            ViewScheduleCarButton.TabIndex = 31;
+            ViewScheduleCarButton.Text = "przegłąd zaplanowanych samochód";
+            ViewScheduleCarButton.UseVisualStyleBackColor = false;
+            ViewScheduleCarButton.Click += ViewScheduleCarButton_Click;
+            // 
+            // CarComboBox
+            // 
+            CarComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            CarComboBox.BackColor = Color.FromArgb(94, 148, 255);
+            CarComboBox.FlatStyle = FlatStyle.Flat;
+            CarComboBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            CarComboBox.ForeColor = Color.FromArgb(68, 88, 112);
+            CarComboBox.FormattingEnabled = true;
+            CarComboBox.ItemHeight = 21;
+            CarComboBox.Items.AddRange(new object[] { "Elektronik", "Elektryk", "Mechanik", "Mechatronik", "Programista" });
+            CarComboBox.Location = new Point(682, 88);
+            CarComboBox.Name = "CarComboBox";
+            CarComboBox.Size = new Size(140, 29);
+            CarComboBox.TabIndex = 31;
+            // 
+            // CarButton
+            // 
+            CarButton.Anchor = AnchorStyles.Top;
+            CarButton.BackColor = Color.FromArgb(94, 148, 255);
+            CarButton.FlatAppearance.BorderSize = 0;
+            CarButton.FlatStyle = FlatStyle.Flat;
+            CarButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            CarButton.ForeColor = Color.LightGray;
+            CarButton.ImeMode = ImeMode.NoControl;
+            CarButton.Location = new Point(396, 136);
+            CarButton.Name = "CarButton";
+            CarButton.Size = new Size(181, 32);
+            CarButton.TabIndex = 24;
+            CarButton.Text = "Autouzupełnianie";
+            CarButton.UseVisualStyleBackColor = false;
+            // 
+            // ScheduleModelTextBox0
+            // 
+            ScheduleModelTextBox0.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ScheduleModelTextBox0.AutoCompleteCustomSource.AddRange(new string[] { "Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Bugatti", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Citroën", "Dodge", "Ferrari", "Fiat", "Ford", "Genesis", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Lamborghini", "Land Rover", "Lexus", "Lincoln", "Maserati", "Mazda", "McLaren", "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan", "Pagani", "Peugeot", "Porsche", "RAM", "Renault", "Rolls-Royce", "Saab", "Subaru", "Suzuki", "Tesla", "Toyota", "Volkswagen (VW)", "Volvo" });
+            ScheduleModelTextBox0.BackColor = Color.FromArgb(64, 64, 70);
+            ScheduleModelTextBox0.CausesValidation = false;
+            ScheduleModelTextBox0.Cursor = Cursors.IBeam;
+            ScheduleModelTextBox0.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            ScheduleModelTextBox0.ForeColor = Color.FromArgb(224, 224, 224);
+            ScheduleModelTextBox0.Location = new Point(828, 86);
+            ScheduleModelTextBox0.Margin = new Padding(3, 4, 3, 4);
+            ScheduleModelTextBox0.Name = "ScheduleModelTextBox0";
+            ScheduleModelTextBox0.PlaceholderText = "Model";
+            ScheduleModelTextBox0.Size = new Size(157, 30);
+            ScheduleModelTextBox0.TabIndex = 21;
+            // 
+            // label28
+            // 
+            label28.Anchor = AnchorStyles.Top;
+            label28.AutoSize = true;
+            label28.Font = new Font("Segoe UI", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            label28.ForeColor = Color.FromArgb(224, 224, 224);
+            label28.ImeMode = ImeMode.NoControl;
+            label28.Location = new Point(352, 171);
+            label28.Name = "label28";
+            label28.Size = new Size(273, 34);
+            label28.TabIndex = 28;
+            label28.Text = "* Autouzupełnianie wyszuka osobę po wpisaniu \r\nnumeru numeru telefonu";
+            // 
+            // ScheduleTimePicker
+            // 
+            ScheduleTimePicker.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ScheduleTimePicker.CalendarMonthBackground = Color.FromArgb(94, 148, 255);
+            ScheduleTimePicker.CalendarTitleBackColor = SystemColors.ControlText;
+            ScheduleTimePicker.CalendarTitleForeColor = Color.FromArgb(94, 148, 255);
+            ScheduleTimePicker.CustomFormat = "dddd , dd MMMM yyyy";
+            ScheduleTimePicker.Location = new Point(673, 165);
+            ScheduleTimePicker.Name = "ScheduleTimePicker";
+            ScheduleTimePicker.Size = new Size(247, 23);
+            ScheduleTimePicker.TabIndex = 30;
+            ScheduleTimePicker.Value = new DateTime(2024, 1, 16, 0, 0, 0, 0);
+            // 
+            // label11
+            // 
+            label11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label11.ForeColor = Color.FromArgb(224, 224, 224);
+            label11.ImeMode = ImeMode.NoControl;
+            label11.Location = new Point(682, 136);
+            label11.Name = "label11";
+            label11.Size = new Size(202, 21);
+            label11.TabIndex = 0;
+            label11.Text = "Zaplanowana data przyjęcia";
+            // 
+            // label18
+            // 
+            label18.Anchor = AnchorStyles.Top;
+            label18.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label18.ImeMode = ImeMode.NoControl;
+            label18.Location = new Point(396, 19);
+            label18.Name = "label18";
+            label18.Size = new Size(172, 28);
+            label18.TabIndex = 19;
+            label18.Text = "Zaproponowane dane";
+            // 
+            // label15
+            // 
+            label15.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label15.ForeColor = Color.FromArgb(224, 224, 224);
+            label15.ImeMode = ImeMode.NoControl;
+            label15.Location = new Point(682, 56);
+            label15.Name = "label15";
+            label15.Size = new Size(54, 21);
+            label15.TabIndex = 0;
+            label15.Text = "Marka";
+            // 
+            // TelephonTextBox
+            // 
+            TelephonTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            TelephonTextBox.CausesValidation = false;
+            TelephonTextBox.Cursor = Cursors.IBeam;
+            TelephonTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            TelephonTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            TelephonTextBox.Location = new Point(15, 160);
+            TelephonTextBox.Margin = new Padding(3, 4, 3, 4);
+            TelephonTextBox.Name = "TelephonTextBox";
+            TelephonTextBox.PlaceholderText = "Telefon";
+            TelephonTextBox.Size = new Size(171, 30);
+            TelephonTextBox.TabIndex = 21;
+            TelephonTextBox.MouseLeave += TelephonTextBox_MouseLeave;
+            TelephonTextBox.MouseHover += TelephonTextBox_MouseHover;
+            // 
+            // label19
+            // 
+            label19.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label19.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label19.ImeMode = ImeMode.NoControl;
+            label19.Location = new Point(733, 8);
+            label19.Name = "label19";
+            label19.Size = new Size(176, 28);
+            label19.TabIndex = 0;
+            label19.Text = "Dane samochodu";
+            // 
+            // label16
+            // 
+            label16.Anchor = AnchorStyles.Top;
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label16.ForeColor = Color.FromArgb(224, 224, 224);
+            label16.ImeMode = ImeMode.NoControl;
+            label16.Location = new Point(394, 59);
+            label16.Name = "label16";
+            label16.Size = new Size(119, 21);
+            label16.TabIndex = 25;
+            label16.Text = "Imię i Nazwisko";
+            // 
+            // SurnameTextBox
+            // 
+            SurnameTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            SurnameTextBox.CausesValidation = false;
+            SurnameTextBox.Cursor = Cursors.IBeam;
+            SurnameTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            SurnameTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            SurnameTextBox.Location = new Point(13, 102);
+            SurnameTextBox.Margin = new Padding(3, 4, 3, 4);
+            SurnameTextBox.Name = "SurnameTextBox";
+            SurnameTextBox.PlaceholderText = "Nazwisko";
+            SurnameTextBox.Size = new Size(171, 30);
+            SurnameTextBox.TabIndex = 21;
+            // 
+            // label21
+            // 
+            label21.Anchor = AnchorStyles.Top;
+            label21.AutoSize = true;
+            label21.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label21.ForeColor = Color.FromArgb(224, 224, 224);
+            label21.ImeMode = ImeMode.NoControl;
+            label21.Location = new Point(394, 80);
+            label21.Name = "label21";
+            label21.Size = new Size(93, 21);
+            label21.TabIndex = 24;
+            label21.Text = "nr. Telefonu:";
+            // 
+            // label6
+            // 
+            label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ImeMode = ImeMode.NoControl;
+            label6.Location = new Point(36, 8);
+            label6.Name = "label6";
+            label6.Size = new Size(178, 28);
+            label6.TabIndex = 0;
+            label6.Text = "Dane Kontaktowe";
+            // 
+            // label25
+            // 
+            label25.Anchor = AnchorStyles.Top;
+            label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label25.ForeColor = Color.FromArgb(224, 224, 224);
+            label25.ImeMode = ImeMode.NoControl;
+            label25.Location = new Point(510, 101);
+            label25.Name = "label25";
+            label25.Size = new Size(41, 21);
+            label25.TabIndex = 20;
+            label25.Text = "brak";
+            // 
+            // DataScheduleView
+            // 
+            DataScheduleView.AllowUserToAddRows = false;
+            DataScheduleView.AllowUserToDeleteRows = false;
+            DataScheduleView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            DataScheduleView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DataScheduleView.BorderStyle = BorderStyle.None;
+            DataScheduleView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            DataScheduleView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            DataScheduleView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataScheduleView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, DataPrzyjecia_Column, ID_Column, Imie_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Problem_Column });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            DataScheduleView.DefaultCellStyle = dataGridViewCellStyle2;
+            DataScheduleView.EnableHeadersVisualStyles = false;
+            DataScheduleView.Location = new Point(3, 43);
+            DataScheduleView.Name = "DataScheduleView";
+            DataScheduleView.RowTemplate.Height = 25;
+            DataScheduleView.Size = new Size(1001, 530);
+            DataScheduleView.TabIndex = 30;
+            DataScheduleView.CellContentClick += DataScheduleView_CellContentClick;
+            DataScheduleView.CellDoubleClick += DataScheduleView_CellDoubleClick;
+            // 
+            // BtnDelete
+            // 
+            BtnDelete.HeaderText = "Usuń";
+            BtnDelete.Name = "BtnDelete";
+            // 
+            // DataPrzyjecia_Column
+            // 
+            DataPrzyjecia_Column.DataPropertyName = "DataPrzyjęcia";
+            DataPrzyjecia_Column.HeaderText = "Zaplanowana data przyjęcia";
+            DataPrzyjecia_Column.Name = "DataPrzyjecia_Column";
+            // 
+            // ID_Column
+            // 
+            ID_Column.DataPropertyName = "ID";
+            ID_Column.HeaderText = "ID";
+            ID_Column.Name = "ID_Column";
+            ID_Column.Visible = false;
+            // 
+            // Imie_Column
+            // 
+            Imie_Column.DataPropertyName = "Imię";
+            Imie_Column.HeaderText = "Imię";
+            Imie_Column.Name = "Imie_Column";
+            // 
+            // Nazwisko_Column
+            // 
+            Nazwisko_Column.DataPropertyName = "Nazwisko";
+            Nazwisko_Column.HeaderText = "Nazwisko";
+            Nazwisko_Column.Name = "Nazwisko_Column";
+            // 
+            // Telefon_Column
+            // 
+            Telefon_Column.DataPropertyName = "Telefon";
+            Telefon_Column.HeaderText = "Telefon";
+            Telefon_Column.Name = "Telefon_Column";
+            // 
+            // Marka_Column
+            // 
+            Marka_Column.DataPropertyName = "Marka";
+            Marka_Column.HeaderText = "Marka";
+            Marka_Column.Name = "Marka_Column";
+            // 
+            // Model_Column
+            // 
+            Model_Column.DataPropertyName = "Model";
+            Model_Column.HeaderText = "Model";
+            Model_Column.Name = "Model_Column";
+            // 
+            // Problem_Column
+            // 
+            Problem_Column.DataPropertyName = "Problem";
+            Problem_Column.HeaderText = "Problem";
+            Problem_Column.Name = "Problem_Column";
+            // 
+            // ViewData
+            // 
+            ViewData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ViewData.Controls.Add(DataScheduleView);
+            ViewData.Controls.Add(SearchScheduleCar);
+            ViewData.Controls.Add(helpingLabel);
+            ViewData.Location = new Point(1, 41);
+            ViewData.Name = "ViewData";
+            ViewData.Size = new Size(1007, 580);
+            ViewData.TabIndex = 28;
+            // 
+            // SearchScheduleCar
+            // 
+            SearchScheduleCar.BackColor = Color.FromArgb(64, 64, 70);
+            SearchScheduleCar.CausesValidation = false;
+            SearchScheduleCar.Cursor = Cursors.IBeam;
+            SearchScheduleCar.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            SearchScheduleCar.ForeColor = Color.FromArgb(224, 224, 224);
+            SearchScheduleCar.Location = new Point(3, 7);
+            SearchScheduleCar.Name = "SearchScheduleCar";
+            SearchScheduleCar.PlaceholderText = "Imię";
+            SearchScheduleCar.Size = new Size(171, 30);
+            SearchScheduleCar.TabIndex = 26;
+            SearchScheduleCar.TextChanged += SearchScheduleCar_TextChanged;
+            SearchScheduleCar.MouseLeave += SearchScheduleCar_MouseLeave;
+            SearchScheduleCar.MouseHover += SearchScheduleCar_MouseHover;
+            // 
+            // helpingLabel
+            // 
+            helpingLabel.AutoSize = true;
+            helpingLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            helpingLabel.ForeColor = Color.FromArgb(224, 224, 224);
+            helpingLabel.ImeMode = ImeMode.NoControl;
+            helpingLabel.Location = new Point(193, 12);
+            helpingLabel.Name = "helpingLabel";
+            helpingLabel.Size = new Size(17, 21);
+            helpingLabel.TabIndex = 0;
+            helpingLabel.Text = "*";
+            // 
+            // NameTextBox
+            // 
+            NameTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            NameTextBox.CausesValidation = false;
+            NameTextBox.Cursor = Cursors.IBeam;
+            NameTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            NameTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            NameTextBox.Location = new Point(15, 51);
+            NameTextBox.Margin = new Padding(3, 4, 3, 4);
+            NameTextBox.Name = "NameTextBox";
+            NameTextBox.PlaceholderText = "Imię";
+            NameTextBox.Size = new Size(171, 30);
+            NameTextBox.TabIndex = 21;
+            // 
+            // label24
+            // 
+            label24.Anchor = AnchorStyles.Top;
+            label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label24.ForeColor = Color.FromArgb(224, 224, 224);
+            label24.ImeMode = ImeMode.NoControl;
+            label24.Location = new Point(394, 101);
+            label24.Name = "label24";
+            label24.Size = new Size(110, 21);
+            label24.TabIndex = 23;
+            label24.Text = "Marka i model";
+            // 
+            // label17
+            // 
+            label17.Anchor = AnchorStyles.Top;
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label17.ForeColor = Color.FromArgb(224, 224, 224);
+            label17.ImeMode = ImeMode.NoControl;
+            label17.Location = new Point(510, 59);
+            label17.Name = "label17";
+            label17.Size = new Size(41, 21);
+            label17.TabIndex = 22;
+            label17.Text = "brak";
+            // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.BackColor = Color.FromArgb(64, 64, 70);
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(CarComboBox);
+            panel2.Controls.Add(CarButton);
+            panel2.Controls.Add(ScheduleModelTextBox0);
+            panel2.Controls.Add(label28);
+            panel2.Controls.Add(ScheduleTimePicker);
+            panel2.Controls.Add(label11);
+            panel2.Controls.Add(label18);
+            panel2.Controls.Add(label15);
+            panel2.Controls.Add(TelephonTextBox);
+            panel2.Controls.Add(label19);
+            panel2.Controls.Add(label16);
+            panel2.Controls.Add(SurnameTextBox);
+            panel2.Controls.Add(label21);
+            panel2.Controls.Add(label6);
+            panel2.Controls.Add(label25);
+            panel2.Controls.Add(NameTextBox);
+            panel2.Controls.Add(label24);
+            panel2.Controls.Add(label17);
+            panel2.Controls.Add(label23);
+            panel2.ForeColor = Color.DimGray;
+            panel2.Location = new Point(3, 94);
+            panel2.MinimumSize = new Size(923, 216);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1001, 216);
+            panel2.TabIndex = 31;
+            // 
+            // label23
+            // 
+            label23.Anchor = AnchorStyles.Top;
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label23.ForeColor = Color.FromArgb(224, 224, 224);
+            label23.ImeMode = ImeMode.NoControl;
+            label23.Location = new Point(485, 80);
+            label23.Name = "label23";
+            label23.Size = new Size(41, 21);
+            label23.TabIndex = 21;
+            label23.Text = "brak";
+            // 
+            // EditData
+            // 
+            EditData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            EditData.Controls.Add(panel2);
+            EditData.Controls.Add(panel1);
+            EditData.Controls.Add(ID_label);
+            EditData.Controls.Add(ScheduleCarButton);
+            EditData.Controls.Add(helpTelephoneLabel);
+            EditData.Controls.Add(label20);
+            EditData.Location = new Point(1, 45);
+            EditData.Name = "EditData";
+            EditData.Size = new Size(1007, 595);
+            EditData.TabIndex = 29;
+            // 
             // UC_ScheduleCar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoSize = true;
             BackColor = Color.FromArgb(64, 64, 64);
-            Controls.Add(ScheduleCarButton);
-            Controls.Add(guna2ShadowPanel2);
-            Controls.Add(guna2ShadowPanel1);
+            Controls.Add(ScheduleCarAddButton);
+            Controls.Add(ViewScheduleCarButton);
+            Controls.Add(ViewData);
+            Controls.Add(EditData);
             Name = "UC_ScheduleCar";
-            Size = new Size(1061, 580);
-            Load += UC_ScheduleCar_Load;
-            guna2ShadowPanel1.ResumeLayout(false);
-            guna2ShadowPanel1.PerformLayout();
-            guna2Panel1.ResumeLayout(false);
-            guna2Panel1.PerformLayout();
-            guna2Panel5.ResumeLayout(false);
-            guna2Panel5.PerformLayout();
-            guna2Panel2.ResumeLayout(false);
-            guna2Panel2.PerformLayout();
-            guna2ShadowPanel2.ResumeLayout(false);
-            guna2Panel6.ResumeLayout(false);
-            guna2Panel6.PerformLayout();
+            Size = new Size(1007, 643);
+            Load += UC_ScheduleCarSelectTab_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DataScheduleView).EndInit();
+            ViewData.ResumeLayout(false);
+            ViewData.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            EditData.ResumeLayout(false);
+            EditData.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel1;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Label label4;
-        private Label label13;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
-        private Guna.UI2.WinForms.Guna2Button CarButton;
-        private Label label18;
-        private Label label25;
-        private Label label23;
-        private Label label17;
-        private Label label24;
-        private Label label21;
-        private Label label16;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
-        private Guna.UI2.WinForms.Guna2TextBox SurnameTextBox;
-        private Guna.UI2.WinForms.Guna2TextBox TelephonTextBox;
-        private Label label2;
-        private Label label3;
-        private Label label6;
-        private Label label12;
-        private Label label28;
-        private Label label1;
-        private Guna.UI2.WinForms.Guna2ComboBox CarComboBox1;
-        private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel2;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
-        private Guna.UI2.WinForms.Guna2TextBox ProblemCar;
+        private Button ScheduleCarAddButton;
+        public Label ID_label;
+        private Button ScheduleCarButton;
+        public Label helpTelephoneLabel;
+        private Label label20;
         private Label label22;
-        private Guna.UI2.WinForms.Guna2DateTimePicker ScheduleTime;
-        private Label label5;
-        private Guna.UI2.WinForms.Guna2Button ScheduleCarButton;
-        private Guna.UI2.WinForms.Guna2TextBox ModelTextBox;
-        public Guna.UI2.WinForms.Guna2TextBox NameTextBox;
+        public TextBox ProblemCar;
+        private Label label2;
+        private Panel panel1;
+        private Button ViewScheduleCarButton;
+        public ComboBox CarComboBox;
+        private Button CarButton;
+        public TextBox ScheduleModelTextBox0;
+        private Label label28;
+        public DateTimePicker ScheduleTimePicker;
+        private Label label11;
+        private Label label18;
+        private Label label15;
+        public TextBox TelephonTextBox;
+        private Label label19;
+        private Label label16;
+        public TextBox SurnameTextBox;
+        private Label label21;
+        private Label label6;
+        private Label label25;
+        private DataGridView DataScheduleView;
+        public Panel ViewData;
+        private TextBox SearchScheduleCar;
+        public Label helpingLabel;
+        public TextBox NameTextBox;
+        private Label label24;
+        private Label label17;
+        private Panel panel2;
+        private Label label23;
+        public Panel EditData;
+        private DataGridViewButtonColumn BtnDelete;
+        private DataGridViewTextBoxColumn DataPrzyjecia_Column;
+        private DataGridViewTextBoxColumn ID_Column;
+        private DataGridViewTextBoxColumn Imie_Column;
+        private DataGridViewTextBoxColumn Nazwisko_Column;
+        private DataGridViewTextBoxColumn Telefon_Column;
+        private DataGridViewTextBoxColumn Marka_Column;
+        private DataGridViewTextBoxColumn Model_Column;
+        private DataGridViewTextBoxColumn Problem_Column;
     }
 }

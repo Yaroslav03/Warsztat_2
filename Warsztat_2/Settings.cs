@@ -1,5 +1,4 @@
-﻿using System.Data;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 
 namespace Warsztat_2._0
 {
@@ -27,15 +26,15 @@ namespace Warsztat_2._0
         }
         public static void CheckScheduleCar()
         {
-            string path = "Data Source=WarsztatData.db;Version=3;New=False;Compress=True;";
+            string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
 
             Cursor.Current = Cursors.WaitCursor;
-            string today = DateTime.Today.ToString("dddd, dd MMMM yyyy");
+            string today = DateTime.Today.ToString("D");
 
             MessageBox.Show(today);
             try
             {
-                using SQLiteConnection conn = new(path);
+                using SQLiteConnection conn = new(connection);
 
                 conn.Open();
 
@@ -82,7 +81,6 @@ namespace Warsztat_2._0
                 Client.Reset();
                 Repair.Reset();
                 Cursor.Current = Cursors.Default;
-                //GC.Collect();
             }
         }
         public static async Task Error(Exception ex, Queue<string> dataValue, string title_log, string category_log)
@@ -117,13 +115,11 @@ namespace Warsztat_2._0
         {
             foreach (Control control in panel.Controls)
             {
-                if (control is TextBox)
-                    ((TextBox)control).Clear();
-                else if (control is MaskedTextBox)
-                    ((MaskedTextBox)control).Clear();
+                if (control is TextBox box)
+                    box.Clear();
+                else if (control is MaskedTextBox box1)
+                    box1.Clear();
             }
         }
-       
-
     }
 }

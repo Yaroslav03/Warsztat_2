@@ -1,20 +1,16 @@
 ﻿using System.Data.SQLite;
-using System.Windows.Forms;
 
 namespace Warsztat_2._0.UserControls;
 public partial class UC_AddCar : UserControl
 {
     #region variables
-    readonly string pathDBCAR = "Data Source=DBCar.db;Version=3;New=False;Compress=True;";
-    readonly string pathCarClients = "Data Source=Warsztat_CarClients.db;Version=3;New=False;Compress=True;";
+    private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
+    private readonly string carDB = "Data Source=DBCar.db;Version=3;New=False;Compress=True;";
 
-
-    private List<string?> carData = new();
-    private Queue<string> dataError = new();
+    private readonly List<string?> carData = new();
+    private readonly Queue<string> dataError = new();
 
     private Car car = new();
-    private Repair orderRepair = new();
-    private HistoryCar HistoryCar = new();
 
     #endregion
 
@@ -23,7 +19,7 @@ public partial class UC_AddCar : UserControl
     private async void UC_AddCar_Load(object sender, EventArgs e)
     {
         AttachEventHandlers();
-        //LoadData();
+        LoadData();
         await LoadDataClient();
         Verefy();
     }
@@ -44,34 +40,6 @@ public partial class UC_AddCar : UserControl
 
         Cursor.Current = Cursors.Default;
     }
-    private async void MarkaListBox_Click(object sender, EventArgs e)
-    {
-      /*  if (MarkaListBox.SelectedItem.ToString() != "")
-        {
-            if (await Settings.TableExist(pathDBCAR, MarkaListBox.Text.ToString()))
-            {
-                SearchData(MarkaListBox, ModelListBox, "Model");
-            }
-            else
-            {
-                ModelListBox.Items.Clear();
-            }
-        }*/
-
-
-    }
-    private async void ModelListBox_Click(object sender, EventArgs e)
-    {
-        if (await SqlCmd.TableExist(pathDBCAR, MarkaListBox.Text.ToString()))
-        {
-            SearchDataEngine();
-        }
-
-        else
-        {
-
-        }
-    }
     private void HandleTextBoxChanged(object? sender, EventArgs e)
     {
         Verefy();
@@ -85,11 +53,13 @@ public partial class UC_AddCar : UserControl
     #region methods
     private void CollectCarData()
     {
-        List<string?> carData = new();
-        carData.Add(string.IsNullOrEmpty(MarkaSearch.Text) ? MarkaListBox.SelectedItem?.ToString() : MarkaSearch.Text);        
-        carData.Add(string.IsNullOrEmpty(ModelSearch.Text) ? ModelListBox.SelectedItem?.ToString() : ModelSearch.Text);
-        carData.Add(string.IsNullOrEmpty(PojemnośćSilnikaSearch.Text) ? EngineListBox.SelectedItem?.ToString() : PojemnośćSilnikaSearch.Text);
-        carData.Add(string.IsNullOrEmpty(RokProdukcjitextBox.Text) ? RokProdukcjiListBox.SelectedItem?.ToString() : RokProdukcjitextBox.Text);
+        List<string?> carData = new()
+        {
+            string.IsNullOrEmpty(MarkaSearch.Text) ? MarkaListBox.SelectedItem?.ToString() : MarkaSearch.Text,
+            string.IsNullOrEmpty(ModelSearch.Text) ? ModelListBox.SelectedItem?.ToString() : ModelSearch.Text,
+            string.IsNullOrEmpty(PojemnośćSilnikaSearch.Text) ? EngineListBox.SelectedItem?.ToString() : PojemnośćSilnikaSearch.Text,
+            string.IsNullOrEmpty(RokProdukcjitextBox.Text) ? RokProdukcjiListBox.SelectedItem?.ToString() : RokProdukcjitextBox.Text
+        };
         car = new()
         {
             Marka = carData[0],
@@ -106,7 +76,7 @@ public partial class UC_AddCar : UserControl
     {
         CollectCarData();
 
-        using SQLiteConnection conn = new(pathCarClients);
+        using SQLiteConnection conn = new(connection);
 
         await conn.OpenAsync();
 
@@ -159,7 +129,7 @@ public partial class UC_AddCar : UserControl
     {
         try
         {
-            using SQLiteConnection conn = new(pathDBCAR);
+            using SQLiteConnection conn = new(carDB);
             conn.Open();
             using SQLiteCommand readCar = new($"SELECT Marka FROM Cars", conn);
 
@@ -179,7 +149,7 @@ public partial class UC_AddCar : UserControl
         AddList.Items.Clear();
         try
         {
-            using SQLiteConnection conn = new(pathDBCAR);
+            using SQLiteConnection conn = new(carDB);
             conn.Open();
             using SQLiteCommand readModel = new($"SELECT {Search} FROM {SelectlistBox.SelectedItem}", conn);
             using SQLiteDataReader dataReader = readModel.ExecuteReader();
@@ -206,7 +176,7 @@ public partial class UC_AddCar : UserControl
         EngineListBox.Items.Clear();
         try
         {
-            using SQLiteConnection conn = new(pathDBCAR);
+            using SQLiteConnection conn = new(carDB);
             conn.Open();
             using SQLiteCommand readModel = new($"SELECT Silnik FROM {MarkaListBox.SelectedItem} WHERE Model=@Model", conn);
             readModel.Parameters.AddWithValue("@Model", ModelListBox.SelectedItem);
@@ -231,7 +201,7 @@ public partial class UC_AddCar : UserControl
         bool VIN17 = (VINTextBox.Text.Length == 17);
         bool test = !isMarkaEmpty && !isModelEmpty && !isEngineEmpty && VIN17;
         ButtoCarSave.Enabled = test;
-        
+
 
     }
 
@@ -251,7 +221,7 @@ public partial class UC_AddCar : UserControl
                 // Отримати номер телефону (четвертий елемент масиву після розділу)
                 string iD = rowData[3].Trim();
 
-                using SQLiteConnection conn = new(pathCarClients);
+                using SQLiteConnection conn = new(connection);
                 await conn.OpenAsync();
 
                 // Початок транзакції
@@ -259,7 +229,7 @@ public partial class UC_AddCar : UserControl
 
                 try
                 {
-                    using SQLiteCommand update = new SQLiteCommand("UPDATE Klienty SET VIN_Samochodu = @VIN_Samochodu WHERE ID = @ID", conn, transaction);
+                    using SQLiteCommand update = new("UPDATE Klienty SET VIN_Samochodu = @VIN_Samochodu WHERE ID = @ID", conn, transaction);
                     update.Parameters.AddWithValue("@VIN_Samochodu", VINTextBox.Text.ToString());
                     update.Parameters.AddWithValue("@ID", iD);
 
@@ -289,7 +259,7 @@ public partial class UC_AddCar : UserControl
 
             List<string> Client = new();
 
-            using SQLiteConnection conn = new(pathCarClients);
+            using SQLiteConnection conn = new(connection);
 
             await conn.OpenAsync();
 
@@ -336,27 +306,6 @@ public partial class UC_AddCar : UserControl
         Verefy();
     }
 
-    private void MarkaSearch_TextChanged(object sender, EventArgs e)
-    {
-        // Очистити виділення у списку
-
-        if (MarkaSearch.Text == string.Empty)
-        {
-            MarkaListBox.ClearSelected();
-        }
-        // Пройтися по кожному елементу списку
-        for (int i = 0; i < MarkaListBox.Items.Count; i++)
-        {
-            // Перевірити, чи містить елемент текст з текстового поля
-            if (MarkaListBox.Items[i].ToString().ToLower().Contains(MarkaSearch.Text.ToLower()))
-            {
-                // Якщо так, вибрати елемент у списку
-                MarkaListBox.SetSelected(i, true);
-            }
-        }
-
-    }
-
     private void MarkaListBox_MouseUp(object sender, MouseEventArgs e)
     {
         if (e.Button == MouseButtons.Right)
@@ -367,7 +316,7 @@ public partial class UC_AddCar : UserControl
 
     private async void MarkaListBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (await SqlCmd.TableExist(pathDBCAR, MarkaListBox.Text.ToString()))
+        if (await SqlCmd.TableExist(carDB, MarkaListBox.Text.ToString()))
         {
             SearchData(MarkaListBox, ModelListBox, "Model");
         }
@@ -375,5 +324,23 @@ public partial class UC_AddCar : UserControl
         {
             ModelListBox.Items.Clear();
         }
+    }
+
+    private async void ModelListBox_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (await SqlCmd.TableExist(carDB, MarkaListBox.Text.ToString()))
+        {
+            SearchDataEngine();
+        }
+
+        else
+        {
+
+        }
+    }
+
+    private void EngineListBox_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }

@@ -42,6 +42,7 @@
             CarRealiseTimePicker = new DateTimePicker();
             label13 = new Label();
             realiseOrderCheck = new CheckBox();
+            Vin_Label = new Label();
             panel3 = new Panel();
             OtherDatePayCheck = new RadioButton();
             TodayPaycheck = new RadioButton();
@@ -71,7 +72,7 @@
             ZMarżą_Column = new DataGridViewTextBoxColumn();
             WykonanaPraca_Column = new DataGridViewTextBoxColumn();
             WykonawcaPracy_Column = new DataGridViewTextBoxColumn();
-            Vin_Label = new Label();
+            VIN_Column = new DataGridViewTextBoxColumn();
             panelDodatkowy.SuspendLayout();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -86,10 +87,9 @@
             WorkerListBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             WorkerListBox.FormattingEnabled = true;
             WorkerListBox.ItemHeight = 21;
-            WorkerListBox.Items.AddRange(new object[] { "Yaroslav Mechatronik", "Yaroslav Mechanik", "Yaroslav Elektronik", "Yaroslav  Programista" });
-            WorkerListBox.Location = new Point(3, 80);
+            WorkerListBox.Location = new Point(3, 87);
             WorkerListBox.Name = "WorkerListBox";
-            WorkerListBox.Size = new Size(228, 151);
+            WorkerListBox.Size = new Size(283, 151);
             WorkerListBox.TabIndex = 7;
             // 
             // label7
@@ -110,7 +110,7 @@
             panelDodatkowy.Controls.Add(WorkerListBox);
             panelDodatkowy.Controls.Add(WorkPerfomedTextBox);
             panelDodatkowy.ForeColor = Color.DimGray;
-            panelDodatkowy.Location = new Point(670, 37);
+            panelDodatkowy.Location = new Point(733, 38);
             panelDodatkowy.Name = "panelDodatkowy";
             panelDodatkowy.Size = new Size(304, 245);
             panelDodatkowy.TabIndex = 28;
@@ -147,10 +147,9 @@
             // OrderAddoptedCheck
             // 
             OrderAddoptedCheck.AutoSize = true;
-            OrderAddoptedCheck.CheckAlign = ContentAlignment.BottomCenter;
-            OrderAddoptedCheck.Location = new Point(22, 44);
+            OrderAddoptedCheck.Location = new Point(23, 73);
             OrderAddoptedCheck.Name = "OrderAddoptedCheck";
-            OrderAddoptedCheck.Size = new Size(52, 33);
+            OrderAddoptedCheck.Size = new Size(67, 19);
             OrderAddoptedCheck.TabIndex = 21;
             OrderAddoptedCheck.Text = "Przyjęty";
             OrderAddoptedCheck.UseVisualStyleBackColor = true;
@@ -165,63 +164,55 @@
             panel1.Controls.Add(label13);
             panel1.Controls.Add(realiseOrderCheck);
             panel1.Controls.Add(OrderAddoptedCheck);
+            panel1.Controls.Add(Vin_Label);
             panel1.ForeColor = Color.DimGray;
             panel1.Location = new Point(12, 37);
             panel1.Name = "panel1";
-            panel1.Size = new Size(270, 192);
+            panel1.Size = new Size(396, 245);
             panel1.TabIndex = 28;
             // 
             // OrderAddoptedTimePicker
             // 
-            OrderAddoptedTimePicker.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            OrderAddoptedTimePicker.CalendarMonthBackground = Color.FromArgb(94, 148, 255);
-            OrderAddoptedTimePicker.CalendarTitleBackColor = SystemColors.ControlText;
-            OrderAddoptedTimePicker.CalendarTitleForeColor = Color.FromArgb(94, 148, 255);
-            OrderAddoptedTimePicker.Cursor = Cursors.Hand;
-            OrderAddoptedTimePicker.CustomFormat = "";
-            OrderAddoptedTimePicker.Location = new Point(12, 98);
-            OrderAddoptedTimePicker.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            OrderAddoptedTimePicker.Location = new Point(23, 176);
             OrderAddoptedTimePicker.Name = "OrderAddoptedTimePicker";
-            OrderAddoptedTimePicker.Size = new Size(239, 23);
-            OrderAddoptedTimePicker.TabIndex = 39;
-            OrderAddoptedTimePicker.Value = new DateTime(2024, 1, 16, 0, 0, 0, 0);
+            OrderAddoptedTimePicker.Size = new Size(269, 23);
+            OrderAddoptedTimePicker.TabIndex = 23;
             // 
             // CarRealiseTimePicker
             // 
-            CarRealiseTimePicker.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            CarRealiseTimePicker.CalendarMonthBackground = Color.FromArgb(94, 148, 255);
-            CarRealiseTimePicker.CalendarTitleBackColor = SystemColors.ControlText;
-            CarRealiseTimePicker.CalendarTitleForeColor = Color.FromArgb(94, 148, 255);
-            CarRealiseTimePicker.Checked = false;
-            CarRealiseTimePicker.Cursor = Cursors.Hand;
-            CarRealiseTimePicker.CustomFormat = "";
-            CarRealiseTimePicker.Location = new Point(12, 132);
-            CarRealiseTimePicker.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            CarRealiseTimePicker.Location = new Point(23, 98);
             CarRealiseTimePicker.Name = "CarRealiseTimePicker";
-            CarRealiseTimePicker.Size = new Size(239, 23);
-            CarRealiseTimePicker.TabIndex = 38;
-            CarRealiseTimePicker.Value = new DateTime(2024, 1, 16, 0, 0, 0, 0);
+            CarRealiseTimePicker.Size = new Size(269, 23);
+            CarRealiseTimePicker.TabIndex = 23;
             // 
             // label13
             // 
             label13.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.Location = new Point(103, 5);
+            label13.Location = new Point(3, 0);
             label13.Name = "label13";
-            label13.Size = new Size(159, 28);
+            label13.Size = new Size(153, 28);
             label13.TabIndex = 0;
             label13.Text = "Status Zlecenia";
             // 
             // realiseOrderCheck
             // 
             realiseOrderCheck.AutoSize = true;
-            realiseOrderCheck.CheckAlign = ContentAlignment.BottomCenter;
-            realiseOrderCheck.Location = new Point(103, 44);
+            realiseOrderCheck.Location = new Point(23, 151);
             realiseOrderCheck.Name = "realiseOrderCheck";
-            realiseOrderCheck.Size = new Size(113, 33);
+            realiseOrderCheck.Size = new Size(128, 19);
             realiseOrderCheck.TabIndex = 21;
             realiseOrderCheck.Text = "Oczekuje na odbiór";
             realiseOrderCheck.UseVisualStyleBackColor = true;
-            realiseOrderCheck.CheckedChanged += realiseOrderCheck_CheckedChanged;
+            realiseOrderCheck.CheckedChanged += RealiseOrderCheck_CheckedChanged;
+            // 
+            // Vin_Label
+            // 
+            Vin_Label.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            Vin_Label.Location = new Point(23, 30);
+            Vin_Label.Name = "Vin_Label";
+            Vin_Label.Size = new Size(196, 28);
+            Vin_Label.TabIndex = 0;
+            Vin_Label.TextChanged += Vin_Label_TextChanged;
             // 
             // panel3
             // 
@@ -233,7 +224,7 @@
             panel3.Controls.Add(DateOfPay);
             panel3.Controls.Add(label2);
             panel3.ForeColor = Color.DimGray;
-            panel3.Location = new Point(338, 36);
+            panel3.Location = new Point(423, 37);
             panel3.Name = "panel3";
             panel3.Size = new Size(304, 93);
             panel3.TabIndex = 28;
@@ -301,7 +292,7 @@
             panel4.Controls.Add(EstimatedCostNumericUpDown);
             panel4.Controls.Add(label3);
             panel4.ForeColor = Color.DimGray;
-            panel4.Location = new Point(338, 135);
+            panel4.Location = new Point(423, 136);
             panel4.Name = "panel4";
             panel4.Size = new Size(304, 147);
             panel4.TabIndex = 28;
@@ -421,7 +412,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ViewOrderManagement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewOrderManagement.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewOrderManagement.Columns.AddRange(new DataGridViewColumn[] { ID, BtnDelete, Przyjęty_Column, OczekujeNaOdbiór_Column, DataPrzyjęcia_Column, DataWydania_Column, DataPayer_Column, TypPłatności_Column, KosztSzacunkowy_Column, KosztKońcowy_Column, ZMarżą_Column, WykonanaPraca_Column, WykonawcaPracy_Column });
+            ViewOrderManagement.Columns.AddRange(new DataGridViewColumn[] { ID, BtnDelete, Przyjęty_Column, OczekujeNaOdbiór_Column, DataPrzyjęcia_Column, DataWydania_Column, DataPayer_Column, TypPłatności_Column, KosztSzacunkowy_Column, KosztKońcowy_Column, ZMarżą_Column, WykonanaPraca_Column, WykonawcaPracy_Column, VIN_Column });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -528,13 +519,11 @@
             WykonawcaPracy_Column.HeaderText = "Pracownik który wykonał";
             WykonawcaPracy_Column.Name = "WykonawcaPracy_Column";
             // 
-            // Vin_Label
+            // VIN_Column
             // 
-            Vin_Label.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            Vin_Label.Location = new Point(25, 241);
-            Vin_Label.Name = "Vin_Label";
-            Vin_Label.Size = new Size(196, 28);
-            Vin_Label.TabIndex = 0;
+            VIN_Column.DataPropertyName = "VIN";
+            VIN_Column.HeaderText = "VIN";
+            VIN_Column.Name = "VIN_Column";
             // 
             // UC_AddOrderManagement
             // 
@@ -547,9 +536,9 @@
             Controls.Add(panel1);
             Controls.Add(panelDodatkowy);
             Controls.Add(ButtonOrderManagementSave);
-            Controls.Add(Vin_Label);
             Name = "UC_AddOrderManagement";
             Size = new Size(1040, 580);
+            Load += UC_AddOrderManagement_Load;
             panelDodatkowy.ResumeLayout(false);
             panelDodatkowy.PerformLayout();
             panel1.ResumeLayout(false);
@@ -574,8 +563,7 @@
         private Panel panel1;
         private Label label13;
         private CheckBox realiseOrderCheck;
-        public DateTimePicker OrderAddoptedTimePicker;
-        public DateTimePicker CarRealiseTimePicker;
+        //public DateTimePicker CarRealiseTimePicker;
         private Panel panel3;
         public DateTimePicker DateOfPay;
         private Label label2;
@@ -608,5 +596,8 @@
         private DataGridViewTextBoxColumn ZMarżą_Column;
         private DataGridViewTextBoxColumn WykonanaPraca_Column;
         private DataGridViewTextBoxColumn WykonawcaPracy_Column;
+        private DataGridViewTextBoxColumn VIN_Column;
+        private DateTimePicker OrderAddoptedTimePicker;
+        private DateTimePicker CarRealiseTimePicker;
     }
 }

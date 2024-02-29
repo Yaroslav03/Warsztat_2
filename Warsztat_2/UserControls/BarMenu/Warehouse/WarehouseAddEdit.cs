@@ -4,7 +4,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
 {
     public partial class WarehouseAddEdit : Form
     {
-        private readonly string path = "Data Source=WarsztatData.db;Version=3;New=False;Compress=True;";
+        private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
         WarehouseData warehouse = new();
         public WarehouseAddEdit()
         {
@@ -18,7 +18,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
             {
                 PrepareDataToSave();
 
-                using SQLiteConnection conn = new(path);
+                using SQLiteConnection conn = new(connection);
                 conn.Open();
                 using SQLiteCommand add = new("INSERT INTO Magazyn (Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość) " +
                     "VALUES (@Typ, @Nazwa, @NumerCzęści, @Opis, @Cena, @Ilość)", conn);

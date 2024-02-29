@@ -30,11 +30,11 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel3 = new Panel();
             MileageTextBox = new TextBox();
             TestDriveChceck = new CheckBox();
@@ -49,6 +49,17 @@
             RegistrationNumberTextBox = new TextBox();
             panel4 = new Panel();
             ViewHistory = new DataGridView();
+            BtnDelete = new DataGridViewButtonColumn();
+            ID_Column = new DataGridViewTextBoxColumn();
+            DataPrzyjęcia_Column = new DataGridViewTextBoxColumn();
+            NrRejestracji_Column = new DataGridViewTextBoxColumn();
+            Przebieg_Column = new DataGridViewTextBoxColumn();
+            Documents_Column = new DataGridViewCheckBoxColumn();
+            Key_Column = new DataGridViewCheckBoxColumn();
+            TestDrive_Column = new DataGridViewCheckBoxColumn();
+            Zlecenie_Column = new DataGridViewTextBoxColumn();
+            Diagnostic_Column = new DataGridViewTextBoxColumn();
+            Repair_Column = new DataGridViewTextBoxColumn();
             SaveHistoryButton = new Button();
             DiagnosticTextBox = new TextBox();
             OrderTextBox = new TextBox();
@@ -63,17 +74,6 @@
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             VIN_Car_Column = new DataGridViewTextBoxColumn();
-            BtnDelete = new DataGridViewButtonColumn();
-            ID_Column = new DataGridViewTextBoxColumn();
-            DataPrzyjęcia_Column = new DataGridViewTextBoxColumn();
-            NrRejestracji_Column = new DataGridViewTextBoxColumn();
-            Przebieg_Column = new DataGridViewTextBoxColumn();
-            Documents_Column = new DataGridViewCheckBoxColumn();
-            Key_Column = new DataGridViewCheckBoxColumn();
-            TestDrive_Column = new DataGridViewCheckBoxColumn();
-            Zlecenie_Column = new DataGridViewTextBoxColumn();
-            Diagnostic_Column = new DataGridViewTextBoxColumn();
-            Repair_Column = new DataGridViewTextBoxColumn();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ViewHistory).BeginInit();
             panel5.SuspendLayout();
@@ -115,7 +115,7 @@
             MileageTextBox.Name = "MileageTextBox";
             MileageTextBox.PlaceholderText = "Przebieg";
             MileageTextBox.Size = new Size(199, 23);
-            MileageTextBox.TabIndex = 25;
+            MileageTextBox.TabIndex = 1;
             // 
             // TestDriveChceck
             // 
@@ -125,7 +125,7 @@
             TestDriveChceck.Location = new Point(14, 294);
             TestDriveChceck.Name = "TestDriveChceck";
             TestDriveChceck.Size = new Size(230, 25);
-            TestDriveChceck.TabIndex = 23;
+            TestDriveChceck.TabIndex = 5;
             TestDriveChceck.Text = "Klient wyraża zgodę na TestDrive";
             TestDriveChceck.UseVisualStyleBackColor = false;
             // 
@@ -137,7 +137,7 @@
             LeftKeyChceck.Location = new Point(14, 269);
             LeftKeyChceck.Name = "LeftKeyChceck";
             LeftKeyChceck.Size = new Size(230, 25);
-            LeftKeyChceck.TabIndex = 23;
+            LeftKeyChceck.TabIndex = 4;
             LeftKeyChceck.Text = "Pozostawione Kluczyki samochodu";
             LeftKeyChceck.UseVisualStyleBackColor = false;
             // 
@@ -149,7 +149,7 @@
             LeftDocumentsCheck.Location = new Point(15, 244);
             LeftDocumentsCheck.Name = "LeftDocumentsCheck";
             LeftDocumentsCheck.Size = new Size(230, 25);
-            LeftDocumentsCheck.TabIndex = 22;
+            LeftDocumentsCheck.TabIndex = 3;
             LeftDocumentsCheck.Text = "Pozostawione Dokumenty samochodu";
             LeftDocumentsCheck.UseVisualStyleBackColor = false;
             // 
@@ -195,7 +195,7 @@
             VINTextBox.Name = "VINTextBox";
             VINTextBox.PlaceholderText = "VIN";
             VINTextBox.Size = new Size(225, 23);
-            VINTextBox.TabIndex = 17;
+            VINTextBox.TabIndex = 2;
             VINTextBox.TextChanged += VINTextBox_TextChanged;
             // 
             // panel2
@@ -226,7 +226,7 @@
             RegistrationNumberTextBox.Name = "RegistrationNumberTextBox";
             RegistrationNumberTextBox.PlaceholderText = "Numer Rejestracji";
             RegistrationNumberTextBox.Size = new Size(199, 23);
-            RegistrationNumberTextBox.TabIndex = 15;
+            RegistrationNumberTextBox.TabIndex = 0;
             // 
             // panel4
             // 
@@ -270,188 +270,6 @@
             ViewHistory.TabIndex = 31;
             ViewHistory.CellContentClick += ViewHistory_CellContentClick;
             ViewHistory.MouseDoubleClick += ViewHistory_MouseDoubleClick;
-            // 
-            // SaveHistoryButton
-            // 
-            SaveHistoryButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            SaveHistoryButton.BackColor = Color.FromArgb(94, 148, 255);
-            SaveHistoryButton.FlatAppearance.BorderSize = 0;
-            SaveHistoryButton.FlatStyle = FlatStyle.Flat;
-            SaveHistoryButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            SaveHistoryButton.ForeColor = Color.LightGray;
-            SaveHistoryButton.Location = new Point(0, 0);
-            SaveHistoryButton.Name = "SaveHistoryButton";
-            SaveHistoryButton.Size = new Size(1040, 34);
-            SaveHistoryButton.TabIndex = 32;
-            SaveHistoryButton.Text = "Zapisz";
-            SaveHistoryButton.UseVisualStyleBackColor = false;
-            SaveHistoryButton.Click += SaveHistoryButton_Click;
-            // 
-            // DiagnosticTextBox
-            // 
-            DiagnosticTextBox.BackColor = Color.FromArgb(64, 64, 70);
-            DiagnosticTextBox.CausesValidation = false;
-            DiagnosticTextBox.Cursor = Cursors.IBeam;
-            DiagnosticTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            DiagnosticTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            DiagnosticTextBox.Location = new Point(259, 33);
-            DiagnosticTextBox.MinimumSize = new Size(160, 144);
-            DiagnosticTextBox.Multiline = true;
-            DiagnosticTextBox.Name = "DiagnosticTextBox";
-            DiagnosticTextBox.PlaceholderText = "Diagnostyka";
-            DiagnosticTextBox.Size = new Size(241, 144);
-            DiagnosticTextBox.TabIndex = 33;
-            // 
-            // OrderTextBox
-            // 
-            OrderTextBox.BackColor = Color.FromArgb(64, 64, 70);
-            OrderTextBox.CausesValidation = false;
-            OrderTextBox.Cursor = Cursors.IBeam;
-            OrderTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            OrderTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            OrderTextBox.Location = new Point(14, 34);
-            OrderTextBox.MinimumSize = new Size(160, 144);
-            OrderTextBox.Multiline = true;
-            OrderTextBox.Name = "OrderTextBox";
-            OrderTextBox.PlaceholderText = "Zlecenie";
-            OrderTextBox.Size = new Size(241, 144);
-            OrderTextBox.TabIndex = 34;
-            // 
-            // panel5
-            // 
-            panel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel5.BackColor = Color.FromArgb(64, 64, 70);
-            panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.Controls.Add(ScheduleTimePicker);
-            panel5.Controls.Add(RepairTextBox);
-            panel5.Controls.Add(label3);
-            panel5.Controls.Add(label1);
-            panel5.Controls.Add(DiagnosticTextBox);
-            panel5.Controls.Add(OrderTextBox);
-            panel5.ForeColor = Color.DimGray;
-            panel5.Location = new Point(7, 181);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(750, 184);
-            panel5.TabIndex = 35;
-            // 
-            // ScheduleTimePicker
-            // 
-            ScheduleTimePicker.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            ScheduleTimePicker.CalendarMonthBackground = Color.FromArgb(94, 148, 255);
-            ScheduleTimePicker.CalendarTitleBackColor = SystemColors.ControlText;
-            ScheduleTimePicker.CalendarTitleForeColor = Color.FromArgb(94, 148, 255);
-            ScheduleTimePicker.Cursor = Cursors.Hand;
-            ScheduleTimePicker.CustomFormat = "";
-            ScheduleTimePicker.Location = new Point(470, 5);
-            ScheduleTimePicker.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            ScheduleTimePicker.Name = "ScheduleTimePicker";
-            ScheduleTimePicker.Size = new Size(239, 23);
-            ScheduleTimePicker.TabIndex = 36;
-            ScheduleTimePicker.Value = new DateTime(2024, 1, 16, 0, 0, 0, 0);
-            // 
-            // RepairTextBox
-            // 
-            RepairTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            RepairTextBox.BackColor = Color.FromArgb(64, 64, 70);
-            RepairTextBox.CausesValidation = false;
-            RepairTextBox.Cursor = Cursors.IBeam;
-            RepairTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            RepairTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            RepairTextBox.Location = new Point(504, 33);
-            RepairTextBox.MinimumSize = new Size(160, 144);
-            RepairTextBox.Multiline = true;
-            RepairTextBox.Name = "RepairTextBox";
-            RepairTextBox.PlaceholderText = "Naprawa";
-            RepairTextBox.Size = new Size(241, 144);
-            RepairTextBox.TabIndex = 35;
-            // 
-            // label3
-            // 
-            label3.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.ForeColor = Color.FromArgb(224, 224, 224);
-            label3.Location = new Point(355, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(107, 28);
-            label3.TabIndex = 20;
-            label3.Text = "Data przyjęcia";
-            // 
-            // label1
-            // 
-            label1.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.FromArgb(224, 224, 224);
-            label1.Location = new Point(14, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(66, 28);
-            label1.TabIndex = 20;
-            label1.Text = "Historia";
-            // 
-            // ViewAllCar
-            // 
-            ViewAllCar.AllowUserToAddRows = false;
-            ViewAllCar.AllowUserToDeleteRows = false;
-            ViewAllCar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            ViewAllCar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            ViewAllCar.BorderStyle = BorderStyle.None;
-            ViewAllCar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = Color.LightGray;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            ViewAllCar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            ViewAllCar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewAllCar.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, VIN_Car_Column });
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            ViewAllCar.DefaultCellStyle = dataGridViewCellStyle7;
-            ViewAllCar.EnableHeadersVisualStyles = false;
-            ViewAllCar.Location = new Point(3, 46);
-            ViewAllCar.Name = "ViewAllCar";
-            ViewAllCar.RowTemplate.Height = 25;
-            ViewAllCar.Size = new Size(752, 118);
-            ViewAllCar.TabIndex = 36;
-            ViewAllCar.CellClick += ViewCar_CellClick;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.DataPropertyName = "ID";
-            dataGridViewTextBoxColumn1.HeaderText = "ID";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.DataPropertyName = "Marka";
-            dataGridViewTextBoxColumn2.HeaderText = "Marka";
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.DataPropertyName = "Model";
-            dataGridViewTextBoxColumn3.HeaderText = "Model";
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewTextBoxColumn4.DataPropertyName = "RokProdukcji";
-            dataGridViewTextBoxColumn4.HeaderText = "RokProdukcji";
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // VIN_Car_Column
-            // 
-            VIN_Car_Column.DataPropertyName = "VIN";
-            dataGridViewCellStyle6.Format = "km";
-            dataGridViewCellStyle6.NullValue = null;
-            VIN_Car_Column.DefaultCellStyle = dataGridViewCellStyle6;
-            VIN_Car_Column.HeaderText = "VIN";
-            VIN_Car_Column.Name = "VIN_Car_Column";
             // 
             // BtnDelete
             // 
@@ -545,6 +363,188 @@
             Repair_Column.DataPropertyName = "Naprawa";
             Repair_Column.HeaderText = "Naprawa";
             Repair_Column.Name = "Repair_Column";
+            // 
+            // SaveHistoryButton
+            // 
+            SaveHistoryButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            SaveHistoryButton.BackColor = Color.FromArgb(94, 148, 255);
+            SaveHistoryButton.FlatAppearance.BorderSize = 0;
+            SaveHistoryButton.FlatStyle = FlatStyle.Flat;
+            SaveHistoryButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            SaveHistoryButton.ForeColor = Color.LightGray;
+            SaveHistoryButton.Location = new Point(0, 0);
+            SaveHistoryButton.Name = "SaveHistoryButton";
+            SaveHistoryButton.Size = new Size(1040, 34);
+            SaveHistoryButton.TabIndex = 32;
+            SaveHistoryButton.Text = "Zapisz";
+            SaveHistoryButton.UseVisualStyleBackColor = false;
+            SaveHistoryButton.Click += SaveHistoryButton_Click;
+            // 
+            // DiagnosticTextBox
+            // 
+            DiagnosticTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            DiagnosticTextBox.CausesValidation = false;
+            DiagnosticTextBox.Cursor = Cursors.IBeam;
+            DiagnosticTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            DiagnosticTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            DiagnosticTextBox.Location = new Point(259, 33);
+            DiagnosticTextBox.MinimumSize = new Size(160, 144);
+            DiagnosticTextBox.Multiline = true;
+            DiagnosticTextBox.Name = "DiagnosticTextBox";
+            DiagnosticTextBox.PlaceholderText = "Diagnostyka";
+            DiagnosticTextBox.Size = new Size(241, 144);
+            DiagnosticTextBox.TabIndex = 7;
+            // 
+            // OrderTextBox
+            // 
+            OrderTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            OrderTextBox.CausesValidation = false;
+            OrderTextBox.Cursor = Cursors.IBeam;
+            OrderTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            OrderTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            OrderTextBox.Location = new Point(14, 34);
+            OrderTextBox.MinimumSize = new Size(160, 144);
+            OrderTextBox.Multiline = true;
+            OrderTextBox.Name = "OrderTextBox";
+            OrderTextBox.PlaceholderText = "Zlecenie";
+            OrderTextBox.Size = new Size(241, 144);
+            OrderTextBox.TabIndex = 6;
+            // 
+            // panel5
+            // 
+            panel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel5.BackColor = Color.FromArgb(64, 64, 70);
+            panel5.BorderStyle = BorderStyle.FixedSingle;
+            panel5.Controls.Add(ScheduleTimePicker);
+            panel5.Controls.Add(RepairTextBox);
+            panel5.Controls.Add(label3);
+            panel5.Controls.Add(label1);
+            panel5.Controls.Add(DiagnosticTextBox);
+            panel5.Controls.Add(OrderTextBox);
+            panel5.ForeColor = Color.DimGray;
+            panel5.Location = new Point(7, 181);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(750, 184);
+            panel5.TabIndex = 35;
+            // 
+            // ScheduleTimePicker
+            // 
+            ScheduleTimePicker.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ScheduleTimePicker.CalendarMonthBackground = Color.FromArgb(94, 148, 255);
+            ScheduleTimePicker.CalendarTitleBackColor = SystemColors.ControlText;
+            ScheduleTimePicker.CalendarTitleForeColor = Color.FromArgb(94, 148, 255);
+            ScheduleTimePicker.Cursor = Cursors.Hand;
+            ScheduleTimePicker.CustomFormat = "";
+            ScheduleTimePicker.Location = new Point(470, 5);
+            ScheduleTimePicker.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            ScheduleTimePicker.Name = "ScheduleTimePicker";
+            ScheduleTimePicker.Size = new Size(239, 23);
+            ScheduleTimePicker.TabIndex = 9;
+            ScheduleTimePicker.Value = new DateTime(2024, 1, 16, 0, 0, 0, 0);
+            // 
+            // RepairTextBox
+            // 
+            RepairTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            RepairTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            RepairTextBox.CausesValidation = false;
+            RepairTextBox.Cursor = Cursors.IBeam;
+            RepairTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            RepairTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            RepairTextBox.Location = new Point(504, 33);
+            RepairTextBox.MinimumSize = new Size(160, 144);
+            RepairTextBox.Multiline = true;
+            RepairTextBox.Name = "RepairTextBox";
+            RepairTextBox.PlaceholderText = "Naprawa";
+            RepairTextBox.Size = new Size(241, 144);
+            RepairTextBox.TabIndex = 8;
+            // 
+            // label3
+            // 
+            label3.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(224, 224, 224);
+            label3.Location = new Point(355, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(107, 28);
+            label3.TabIndex = 20;
+            label3.Text = "Data przyjęcia";
+            // 
+            // label1
+            // 
+            label1.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(224, 224, 224);
+            label1.Location = new Point(14, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(66, 28);
+            label1.TabIndex = 20;
+            label1.Text = "Historia";
+            // 
+            // ViewAllCar
+            // 
+            ViewAllCar.AllowUserToAddRows = false;
+            ViewAllCar.AllowUserToDeleteRows = false;
+            ViewAllCar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            ViewAllCar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ViewAllCar.BorderStyle = BorderStyle.None;
+            ViewAllCar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = Color.LightGray;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            ViewAllCar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            ViewAllCar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ViewAllCar.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, VIN_Car_Column });
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            ViewAllCar.DefaultCellStyle = dataGridViewCellStyle7;
+            ViewAllCar.EnableHeadersVisualStyles = false;
+            ViewAllCar.Location = new Point(3, 46);
+            ViewAllCar.Name = "ViewAllCar";
+            ViewAllCar.RowTemplate.Height = 25;
+            ViewAllCar.Size = new Size(752, 118);
+            ViewAllCar.TabIndex = 36;
+            ViewAllCar.CellClick += ViewCar_CellClick;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            dataGridViewTextBoxColumn1.HeaderText = "ID";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.DataPropertyName = "Marka";
+            dataGridViewTextBoxColumn2.HeaderText = "Marka";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.DataPropertyName = "Model";
+            dataGridViewTextBoxColumn3.HeaderText = "Model";
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.DataPropertyName = "RokProdukcji";
+            dataGridViewTextBoxColumn4.HeaderText = "RokProdukcji";
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // VIN_Car_Column
+            // 
+            VIN_Car_Column.DataPropertyName = "VIN";
+            dataGridViewCellStyle6.Format = "km";
+            dataGridViewCellStyle6.NullValue = null;
+            VIN_Car_Column.DefaultCellStyle = dataGridViewCellStyle6;
+            VIN_Car_Column.HeaderText = "VIN";
+            VIN_Car_Column.Name = "VIN_Car_Column";
             // 
             // UC_AddHistoryCar
             // 

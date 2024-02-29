@@ -49,9 +49,9 @@
             OrderManagementButton.FlatStyle = FlatStyle.Flat;
             OrderManagementButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             OrderManagementButton.ForeColor = Color.LightGray;
-            OrderManagementButton.Location = new Point(880, 7);
+            OrderManagementButton.Location = new Point(832, 7);
             OrderManagementButton.Name = "OrderManagementButton";
-            OrderManagementButton.Size = new Size(128, 30);
+            OrderManagementButton.Size = new Size(176, 30);
             OrderManagementButton.TabIndex = 16;
             OrderManagementButton.Text = "Zarządzanie Zleceniami";
             OrderManagementButton.UseVisualStyleBackColor = false;
@@ -103,7 +103,7 @@
             RepairButton.FlatStyle = FlatStyle.Flat;
             RepairButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             RepairButton.ForeColor = Color.LightGray;
-            RepairButton.Location = new Point(691, 7);
+            RepairButton.Location = new Point(658, 7);
             RepairButton.MinimumSize = new Size(140, 30);
             RepairButton.Name = "RepairButton";
             RepairButton.Size = new Size(153, 30);
@@ -120,7 +120,7 @@
             HistoryButton.FlatStyle = FlatStyle.Flat;
             HistoryButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             HistoryButton.ForeColor = Color.LightGray;
-            HistoryButton.Location = new Point(388, 7);
+            HistoryButton.Location = new Point(369, 7);
             HistoryButton.MinimumSize = new Size(80, 30);
             HistoryButton.Name = "HistoryButton";
             HistoryButton.Size = new Size(268, 30);

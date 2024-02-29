@@ -1,17 +1,18 @@
 ﻿using System.Data.SQLite;
+using Warsztat_2.UserControls.BarMenu.ScheduleCar;
 
 namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
 {
     internal class EditDataScheduleCar
     {
-        private readonly string path = "Data Source=WarsztatData.db;Version=3;New=False;Compress=True;";
+        private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
 
         private Car car = new();
-        private Repair repair= new();
+        private Repair repair = new();
         public Client client = new();
 
 
-        public void SaveData(UC_ScheduleCarSelectTab selectTab)
+        public void SaveData(UC_ScheduleCar selectTab)
         {
             Cursor.Current = Cursors.WaitCursor;
             ////////////////////////////////////
@@ -21,7 +22,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
             {
                 PrepareData(selectTab);
 
-                using SQLiteConnection conn = new(path);
+                using SQLiteConnection conn = new(connection);
                 conn.Open();
 
                 using SQLiteCommand insert = new("INSERT INTO ZaplanowaneSamochody (Imię, Nazwisko, Marka, Model, Problem, Telefon, DataPrzyjęcia) " +
@@ -55,14 +56,14 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
             cmd.Parameters.AddWithValue("@Problem", repair.Problem);
             cmd.Parameters.AddWithValue("@DataPrzyjęcia", repair.ScheduleCar);
         }
-        public void UpdateData(UC_ScheduleCarSelectTab selectTab)
+        public void UpdateData(UC_ScheduleCar selectTab)
         {
             Cursor.Current = Cursors.WaitCursor;
 
             PrepareData(selectTab);
             try
             {
-                using SQLiteConnection conn = new(path);
+                using SQLiteConnection conn = new(connection);
                 conn.Open();
                 using SQLiteCommand update = new("UPDATE ZaplanowaneSamochody SET Imię = @Imię, Nazwisko = @Nazwisko, Telefon = @Telefon, Marka = @Marka, Model = @Model, Problem = @Problem, DataPrzyjęcia = @DataPrzyjęcia WHERE ID = @ID", conn);
 
@@ -91,7 +92,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
                 Cursor.Current = Cursors.Default;
             }
         }
-        private void PrepareData(UC_ScheduleCarSelectTab selectTab)
+        private void PrepareData(UC_ScheduleCar selectTab)
         {
             client = new Client
             {
@@ -118,7 +119,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
             repair = repairToEdit;
 
         }
-        public void AutocompleteData(UC_ScheduleCarSelectTab selectTab)
+        public void AutocompleteData(UC_ScheduleCar selectTab)
         {
             selectTab.ID_label.Text = client.ID.ToString();
 
@@ -133,7 +134,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
 
             selectTab.ScheduleTimePicker.Text = repair.ScheduleCar;
         }
-        public static void ClearTextBox(UC_ScheduleCarSelectTab editData)
+        public static void ClearTextBox(UC_ScheduleCar editData)
         {
             editData.NameTextBox.Text = editData.SurnameTextBox.Text = editData.TelephonTextBox.Text = string.Empty;
 

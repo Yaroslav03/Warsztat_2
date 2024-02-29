@@ -17,7 +17,7 @@ public class Car
     public string? Model { get; set; }
     public string? Engine { get; set; }
     public string? YearOfProduktion { get; set; }
-    
+
     public string? VIN { get; set; }
 
     public static Car Reset()
@@ -40,7 +40,7 @@ class Pay
 }
 class HistoryCar
 {
-    string? DateofAdoption {get;set;}
+    public string? DateofAdoption { get; set; }
     public string? NumberofRegister { get; set; }
     public string? Mileage { get; set; }
     public bool LeftDocument { get; set; }
@@ -59,13 +59,14 @@ public class Repair
 {
     public string? Problem { get; set; }
     public string? ScheduleCar { get; set; }
-    public string? AdmissionDateCar { get; set; }  
+    public string? AdmissionDateCar { get; set; }
     public string? Description { get; set; }
     public string? NrPart { get; set; }
 
     public ushort Price { get; set; }
     public byte Ilość { get; set; }
     public bool Stan { get; set; }
+    public string? DateOfAcceptance { get; set; }
     public static Repair Reset()
     {
         return new Repair();
@@ -77,19 +78,19 @@ public class OrderManagment
     /// Status zlecnia
     /// </summary>
     public bool OrderAddopted { get; set; }
-    public bool realiseOrder { get;set;}
-    public string DateOrderAddopted { get; set;}
-    public string DateRealiseOrder { get; set; }
+    public bool RealiseOrder { get; set; }
+    public string? DateOrderAddopted { get; set; }
+    public string? DateRealiseOrder { get; set; }
     /// <summary>
     /// Płatność
     /// </summary>
-    public string DateOfPay { get; set; }
-    public string TypeOfPay { get; set; }
+    public string? DateOfPay { get; set; }
+    public string? TypeOfPay { get; set; }
     public ushort EstimatedCost { get; set; }
     public ushort Cost { get; set; }
-    public ushort CostWithMarge { get; set; }
-    public string WorkPerfomed { get; set; }
-    public string Employer { get; set; }
+    public string? CostWithMarge { get; set; }
+    public string? WorkPerfomed { get; set; }
+    public string? Employer { get; set; }
     public static OrderManagment Reset() { return new OrderManagment(); }
 }
 public class WarehouseData

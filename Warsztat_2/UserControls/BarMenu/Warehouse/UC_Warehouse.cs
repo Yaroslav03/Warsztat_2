@@ -5,7 +5,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
 {
     public partial class UC_Warehouse : UserControl
     {
-        private readonly string path = "Data Source=WarsztatData.db;Version=3;New=False;Compress=True;";
+        private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
         private WarehouseData warehouseData = new();
         WarehouseAddEdit warehouseAddEdit = new();
         public UC_Warehouse()
@@ -45,7 +45,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
         {
             try
             {
-                using SQLiteConnection conn = new(path);
+                using SQLiteConnection conn = new(connection);
                 conn.Open();
                 using SQLiteDataAdapter adapter = new("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość FROM Magazyn", conn);
                 {
@@ -53,7 +53,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
                     dataTable.Clear();// Очищаємо дані, якщо вони вже були завантажені
                     adapter.Fill(dataTable);
                     WarehouseView.DataSource = dataTable;
-                    WarehouseView.Columns["ID_Column"].Visible = false;
+                    WarehouseView.Columns["ID_Column_"].Visible = false;
                 }
                 ////if na perevirku danych////
             }
@@ -66,7 +66,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
         {
             warehouseData = new()
             {
-                Id = Convert.ToUInt16(WarehouseView.CurrentRow.Cells["ID_Column"].Value.ToString()),
+                Id = Convert.ToUInt16(WarehouseView.CurrentRow.Cells["ID_Column_"].Value.ToString()),
                 Type = WarehouseView.CurrentRow.Cells["TypCzesci_Column_Main"].Value.ToString(),
                 PartNumber = WarehouseView.CurrentRow.Cells["NrCzesci_Column_Main"].Value.ToString(),
                 Name = WarehouseView.CurrentRow.Cells["Nazwa_Column_Main"].Value.ToString(),
@@ -160,11 +160,11 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
             Cursor.Current = Cursors.WaitCursor;
             try
             {
-                if (e.ColumnIndex == WarehouseView.Columns["BtnDelete"].Index && WarehouseView.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value)
+                if (e.ColumnIndex == WarehouseView.Columns["BtnDelete"].Index && WarehouseView.Rows[e.RowIndex].Cells["ID_Column_"].Value != DBNull.Value)
                 {
-                    long idToDelete = (long)WarehouseView.Rows[e.RowIndex].Cells["ID_Column"].Value;
+                    long idToDelete = (long)WarehouseView.Rows[e.RowIndex].Cells["ID_Column_"].Value;
 
-                    using SQLiteConnection conn = new(path);
+                    using SQLiteConnection conn = new(connection);
                     conn.Open();
 
                     using SQLiteCommand delete = new("DELETE FROM Magazyn WHERE ID=@ID", conn);

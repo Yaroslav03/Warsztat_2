@@ -486,7 +486,7 @@
             setCarToClientButton.TabIndex = 26;
             setCarToClientButton.Text = "Przypisz";
             setCarToClientButton.UseVisualStyleBackColor = false;
-            setCarToClientButton.Click += setCarToClientButton_Click;
+            setCarToClientButton.Click += SetCarToClientButton_Click;
             // 
             // HelpMessage
             // 

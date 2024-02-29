@@ -6,7 +6,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 {
     public partial class UC_AddClient : UserControl
     {
-        readonly string pathAddClient = "Data Source=Warsztat_CarClients.db;Version=3;New=False;Compress=True;";
+        private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
         Client client = new();
         List<string> setCarToClient = new();
         public UC_AddClient()
@@ -96,7 +96,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         {
             try
             {
-                await SqlCmd.DeleteDataTable(ViewClients, e, pathAddClient, "BtnDelete", "ID_Column", "Klienty");
+                await SqlCmd.DeleteDataTable(ViewClients, e, connection, "BtnDelete", "ID_Column", "Klienty");
             }
             catch
             {
@@ -121,13 +121,13 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             ButtonClientUpdate.Show();
             label2.Show();
 
-            if (SetCarToClientCheckBox.Checked == true && ID_Client_label.Text != "0" && setCarToClient.Count == 0) // Ця умова не дає можливості записати автомобіль до не існуючого клієнта
+            if (SetCarToClientCheckBox.Checked == true && ID_Client_label.Text != "0" && setCarToClient.Count == 0 && ID_Client_label.Text != null) // Ця умова не дає можливості записати автомобіль до не існуючого клієнта
             {
                 setCarToClient.Add(ID_Client_label.Text.ToString());
 
                 MessageBox.Show(setCarToClient[0]);//показати користувачу що він вибрав  
             }
-            else if (setCarToClient.Count >= 1)// можливість перевибору даних. Якщо користувач помилився або вирішив вибрати іншого клієнта
+            else if (setCarToClient.Count >= 1 && ID_Client_label.Text != null)// можливість перевибору даних. Якщо користувач помилився або вирішив вибрати іншого клієнта
             {
                 setCarToClient[0] = ID_Client_label.Text.ToString();
                 MessageBox.Show(setCarToClient[0]);//показати користувачу що він вибрав  
@@ -152,10 +152,10 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 setCarToClientButton.Show();
             }
 
-            
+
             try
             {
-                await SqlCmd.DeleteDataTable(ViewCar, e, pathAddClient, "BtnDeleteCar", "ID_CAR", "Samochód");
+                await SqlCmd.DeleteDataTable(ViewCar, e, connection, "BtnDeleteCar", "ID_CAR", "Samochód");
             }
             catch
             {
@@ -216,14 +216,14 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
             CollectData();
 
-            using SQLiteConnection connection = new(pathAddClient);
+            using SQLiteConnection conn = new(connection);
 
-            await connection.OpenAsync();
+            await conn.OpenAsync();
 
-            using var transaction = connection.BeginTransaction();
+            using var transaction = conn.BeginTransaction();
             try
             {
-                using SQLiteCommand add = new("INSERT INTO Klienty (Imię, Nazwisko, NrTelefonu, AdresFirmy, NIP) VALUES(@Imię, @Nazwisko, @NrTelefonu, @AdresFirmy, @NIP)", connection, transaction);
+                using SQLiteCommand add = new("INSERT INTO Klienty (Imię, Nazwisko, NrTelefonu, AdresFirmy, NIP) VALUES(@Imię, @Nazwisko, @NrTelefonu, @AdresFirmy, @NIP)", conn, transaction);
 
                 ValueDB(add);
 
@@ -250,15 +250,15 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
             CollectData();
 
-            using SQLiteConnection connection = new(pathAddClient);
+            using SQLiteConnection conn = new(connection);
 
-            await connection.OpenAsync();
+            await conn.OpenAsync();
 
-            using var transaction = connection.BeginTransaction();
+            using var transaction = conn.BeginTransaction();
             try
             {
 
-                using SQLiteCommand update = new("UPDATE Klienty SET Imię = @Imię, Nazwisko = @Nazwisko, NrTelefonu= @NrTelefonu, AdresFirmy = @AdresFirmy, NIP = @NIP WHERE ID = @ID", connection, transaction);
+                using SQLiteCommand update = new("UPDATE Klienty SET Imię = @Imię, Nazwisko = @Nazwisko, NrTelefonu= @NrTelefonu, AdresFirmy = @AdresFirmy, NIP = @NIP WHERE ID = @ID", conn, transaction);
                 update.Parameters.AddWithValue("@ID", ID_Client_label.Text);
                 ValueDB(update);
 
@@ -281,11 +281,11 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         }
         private async Task LoadDataClient()
         {
-            await SqlCmd.LoadData(pathAddClient, "SELECT ID, Imię, Nazwisko, NrTelefonu, AdresFirmy, NIP, VIN_Samochodu FROM Klienty", ViewClients, "client", "Load table Clients From DB");
+            await SqlCmd.LoadData(connection, "SELECT ID, Imię, Nazwisko, NrTelefonu, AdresFirmy, NIP, VIN_Samochodu FROM Klienty", ViewClients, "client", "Load table Clients From DB");
         }
         private async Task LoadDataCar()
         {
-            await SqlCmd.LoadData(pathAddClient, "SELECT ID, Marka, Model, Silnik, RokProdukcji, VIN FROM Samochód", ViewCar, "client", "Load table Car From DB");
+            await SqlCmd.LoadData(connection, "SELECT ID, Marka, Model, Silnik, RokProdukcji, VIN FROM Samochód", ViewCar, "client", "Load table Car From DB");
         }
 
         private async void UC_AddClient_Load(object sender, EventArgs e)
@@ -311,7 +311,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             }
         }
 
-        private async void setCarToClientButton_Click(object sender, EventArgs e)
+        private async void SetCarToClientButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -341,15 +341,15 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         {
             Cursor.Current = Cursors.WaitCursor;
 
-            using SQLiteConnection connection = new(pathAddClient);
+            using SQLiteConnection conn = new(connection);
 
-            await connection.OpenAsync();
+            await conn.OpenAsync();
 
-            using var transaction = connection.BeginTransaction();
+            using var transaction = conn.BeginTransaction();
             try
             {
 
-                using SQLiteCommand addCarToClient = new("UPDATE Klienty SET VIN_Samochodu = @VIN_Samochodu WHERE ID = @ID", connection, transaction);
+                using SQLiteCommand addCarToClient = new("UPDATE Klienty SET VIN_Samochodu = @VIN_Samochodu WHERE ID = @ID", conn, transaction);
                 addCarToClient.Parameters.AddWithValue("@ID", setCarToClient[0]);
 
                 addCarToClient.Parameters.AddWithValue("@VIN_Samochodu", setCarToClient[1]);
