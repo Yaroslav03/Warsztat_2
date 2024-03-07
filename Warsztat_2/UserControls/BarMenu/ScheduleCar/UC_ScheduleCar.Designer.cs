@@ -56,15 +56,6 @@
             label6 = new Label();
             label25 = new Label();
             DataScheduleView = new DataGridView();
-            BtnDelete = new DataGridViewButtonColumn();
-            DataPrzyjecia_Column = new DataGridViewTextBoxColumn();
-            ID_Column = new DataGridViewTextBoxColumn();
-            Imie_Column = new DataGridViewTextBoxColumn();
-            Nazwisko_Column = new DataGridViewTextBoxColumn();
-            Telefon_Column = new DataGridViewTextBoxColumn();
-            Marka_Column = new DataGridViewTextBoxColumn();
-            Model_Column = new DataGridViewTextBoxColumn();
-            Problem_Column = new DataGridViewTextBoxColumn();
             ViewData = new Panel();
             SearchScheduleCar = new TextBox();
             helpingLabel = new Label();
@@ -74,6 +65,16 @@
             panel2 = new Panel();
             label23 = new Label();
             EditData = new Panel();
+            btnAdd = new DataGridViewButtonColumn();
+            BtnDelete = new DataGridViewButtonColumn();
+            DataPrzyjecia_Column = new DataGridViewTextBoxColumn();
+            ID_Column = new DataGridViewTextBoxColumn();
+            Imie_Column = new DataGridViewTextBoxColumn();
+            Nazwisko_Column = new DataGridViewTextBoxColumn();
+            Telefon_Column = new DataGridViewTextBoxColumn();
+            Marka_Column = new DataGridViewTextBoxColumn();
+            Model_Column = new DataGridViewTextBoxColumn();
+            Problem_Column = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataScheduleView).BeginInit();
             ViewData.SuspendLayout();
@@ -438,7 +439,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             DataScheduleView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             DataScheduleView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataScheduleView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, DataPrzyjecia_Column, ID_Column, Imie_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Problem_Column });
+            DataScheduleView.Columns.AddRange(new DataGridViewColumn[] { btnAdd, BtnDelete, DataPrzyjecia_Column, ID_Column, Imie_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Problem_Column });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -455,60 +456,6 @@
             DataScheduleView.TabIndex = 30;
             DataScheduleView.CellContentClick += DataScheduleView_CellContentClick;
             DataScheduleView.CellDoubleClick += DataScheduleView_CellDoubleClick;
-            // 
-            // BtnDelete
-            // 
-            BtnDelete.HeaderText = "Usuń";
-            BtnDelete.Name = "BtnDelete";
-            // 
-            // DataPrzyjecia_Column
-            // 
-            DataPrzyjecia_Column.DataPropertyName = "DataPrzyjęcia";
-            DataPrzyjecia_Column.HeaderText = "Zaplanowana data przyjęcia";
-            DataPrzyjecia_Column.Name = "DataPrzyjecia_Column";
-            // 
-            // ID_Column
-            // 
-            ID_Column.DataPropertyName = "ID";
-            ID_Column.HeaderText = "ID";
-            ID_Column.Name = "ID_Column";
-            ID_Column.Visible = false;
-            // 
-            // Imie_Column
-            // 
-            Imie_Column.DataPropertyName = "Imię";
-            Imie_Column.HeaderText = "Imię";
-            Imie_Column.Name = "Imie_Column";
-            // 
-            // Nazwisko_Column
-            // 
-            Nazwisko_Column.DataPropertyName = "Nazwisko";
-            Nazwisko_Column.HeaderText = "Nazwisko";
-            Nazwisko_Column.Name = "Nazwisko_Column";
-            // 
-            // Telefon_Column
-            // 
-            Telefon_Column.DataPropertyName = "Telefon";
-            Telefon_Column.HeaderText = "Telefon";
-            Telefon_Column.Name = "Telefon_Column";
-            // 
-            // Marka_Column
-            // 
-            Marka_Column.DataPropertyName = "Marka";
-            Marka_Column.HeaderText = "Marka";
-            Marka_Column.Name = "Marka_Column";
-            // 
-            // Model_Column
-            // 
-            Model_Column.DataPropertyName = "Model";
-            Model_Column.HeaderText = "Model";
-            Model_Column.Name = "Model_Column";
-            // 
-            // Problem_Column
-            // 
-            Problem_Column.DataPropertyName = "Problem";
-            Problem_Column.HeaderText = "Problem";
-            Problem_Column.Name = "Problem_Column";
             // 
             // ViewData
             // 
@@ -647,6 +594,65 @@
             EditData.Size = new Size(1007, 595);
             EditData.TabIndex = 29;
             // 
+            // btnAdd
+            // 
+            btnAdd.HeaderText = "Dodaj dane do bazy";
+            btnAdd.Name = "btnAdd";
+            // 
+            // BtnDelete
+            // 
+            BtnDelete.HeaderText = "Usuń";
+            BtnDelete.Name = "BtnDelete";
+            // 
+            // DataPrzyjecia_Column
+            // 
+            DataPrzyjecia_Column.DataPropertyName = "DataPrzyjęcia";
+            DataPrzyjecia_Column.HeaderText = "Zaplanowana data przyjęcia";
+            DataPrzyjecia_Column.Name = "DataPrzyjecia_Column";
+            // 
+            // ID_Column
+            // 
+            ID_Column.DataPropertyName = "ID";
+            ID_Column.HeaderText = "ID";
+            ID_Column.Name = "ID_Column";
+            ID_Column.Visible = false;
+            // 
+            // Imie_Column
+            // 
+            Imie_Column.DataPropertyName = "Imię";
+            Imie_Column.HeaderText = "Imię";
+            Imie_Column.Name = "Imie_Column";
+            // 
+            // Nazwisko_Column
+            // 
+            Nazwisko_Column.DataPropertyName = "Nazwisko";
+            Nazwisko_Column.HeaderText = "Nazwisko";
+            Nazwisko_Column.Name = "Nazwisko_Column";
+            // 
+            // Telefon_Column
+            // 
+            Telefon_Column.DataPropertyName = "Telefon";
+            Telefon_Column.HeaderText = "Telefon";
+            Telefon_Column.Name = "Telefon_Column";
+            // 
+            // Marka_Column
+            // 
+            Marka_Column.DataPropertyName = "Marka";
+            Marka_Column.HeaderText = "Marka";
+            Marka_Column.Name = "Marka_Column";
+            // 
+            // Model_Column
+            // 
+            Model_Column.DataPropertyName = "Model";
+            Model_Column.HeaderText = "Model";
+            Model_Column.Name = "Model_Column";
+            // 
+            // Problem_Column
+            // 
+            Problem_Column.DataPropertyName = "Problem";
+            Problem_Column.HeaderText = "Problem";
+            Problem_Column.Name = "Problem_Column";
+            // 
             // UC_ScheduleCar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -708,6 +714,7 @@
         private Panel panel2;
         private Label label23;
         public Panel EditData;
+        private DataGridViewButtonColumn btnAdd;
         private DataGridViewButtonColumn BtnDelete;
         private DataGridViewTextBoxColumn DataPrzyjecia_Column;
         private DataGridViewTextBoxColumn ID_Column;

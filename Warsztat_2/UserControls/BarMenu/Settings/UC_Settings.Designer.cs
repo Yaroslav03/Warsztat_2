@@ -378,7 +378,6 @@
         private Label label13;
         private TextBox textBox2;
         private TextBox textBox1;
-        private TextBox NameTextBox;
         private TextBox textBox5;
         private TextBox NumerBDOTextBox;
         private Button SaveDataButton;

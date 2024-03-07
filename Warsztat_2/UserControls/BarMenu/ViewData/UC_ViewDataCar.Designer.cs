@@ -39,14 +39,15 @@
             BtnFinish = new DataGridViewButtonColumn();
             Przyjęty_Column = new DataGridViewCheckBoxColumn();
             OczekujeNaOdbiór_Column = new DataGridViewCheckBoxColumn();
-            Column1 = new DataGridViewTextBoxColumn();
+            DataPrzyjęcie_Column = new DataGridViewTextBoxColumn();
             Imię_Column = new DataGridViewTextBoxColumn();
             Nazwisko_Column = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
+            Telefon_Column = new DataGridViewTextBoxColumn();
             Marka_Column = new DataGridViewTextBoxColumn();
             Model_Column = new DataGridViewTextBoxColumn();
             Column7 = new DataGridViewTextBoxColumn();
-            Column8 = new DataGridViewTextBoxColumn();
+            KosztZMarżą_Column = new DataGridViewTextBoxColumn();
+            VIN_Column = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)ViewActualData).BeginInit();
             SuspendLayout();
             // 
@@ -97,6 +98,7 @@
             button2.TabIndex = 15;
             button2.Text = "Zlecenie";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -128,7 +130,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ViewActualData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewActualData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewActualData.Columns.AddRange(new DataGridViewColumn[] { ID, BtnDelete, BtnFinish, Przyjęty_Column, OczekujeNaOdbiór_Column, Column1, Imię_Column, Nazwisko_Column, Column4, Marka_Column, Model_Column, Column7, Column8 });
+            ViewActualData.Columns.AddRange(new DataGridViewColumn[] { ID, BtnDelete, BtnFinish, Przyjęty_Column, OczekujeNaOdbiór_Column, DataPrzyjęcie_Column, Imię_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Column7, KosztZMarżą_Column, VIN_Column });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -143,6 +145,7 @@
             ViewActualData.RowTemplate.Height = 25;
             ViewActualData.Size = new Size(1040, 548);
             ViewActualData.TabIndex = 30;
+            ViewActualData.MouseDoubleClick += ViewActualData_MouseDoubleClick;
             // 
             // ID
             // 
@@ -181,11 +184,11 @@
             OczekujeNaOdbiór_Column.SortMode = DataGridViewColumnSortMode.Automatic;
             OczekujeNaOdbiór_Column.TrueValue = "1";
             // 
-            // Column1
+            // DataPrzyjęcie_Column
             // 
-            Column1.DataPropertyName = "DataPrzyjęcie";
-            Column1.HeaderText = "DataPrzyjęcia";
-            Column1.Name = "Column1";
+            DataPrzyjęcie_Column.DataPropertyName = "DataPrzyjęcie";
+            DataPrzyjęcie_Column.HeaderText = "DataPrzyjęcia";
+            DataPrzyjęcie_Column.Name = "DataPrzyjęcie_Column";
             // 
             // Imię_Column
             // 
@@ -199,11 +202,11 @@
             Nazwisko_Column.HeaderText = "Nazwisko Klienta";
             Nazwisko_Column.Name = "Nazwisko_Column";
             // 
-            // Column4
+            // Telefon_Column
             // 
-            Column4.DataPropertyName = "Telefon";
-            Column4.HeaderText = "Nr. telefonu";
-            Column4.Name = "Column4";
+            Telefon_Column.DataPropertyName = "Telefon";
+            Telefon_Column.HeaderText = "Nr. telefonu";
+            Telefon_Column.Name = "Telefon_Column";
             // 
             // Marka_Column
             // 
@@ -223,11 +226,17 @@
             Column7.HeaderText = "Zlecenie";
             Column7.Name = "Column7";
             // 
-            // Column8
+            // KosztZMarżą_Column
             // 
-            Column8.DataPropertyName = "KosztZMarżą";
-            Column8.HeaderText = "Koszt naprawy";
-            Column8.Name = "Column8";
+            KosztZMarżą_Column.DataPropertyName = "KosztZMarżą";
+            KosztZMarżą_Column.HeaderText = "Koszt naprawy";
+            KosztZMarżą_Column.Name = "KosztZMarżą_Column";
+            // 
+            // VIN_Column
+            // 
+            VIN_Column.DataPropertyName = "VIN";
+            VIN_Column.HeaderText = "VIN";
+            VIN_Column.Name = "VIN_Column";
             // 
             // UC_ViewDataCar
             // 
@@ -261,13 +270,14 @@
         private DataGridViewButtonColumn BtnFinish;
         private DataGridViewCheckBoxColumn Przyjęty_Column;
         private DataGridViewCheckBoxColumn OczekujeNaOdbiór_Column;
-        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn DataPrzyjęcie_Column;
         private DataGridViewTextBoxColumn Imię_Column;
         private DataGridViewTextBoxColumn Nazwisko_Column;
-        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Telefon_Column;
         private DataGridViewTextBoxColumn Marka_Column;
         private DataGridViewTextBoxColumn Model_Column;
         private DataGridViewTextBoxColumn Column7;
-        private DataGridViewTextBoxColumn Column8;
+        private DataGridViewTextBoxColumn KosztZMarżą_Column;
+        private DataGridViewTextBoxColumn VIN_Column;
     }
     }

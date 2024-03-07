@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using Microsoft.VisualBasic;
+using System.Data.SQLite;
 namespace Warsztat_2._0.UserControls.UC_CreateData
 {
     public partial class UC_AddOrderManagement : UserControl
@@ -120,18 +121,12 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         private void CollectData()
         {
 
-            if (OtherDatePayCheck.Checked == true)// Якщо правда OtherDatePayCheck тоді змінити дані у змінній
-            {
-                today = DateOfPay.Text.ToString();
-            }
-            if (CashCheck.Checked == true)
-            {
-                paymentType = "gotówka";
-            }
-            else if (CardCheck.Checked == true)
-            {
-                paymentType = "kartą";
-            }
+            today = OtherDatePayCheck.Checked ? DateOfPay.Text.ToString() : "";
+
+            paymentType = CashCheck.Checked ? "gotówka" : "kartą";
+
+            string? worker = WorkerListBox.SelectedItems.Count > 0 ? WorkerListBox.SelectedItems[0].ToString() : "";
+
             orderManagment = new()
             {
                 OrderAddopted = OrderAddoptedCheck.Checked,
@@ -143,8 +138,8 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 EstimatedCost = (ushort)EstimatedCostNumericUpDown.Value,
                 Cost = (ushort)FinallPriceNumericUpDown.Value,
                 CostWithMarge = priceWithMarża.Text.ToString(),
-                WorkPerfomed = WorkPerfomedTextBox.Text,
-                Employer = WorkerListBox.SelectedItem.ToString()
+                WorkPerfomed = WorkPerfomedTextBox.Text,                
+                Employer = worker
             };
 
         }
@@ -194,72 +189,48 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         }
         private async Task SaveDB()
         {
-            CollectData();
 
-            using SQLiteConnection conn = new(connection);
+                CollectData();
 
-            await conn.OpenAsync();
+                using SQLiteConnection conn = new(connection);
 
-            using var transaction = conn.BeginTransaction();
+                await conn.OpenAsync();
 
-            try
-            {
-                // Використовуйте IF NOT EXISTS для створення таблиці лише у випадку, якщо вона не існує
-                using SQLiteCommand createTable = new($"CREATE TABLE IF NOT EXISTS ZarządzanieZleceniami (ID INTEGER PRIMARY KEY AUTOINCREMENT, VIN TEXT, Przyjęty TEXT, OczekujeNaOdbiór TEXT, DataPrzyjęcie TEXT, DataOczekiwaniaOdbioru TEXT, DataPłatności TEXT, MetodaPłatności TEXT, KosztSzacunkowy INTEGER, KosztKońcowy INTEGER, KosztZMarżą INTEGER, WykonanaPraca TEXT, WykonawcaPracy TEXT);", conn);
+                using var transaction = conn.BeginTransaction();
 
-                await createTable.ExecuteNonQueryAsync();
+                try
+                {
+                    // Використовуйте IF NOT EXISTS для створення таблиці лише у випадку, якщо вона не існує
+                    using SQLiteCommand createTable = new($"CREATE TABLE IF NOT EXISTS ZarządzanieZleceniami (ID INTEGER PRIMARY KEY AUTOINCREMENT, VIN TEXT, Przyjęty TEXT, OczekujeNaOdbiór TEXT, DataPrzyjęcie TEXT, DataOczekiwaniaOdbioru TEXT, DataPłatności TEXT, MetodaPłatności TEXT, KosztSzacunkowy INTEGER, KosztKońcowy INTEGER, KosztZMarżą INTEGER, WykonanaPraca TEXT, WykonawcaPracy TEXT);", conn);
 
-
-                using SQLiteCommand insert = new($"INSERT INTO ZarządzanieZleceniami (VIN, Przyjęty, OczekujeNaOdbiór, DataPrzyjęcie, DataOczekiwaniaOdbioru, DataPłatności, MetodaPłatności, KosztSzacunkowy, KosztKońcowy, KosztZMarżą, WykonanaPraca, WykonawcaPracy)" +
-                "VALUES (@VIN, @Przyjęty, @OczekujeNaOdbiór, @DataPrzyjęcie, @DataOczekiwaniaOdbioru, @DataPłatności, @MetodaPłatności, @KosztSzacunkowy, @KosztKońcowy, @KosztZMarżą, @WykonanaPraca, @WykonawcaPracy)", conn);
-
-                insert.Parameters.AddWithValue("@VIN", VIN);
-                insert.Parameters.AddWithValue("@Przyjęty", orderManagment.OrderAddopted);
-                insert.Parameters.AddWithValue("@OczekujeNaOdbiór", orderManagment.RealiseOrder);
-                insert.Parameters.AddWithValue("@DataPrzyjęcie", orderManagment.DateOrderAddopted);
-                insert.Parameters.AddWithValue("@DataOczekiwaniaOdbioru", orderManagment.DateRealiseOrder);
-                insert.Parameters.AddWithValue("@DataPłatności", orderManagment.DateOfPay);
-                insert.Parameters.AddWithValue("@MetodaPłatności", orderManagment.TypeOfPay);
-                insert.Parameters.AddWithValue("@KosztSzacunkowy", orderManagment.EstimatedCost);
-                insert.Parameters.AddWithValue("@KosztKońcowy", orderManagment.Cost);
-                insert.Parameters.AddWithValue("@KosztZMarżą", orderManagment.CostWithMarge);
-                insert.Parameters.AddWithValue("@WykonanaPraca", orderManagment.WorkPerfomed);
-                insert.Parameters.AddWithValue("@WykonawcaPracy", orderManagment.Employer);
+                    await createTable.ExecuteNonQueryAsync();
 
 
-                await insert.ExecuteNonQueryAsync();
+                    using SQLiteCommand insert = new($"INSERT INTO ZarządzanieZleceniami (VIN, Przyjęty, OczekujeNaOdbiór, DataPrzyjęcie, DataOczekiwaniaOdbioru, DataPłatności, MetodaPłatności, KosztSzacunkowy, KosztKońcowy, KosztZMarżą, WykonanaPraca, WykonawcaPracy)" +
+                    "VALUES (@VIN, @Przyjęty, @OczekujeNaOdbiór, @DataPrzyjęcie, @DataOczekiwaniaOdbioru, @DataPłatności, @MetodaPłatności, @KosztSzacunkowy, @KosztKońcowy, @KosztZMarżą, @WykonanaPraca, @WykonawcaPracy)", conn);
 
-                await transaction.CommitAsync();
+                    VALUE(insert);
 
-                await conn.CloseAsync();
-                await LoadDB();
-            }
-            catch (Exception ex)
-            {
-                transaction.Rollback();
-                dataError.Enqueue($"VIN:{VIN}");
-                dataError.Enqueue($"Przyjęty: {orderManagment.OrderAddopted}");
-                dataError.Enqueue($"OczekujeNaOdbiór:{orderManagment.RealiseOrder}");
-                dataError.Enqueue($"DataPrzyjęcie:{orderManagment.DateOrderAddopted} ");
-                dataError.Enqueue($"DataOczekiwaniaOdbioru:{orderManagment.DateRealiseOrder}");
-                dataError.Enqueue($"DataPłatności:{orderManagment.DateOfPay} ");
-                dataError.Enqueue($"MetodaPłatności:{orderManagment.TypeOfPay}");
-                dataError.Enqueue($"KosztSzacunkowy:{orderManagment.EstimatedCost}");
-                dataError.Enqueue($"KosztKońcowy:{orderManagment.Cost} ");
-                dataError.Enqueue($"KosztZMarżą:{orderManagment.CostWithMarge}");
-                dataError.Enqueue($"WykonanaPraca:{orderManagment.WorkPerfomed} ");
-                dataError.Enqueue($"WykonawcaPracy:{orderManagment.Employer}");
+                    await insert.ExecuteNonQueryAsync();
 
+                    await transaction.CommitAsync();
 
+                    await conn.CloseAsync();
+                    await LoadDB();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    dataErrorSaveOrUpdate();
 
-                await Settings.Error(ex, dataError, "OrderManagement", "problem with saving data or cmd SQL to ordermanagement");
-                throw;
-            }
-            finally
-            {
-                /*                StanCheckBox.Checked = false;
-                                PriceNumericUpDown.Value = IloscNumericUpDown.Value = 0;*/
-            }
+                    await Settings.Error(ex, dataError, "OrderManagement", "problem with saving data or cmd SQL to ordermanagement");
+                    throw;
+                }
+                finally
+                {
+                    /*                StanCheckBox.Checked = false;
+                                    PriceNumericUpDown.Value = IloscNumericUpDown.Value = 0;*/
+                }
         }
         private async Task UpdateDB()
         {
@@ -274,18 +245,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 using SQLiteCommand update = new($"UPDATE ZarządzanieZleceniami SET VIN = @VIN, Przyjęty = @Przyjęty, OczekujeNaOdbiór = @OczekujeNaOdbiór, DataPrzyjęcie = @DataPrzyjęcie, DataOczekiwaniaOdbioru = @DataOczekiwaniaOdbioru, DataPłatności = @DataPłatności, MetodaPłatności = @MetodaPłatności, KosztSzacunkowy = @KosztSzacunkowy, KosztKońcowy = @KosztKońcowy, KosztZMarżą = @KosztZMarżą, WykonanaPraca = @WykonanaPraca, WykonawcaPracy = @WykonawcaPracy WHERE ID=@ID", conn);
 
                 update.Parameters.AddWithValue("@ID", IdOrder);
-                update.Parameters.AddWithValue("@VIN", VIN);
-                update.Parameters.AddWithValue("@Przyjęty", orderManagment.OrderAddopted);
-                update.Parameters.AddWithValue("@OczekujeNaOdbiór", orderManagment.RealiseOrder);
-                update.Parameters.AddWithValue("@DataPrzyjęcie", orderManagment.DateOrderAddopted);
-                update.Parameters.AddWithValue("@DataOczekiwaniaOdbioru", orderManagment.DateRealiseOrder);
-                update.Parameters.AddWithValue("@DataPłatności", orderManagment.DateOfPay);
-                update.Parameters.AddWithValue("@MetodaPłatności", orderManagment.TypeOfPay);
-                update.Parameters.AddWithValue("@KosztSzacunkowy", orderManagment.EstimatedCost);
-                update.Parameters.AddWithValue("@KosztKońcowy", orderManagment.Cost);
-                update.Parameters.AddWithValue("@KosztZMarżą", orderManagment.CostWithMarge);
-                update.Parameters.AddWithValue("@WykonanaPraca", orderManagment.WorkPerfomed);
-                update.Parameters.AddWithValue("@WykonawcaPracy", orderManagment.Employer);
+                VALUE(update);
 
                 await update.ExecuteNonQueryAsync();
 
@@ -296,30 +256,14 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             catch (Exception ex)
             {
                 transaction.Rollback();
-                dataError.Enqueue($"VIN:{VIN}");
-                dataError.Enqueue($"Przyjęty: {orderManagment.OrderAddopted}");
-                dataError.Enqueue($"OczekujeNaOdbiór:{orderManagment.RealiseOrder}");
-                dataError.Enqueue($"DataPrzyjęcie:{orderManagment.DateOrderAddopted} ");
-                dataError.Enqueue($"DataOczekiwaniaOdbioru:{orderManagment.DateRealiseOrder}");
-                dataError.Enqueue($"DataPłatności:{orderManagment.DateOfPay} ");
-                dataError.Enqueue($"MetodaPłatności:{orderManagment.TypeOfPay}");
-                dataError.Enqueue($"KosztSzacunkowy:{orderManagment.EstimatedCost}");
-                dataError.Enqueue($"KosztKońcowy:{orderManagment.Cost} ");
-                dataError.Enqueue($"KosztZMarżą:{orderManagment.CostWithMarge}");
-                dataError.Enqueue($"WykonanaPraca:{orderManagment.WorkPerfomed} ");
-                dataError.Enqueue($"WykonawcaPracy:{orderManagment.Employer}");
 
+                dataErrorSaveOrUpdate();
                 await Settings.Error(ex, dataError, "OrderManagement", "problem with updating data or cmd SQL to OrderManagement");
                 throw;
             }
             finally
             {
-                /*                Id_Repair = 0;
-                                Repair.Reset();
-                                Settings.ClearTextBox(panelDodatkowy);
-                                StanCheckBox.Checked = false;
-                                ButtonRepairSave.Text = "Zapisz";
-                                PriceNumericUpDown.Value = IloscNumericUpDown.Value = 0;*/
+                /*Id_Repair = 0; Repair.Reset();Settings.ClearTextBox(panelDodatkowy);StanCheckBox.Checked = false;ButtonRepairSave.Text = "Zapisz";PriceNumericUpDown.Value = IloscNumericUpDown.Value = 0;*/
             }
         }
         private async Task DeleteDB(DataGridViewCellEventArgs e)
@@ -347,8 +291,36 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
                 priceWithMarża.Text = procentage.ToString();
             }
-
-
+        }
+        private void VALUE(SQLiteCommand cmd)
+        {
+            cmd.Parameters.AddWithValue("@VIN", VIN);
+            cmd.Parameters.AddWithValue("@Przyjęty", orderManagment.OrderAddopted);
+            cmd.Parameters.AddWithValue("@OczekujeNaOdbiór", orderManagment.RealiseOrder);
+            cmd.Parameters.AddWithValue("@DataPrzyjęcie", orderManagment.DateOrderAddopted);
+            cmd.Parameters.AddWithValue("@DataOczekiwaniaOdbioru", orderManagment.DateRealiseOrder);
+            cmd.Parameters.AddWithValue("@DataPłatności", orderManagment.DateOfPay);
+            cmd.Parameters.AddWithValue("@MetodaPłatności", orderManagment.TypeOfPay);
+            cmd.Parameters.AddWithValue("@KosztSzacunkowy", orderManagment.EstimatedCost);
+            cmd.Parameters.AddWithValue("@KosztKońcowy", orderManagment.Cost);
+            cmd.Parameters.AddWithValue("@KosztZMarżą", orderManagment.CostWithMarge);
+            cmd.Parameters.AddWithValue("@WykonanaPraca", orderManagment.WorkPerfomed);
+            cmd.Parameters.AddWithValue("@WykonawcaPracy", orderManagment.Employer);
+        }
+        private void dataErrorSaveOrUpdate()
+        {
+            dataError.Enqueue($"VIN:{VIN}");
+            dataError.Enqueue($"Przyjęty: {orderManagment.OrderAddopted}");
+            dataError.Enqueue($"OczekujeNaOdbiór:{orderManagment.RealiseOrder}");
+            dataError.Enqueue($"DataPrzyjęcie:{orderManagment.DateOrderAddopted} ");
+            dataError.Enqueue($"DataOczekiwaniaOdbioru:{orderManagment.DateRealiseOrder}");
+            dataError.Enqueue($"DataPłatności:{orderManagment.DateOfPay} ");
+            dataError.Enqueue($"MetodaPłatności:{orderManagment.TypeOfPay}");
+            dataError.Enqueue($"KosztSzacunkowy:{orderManagment.EstimatedCost}");
+            dataError.Enqueue($"KosztKońcowy:{orderManagment.Cost} ");
+            dataError.Enqueue($"KosztZMarżą:{orderManagment.CostWithMarge}");
+            dataError.Enqueue($"WykonanaPraca:{orderManagment.WorkPerfomed} ");
+            dataError.Enqueue($"WykonawcaPracy:{orderManagment.Employer}");
         }
         private async Task ReadValueMarża()
         {

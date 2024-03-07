@@ -70,13 +70,26 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
 
         private void DataScheduleView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            long idToDelete;
+            
             Cursor.Current = Cursors.WaitCursor;
+            if (e.ColumnIndex == DataScheduleView.Columns["BtnDelete"].Index && DataScheduleView.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value)
+            {
+                Delete(e);
+            }
+            else if (e.ColumnIndex == DataScheduleView.Columns["btnAdd"].Index && DataScheduleView.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value)
+            {
+                LoadDataToDB(e);
+            }
+            
+            Cursor.Current = Cursors.Default;
+        }
+        private void Delete(DataGridViewCellEventArgs e)
+        {
+            long idToDelete;
             try
             {
                 // Перевіряємо, чи подія спровокована натисканням на кнопку "Видалити" (за допомогою ColumnIndex) і чи є значення в стовпці "ID_Column" не DBNull.
-                if (e.ColumnIndex == DataScheduleView.Columns["BtnDelete"].Index && DataScheduleView.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value)
-                {
+                
                     idToDelete = (long)DataScheduleView.Rows[e.RowIndex].Cells["ID_Column"].Value; // Cast to long
 
                     using SQLiteConnection conn = new(connection);
@@ -88,15 +101,36 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
                     deleteCMD.ExecuteNonQuery();
 
                     DataScheduleView.Rows.RemoveAt(e.RowIndex);
-                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Błąd podczas usuwania rekordu: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
+        }
+        private void LoadDataToDB(DataGridViewCellEventArgs e)
+        {
+            try
             {
-                Cursor.Current = Cursors.Default;
+                AddDataFromScheduleCar addData = new();
+                TransferData transferData = new();
+
+                ////CopyDataToNewWindow
+                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Imie_Column"].Value.ToString()}");
+                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Nazwisko_Column"].Value.ToString()}");
+                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Telefon_Column"].Value.ToString()}");
+
+                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Marka_Column"].Value.ToString()}");
+                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Model_Column"].Value.ToString()}");
+
+                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Problem_Column"].Value.ToString()}");
+
+                addData.SetDataToLoad(transferData);
+
+                addData.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas Dodawania daynych: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -192,4 +226,8 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
         }
 
     }
+}
+public class TransferData
+{
+    public Queue<string> data { get; set; } = new();
 }

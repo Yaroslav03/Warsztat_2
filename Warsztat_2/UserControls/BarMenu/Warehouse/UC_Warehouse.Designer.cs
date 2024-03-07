@@ -320,7 +320,6 @@
         private Label UpdateCategoryList;
         private DataGridViewTextBoxColumn ID_Column;
         private DataGridViewTextBoxColumn TypCzesci_Column_Main;
-        private DataGridViewTextBoxColumn NrCzesci_Column_Main;
         private DataGridViewTextBoxColumn Opis_Column_Main;
         private Button WarehouseAddButton;
 
