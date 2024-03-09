@@ -56,15 +56,6 @@
             label6 = new Label();
             label25 = new Label();
             DataScheduleView = new DataGridView();
-            ViewData = new Panel();
-            SearchScheduleCar = new TextBox();
-            helpingLabel = new Label();
-            NameTextBox = new TextBox();
-            label24 = new Label();
-            label17 = new Label();
-            panel2 = new Panel();
-            label23 = new Label();
-            EditData = new Panel();
             btnAdd = new DataGridViewButtonColumn();
             BtnDelete = new DataGridViewButtonColumn();
             DataPrzyjecia_Column = new DataGridViewTextBoxColumn();
@@ -75,6 +66,15 @@
             Marka_Column = new DataGridViewTextBoxColumn();
             Model_Column = new DataGridViewTextBoxColumn();
             Problem_Column = new DataGridViewTextBoxColumn();
+            ViewData = new Panel();
+            SearchScheduleCar = new TextBox();
+            helpingLabel = new Label();
+            NameTextBox = new TextBox();
+            label24 = new Label();
+            label17 = new Label();
+            panel2 = new Panel();
+            label23 = new Label();
+            EditData = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataScheduleView).BeginInit();
             ViewData.SuspendLayout();
@@ -231,7 +231,7 @@
             CarComboBox.ForeColor = Color.FromArgb(68, 88, 112);
             CarComboBox.FormattingEnabled = true;
             CarComboBox.ItemHeight = 21;
-            CarComboBox.Items.AddRange(new object[] { "Elektronik", "Elektryk", "Mechanik", "Mechatronik", "Programista" });
+            CarComboBox.Items.AddRange(new object[] { "AlfaRomeo", "AstonMartin", "Audi", "Bentley", "BMW", "Bugatti", "Citroën", "Dacia", "Ferrari", "Fiat", "Ford", "Jaguar", "Lamborghini", "Land Rover", "Maserati", "Mercedes-Benz", "Mini", "Opel", "Peugeot", "Porsche", "Renault", "Rolls-Royce", "Saab", "Seat", "Skoda", "Tesla", "Volkswagen", "Volvo" });
             CarComboBox.Location = new Point(682, 88);
             CarComboBox.Name = "CarComboBox";
             CarComboBox.Size = new Size(140, 29);
@@ -457,6 +457,65 @@
             DataScheduleView.CellContentClick += DataScheduleView_CellContentClick;
             DataScheduleView.CellDoubleClick += DataScheduleView_CellDoubleClick;
             // 
+            // btnAdd
+            // 
+            btnAdd.HeaderText = "Dodaj dane do bazy";
+            btnAdd.Name = "btnAdd";
+            // 
+            // BtnDelete
+            // 
+            BtnDelete.HeaderText = "Usuń";
+            BtnDelete.Name = "BtnDelete";
+            // 
+            // DataPrzyjecia_Column
+            // 
+            DataPrzyjecia_Column.DataPropertyName = "DataPrzyjęcia";
+            DataPrzyjecia_Column.HeaderText = "Zaplanowana data przyjęcia";
+            DataPrzyjecia_Column.Name = "DataPrzyjecia_Column";
+            // 
+            // ID_Column
+            // 
+            ID_Column.DataPropertyName = "ID";
+            ID_Column.HeaderText = "ID";
+            ID_Column.Name = "ID_Column";
+            ID_Column.Visible = false;
+            // 
+            // Imie_Column
+            // 
+            Imie_Column.DataPropertyName = "Imię";
+            Imie_Column.HeaderText = "Imię";
+            Imie_Column.Name = "Imie_Column";
+            // 
+            // Nazwisko_Column
+            // 
+            Nazwisko_Column.DataPropertyName = "Nazwisko";
+            Nazwisko_Column.HeaderText = "Nazwisko";
+            Nazwisko_Column.Name = "Nazwisko_Column";
+            // 
+            // Telefon_Column
+            // 
+            Telefon_Column.DataPropertyName = "Telefon";
+            Telefon_Column.HeaderText = "Telefon";
+            Telefon_Column.Name = "Telefon_Column";
+            // 
+            // Marka_Column
+            // 
+            Marka_Column.DataPropertyName = "Marka";
+            Marka_Column.HeaderText = "Marka";
+            Marka_Column.Name = "Marka_Column";
+            // 
+            // Model_Column
+            // 
+            Model_Column.DataPropertyName = "Model";
+            Model_Column.HeaderText = "Model";
+            Model_Column.Name = "Model_Column";
+            // 
+            // Problem_Column
+            // 
+            Problem_Column.DataPropertyName = "Problem";
+            Problem_Column.HeaderText = "Problem";
+            Problem_Column.Name = "Problem_Column";
+            // 
             // ViewData
             // 
             ViewData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -593,65 +652,6 @@
             EditData.Name = "EditData";
             EditData.Size = new Size(1007, 595);
             EditData.TabIndex = 29;
-            // 
-            // btnAdd
-            // 
-            btnAdd.HeaderText = "Dodaj dane do bazy";
-            btnAdd.Name = "btnAdd";
-            // 
-            // BtnDelete
-            // 
-            BtnDelete.HeaderText = "Usuń";
-            BtnDelete.Name = "BtnDelete";
-            // 
-            // DataPrzyjecia_Column
-            // 
-            DataPrzyjecia_Column.DataPropertyName = "DataPrzyjęcia";
-            DataPrzyjecia_Column.HeaderText = "Zaplanowana data przyjęcia";
-            DataPrzyjecia_Column.Name = "DataPrzyjecia_Column";
-            // 
-            // ID_Column
-            // 
-            ID_Column.DataPropertyName = "ID";
-            ID_Column.HeaderText = "ID";
-            ID_Column.Name = "ID_Column";
-            ID_Column.Visible = false;
-            // 
-            // Imie_Column
-            // 
-            Imie_Column.DataPropertyName = "Imię";
-            Imie_Column.HeaderText = "Imię";
-            Imie_Column.Name = "Imie_Column";
-            // 
-            // Nazwisko_Column
-            // 
-            Nazwisko_Column.DataPropertyName = "Nazwisko";
-            Nazwisko_Column.HeaderText = "Nazwisko";
-            Nazwisko_Column.Name = "Nazwisko_Column";
-            // 
-            // Telefon_Column
-            // 
-            Telefon_Column.DataPropertyName = "Telefon";
-            Telefon_Column.HeaderText = "Telefon";
-            Telefon_Column.Name = "Telefon_Column";
-            // 
-            // Marka_Column
-            // 
-            Marka_Column.DataPropertyName = "Marka";
-            Marka_Column.HeaderText = "Marka";
-            Marka_Column.Name = "Marka_Column";
-            // 
-            // Model_Column
-            // 
-            Model_Column.DataPropertyName = "Model";
-            Model_Column.HeaderText = "Model";
-            Model_Column.Name = "Model_Column";
-            // 
-            // Problem_Column
-            // 
-            Problem_Column.DataPropertyName = "Problem";
-            Problem_Column.HeaderText = "Problem";
-            Problem_Column.Name = "Problem_Column";
             // 
             // UC_ScheduleCar
             // 

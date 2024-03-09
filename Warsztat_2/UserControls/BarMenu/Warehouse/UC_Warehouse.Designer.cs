@@ -38,11 +38,6 @@
             UpdateCategoryList = new Label();
             WarehouseAddButton = new Button();
             WarehouseView = new DataGridView();
-            SearchTextBox = new TextBox();
-            label1 = new Label();
-            CategoryTextBox = new TextBox();
-            panel1 = new Panel();
-            panel2 = new Panel();
             BtnDelete = new DataGridViewButtonColumn();
             ID_Column_ = new DataGridViewTextBoxColumn();
             TypCzesci_Column = new DataGridViewTextBoxColumn();
@@ -51,6 +46,11 @@
             Opis_Column = new DataGridViewTextBoxColumn();
             Quantity_Column = new DataGridViewTextBoxColumn();
             Price_Column = new DataGridViewTextBoxColumn();
+            SearchTextBox = new TextBox();
+            label1 = new Label();
+            CategoryTextBox = new TextBox();
+            panel1 = new Panel();
+            panel2 = new Panel();
             AddCategoryButton = new Button();
             RemoveCategoryButton = new Button();
             ((System.ComponentModel.ISupportInitialize)WarehouseView).BeginInit();
@@ -170,13 +170,64 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             WarehouseView.DefaultCellStyle = dataGridViewCellStyle3;
             WarehouseView.EnableHeadersVisualStyles = false;
-            WarehouseView.Location = new Point(215, -3);
+            WarehouseView.Location = new Point(215, 0);
             WarehouseView.Name = "WarehouseView";
             WarehouseView.RowTemplate.Height = 25;
-            WarehouseView.Size = new Size(792, 643);
+            WarehouseView.Size = new Size(792, 640);
             WarehouseView.TabIndex = 25;
             WarehouseView.CellContentClick += WarehouseView_CellContentClick;
             WarehouseView.DoubleClick += WarehouseView_DoubleClick;
+            // 
+            // BtnDelete
+            // 
+            BtnDelete.HeaderText = "Usuń";
+            BtnDelete.Name = "BtnDelete";
+            // 
+            // ID_Column_
+            // 
+            ID_Column_.DataPropertyName = "ID";
+            ID_Column_.HeaderText = "ID";
+            ID_Column_.Name = "ID_Column_";
+            ID_Column_.Visible = false;
+            // 
+            // TypCzesci_Column
+            // 
+            TypCzesci_Column.DataPropertyName = "Typ";
+            TypCzesci_Column.HeaderText = "Typ";
+            TypCzesci_Column.Name = "TypCzesci_Column";
+            // 
+            // NrCzęści_Column
+            // 
+            NrCzęści_Column.DataPropertyName = "NumerCzęści";
+            NrCzęści_Column.HeaderText = "Numer";
+            NrCzęści_Column.Name = "NrCzęści_Column";
+            // 
+            // Nazwa_Column
+            // 
+            Nazwa_Column.DataPropertyName = "Nazwa";
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            Nazwa_Column.DefaultCellStyle = dataGridViewCellStyle2;
+            Nazwa_Column.HeaderText = "Nazwa";
+            Nazwa_Column.Name = "Nazwa_Column";
+            // 
+            // Opis_Column
+            // 
+            Opis_Column.DataPropertyName = "Opis";
+            Opis_Column.HeaderText = "Opis";
+            Opis_Column.Name = "Opis_Column";
+            // 
+            // Quantity_Column
+            // 
+            Quantity_Column.DataPropertyName = "Ilość";
+            Quantity_Column.HeaderText = "Ilość";
+            Quantity_Column.Name = "Quantity_Column";
+            // 
+            // Price_Column
+            // 
+            Price_Column.DataPropertyName = "Cena";
+            Price_Column.HeaderText = "Cena";
+            Price_Column.Name = "Price_Column";
             // 
             // SearchTextBox
             // 
@@ -241,57 +292,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(192, 83);
             panel2.TabIndex = 29;
-            // 
-            // BtnDelete
-            // 
-            BtnDelete.HeaderText = "Usuń";
-            BtnDelete.Name = "BtnDelete";
-            // 
-            // ID_Column_
-            // 
-            ID_Column_.DataPropertyName = "ID";
-            ID_Column_.HeaderText = "ID";
-            ID_Column_.Name = "ID_Column_";
-            ID_Column_.Visible = false;
-            // 
-            // TypCzesci_Column
-            // 
-            TypCzesci_Column.DataPropertyName = "Typ";
-            TypCzesci_Column.HeaderText = "Typ";
-            TypCzesci_Column.Name = "TypCzesci_Column";
-            // 
-            // NrCzęści_Column
-            // 
-            NrCzęści_Column.DataPropertyName = "NumerCzęści";
-            NrCzęści_Column.HeaderText = "Numer";
-            NrCzęści_Column.Name = "NrCzęści_Column";
-            // 
-            // Nazwa_Column
-            // 
-            Nazwa_Column.DataPropertyName = "Nazwa";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            Nazwa_Column.DefaultCellStyle = dataGridViewCellStyle2;
-            Nazwa_Column.HeaderText = "Nazwa";
-            Nazwa_Column.Name = "Nazwa_Column";
-            // 
-            // Opis_Column
-            // 
-            Opis_Column.DataPropertyName = "Opis";
-            Opis_Column.HeaderText = "Opis";
-            Opis_Column.Name = "Opis_Column";
-            // 
-            // Quantity_Column
-            // 
-            Quantity_Column.DataPropertyName = "Ilość";
-            Quantity_Column.HeaderText = "Ilość";
-            Quantity_Column.Name = "Quantity_Column";
-            // 
-            // Price_Column
-            // 
-            Price_Column.DataPropertyName = "Cena";
-            Price_Column.HeaderText = "Cena";
-            Price_Column.Name = "Price_Column";
             // 
             // UC_Warehouse
             // 

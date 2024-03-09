@@ -26,7 +26,6 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         private async void ViewCar_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             VIN_label.Text = ViewCar.CurrentRow.Cells["VIN_Column"].Value.ToString();
-
             await LoadRepair();
         }
         #endregion
@@ -214,7 +213,6 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
                 await createTable.ExecuteNonQueryAsync();
 
-
                 using SQLiteCommand insert = new($"INSERT INTO NaprawaSamochodu (Opis, NumerCzęści, Cena, Ilość, Stan, DataNapraw, VIN)" +
                         "VALUES (@Opis, @NumerCzęści, @Cena, @Ilość, @Stan, @DataNapraw, @VIN)", conn);
 
@@ -229,7 +227,6 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 await insert.ExecuteNonQueryAsync();
 
                 await transaction.CommitAsync();
-
             }
             catch (Exception ex)
             {
@@ -256,8 +253,6 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         }
         private async Task LoadRepair()
         {
-            //if (await SqlCmd.TableExistHistory(connection, VIN_label.Text))
-            //{
             await SqlCmd.LoadData(connection, $"SELECT ID, Opis, NumerCzęści, Cena, Ilość, Stan FROM NaprawaSamochodu WHERE VIN LIKE '%{VIN_label.Text}'", ViewRepair, "Repair", "Load table Repair from DB");
             //}
             /*            else if (ViewRepair.DataSource != null)
@@ -268,38 +263,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
         private async void ViewRepair_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                await DeleteRepair(e);
-            }
-            catch
-            {
-
-            }
-        }
-        private async Task DeleteRepair(DataGridViewCellEventArgs e)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-
-            if (e.ColumnIndex == ViewRepair.Columns["BtnDelete"].Index && ViewRepair.Rows[e.RowIndex].Cells["ID"].Value != DBNull.Value)
-            {
-                long idToDelete = (long)ViewRepair.Rows[e.RowIndex].Cells["ID"].Value;
-                using SQLiteConnection conn = new(connection);
-                await conn.OpenAsync();
-
-                using var transaction = conn.BeginTransaction();
-
-                using SQLiteCommand delete = new($"DELETE FROM NaprawaSamochodu WHERE ID=@ID", conn);
-                delete.Parameters.AddWithValue("ID", idToDelete);
-
-                await delete.ExecuteNonQueryAsync();
-                await transaction.CommitAsync();
-
-                ViewRepair.Rows.RemoveAt(e.RowIndex);
-
-                idToDelete = 0;
-            }
-            Cursor.Current = Cursors.Default;
+            await SqlCmd.DeleteDataTable(ViewRepair, e, connection, "BtnDelete", "ID", "NaprawaSamochodu");
         }
 
         private void ViewRepair_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -319,7 +283,6 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 }
             }
             pricePart = (ushort)totalPrice;
-            //MessageBox.Show("1"+pricePart);
         }
 
         private void VIN_label_Click(object sender, EventArgs e)
@@ -328,7 +291,6 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             {
                 SumRepair();
                 VINChanged?.Invoke(this, VIN_label.Text);
-                //MessageBox.Show("2" + pricePart);
                 Price?.Invoke(this, pricePart);
             }
 

@@ -45,7 +45,7 @@ namespace Warsztat_2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
             // Потік 1 для виконання Settings.CheckScheduleCar()
             Task task1 = Task.Run(() =>
             {

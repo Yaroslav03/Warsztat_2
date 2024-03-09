@@ -217,51 +217,15 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                             ((DataTable)ViewHistory.DataSource).Clear();
                         }*/
         }
-
         #endregion
-
-
-
         private async void ViewHistory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                await DeleteHistory(e);
-            }
-            catch
-            {
-
-            }
+            await SqlCmd.DeleteDataTable(ViewHistory, e, connection, "BtnDelete", "ID_Column", "HistoriaNapraw");
         }
-
         private void ViewHistory_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ReadData();
             SaveHistoryButton.Text = "Odśwież";
-        }
-        private async Task DeleteHistory(DataGridViewCellEventArgs e)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-
-            if (e.ColumnIndex == ViewHistory.Columns["BtnDelete"].Index && ViewHistory.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value)
-            {
-                long idToDelete = (long)ViewHistory.Rows[e.RowIndex].Cells["ID_Column"].Value;
-                using SQLiteConnection conn = new(connection);
-                await conn.OpenAsync();
-
-                using var transaction = conn.BeginTransaction();
-
-                using SQLiteCommand delete = new("DELETE FROM HistoriaNapraw WHERE ID=@ID", conn);
-                MessageBox.Show("idToDelete:" + idToDelete);
-
-                await delete.ExecuteNonQueryAsync();
-                await transaction.CommitAsync();
-
-                ViewHistory.Rows.RemoveAt(e.RowIndex);
-
-                idToDelete = 0;
-            }
-            Cursor.Current = Cursors.Default;
         }
     }
 }

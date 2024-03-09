@@ -145,6 +145,7 @@
             ViewActualData.RowTemplate.Height = 25;
             ViewActualData.Size = new Size(1040, 548);
             ViewActualData.TabIndex = 30;
+            ViewActualData.CellContentClick += ViewActualData_CellContentClick;
             ViewActualData.MouseDoubleClick += ViewActualData_MouseDoubleClick;
             // 
             // ID

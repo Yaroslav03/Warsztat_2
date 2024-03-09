@@ -35,32 +35,34 @@
             label9 = new Label();
             label3 = new Label();
             SurnameLabel = new Label();
+            labelOrderAddopted = new Label();
             NameLabel = new Label();
             panel1 = new Panel();
-            textBox5 = new TextBox();
+            RegistrationNumberTextBox = new TextBox();
+            panel4 = new Panel();
+            MileageTextBox = new TextBox();
             panel11 = new Panel();
-            textBox3 = new TextBox();
+            EngineTextBox = new TextBox();
             panel9 = new Panel();
             NumLenghtNadwoziaLabel = new Label();
             label4 = new Label();
             VINTextBox = new TextBox();
             panel6 = new Panel();
-            SaveHistoryButton = new Button();
+            SaveDataButton = new Button();
             panel12 = new Panel();
             ProblemTextBox = new TextBox();
             label1 = new Label();
             labelMarka = new Label();
             panel2 = new Panel();
-            PriceNumericUpDown = new NumericUpDown();
+            YearOfProductionNumericUpDown = new NumericUpDown();
             label11 = new Label();
             labelModel = new Label();
             Cancelbtn = new Button();
-            label5 = new Label();
             panelKontaktowy.SuspendLayout();
             panel1.SuspendLayout();
             panel12.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)YearOfProductionNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // panelKontaktowy
@@ -74,12 +76,12 @@
             panelKontaktowy.Controls.Add(label9);
             panelKontaktowy.Controls.Add(label3);
             panelKontaktowy.Controls.Add(SurnameLabel);
-            panelKontaktowy.Controls.Add(label5);
+            panelKontaktowy.Controls.Add(labelOrderAddopted);
             panelKontaktowy.Controls.Add(NameLabel);
             panelKontaktowy.ForeColor = Color.DimGray;
             panelKontaktowy.Location = new Point(14, 12);
             panelKontaktowy.Name = "panelKontaktowy";
-            panelKontaktowy.Size = new Size(590, 92);
+            panelKontaktowy.Size = new Size(599, 92);
             panelKontaktowy.TabIndex = 5;
             // 
             // AdressCompanyTextBox
@@ -93,7 +95,7 @@
             AdressCompanyTextBox.Location = new Point(372, 37);
             AdressCompanyTextBox.Name = "AdressCompanyTextBox";
             AdressCompanyTextBox.PlaceholderText = "Adres Firmy";
-            AdressCompanyTextBox.Size = new Size(226, 22);
+            AdressCompanyTextBox.Size = new Size(222, 22);
             AdressCompanyTextBox.TabIndex = 13;
             // 
             // NIPTextBox
@@ -154,6 +156,17 @@
             SurnameLabel.TabIndex = 28;
             SurnameLabel.Text = "Nazwisko:";
             // 
+            // labelOrderAddopted
+            // 
+            labelOrderAddopted.AutoSize = true;
+            labelOrderAddopted.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            labelOrderAddopted.ForeColor = Color.FromArgb(224, 224, 224);
+            labelOrderAddopted.Location = new Point(276, 13);
+            labelOrderAddopted.Name = "labelOrderAddopted";
+            labelOrderAddopted.Size = new Size(110, 21);
+            labelOrderAddopted.TabIndex = 28;
+            labelOrderAddopted.Text = "Data przyjęcia:";
+            // 
             // NameLabel
             // 
             NameLabel.AutoSize = true;
@@ -170,9 +183,11 @@
             panel1.Anchor = AnchorStyles.Top;
             panel1.BackColor = Color.FromArgb(64, 64, 70);
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(textBox5);
+            panel1.Controls.Add(RegistrationNumberTextBox);
+            panel1.Controls.Add(panel4);
+            panel1.Controls.Add(MileageTextBox);
             panel1.Controls.Add(panel11);
-            panel1.Controls.Add(textBox3);
+            panel1.Controls.Add(EngineTextBox);
             panel1.Controls.Add(panel9);
             panel1.Controls.Add(NumLenghtNadwoziaLabel);
             panel1.Controls.Add(label4);
@@ -181,49 +196,71 @@
             panel1.ForeColor = Color.DimGray;
             panel1.Location = new Point(14, 218);
             panel1.Name = "panel1";
-            panel1.Size = new Size(590, 84);
+            panel1.Size = new Size(599, 84);
             panel1.TabIndex = 17;
             // 
-            // textBox5
+            // RegistrationNumberTextBox
             // 
-            textBox5.BackColor = Color.FromArgb(64, 64, 70);
-            textBox5.BorderStyle = BorderStyle.None;
-            textBox5.CausesValidation = false;
-            textBox5.Cursor = Cursors.IBeam;
-            textBox5.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox5.ForeColor = Color.FromArgb(224, 224, 224);
-            textBox5.Location = new Point(423, 40);
-            textBox5.Name = "textBox5";
-            textBox5.PlaceholderText = "Przebieg";
-            textBox5.Size = new Size(155, 23);
-            textBox5.TabIndex = 29;
+            RegistrationNumberTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            RegistrationNumberTextBox.BorderStyle = BorderStyle.None;
+            RegistrationNumberTextBox.CausesValidation = false;
+            RegistrationNumberTextBox.Cursor = Cursors.IBeam;
+            RegistrationNumberTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            RegistrationNumberTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            RegistrationNumberTextBox.Location = new Point(426, 3);
+            RegistrationNumberTextBox.Name = "RegistrationNumberTextBox";
+            RegistrationNumberTextBox.PlaceholderText = "Numer Rejestracji";
+            RegistrationNumberTextBox.Size = new Size(168, 22);
+            RegistrationNumberTextBox.TabIndex = 31;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = SystemColors.GrayText;
+            panel4.Location = new Point(426, 29);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(168, 10);
+            panel4.TabIndex = 32;
+            // 
+            // MileageTextBox
+            // 
+            MileageTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            MileageTextBox.BorderStyle = BorderStyle.None;
+            MileageTextBox.CausesValidation = false;
+            MileageTextBox.Cursor = Cursors.IBeam;
+            MileageTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            MileageTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            MileageTextBox.Location = new Point(265, 40);
+            MileageTextBox.Name = "MileageTextBox";
+            MileageTextBox.PlaceholderText = "Przebieg";
+            MileageTextBox.Size = new Size(155, 22);
+            MileageTextBox.TabIndex = 29;
             // 
             // panel11
             // 
             panel11.BackColor = SystemColors.GrayText;
-            panel11.Location = new Point(423, 66);
+            panel11.Location = new Point(265, 66);
             panel11.Name = "panel11";
             panel11.Size = new Size(155, 10);
             panel11.TabIndex = 30;
             // 
-            // textBox3
+            // EngineTextBox
             // 
-            textBox3.BackColor = Color.FromArgb(64, 64, 70);
-            textBox3.BorderStyle = BorderStyle.None;
-            textBox3.CausesValidation = false;
-            textBox3.Cursor = Cursors.IBeam;
-            textBox3.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox3.ForeColor = Color.FromArgb(224, 224, 224);
-            textBox3.Location = new Point(262, 40);
-            textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "Silnik";
-            textBox3.Size = new Size(155, 23);
-            textBox3.TabIndex = 25;
+            EngineTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            EngineTextBox.BorderStyle = BorderStyle.None;
+            EngineTextBox.CausesValidation = false;
+            EngineTextBox.Cursor = Cursors.IBeam;
+            EngineTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            EngineTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            EngineTextBox.Location = new Point(265, 3);
+            EngineTextBox.Name = "EngineTextBox";
+            EngineTextBox.PlaceholderText = "Silnik";
+            EngineTextBox.Size = new Size(155, 22);
+            EngineTextBox.TabIndex = 25;
             // 
             // panel9
             // 
             panel9.BackColor = SystemColors.GrayText;
-            panel9.Location = new Point(262, 66);
+            panel9.Location = new Point(265, 29);
             panel9.Name = "panel9";
             panel9.Size = new Size(155, 10);
             panel9.TabIndex = 26;
@@ -232,7 +269,7 @@
             // 
             NumLenghtNadwoziaLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             NumLenghtNadwoziaLabel.ForeColor = Color.Silver;
-            NumLenghtNadwoziaLabel.Location = new Point(50, 21);
+            NumLenghtNadwoziaLabel.Location = new Point(59, 21);
             NumLenghtNadwoziaLabel.Name = "NumLenghtNadwoziaLabel";
             NumLenghtNadwoziaLabel.Size = new Size(34, 16);
             NumLenghtNadwoziaLabel.TabIndex = 19;
@@ -243,7 +280,7 @@
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(224, 224, 224);
-            label4.Location = new Point(14, 16);
+            label4.Location = new Point(23, 16);
             label4.Name = "label4";
             label4.Size = new Size(40, 21);
             label4.TabIndex = 20;
@@ -256,13 +293,14 @@
             VINTextBox.CausesValidation = false;
             VINTextBox.CharacterCasing = CharacterCasing.Upper;
             VINTextBox.Cursor = Cursors.IBeam;
-            VINTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            VINTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             VINTextBox.ForeColor = Color.FromArgb(224, 224, 224);
             VINTextBox.Location = new Point(14, 40);
             VINTextBox.Name = "VINTextBox";
             VINTextBox.PlaceholderText = "VIN";
-            VINTextBox.Size = new Size(243, 23);
+            VINTextBox.Size = new Size(243, 22);
             VINTextBox.TabIndex = 21;
+            VINTextBox.TextChanged += VINTextBox_TextChanged;
             // 
             // panel6
             // 
@@ -272,20 +310,21 @@
             panel6.Size = new Size(243, 10);
             panel6.TabIndex = 22;
             // 
-            // SaveHistoryButton
+            // SaveDataButton
             // 
-            SaveHistoryButton.Anchor = AnchorStyles.Top;
-            SaveHistoryButton.BackColor = Color.FromArgb(94, 148, 255);
-            SaveHistoryButton.FlatAppearance.BorderSize = 0;
-            SaveHistoryButton.FlatStyle = FlatStyle.Flat;
-            SaveHistoryButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            SaveHistoryButton.ForeColor = Color.LightGray;
-            SaveHistoryButton.Location = new Point(474, 308);
-            SaveHistoryButton.Name = "SaveHistoryButton";
-            SaveHistoryButton.Size = new Size(130, 34);
-            SaveHistoryButton.TabIndex = 33;
-            SaveHistoryButton.Text = "Zapisz";
-            SaveHistoryButton.UseVisualStyleBackColor = false;
+            SaveDataButton.Anchor = AnchorStyles.Top;
+            SaveDataButton.BackColor = Color.FromArgb(94, 148, 255);
+            SaveDataButton.FlatAppearance.BorderSize = 0;
+            SaveDataButton.FlatStyle = FlatStyle.Flat;
+            SaveDataButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            SaveDataButton.ForeColor = Color.LightGray;
+            SaveDataButton.Location = new Point(474, 308);
+            SaveDataButton.Name = "SaveDataButton";
+            SaveDataButton.Size = new Size(130, 34);
+            SaveDataButton.TabIndex = 33;
+            SaveDataButton.Text = "Zapisz";
+            SaveDataButton.UseVisualStyleBackColor = false;
+            SaveDataButton.Click += SaveDataButton_Click;
             // 
             // panel12
             // 
@@ -340,26 +379,28 @@
             panel2.Anchor = AnchorStyles.Top;
             panel2.BackColor = Color.FromArgb(64, 64, 70);
             panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(PriceNumericUpDown);
+            panel2.Controls.Add(YearOfProductionNumericUpDown);
             panel2.Controls.Add(label11);
             panel2.Controls.Add(labelModel);
             panel2.Controls.Add(labelMarka);
             panel2.ForeColor = Color.DimGray;
             panel2.Location = new Point(349, 110);
             panel2.Name = "panel2";
-            panel2.Size = new Size(255, 102);
+            panel2.Size = new Size(264, 102);
             panel2.TabIndex = 18;
             // 
-            // PriceNumericUpDown
+            // YearOfProductionNumericUpDown
             // 
-            PriceNumericUpDown.BackColor = Color.White;
-            PriceNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
-            PriceNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            PriceNumericUpDown.Location = new Point(122, 65);
-            PriceNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
-            PriceNumericUpDown.Name = "PriceNumericUpDown";
-            PriceNumericUpDown.Size = new Size(70, 23);
-            PriceNumericUpDown.TabIndex = 30;
+            YearOfProductionNumericUpDown.BackColor = Color.White;
+            YearOfProductionNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
+            YearOfProductionNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
+            YearOfProductionNumericUpDown.Location = new Point(122, 65);
+            YearOfProductionNumericUpDown.Maximum = new decimal(new int[] { 2050, 0, 0, 0 });
+            YearOfProductionNumericUpDown.Minimum = new decimal(new int[] { 1900, 0, 0, 0 });
+            YearOfProductionNumericUpDown.Name = "YearOfProductionNumericUpDown";
+            YearOfProductionNumericUpDown.Size = new Size(70, 23);
+            YearOfProductionNumericUpDown.TabIndex = 30;
+            YearOfProductionNumericUpDown.Value = new decimal(new int[] { 2000, 0, 0, 0 });
             // 
             // label11
             // 
@@ -399,17 +440,6 @@
             Cancelbtn.UseVisualStyleBackColor = false;
             Cancelbtn.Click += Cancelbtn_Click;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.ForeColor = Color.FromArgb(224, 224, 224);
-            label5.Location = new Point(276, 13);
-            label5.Name = "label5";
-            label5.Size = new Size(110, 21);
-            label5.TabIndex = 28;
-            label5.Text = "Data przyjęcia:";
-            // 
             // AddDataFromScheduleCar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -420,7 +450,7 @@
             Controls.Add(panel2);
             Controls.Add(panel12);
             Controls.Add(Cancelbtn);
-            Controls.Add(SaveHistoryButton);
+            Controls.Add(SaveDataButton);
             Controls.Add(panel1);
             Controls.Add(panelKontaktowy);
             MaximizeBox = false;
@@ -441,7 +471,7 @@
             panel12.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)YearOfProductionNumericUpDown).EndInit();
             ResumeLayout(false);
         }
 
@@ -455,11 +485,11 @@
         private Label label4;
         private TextBox VINTextBox;
         private Panel panel6;
-        private TextBox textBox3;
+        private TextBox EngineTextBox;
         private Panel panel9;
-        private TextBox textBox5;
+        private TextBox MileageTextBox;
         private Panel panel11;
-        private Button SaveHistoryButton;
+        private Button SaveDataButton;
         private Panel panel12;
         private Label label1;
         private TextBox ProblemTextBox;
@@ -471,9 +501,11 @@
         private Label label3;
         private Panel panel2;
         private Label labelModel;
-        private NumericUpDown PriceNumericUpDown;
+        private NumericUpDown YearOfProductionNumericUpDown;
         private Label label11;
         private Button Cancelbtn;
-        private Label label5;
+        private Label labelOrderAddopted;
+        private TextBox RegistrationNumberTextBox;
+        private Panel panel4;
     }
 }

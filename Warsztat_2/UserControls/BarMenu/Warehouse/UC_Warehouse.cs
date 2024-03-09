@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Data.SQLite;
 
 namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
 {
@@ -35,32 +34,15 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
             warehouseAddEdit.ShowDialog();
         }
 
-        private void UC_Warehouse_Load(object sender, EventArgs e)
+        private async void UC_Warehouse_Load(object sender, EventArgs e)
         {
-            LoadTable();
-
+            await LoadTable();
             UpdateList("Data_Warehouse", CategorylistBox);
         }
-        private void LoadTable()
+        public async Task LoadTable()
         {
-            try
-            {
-                using SQLiteConnection conn = new(connection);
-                conn.Open();
-                using SQLiteDataAdapter adapter = new("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość FROM Magazyn", conn);
-                {
-                    using DataTable dataTable = new();
-                    dataTable.Clear();// Очищаємо дані, якщо вони вже були завантажені
-                    adapter.Fill(dataTable);
-                    WarehouseView.DataSource = dataTable;
-                    WarehouseView.Columns["ID_Column_"].Visible = false;
-                }
-                ////if na perevirku danych////
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Błąd podczas zczytywania rekordów: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            await SqlCmd.LoadData(connection, "SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
+            WarehouseView.Columns["ID_Column_"].Visible = false;
         }
         private void PrepareDataToRead()
         {
@@ -155,30 +137,9 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
             UpdateList("Data_Warehouse", CategorylistBox);
         }
 
-        private void WarehouseView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void WarehouseView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            try
-            {
-                if (e.ColumnIndex == WarehouseView.Columns["BtnDelete"].Index && WarehouseView.Rows[e.RowIndex].Cells["ID_Column_"].Value != DBNull.Value)
-                {
-                    long idToDelete = (long)WarehouseView.Rows[e.RowIndex].Cells["ID_Column_"].Value;
-
-                    using SQLiteConnection conn = new(connection);
-                    conn.Open();
-
-                    using SQLiteCommand delete = new("DELETE FROM Magazyn WHERE ID=@ID", conn);
-                    delete.Parameters.AddWithValue("ID", idToDelete);
-                    delete.ExecuteNonQuery();
-
-                    WarehouseView.Rows.RemoveAt(e.RowIndex);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Błąd podczas usuwania rekordu: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+            await SqlCmd.DeleteDataTable(WarehouseView, e, connection, "BtnDelete", "ID_Column_", "Magazyn");
         }
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
@@ -192,7 +153,6 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
                 bindingSource.RemoveFilter();
                 CategorylistBox.SelectedIndices.Clear();
             }
-
             string[] search = SearchTextBox.Text.Split(',');
 
             string filter = string.Join(" AND ", search.Select(term => $"NumerCzęści LIKE '%{term}%' OR Nazwa LIKE '%{term}%' OR Opis LIKE '%{term}%'"));

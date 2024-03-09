@@ -94,14 +94,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
         private async void ViewClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                await SqlCmd.DeleteDataTable(ViewClients, e, connection, "BtnDelete", "ID_Column", "Klienty");
-            }
-            catch
-            {
-                MessageBox.Show("Error");
-            }
+            await SqlCmd.DeleteDataTable(ViewClients, e, connection, "BtnDelete", "ID_Column", "Klienty");
         }
         private void ClearPanel_Click(object sender, EventArgs e)
         {
@@ -151,16 +144,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 }
                 setCarToClientButton.Show();
             }
-
-
-            try
-            {
-                await SqlCmd.DeleteDataTable(ViewCar, e, connection, "BtnDeleteCar", "ID_CAR", "Samochód");
-            }
-            catch
-            {
-                MessageBox.Show("Error");
-            }
+            await SqlCmd.DeleteDataTable(ViewCar, e, connection, "BtnDeleteCar", "ID_CAR", "Samochód");
         }
         private async void ButtonClientUpdate_Click(object sender, EventArgs e)
         {
@@ -281,7 +265,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         }
         private async Task LoadDataClient()
         {
-            await SqlCmd.LoadData(connection, "SELECT ID, Imię, Nazwisko, NrTelefonu, AdresFirmy, NIP, VIN_Samochodu FROM Klienty", ViewClients, "client", "Load table Clients From DB");
+            await SqlCmd.LoadData(connection, "SELECT ID, Imię, Nazwisko, NrTelefonu, AdresFirmy, NIP, VIN FROM Klienty", ViewClients, "client", "Load table Clients From DB");
         }
         private async Task LoadDataCar()
         {
@@ -349,10 +333,10 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             try
             {
 
-                using SQLiteCommand addCarToClient = new("UPDATE Klienty SET VIN_Samochodu = @VIN_Samochodu WHERE ID = @ID", conn, transaction);
+                using SQLiteCommand addCarToClient = new("UPDATE Klienty SET VIN = @VIN WHERE ID = @ID", conn, transaction);
                 addCarToClient.Parameters.AddWithValue("@ID", setCarToClient[0]);
 
-                addCarToClient.Parameters.AddWithValue("@VIN_Samochodu", setCarToClient[1]);
+                addCarToClient.Parameters.AddWithValue("@VIN", setCarToClient[1]);
 
                 await addCarToClient.ExecuteNonQueryAsync();
 

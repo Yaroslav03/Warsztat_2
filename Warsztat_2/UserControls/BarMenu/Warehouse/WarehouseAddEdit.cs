@@ -6,12 +6,13 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
     {
         private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
         WarehouseData warehouse = new();
+
         public WarehouseAddEdit()
         {
             InitializeComponent();
         }
 
-        private void AddEditWarehouseButton_Click(object sender, EventArgs e)
+        private async void AddEditWarehouseButton_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
             try

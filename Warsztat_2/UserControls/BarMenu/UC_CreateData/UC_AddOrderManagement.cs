@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 namespace Warsztat_2._0.UserControls.UC_CreateData
 {
     public partial class UC_AddOrderManagement : UserControl
@@ -40,7 +39,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         }
         private async void ViewOrderManagement_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            await DeleteDB(e);
+            await SqlCmd.DeleteDataTable(ViewOrderManagement, e, connection, "BtnDelete", "ID", "ZarządzanieZleceniami");
         }
 
         private void ViewOrderManagement_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -138,7 +137,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 EstimatedCost = (ushort)EstimatedCostNumericUpDown.Value,
                 Cost = (ushort)FinallPriceNumericUpDown.Value,
                 CostWithMarge = priceWithMarża.Text.ToString(),
-                WorkPerfomed = WorkPerfomedTextBox.Text,                
+                WorkPerfomed = WorkPerfomedTextBox.Text,
                 Employer = worker
             };
 
@@ -190,47 +189,47 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         private async Task SaveDB()
         {
 
-                CollectData();
+            CollectData();
 
-                using SQLiteConnection conn = new(connection);
+            using SQLiteConnection conn = new(connection);
 
-                await conn.OpenAsync();
+            await conn.OpenAsync();
 
-                using var transaction = conn.BeginTransaction();
+            using var transaction = conn.BeginTransaction();
 
-                try
-                {
-                    // Використовуйте IF NOT EXISTS для створення таблиці лише у випадку, якщо вона не існує
-                    using SQLiteCommand createTable = new($"CREATE TABLE IF NOT EXISTS ZarządzanieZleceniami (ID INTEGER PRIMARY KEY AUTOINCREMENT, VIN TEXT, Przyjęty TEXT, OczekujeNaOdbiór TEXT, DataPrzyjęcie TEXT, DataOczekiwaniaOdbioru TEXT, DataPłatności TEXT, MetodaPłatności TEXT, KosztSzacunkowy INTEGER, KosztKońcowy INTEGER, KosztZMarżą INTEGER, WykonanaPraca TEXT, WykonawcaPracy TEXT);", conn);
+            try
+            {
+                // Використовуйте IF NOT EXISTS для створення таблиці лише у випадку, якщо вона не існує
+                using SQLiteCommand createTable = new($"CREATE TABLE IF NOT EXISTS ZarządzanieZleceniami (ID INTEGER PRIMARY KEY AUTOINCREMENT, VIN TEXT, Przyjęty TEXT, OczekujeNaOdbiór TEXT, DataPrzyjęcie TEXT, DataOczekiwaniaOdbioru TEXT, DataPłatności TEXT, MetodaPłatności TEXT, KosztSzacunkowy INTEGER, KosztKońcowy INTEGER, KosztZMarżą INTEGER, WykonanaPraca TEXT, WykonawcaPracy TEXT);", conn);
 
-                    await createTable.ExecuteNonQueryAsync();
+                await createTable.ExecuteNonQueryAsync();
 
 
-                    using SQLiteCommand insert = new($"INSERT INTO ZarządzanieZleceniami (VIN, Przyjęty, OczekujeNaOdbiór, DataPrzyjęcie, DataOczekiwaniaOdbioru, DataPłatności, MetodaPłatności, KosztSzacunkowy, KosztKońcowy, KosztZMarżą, WykonanaPraca, WykonawcaPracy)" +
-                    "VALUES (@VIN, @Przyjęty, @OczekujeNaOdbiór, @DataPrzyjęcie, @DataOczekiwaniaOdbioru, @DataPłatności, @MetodaPłatności, @KosztSzacunkowy, @KosztKońcowy, @KosztZMarżą, @WykonanaPraca, @WykonawcaPracy)", conn);
+                using SQLiteCommand insert = new($"INSERT INTO ZarządzanieZleceniami (VIN, Przyjęty, OczekujeNaOdbiór, DataPrzyjęcie, DataOczekiwaniaOdbioru, DataPłatności, MetodaPłatności, KosztSzacunkowy, KosztKońcowy, KosztZMarżą, WykonanaPraca, WykonawcaPracy)" +
+                "VALUES (@VIN, @Przyjęty, @OczekujeNaOdbiór, @DataPrzyjęcie, @DataOczekiwaniaOdbioru, @DataPłatności, @MetodaPłatności, @KosztSzacunkowy, @KosztKońcowy, @KosztZMarżą, @WykonanaPraca, @WykonawcaPracy)", conn);
 
-                    VALUE(insert);
+                VALUE(insert);
 
-                    await insert.ExecuteNonQueryAsync();
+                await insert.ExecuteNonQueryAsync();
 
-                    await transaction.CommitAsync();
+                await transaction.CommitAsync();
 
-                    await conn.CloseAsync();
-                    await LoadDB();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    dataErrorSaveOrUpdate();
+                await conn.CloseAsync();
+                await LoadDB();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                dataErrorSaveOrUpdate();
 
-                    await Settings.Error(ex, dataError, "OrderManagement", "problem with saving data or cmd SQL to ordermanagement");
-                    throw;
-                }
-                finally
-                {
-                    /*                StanCheckBox.Checked = false;
-                                    PriceNumericUpDown.Value = IloscNumericUpDown.Value = 0;*/
-                }
+                await Settings.Error(ex, dataError, "OrderManagement", "problem with saving data or cmd SQL to ordermanagement");
+                throw;
+            }
+            finally
+            {
+                /*                StanCheckBox.Checked = false;
+                                PriceNumericUpDown.Value = IloscNumericUpDown.Value = 0;*/
+            }
         }
         private async Task UpdateDB()
         {
@@ -266,18 +265,11 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 /*Id_Repair = 0; Repair.Reset();Settings.ClearTextBox(panelDodatkowy);StanCheckBox.Checked = false;ButtonRepairSave.Text = "Zapisz";PriceNumericUpDown.Value = IloscNumericUpDown.Value = 0;*/
             }
         }
-        private async Task DeleteDB(DataGridViewCellEventArgs e)
-        {
-            await SqlCmd.DeleteDataTable(ViewOrderManagement, e, connection, "BtnDelete", "ID", "ZarządzanieZleceniami");
-        }
         private async Task LoadDB()
         {
             await SqlCmd.LoadData(connection, $"SELECT ID, VIN, Przyjęty, OczekujeNaOdbiór, DataPrzyjęcie, DataOczekiwaniaOdbioru, DataPłatności, MetodaPłatności, KosztSzacunkowy, KosztKońcowy, KosztZMarżą, WykonanaPraca, WykonawcaPracy FROM ZarządzanieZleceniami WHERE VIN LIKE '%{Vin_Label.Text}%'", ViewOrderManagement, "order management", "Load data OrderManagement table from db");
         }
-        /* private void VariablesDB()
-         {
 
-         }*/
         private async Task CalculateMarża(float x)
         {
             if (FinallPriceNumericUpDown.Value != 0)

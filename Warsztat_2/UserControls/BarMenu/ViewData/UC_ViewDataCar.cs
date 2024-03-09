@@ -19,10 +19,10 @@ namespace Warsztat_2._0.UserControls
         #region Event
         private async void UC_ViewDataCar_Load(object sender, EventArgs e)
         {
-            await LoadDB();
+
             try
             {
-
+                await LoadDB();
             }
             catch
             {
@@ -34,7 +34,6 @@ namespace Warsztat_2._0.UserControls
 
         private async Task LoadDB()
         {
-
             //Queue<string> data = new();
             Queue<string> clientVIN = new();
 
@@ -49,13 +48,13 @@ namespace Warsztat_2._0.UserControls
             await conn.OpenAsync();
             #region ReadData from DB
             /////////////////////READ VIN/////////////////////
-            using (SQLiteCommand cmdVIN = new("SELECT VIN_Samochodu FROM Klienty WHERE VIN_Samochodu IS NOT NULL", conn))
+            using (SQLiteCommand cmdVIN = new("SELECT VIN FROM Klienty WHERE VIN IS NOT NULL", conn))
             {
                 using SQLiteDataReader reader = cmdVIN.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    clientVIN.Enqueue($"{reader["VIN_Samochodu"]}");
+                    clientVIN.Enqueue($"{reader["VIN"]}");
                 }
             }
             DataTable dataTable = new();
@@ -77,7 +76,7 @@ namespace Warsztat_2._0.UserControls
             {
                 Task task1 = Task.Run(() =>
                 {
-                    using (SQLiteCommand klient = new($"SELECT Imię, Nazwisko, NrTelefonu FROM Klienty WHERE VIN_Samochodu LIKE '%{vin}'", conn))
+                    using (SQLiteCommand klient = new($"SELECT Imię, Nazwisko, NrTelefonu FROM Klienty WHERE VIN LIKE '%{vin}'", conn))
                     {
                         using SQLiteDataReader reader = klient.ExecuteReader();
 
@@ -160,7 +159,7 @@ namespace Warsztat_2._0.UserControls
             carRead[0] = $"{ViewActualData.CurrentRow.Cells["Marka_Column"].Value.ToString()}";
             carRead[1] = $"{ViewActualData.CurrentRow.Cells["Model_Column"].Value.ToString()}";
             carRead[2] = $"{ViewActualData.CurrentRow.Cells["VIN_Column"].Value.ToString()}";
-            historyRead[0] =$"{ViewActualData.CurrentRow.Cells["DataPrzyjęcie_Column"].Value.ToString()}";
+            historyRead[0] = $"{ViewActualData.CurrentRow.Cells["DataPrzyjęcie_Column"].Value.ToString()}";
             historyRead[1] = $"{ViewActualData.CurrentRow.Cells["KosztZMarżą_Column"].Value.ToString()}";
         }
         private void ViewActualData_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -168,5 +167,41 @@ namespace Warsztat_2._0.UserControls
             readData();
         }
 
+        private void ViewActualData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+            if (e.ColumnIndex == ViewActualData.Columns["BtnDelete"].Index)
+            {
+                DialogResult dialogResult = MessageBox.Show("Na pewno chcesz usunąć te dane?", "Potwierdzenie usunięcia", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    string vin = $"{ViewActualData.CurrentRow.Cells["VIN_Column"].Value.ToString()}";
+                    int selectedIndex = (int)ViewActualData.CurrentRow.Index;
+                    DeleteData(vin, selectedIndex);
+                }
+                
+            }
+        }
+        private async void DeleteData(string vin, int index)
+        {
+            string[] nameTable = { "Klienty", "Samochód", "HistoriaNapraw", "ZarządzanieZleceniami", "NaprawaSamochodu" };
+            try
+            {
+                using SQLiteConnection conn = new(connectionString);
+                await conn.OpenAsync();
+
+                foreach (string table in nameTable)
+                {
+                    SQLiteCommand delete = new($"DELETE FROM {table} WHERE VIN = @VIN", conn);
+                    delete.Parameters.AddWithValue("@VIN", vin);
+                    await delete.ExecuteNonQueryAsync();
+                }
+                ViewActualData.Rows.RemoveAt(index);
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+        }
     }
 }
