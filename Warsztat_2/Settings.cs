@@ -27,7 +27,6 @@ namespace Warsztat_2._0
         public static void CheckScheduleCar()
         {
             string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
-
             Cursor.Current = Cursors.WaitCursor;
             string today = DateTime.Today.ToString("D");
 

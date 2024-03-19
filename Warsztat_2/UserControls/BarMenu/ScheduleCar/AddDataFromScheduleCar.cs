@@ -46,13 +46,13 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
         {
             NumLenghtNadwoziaLabel.Text = VINTextBox.TextLength.ToString();
             VINTextBox.MaxLength = 17;
-            if(VINTextBox.TextLength ==17)
+            if (VINTextBox.TextLength == 17)
             {
-                SaveDataButton.Enabled=true;
+                SaveDataButton.Enabled = true;
             }
             else
             {
-                SaveDataButton.Enabled=false;
+                SaveDataButton.Enabled = false;
             }
 
         }

@@ -1,6 +1,7 @@
 using Warsztat_2._0;
 using Warsztat_2._0.UserControls;
 using Warsztat_2._0.UserControls.BarMenu.Warehouse;
+using Warsztat_2.UserControls.BarMenu.Archive;
 using Warsztat_2.UserControls.BarMenu.ScheduleCar;
 namespace Warsztat_2
 
@@ -57,6 +58,12 @@ namespace Warsztat_2
             UC_ViewDataCar viewDataCar = new();
             Settings.ChangeWindow(viewDataCar, splitContainer1.Panel2);
             // Операції завершені
+        }
+
+        private void ArchiveButton_Click(object sender, EventArgs e)
+        {
+            UC_Archive archive = new();
+            Settings.ChangeWindow(archive, splitContainer1.Panel2);
         }
     }
 }

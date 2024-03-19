@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PdfSharpCore" Version="1.3.63" />
+    <PackageReference Include="PDFsharp-MigraDoc-GDI" Version="6.0.0" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
   </ItemGroup>
 
@@ -29,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Archive.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="DBCar.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

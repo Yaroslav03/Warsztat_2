@@ -1,5 +1,6 @@
-﻿namespace Warsztat_2._0.UserControls {
-    partial class UC_ViewDataCar
+﻿namespace Warsztat_2.UserControls.BarMenu.Archive
+{
+    partial class UC_Archive
     {
         /// <summary> 
         /// Required designer variable.
@@ -11,13 +12,13 @@
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
             {
-            if(disposing && (components != null))
-                {
                 components.Dispose();
-                }
-            base.Dispose(disposing);
             }
+            base.Dispose(disposing);
+        }
 
         #region Component Designer generated code
 
@@ -27,17 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            label1 = new Label();
-            label3 = new Label();
-            button1 = new Button();
-            OrderButton = new Button();
-            button3 = new Button();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             ViewActualData = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
             BtnDelete = new DataGridViewButtonColumn();
-            BtnFinish = new DataGridViewButtonColumn();
             Przyjęty_Column = new DataGridViewCheckBoxColumn();
             OczekujeNaOdbiór_Column = new DataGridViewCheckBoxColumn();
             DataPrzyjęcie_Column = new DataGridViewTextBoxColumn();
@@ -52,68 +47,6 @@
             ((System.ComponentModel.ISupportInitialize)ViewActualData).BeginInit();
             SuspendLayout();
             // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label1.AutoSize = true;
-            label1.ForeColor = Color.Silver;
-            label1.Location = new Point(770, 20);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 15);
-            label1.TabIndex = 3;
-            label1.Text = "Plik PDF";
-            // 
-            // label3
-            // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label3.AutoSize = true;
-            label3.ForeColor = Color.Silver;
-            label3.Location = new Point(902, 20);
-            label3.Name = "label3";
-            label3.Size = new Size(66, 15);
-            label3.TabIndex = 3;
-            label3.Text = "Stwórz PDF";
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.FromArgb(94, 148, 255);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.LightGray;
-            button1.Location = new Point(757, 38);
-            button1.Name = "button1";
-            button1.Size = new Size(84, 22);
-            button1.TabIndex = 15;
-            button1.Text = "Lokalizacja";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // OrderButton
-            // 
-            OrderButton.BackColor = Color.FromArgb(94, 148, 255);
-            OrderButton.FlatAppearance.BorderSize = 0;
-            OrderButton.FlatStyle = FlatStyle.Flat;
-            OrderButton.ForeColor = Color.LightGray;
-            OrderButton.Location = new Point(847, 38);
-            OrderButton.Name = "OrderButton";
-            OrderButton.Size = new Size(84, 22);
-            OrderButton.TabIndex = 15;
-            OrderButton.Text = "Zlecenie";
-            OrderButton.UseVisualStyleBackColor = false;
-            OrderButton.Click += OrderButton_Click;
-            // 
-            // button3
-            // 
-            button3.BackColor = Color.FromArgb(94, 148, 255);
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.ForeColor = Color.LightGray;
-            button3.Location = new Point(937, 39);
-            button3.Name = "button3";
-            button3.Size = new Size(84, 22);
-            button3.TabIndex = 15;
-            button3.Text = "Faktura";
-            button3.UseVisualStyleBackColor = false;
-            // 
             // ViewActualData
             // 
             ViewActualData.AllowUserToAddRows = false;
@@ -122,32 +55,30 @@
             ViewActualData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ViewActualData.BorderStyle = BorderStyle.None;
             ViewActualData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.LightGray;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            ViewActualData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            ViewActualData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewActualData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewActualData.Columns.AddRange(new DataGridViewColumn[] { ID, BtnDelete, BtnFinish, Przyjęty_Column, OczekujeNaOdbiór_Column, DataPrzyjęcie_Column, Imię_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Column7, KosztZMarżą_Column, VIN_Column });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            ViewActualData.DefaultCellStyle = dataGridViewCellStyle4;
+            ViewActualData.Columns.AddRange(new DataGridViewColumn[] { ID, BtnDelete, Przyjęty_Column, OczekujeNaOdbiór_Column, DataPrzyjęcie_Column, Imię_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Column7, KosztZMarżą_Column, VIN_Column });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            ViewActualData.DefaultCellStyle = dataGridViewCellStyle2;
             ViewActualData.EnableHeadersVisualStyles = false;
-            ViewActualData.Location = new Point(3, 67);
+            ViewActualData.Location = new Point(0, 138);
             ViewActualData.Name = "ViewActualData";
             ViewActualData.RowTemplate.Height = 25;
-            ViewActualData.Size = new Size(1040, 548);
-            ViewActualData.TabIndex = 30;
-            ViewActualData.CellContentClick += ViewActualData_CellContentClick;
-            ViewActualData.MouseDoubleClick += ViewActualData_MouseDoubleClick;
+            ViewActualData.Size = new Size(1043, 477);
+            ViewActualData.TabIndex = 31;
             // 
             // ID
             // 
@@ -160,11 +91,6 @@
             // 
             BtnDelete.HeaderText = "Usuń zgłoszenie";
             BtnDelete.Name = "BtnDelete";
-            // 
-            // BtnFinish
-            // 
-            BtnFinish.HeaderText = "Wykonane";
-            BtnFinish.Name = "BtnFinish";
             // 
             // Przyjęty_Column
             // 
@@ -240,36 +166,24 @@
             VIN_Column.HeaderText = "VIN";
             VIN_Column.Name = "VIN_Column";
             // 
-            // UC_ViewDataCar
+            // UC_Archive
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
             Controls.Add(ViewActualData);
-            Controls.Add(button3);
-            Controls.Add(OrderButton);
-            Controls.Add(button1);
-            Controls.Add(label3);
-            Controls.Add(label1);
-            Name = "UC_ViewDataCar";
+            Name = "UC_Archive";
             Size = new Size(1043, 615);
-            Load += UC_ViewDataCar_Load;
+            Load += UC_Archive_Load;
             ((System.ComponentModel.ISupportInitialize)ViewActualData).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private Label label3;
-        private Button button1;
-        private Button OrderButton;
-        private Button button3;
         private DataGridView ViewActualData;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewButtonColumn BtnDelete;
-        private DataGridViewButtonColumn BtnFinish;
         private DataGridViewCheckBoxColumn Przyjęty_Column;
         private DataGridViewCheckBoxColumn OczekujeNaOdbiór_Column;
         private DataGridViewTextBoxColumn DataPrzyjęcie_Column;
@@ -282,4 +196,4 @@
         private DataGridViewTextBoxColumn KosztZMarżą_Column;
         private DataGridViewTextBoxColumn VIN_Column;
     }
-    }
+}

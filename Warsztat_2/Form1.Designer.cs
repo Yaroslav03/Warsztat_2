@@ -43,6 +43,7 @@
             SettingsButton = new Button();
             button1 = new Button();
             AddButton = new Button();
+            ArchiveButton = new Button();
             ViewAllCar = new Button();
             WarehouseButton = new Button();
             ScheduleCarButton = new Button();
@@ -69,8 +70,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.BackColor = Color.FromArgb(64, 64, 68);
-            splitContainer1.Size = new Size(1264, 641);
-            splitContainer1.SplitterDistance = 252;
+            splitContainer1.Size = new Size(1285, 641);
+            splitContainer1.SplitterDistance = 256;
             splitContainer1.TabIndex = 0;
             // 
             // panel3
@@ -83,9 +84,9 @@
             panel3.Controls.Add(label2);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(label6);
-            panel3.Location = new Point(4, 314);
+            panel3.Location = new Point(3, 361);
             panel3.Name = "panel3";
-            panel3.Size = new Size(244, 315);
+            panel3.Size = new Size(249, 277);
             panel3.TabIndex = 0;
             // 
             // label9
@@ -95,7 +96,7 @@
             label9.ForeColor = Color.FromArgb(224, 224, 224);
             label9.Location = new Point(35, 237);
             label9.Name = "label9";
-            label9.Size = new Size(72, 17);
+            label9.Size = new Size(77, 17);
             label9.TabIndex = 1;
             label9.Text = "Brakuje:";
             // 
@@ -106,7 +107,7 @@
             label8.ForeColor = Color.FromArgb(224, 224, 224);
             label8.Location = new Point(8, 209);
             label8.Name = "label8";
-            label8.Size = new Size(160, 17);
+            label8.Size = new Size(165, 17);
             label8.TabIndex = 1;
             label8.Text = "Wydatki za miesiąc:";
             // 
@@ -117,7 +118,7 @@
             label7.ForeColor = Color.FromArgb(224, 224, 224);
             label7.Location = new Point(8, 181);
             label7.Name = "label7";
-            label7.Size = new Size(160, 17);
+            label7.Size = new Size(165, 17);
             label7.TabIndex = 1;
             label7.Text = "zarobki za miesiąc:";
             // 
@@ -128,7 +129,7 @@
             label5.ForeColor = Color.FromArgb(224, 224, 224);
             label5.Location = new Point(25, 133);
             label5.Name = "label5";
-            label5.Size = new Size(184, 17);
+            label5.Size = new Size(189, 17);
             label5.TabIndex = 1;
             label5.Text = "Zaplanowane samochody:";
             // 
@@ -139,7 +140,7 @@
             label4.ForeColor = Color.FromArgb(224, 224, 224);
             label4.Location = new Point(25, 105);
             label4.Name = "label4";
-            label4.Size = new Size(160, 17);
+            label4.Size = new Size(165, 17);
             label4.TabIndex = 1;
             label4.Text = "Obecnie samochodów:";
             // 
@@ -150,7 +151,7 @@
             label2.ForeColor = Color.FromArgb(224, 224, 224);
             label2.Location = new Point(8, 77);
             label2.Name = "label2";
-            label2.Size = new Size(144, 17);
+            label2.Size = new Size(149, 17);
             label2.TabIndex = 1;
             label2.Text = "Ilość samochodów:";
             // 
@@ -161,7 +162,7 @@
             label1.ForeColor = Color.FromArgb(224, 224, 224);
             label1.Location = new Point(8, 49);
             label1.Name = "label1";
-            label1.Size = new Size(128, 17);
+            label1.Size = new Size(133, 17);
             label1.TabIndex = 1;
             label1.Text = "Ilość klientów:";
             // 
@@ -172,7 +173,7 @@
             label6.ForeColor = Color.FromArgb(224, 224, 224);
             label6.Location = new Point(8, 10);
             label6.Name = "label6";
-            label6.Size = new Size(144, 17);
+            label6.Size = new Size(149, 17);
             label6.TabIndex = 1;
             label6.Text = "Krótka informacja";
             // 
@@ -184,12 +185,13 @@
             panel1.Controls.Add(SettingsButton);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(AddButton);
+            panel1.Controls.Add(ArchiveButton);
             panel1.Controls.Add(ViewAllCar);
             panel1.Controls.Add(WarehouseButton);
             panel1.Controls.Add(ScheduleCarButton);
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(246, 305);
+            panel1.Size = new Size(250, 353);
             panel1.TabIndex = 0;
             // 
             // label3
@@ -199,7 +201,7 @@
             label3.ForeColor = Color.FromArgb(224, 224, 224);
             label3.Location = new Point(10, 4);
             label3.Name = "label3";
-            label3.Size = new Size(231, 39);
+            label3.Size = new Size(235, 39);
             label3.TabIndex = 1;
             label3.Text = "ALEKSAUTO";
             // 
@@ -213,7 +215,7 @@
             SettingsButton.ForeColor = Color.LightGray;
             SettingsButton.Location = new Point(-1, 90);
             SettingsButton.Name = "SettingsButton";
-            SettingsButton.Size = new Size(245, 37);
+            SettingsButton.Size = new Size(249, 37);
             SettingsButton.TabIndex = 0;
             SettingsButton.Text = "Ustawienia";
             SettingsButton.UseVisualStyleBackColor = false;
@@ -229,7 +231,7 @@
             button1.ForeColor = Color.LightGray;
             button1.Location = new Point(-1, 47);
             button1.Name = "button1";
-            button1.Size = new Size(245, 37);
+            button1.Size = new Size(249, 37);
             button1.TabIndex = 0;
             button1.Text = "Menu";
             button1.UseVisualStyleBackColor = false;
@@ -242,13 +244,29 @@
             AddButton.FlatStyle = FlatStyle.Flat;
             AddButton.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
             AddButton.ForeColor = Color.LightGray;
-            AddButton.Location = new Point(-1, 219);
+            AddButton.Location = new Point(0, 262);
             AddButton.Name = "AddButton";
-            AddButton.Size = new Size(245, 37);
+            AddButton.Size = new Size(249, 37);
             AddButton.TabIndex = 0;
             AddButton.Text = "Dodaj";
             AddButton.UseVisualStyleBackColor = false;
             AddButton.Click += AddButton_Click;
+            // 
+            // ArchiveButton
+            // 
+            ArchiveButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            ArchiveButton.BackColor = Color.FromArgb(94, 148, 255);
+            ArchiveButton.FlatAppearance.BorderSize = 0;
+            ArchiveButton.FlatStyle = FlatStyle.Flat;
+            ArchiveButton.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            ArchiveButton.ForeColor = Color.LightGray;
+            ArchiveButton.Location = new Point(0, 176);
+            ArchiveButton.Name = "ArchiveButton";
+            ArchiveButton.Size = new Size(248, 37);
+            ArchiveButton.TabIndex = 0;
+            ArchiveButton.Text = "Zobacz archiwum";
+            ArchiveButton.UseVisualStyleBackColor = false;
+            ArchiveButton.Click += ArchiveButton_Click;
             // 
             // ViewAllCar
             // 
@@ -260,7 +278,7 @@
             ViewAllCar.ForeColor = Color.LightGray;
             ViewAllCar.Location = new Point(0, 133);
             ViewAllCar.Name = "ViewAllCar";
-            ViewAllCar.Size = new Size(244, 37);
+            ViewAllCar.Size = new Size(248, 37);
             ViewAllCar.TabIndex = 0;
             ViewAllCar.Text = "Przegłąd samochodów";
             ViewAllCar.UseVisualStyleBackColor = false;
@@ -274,9 +292,9 @@
             WarehouseButton.FlatStyle = FlatStyle.Flat;
             WarehouseButton.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
             WarehouseButton.ForeColor = Color.LightGray;
-            WarehouseButton.Location = new Point(-1, 262);
+            WarehouseButton.Location = new Point(0, 305);
             WarehouseButton.Name = "WarehouseButton";
-            WarehouseButton.Size = new Size(245, 37);
+            WarehouseButton.Size = new Size(249, 37);
             WarehouseButton.TabIndex = 0;
             WarehouseButton.Text = "Magazyn";
             WarehouseButton.UseVisualStyleBackColor = false;
@@ -290,9 +308,9 @@
             ScheduleCarButton.FlatStyle = FlatStyle.Flat;
             ScheduleCarButton.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
             ScheduleCarButton.ForeColor = Color.LightGray;
-            ScheduleCarButton.Location = new Point(-1, 176);
+            ScheduleCarButton.Location = new Point(0, 219);
             ScheduleCarButton.Name = "ScheduleCarButton";
-            ScheduleCarButton.Size = new Size(245, 37);
+            ScheduleCarButton.Size = new Size(249, 37);
             ScheduleCarButton.TabIndex = 0;
             ScheduleCarButton.Text = "Zaplanowane";
             ScheduleCarButton.UseVisualStyleBackColor = false;
@@ -303,7 +321,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 68);
-            ClientSize = new Size(1264, 641);
+            ClientSize = new Size(1285, 641);
             Controls.Add(splitContainer1);
             Name = "Form1";
             Text = "Form1";
@@ -336,5 +354,6 @@
         private Label label5;
         private Label label4;
         private Label label3;
+        private Button ArchiveButton;
     }
 }
