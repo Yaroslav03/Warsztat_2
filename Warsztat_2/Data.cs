@@ -63,8 +63,9 @@ public class Repair
     public string? Description { get; set; }
     public string? NrPart { get; set; }
 
-    public ushort Price { get; set; }
+    public decimal Price { get; set; }
     public byte Ilość { get; set; }
+    public decimal Sum { get; set; }
     public bool Stan { get; set; }
     public string? DateOfAcceptance { get; set; }
     public static Repair Reset()

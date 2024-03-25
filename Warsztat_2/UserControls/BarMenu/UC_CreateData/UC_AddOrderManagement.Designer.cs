@@ -367,6 +367,7 @@
             // 
             FinallPriceNumericUpDown.BackColor = Color.White;
             FinallPriceNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
+            FinallPriceNumericUpDown.DecimalPlaces = 2;
             FinallPriceNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
             FinallPriceNumericUpDown.Location = new Point(172, 86);
             FinallPriceNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
@@ -379,6 +380,7 @@
             // 
             EstimatedCostNumericUpDown.BackColor = Color.White;
             EstimatedCostNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
+            EstimatedCostNumericUpDown.DecimalPlaces = 2;
             EstimatedCostNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
             EstimatedCostNumericUpDown.Location = new Point(3, 86);
             EstimatedCostNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });

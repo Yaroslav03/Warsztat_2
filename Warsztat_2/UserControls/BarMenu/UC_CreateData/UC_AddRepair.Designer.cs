@@ -48,6 +48,7 @@
             NrCzęści_Column = new DataGridViewTextBoxColumn();
             Cena_Column = new DataGridViewTextBoxColumn();
             Ilość_Column = new DataGridViewTextBoxColumn();
+            Suma_Column = new DataGridViewTextBoxColumn();
             DateRepair = new DataGridViewTextBoxColumn();
             label6 = new Label();
             VIN_label = new Label();
@@ -58,6 +59,9 @@
             RokProdukcji_Column = new DataGridViewTextBoxColumn();
             VIN_Column = new DataGridViewTextBoxColumn();
             panelDodatkowy = new Panel();
+            SumLabel = new Label();
+            label5 = new Label();
+            label3 = new Label();
             NrPartTextBox = new TextBox();
             DescriptionTextBox = new TextBox();
             RepairTimePicker = new DateTimePicker();
@@ -73,24 +77,27 @@
             // 
             IloscNumericUpDown.BackColor = Color.White;
             IloscNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
-            IloscNumericUpDown.Location = new Point(102, 190);
+            IloscNumericUpDown.Location = new Point(96, 190);
             IloscNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             IloscNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             IloscNumericUpDown.Name = "IloscNumericUpDown";
             IloscNumericUpDown.Size = new Size(84, 23);
             IloscNumericUpDown.TabIndex = 3;
             IloscNumericUpDown.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            IloscNumericUpDown.ValueChanged += IloscNumericUpDown_ValueChanged;
             // 
             // PriceNumericUpDown
             // 
             PriceNumericUpDown.BackColor = Color.White;
             PriceNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
+            PriceNumericUpDown.DecimalPlaces = 2;
             PriceNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            PriceNumericUpDown.Location = new Point(12, 190);
+            PriceNumericUpDown.Location = new Point(3, 190);
             PriceNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             PriceNumericUpDown.Name = "PriceNumericUpDown";
             PriceNumericUpDown.Size = new Size(70, 23);
             PriceNumericUpDown.TabIndex = 2;
+            PriceNumericUpDown.ValueChanged += PriceNumericUpDown_ValueChanged;
             // 
             // StanCheckBox
             // 
@@ -107,7 +114,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(224, 224, 224);
-            label4.Location = new Point(116, 166);
+            label4.Location = new Point(111, 166);
             label4.Name = "label4";
             label4.Size = new Size(41, 21);
             label4.TabIndex = 1;
@@ -118,7 +125,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(224, 224, 224);
-            label2.Location = new Point(23, 166);
+            label2.Location = new Point(12, 166);
             label2.Name = "label2";
             label2.Size = new Size(45, 21);
             label2.TabIndex = 1;
@@ -157,7 +164,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ViewRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewRepair.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewRepair.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID, Wykonane_Checked, Opis_Column, NrCzęści_Column, Cena_Column, Ilość_Column, DateRepair });
+            ViewRepair.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID, Wykonane_Checked, Opis_Column, NrCzęści_Column, Cena_Column, Ilość_Column, Suma_Column, DateRepair });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -221,6 +228,12 @@
             Ilość_Column.DataPropertyName = "Ilość";
             Ilość_Column.HeaderText = "Ilość";
             Ilość_Column.Name = "Ilość_Column";
+            // 
+            // Suma_Column
+            // 
+            Suma_Column.DataPropertyName = "Suma";
+            Suma_Column.HeaderText = "Suma";
+            Suma_Column.Name = "Suma_Column";
             // 
             // DateRepair
             // 
@@ -325,6 +338,9 @@
             panelDodatkowy.Controls.Add(IloscNumericUpDown);
             panelDodatkowy.Controls.Add(label2);
             panelDodatkowy.Controls.Add(ButtonRepairSave);
+            panelDodatkowy.Controls.Add(SumLabel);
+            panelDodatkowy.Controls.Add(label5);
+            panelDodatkowy.Controls.Add(label3);
             panelDodatkowy.Controls.Add(label4);
             panelDodatkowy.Controls.Add(NrPartTextBox);
             panelDodatkowy.Controls.Add(DescriptionTextBox);
@@ -335,6 +351,39 @@
             panelDodatkowy.Name = "panelDodatkowy";
             panelDodatkowy.Size = new Size(256, 261);
             panelDodatkowy.TabIndex = 27;
+            // 
+            // SumLabel
+            // 
+            SumLabel.AutoSize = true;
+            SumLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            SumLabel.ForeColor = Color.FromArgb(224, 224, 224);
+            SumLabel.Location = new Point(203, 192);
+            SumLabel.Name = "SumLabel";
+            SumLabel.Size = new Size(19, 21);
+            SumLabel.TabIndex = 1;
+            SumLabel.Text = "0";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.ForeColor = Color.FromArgb(224, 224, 224);
+            label5.Location = new Point(182, 192);
+            label5.Name = "label5";
+            label5.Size = new Size(21, 21);
+            label5.TabIndex = 1;
+            label5.Text = "=";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(224, 224, 224);
+            label3.Location = new Point(77, 192);
+            label3.Name = "label3";
+            label3.Size = new Size(17, 21);
+            label3.TabIndex = 1;
+            label3.Text = "*";
             // 
             // NrPartTextBox
             // 
@@ -433,6 +482,9 @@
         public DateTimePicker RepairTimePicker;
         private TextBox NrPartTextBox;
         private Label label1;
+        private Label label3;
+        private Label SumLabel;
+        private Label label5;
         private DataGridViewButtonColumn BtnDelete;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewCheckBoxColumn Wykonane_Checked;
@@ -440,6 +492,7 @@
         private DataGridViewTextBoxColumn NrCzęści_Column;
         private DataGridViewTextBoxColumn Cena_Column;
         private DataGridViewTextBoxColumn Ilość_Column;
+        private DataGridViewTextBoxColumn Suma_Column;
         private DataGridViewTextBoxColumn DateRepair;
     }
 }

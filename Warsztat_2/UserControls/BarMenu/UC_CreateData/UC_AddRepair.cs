@@ -37,8 +37,9 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             {
                 Description = DescriptionTextBox.Text,
                 NrPart = NrPartTextBox.Text,
-                Price = (ushort)PriceNumericUpDown.Value,
+                Price = PriceNumericUpDown.Value,
                 Ilość = (byte)IloscNumericUpDown.Value,
+                Sum = Convert.ToDecimal(SumLabel.Text),
                 Stan = StanCheckBox.Checked,
                 DateOfAcceptance = RepairTimePicker.Text.ToString()
 
@@ -52,7 +53,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             NrPartTextBox.Text = ViewRepair.CurrentRow.Cells["NrCzęści_Column"].Value.ToString();
             PriceNumericUpDown.Text = ViewRepair.CurrentRow.Cells["Cena_Column"].Value.ToString();
             IloscNumericUpDown.Text = ViewRepair.CurrentRow.Cells["Ilość_Column"].Value.ToString();
-
+            
             StanCheckBox.Checked = ViewRepair.CurrentRow.Cells["Wykonane_Checked"].Value.ToString() == "1";
 
             RepairTimePicker.Text = ViewRepair.CurrentRow.Cells["DateRepair"].Value.ToString();
@@ -106,26 +107,6 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             await SqlCmd.LoadData(connection, "SELECT ID, Marka, Model, RokProdukcji, VIN FROM Samochód", ViewCar, "history", "Load table Car From DB");
         }
 
-        /*private async Task LoadHistoryRepair()
-        {
-            if (await Settings.TableExistHistory(pathHistoryRepair, VIN_label.Text))
-            {
-                await Settings.LoadData(pathHistoryRepair, $"SELECT ID, Zlecenie, Diagnostyka, Naprawa, Opis, NumerCzęści, Cena, Ilość, Wykonane FROM {VIN_label.Text}", ViewRepair, "history repair", "Load table form History repair from DB");
-            }
-            else
-            {
-                AttentionLabel.Text = "Takiego pojazdu z podanym numrerm VIN nie istnieje w bazie danych. \nProszę jeszcze raz spróbować dodać ten samochód a stary usunąć.";
-
-                await Task.Delay(5000);
-
-                this.Invoke((MethodInvoker)delegate
-                {
-                    AttentionLabel.Text = string.Empty;
-                });
-
-            }
-
-        }*/
         #endregion
         public UC_AddRepair()
         {
@@ -156,13 +137,14 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             using var transaction = conn.BeginTransaction();
             try
             {
-                using SQLiteCommand update = new($"UPDATE NaprawaSamochodu SET Opis=@Opis, NumerCzęści=@NumerCzęści, Cena=@Cena, Ilość=@Ilość, Stan=@Stan, DataNapraw=@DataNapraw WHERE  ID=@ID", conn);
+                using SQLiteCommand update = new($"UPDATE NaprawaSamochodu SET Opis=@Opis, NumerCzęści=@NumerCzęści, Cena=@Cena, Ilość=@Ilość, Suma=@Suma, Stan=@Stan, DataNapraw=@DataNapraw WHERE  ID=@ID", conn);
 
                 update.Parameters.AddWithValue("@ID", Id_Repair);
                 update.Parameters.AddWithValue("@Opis", repair.Description);
                 update.Parameters.AddWithValue("@NumerCzęści", repair.NrPart);
                 update.Parameters.AddWithValue("@Cena", repair.Price);
                 update.Parameters.AddWithValue("@Ilość", repair.Ilość);
+                update.Parameters.AddWithValue("@Suma", repair.Sum);
                 update.Parameters.AddWithValue("@Stan", repair.Stan);
                 update.Parameters.AddWithValue("@DataNapraw", repair.DateOfAcceptance);
 
@@ -180,6 +162,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 dataError.Enqueue($"Numer części:{repair.NrPart}");
                 dataError.Enqueue($"Cena:{repair.Price}");
                 dataError.Enqueue($"Ilość:{repair.Ilość}");
+                dataError.Enqueue($"Suma:{repair.Sum}");
                 dataError.Enqueue($"Stan:{repair.Stan}");
                 dataError.Enqueue($"Data:{repair.DateOfAcceptance}");
 
@@ -193,7 +176,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 Settings.ClearTextBox(panelDodatkowy);
                 StanCheckBox.Checked = false;
                 ButtonRepairSave.Text = "Zapisz";
-                PriceNumericUpDown.Value = IloscNumericUpDown.Value = 0;
+                PriceNumericUpDown.Value = 0; IloscNumericUpDown.Value = 1;
             }
         }
         private async Task SaveRepair()
@@ -209,18 +192,19 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             try
             {
                 // Використовуйте IF NOT EXISTS для створення таблиці лише у випадку, якщо вона не існує
-                using SQLiteCommand createTable = new($"CREATE TABLE IF NOT EXISTS NaprawaSamochodu (ID INTEGER PRIMARY KEY AUTOINCREMENT, Opis TEXT, NumerCzęści TEXT, Cena INTEGER, Ilość INTEGER, Stan TEXT, DataNapraw TEXT, VIN TEXT);", conn);
+                using SQLiteCommand createTable = new($"CREATE TABLE IF NOT EXISTS NaprawaSamochodu (ID INTEGER PRIMARY KEY AUTOINCREMENT, Opis TEXT, NumerCzęści TEXT, Cena INTEGER, Ilość INTEGER, Suma INTEGER, Stan TEXT, DataNapraw TEXT, VIN TEXT);", conn);
 
                 await createTable.ExecuteNonQueryAsync();
 
-                using SQLiteCommand insert = new($"INSERT INTO NaprawaSamochodu (Opis, NumerCzęści, Cena, Ilość, Stan, DataNapraw, VIN)" +
-                        "VALUES (@Opis, @NumerCzęści, @Cena, @Ilość, @Stan, @DataNapraw, @VIN)", conn);
+                using SQLiteCommand insert = new($"INSERT INTO NaprawaSamochodu (Opis, NumerCzęści, Cena, Ilość, Suma, Stan, DataNapraw, VIN)" +
+                        "VALUES (@Opis, @NumerCzęści, @Cena, @Ilość, @Suma, @Stan, @DataNapraw, @VIN)", conn);
 
                 insert.Parameters.AddWithValue("@VIN", VIN_label.Text);
                 insert.Parameters.AddWithValue("@Opis", repair.Description);
                 insert.Parameters.AddWithValue("@NumerCzęści", repair.NrPart);
                 insert.Parameters.AddWithValue("@Cena", repair.Price);
                 insert.Parameters.AddWithValue("@Ilość", repair.Ilość);
+                insert.Parameters.AddWithValue("@Suma", repair.Sum);
                 insert.Parameters.AddWithValue("@Stan", repair.Stan);
                 insert.Parameters.AddWithValue("@DataNapraw", repair.DateOfAcceptance);
 
@@ -236,6 +220,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                 dataError.Enqueue($"Numer części:{repair.NrPart}");
                 dataError.Enqueue($"Cena:{repair.Price}");
                 dataError.Enqueue($"Ilość:{repair.Ilość}");
+                dataError.Enqueue($"Suma:{repair.Sum}");
                 dataError.Enqueue($"Stan:{repair.Stan}");
                 dataError.Enqueue($"Data:{repair.DateOfAcceptance}");
 
@@ -253,7 +238,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         }
         private async Task LoadRepair()
         {
-            await SqlCmd.LoadData(connection, $"SELECT ID, Opis, NumerCzęści, Cena, Ilość, Stan FROM NaprawaSamochodu WHERE VIN LIKE '%{VIN_label.Text}'", ViewRepair, "Repair", "Load table Repair from DB");
+            await SqlCmd.LoadData(connection, $"SELECT ID, Opis, NumerCzęści, Cena, Ilość, Suma, Stan, DataNapraw FROM NaprawaSamochodu WHERE VIN LIKE '%{VIN_label.Text}'", ViewRepair, "Repair", "Load table Repair from DB");
             //}
             /*            else if (ViewRepair.DataSource != null)
                         {
@@ -277,11 +262,12 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             decimal totalPrice = 0;
             foreach (DataGridViewRow row in ViewRepair.Rows)
             {
-                if (row.Cells["Cena_Column"].Value != null && decimal.TryParse(row.Cells["Cena_Column"].Value.ToString(), out decimal price))
+                if (row.Cells["Suma_Column"].Value != null && decimal.TryParse(row.Cells["Suma_Column"].Value.ToString(), out decimal price))
                 {
                     totalPrice += price;
                 }
             }
+            
             pricePart = (ushort)totalPrice;
         }
 
@@ -291,9 +277,23 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             {
                 SumRepair();
                 VINChanged?.Invoke(this, VIN_label.Text);
-                Price?.Invoke(this, pricePart);
+                Price.Invoke(this, pricePart);
             }
+        }
 
+        private void PriceNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            Sum();
+        }
+
+        private void IloscNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            Sum();
+        }
+        private void Sum()
+        {
+           decimal sum = PriceNumericUpDown.Value * IloscNumericUpDown.Value;
+            SumLabel.Text = sum.ToString();
         }
     }
 }
