@@ -1,4 +1,5 @@
 ﻿using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using System.Data.SQLite;
@@ -8,43 +9,50 @@ namespace Warsztat_2
     internal class GeneretePDF
     {
         private readonly string connectionString = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
-        private string VIN ="";
-        private string[] sqlcommand = {
+        private string VIN = "";
+        private readonly string[] sqlcommand = {
             "SELECT Imię, Nazwisko, NrTelefonu, AdresFirmy FROM Klienty",
             "SELECT Marka, Model, Silnik, RokProdukcji FROM Samochód",
             "SELECT DataPrzyjęcia, NrRejestracji, Przebieg, DokumentySamochodu, KluczykiSamochodu, TestDrive, Zlecenie, Diagnostyka, Naprawa FROM HistoriaNapraw",
             "SELECT Opis, NumerCzęści, Cena, Ilość FROM NaprawaSamochodu",
-            "SELECT Przyjęty, OczekujeNaOdbiór, DataPrzyjęcie, DataOczekiwaniaOdbioru, DataPłatności, MetodaPłatności, KosztSzacunkowy, KosztKońcowy, KosztZMarżą, WykonanaPraca, WykonawcaPracy FROM ZarządzanieZleceniami",
+            "SELECT DataPrzyjęcie, DataOczekiwaniaOdbioru, DataPłatności, MetodaPłatności, KosztSzacunkowy, KosztKońcowy, KosztZMarżą, KosztCałkowityCzęści, WykonanaPraca, WykonawcaPracy FROM ZarządzanieZleceniami",
 
 
         };
-        private List<string> repairData = new();
-        private List<string> data = new();
 
-        private string[] companyColumn = { "NazwaFirmy", "AdresFirmy" };
-        private string[] clientColumn = { "Imię", "Nazwisko", "NrTelefonu", "AdresFirmy" };
-        private string[] carColumn = { "Marka", "Model", "Silnik", "RokProdukcji", };//10-1
-        private string[] historyColumn = { "DataPrzyjęcia", "NrRejestracji", "Przebieg", "DokumentySamochodu", "KluczykiSamochodu", "TestDrive", "Zlecenie", "Diagnostyka", "Naprawa" }; //18-1
-        private string[] repairColumn = { "Opis", "NumerCzęści", "Cena", "Ilość" };
-        private string[] orderManagementColumn = {"Przyjęty", "OczekujeNaOdbiór", "DataPrzyjęcie", "DataOczekiwaniaOdbioru", "DataPłatności", "MetodaPłatności", "KosztSzacunkowy", "KosztKońcowy", "KosztZMarżą", "WykonanaPraca", "WykonawcaPracy" };//27
+        readonly private string[] companyColumn = { "NazwaFirmy", "AdresFirmy" };
+        readonly private string[] clientColumn = { "Imię", "Nazwisko", "NrTelefonu", "AdresFirmy" };
+        readonly private string[] carColumn = { "Marka", "Model", "Silnik", "RokProdukcji", };
+        readonly private string[] historyColumn = { "DataPrzyjęcia", "NrRejestracji", "Przebieg", "DokumentySamochodu", "KluczykiSamochodu", "TestDrive", "Zlecenie", "Diagnostyka", "Naprawa" };
+        readonly private string[] repairColumn = { "Opis", "NumerCzęści", "Cena", "Ilość" };
+        readonly private string[] orderManagementColumn = { "DataPrzyjęcie", "DataOczekiwaniaOdbioru", "DataPłatności", "MetodaPłatności", "KosztSzacunkowy", "KosztKońcowy", "KosztZMarżą", "KosztCałkowityCzęści", "WykonanaPraca", "WykonawcaPracy" };
 
-        private string directory = "pdf\\";
+        readonly private string[] company = new string[2];
+        readonly private string[] client = new string[4];
+        readonly private string[] car = new string[4];
+        readonly private string[] history = new string[9];
+        readonly private string[] repair = new string[4];
+        readonly private string[] orderManagement = new string[12];
+
+        readonly private string directory = "pdf\\";
         public void Create(string vin)
         {
             VIN = vin;
             string path = directory + vin;
-            read(); //read Data
+            Read(); //read Data
             WritePDF();
             MessageBox.Show("PDF generated successfully!");
-            /*if (Directory.Exists(path))
-            {
-                Process.Start($"{path}\\PDF.pdf");
-            }            
-*/
+            MessageBox.Show("" + System.IO.File.Exists(path + "\\PDF.pdf"));
+            /*            if (System.IO.File.Exists(directory + VIN + "\\PDF.pdf"))
+                        {
+                            Process.Start($"{directory + VIN}\\PDF.pdf");
+                        }*/
+
         }
-        private void read()
+        private void Read()
         {
             string[][] columnArrays = { clientColumn, carColumn, historyColumn, repairColumn, orderManagementColumn };
+            string[][] dataArrays = { client, car, history, repair, orderManagement };
 
             using SQLiteConnection conn = new(connectionString);
             conn.Open();
@@ -53,8 +61,8 @@ namespace Warsztat_2
 
             while (reader.Read())
             {
-                data.Add($"{reader[companyColumn[0]]}");
-                data.Add($"{reader[companyColumn[1]]}");
+                company[0] = $"{reader[companyColumn[0]]}";
+                company[1] = $"{reader[companyColumn[1]]}";
             }
 
             for (int i = 0; i < sqlcommand.Length; i++)
@@ -65,28 +73,23 @@ namespace Warsztat_2
                 {
                     foreach (string column in columnArrays[i])
                     {
-                        if (i == 3)
-                        {
-                            repairData.Add($"{read[column]}");
-                        }
-                        else if(i != 3)
-                        {
-                        data.Add($"{read[column]}");
-                        }
-                        
+                        dataArrays[i][Array.IndexOf(columnArrays[i], column)] = $"{read[column]}";
                     }
                 }
             }
         }
         private void WritePDF()
         {
+            string[] clientWrite = { "Imię", "Nazwisko", "Nr. kontaktowy", "Adres" };
+            string[] carWrite = { "Marka", "Model", "Engine", "Rok produkcji" };
+            string[] orderManagementWrite = { "Przyjęty", "Oddany", "Data płatności", "Sposób płatności", "Koszt szacunkowy", "Koszt końcowy", "Cena na części wraz z marżą" };
             #region generetePDF
-            Document document = new Document();
+            Document document = new();
             Section section = document.AddSection();
             #endregion
             #region title
             // Додавання тексту "Назва фірми"
-            Paragraph companyName = section.AddParagraph(data[0]);
+            Paragraph companyName = section.AddParagraph(company[0]);
             companyName.Format.Font.Size = 22;
             companyName.Format.Font.Name = "Courier New"; // Задати назву шрифта
             companyName.Format.Alignment = ParagraphAlignment.Center;
@@ -111,26 +114,23 @@ namespace Warsztat_2
             Paragraph clientInfo = infoRow.Cells[0].AddParagraph();
             clientInfo.Format.Font.Name = "Courier New"; // Задати назву шрифта
             clientInfo.AddFormattedText("Dane klienta:", TextFormat.Bold);
-            clientInfo.AddLineBreak();
-            clientInfo.AddText($"Imię: {data[2]}");
-            clientInfo.AddLineBreak();
-            clientInfo.AddText($"Nazwisko: {data[3]}");
-            clientInfo.AddLineBreak();
-            clientInfo.AddText($"Nr. kontaktowy: {data[4]}");
-            clientInfo.AddLineBreak();
-            clientInfo.AddText($"Adres: {data[5]}");
+
+            for(byte x = 0; x<clientWrite.Length; x++)
+            {
+                clientInfo.AddLineBreak();
+                clientInfo.AddText($"{clientWrite[x]}: {client[x]}");
+            }
             #endregion
             #region car
             // Дані автомобіля
             Paragraph carInfo = infoRow.Cells[1].AddParagraph();
             carInfo.Format.Font.Name = "Courier New"; // Задати назву шрифта
             carInfo.AddFormattedText("Dane samochodu:", TextFormat.Bold);
-            carInfo.AddLineBreak();
-            carInfo.AddText($"Marka: {data[6]}");
-            carInfo.AddLineBreak();
-            carInfo.AddText($"Model: {data[7]}");
-            carInfo.AddLineBreak();
-            carInfo.AddText($"Engine: {data[8]}");
+            for (byte x = 0; x < carWrite.Length; x++)
+            {
+                carInfo.AddLineBreak();
+                carInfo.AddText($"{carWrite[x]}: {car[x]}");
+            }
             carInfo.AddLineBreak();
             carInfo.AddText($"Numer nadwozia: {VIN}");
             #endregion
@@ -141,7 +141,7 @@ namespace Warsztat_2
             section.AddParagraph();
 
             // Додавання заголовку "Історія машини"
-            Paragraph carHistoryTitle = section.AddParagraph("Historia samochodu u " + data[0]);
+            Paragraph carHistoryTitle = section.AddParagraph("Historia samochodu u " + company[0]);
             carHistoryTitle.Format.Font.Name = "Courier New"; // Задати назву шрифта
             carHistoryTitle.Format.Font.Size = 14;
             #region create a table of history
@@ -163,23 +163,22 @@ namespace Warsztat_2
             Row headerRow = historyTable.AddRow();
             headerRow.Format.Font.Name = "Courier New"; // Задати назву шрифта
             headerRow.HeadingFormat = true;
-            headerRow.Cells[0].AddParagraph("Data przyjęcia");
-            headerRow.Cells[1].AddParagraph("Nr Rejestracji");
-            headerRow.Cells[2].AddParagraph("Przebieg");
-            headerRow.Cells[3].AddParagraph("Zlecenie");
-            headerRow.Cells[4].AddParagraph("Diagnostyka");
-            headerRow.Cells[5].AddParagraph("Naprawa");
+            string[] historyWriteTable = { "Data przyjęcia", "Nr Rejestracji", "Przebieg", "Zlecenie", "Diagnostyka", "Naprawa"};
+
+            for (byte x = 0; x< historyWriteTable.Length; x++)
+                headerRow.Cells[x].AddParagraph(historyWriteTable[x]);
+            
             #endregion
             #region add data to table
             Row dataRow = historyTable.AddRow();
             dataRow.Format.Font.Name = "Courier New"; // Задати назву шрифта
             dataRow.Format.Font.Size = 10;
-            dataRow.Cells[0].AddParagraph(data[10]);
-            dataRow.Cells[1].AddParagraph(data[11]);
-            dataRow.Cells[2].AddParagraph(data[12]);
-            dataRow.Cells[3].AddParagraph(data[16]);
-            dataRow.Cells[4].AddParagraph(data[17]);
-            dataRow.Cells[5].AddParagraph(data[18]);
+            dataRow.Cells[0].AddParagraph(history[0]);
+            dataRow.Cells[1].AddParagraph(history[1]);
+            dataRow.Cells[2].AddParagraph(history[2]);
+            dataRow.Cells[3].AddParagraph(history[6]);
+            dataRow.Cells[4].AddParagraph(history[7]);
+            dataRow.Cells[5].AddParagraph(history[8]);
             #endregion                                 // Додавання лінії для підпису клієнта
             #endregion
             #region table of repair
@@ -210,14 +209,14 @@ namespace Warsztat_2
             rowRepair.HeadingFormat = true;
             rowRepair.Format.Font.Name = "Courier New"; // Задати назву шрифта
 
-            rowRepair.Cells[0].AddParagraph("Opis");
-            rowRepair.Cells[1].AddParagraph("Numer części");
-            rowRepair.Cells[2].AddParagraph("Cena");
-            rowRepair.Cells[3].AddParagraph("Ilość");
+            string[] RepairWriteTable = { "Opis", "Numer części", "Cena", "Ilość"};
+            for (byte x = 0; x < RepairWriteTable.Length; x++)
+                rowRepair.Cells[x].AddParagraph(RepairWriteTable[x]);
+
             #endregion
             #region add repair data to table
             // Перевіряємо, чи не вийшли за межі списку repairData
-            int rowCount = (int)Math.Ceiling((double)repairData.Count) / 4;
+            int rowCount = (int)Math.Ceiling((double)repair.Length / 4);
             for (byte row = 0; row < rowCount; row++)
             {
                 Row dataRowRepair = RepairTable.AddRow();
@@ -225,43 +224,42 @@ namespace Warsztat_2
                 dataRowRepair.Format.Font.Size = 10;
                 for (byte columnIndex = 0; columnIndex < 4; columnIndex++)
                 {
-                    int dataIndex = row * 4 + columnIndex;// Індекс поточного елемента в списку repairData
-                    // Перевіряємо, чи не вийшли за межі списку repairData
-                    if (dataIndex < repairData.Count)
+                    int dataIndex = row * 4 + columnIndex; // Індекс поточного елемента в масиві repair
+                                                           // Перевіряємо, чи не вийшли за межі масиву repair
+                    if (dataIndex < repair.Length)
                     {
-                        dataRowRepair.Cells[columnIndex].AddParagraph(repairData[dataIndex++]);
+                        dataRowRepair.Cells[columnIndex].AddParagraph(repair[dataIndex]);
                     }
                 }
             }
+            Paragraph sumPriceRepair = section.AddParagraph($"Łączna cena: {orderManagement[7]}");
+            sumPriceRepair.AddLineBreak();
+            sumPriceRepair.Format.Font.Name = "Courier New"; // Задати назву шрифта
+            sumPriceRepair.Format.Font.Size = 10;
+
+
 
             #endregion
             #endregion
             #region OrderManagement
-            string leftDocument = (data[13] == "1") ? "Klient zostawił dokumenty":"Klient nie zostawił dokumentów";
-            string leftKey = (data[14] == "1") ? "Klient zostawił klucze samochodowe" : "Klient nie zostawił kluczyków samochodowych"; ;
-            string TestDrive = (data[15] == "1") ? "Klient wyraża zgodę na jazdę próbną" : "Klient nie wyrażił zgody na jazdę próbną"; ;
+            string leftDocument = (history[4] == "1") ? "Klient zostawił dokumenty" : "Klient nie zostawił dokumentów";
+            string leftKey = (history[5] == "1") ? "Klient zostawił klucze samochodowe" : "Klient nie zostawił kluczyków samochodowych"; ;
+            string TestDrive = (history[6] == "1") ? "Klient wyraża zgodę na jazdę próbną" : "Klient nie wyrażił zgody na jazdę próbną"; ;
             section.AddParagraph();
             Paragraph OrderManagementTitle = section.AddParagraph("Zlecenie");
             OrderManagementTitle.Format.Font.Name = "Courier New"; // Задати назву шрифта
             OrderManagementTitle.Format.Font.Size = 14;
 
-            Paragraph orderManagementInfo = section.AddParagraph(); 
+            Paragraph orderManagementInfo = section.AddParagraph();
             orderManagementInfo.Format.Font.Name = "Courier New"; // Задати назву шрифта
             orderManagementInfo.Format.Font.Size = 10;
-            orderManagementInfo.AddLineBreak();
-            orderManagementInfo.AddText($"Przyjęty: {data[21]}");
-            orderManagementInfo.AddLineBreak();
-            orderManagementInfo.AddText($"Oddany: {data[22]}");
-            orderManagementInfo.AddLineBreak();
-            orderManagementInfo.AddText($"Data płatności: {data[23]}");
-            orderManagementInfo.AddLineBreak();
-            orderManagementInfo.AddText($"Sposób płatności: {data[24]}");
-            /*orderManagementInfo.AddLineBreak();
-            orderManagementInfo.AddText($"Koszt szacunkowy: {data[23]}");*/
-            orderManagementInfo.AddLineBreak();
-            orderManagementInfo.AddText($"Koszt końcowy: {data[26]}");
-            orderManagementInfo.AddLineBreak();
-            orderManagementInfo.AddText($"Cena na części wraz z marżą: {data[27]}");
+            
+            for (byte x = 0; x < orderManagementWrite.Length; x++)
+            {
+                orderManagementInfo.AddLineBreak();
+                orderManagementInfo.AddText($"{orderManagementWrite[x]}: {orderManagement[x]}");
+            }
+
             orderManagementInfo.AddLineBreak();
             orderManagementInfo.AddText($"Zostawione Dokumenty od samochodu: {leftDocument}");
             orderManagementInfo.AddLineBreak();
@@ -269,14 +267,32 @@ namespace Warsztat_2
             orderManagementInfo.AddLineBreak();
             orderManagementInfo.AddText($"TestDrive: {TestDrive}");
             orderManagementInfo.AddLineBreak();
-            MessageBox.Show(data.Count.ToString());
-            orderManagementInfo.AddText($"Kto wykonał robotę: {data[29]}");
+            orderManagementInfo.AddText($"Kto wykonał robotę: {orderManagement[9]}");
+            #endregion
+            #region signature
+            // Створюємо прямокутник
+            // Create a TextFrame for the page header
+            section.AddParagraph();
+            Table table0 = section.AddTable();
+            table0.Borders.Width = 0;
+
+            Column column0 = table0.AddColumn(Unit.FromCentimeter(10));
+            Column column1 = table0.AddColumn(Unit.FromCentimeter(10));
+
+
+            Row row0 = table0.AddRow();
+
+            row0.Height = 100;
+            DrawReactangle(section, row0, 0, "Podpis Klienta");//Прямокутник по лівій стороні
+            DrawReactangle(section, row0, 1, "Pieczątka Firmy");//Прямокутник по правій стороні
             #endregion
             #region save pdf
             // Збереження документу
 
-            PdfDocumentRenderer renderer = new();
-            renderer.Document = document;
+            PdfDocumentRenderer renderer = new()
+            {
+                Document = document
+            };
             renderer.RenderDocument();
             if (!Directory.Exists(directory + VIN)) // string path = directory + vin;           rivate string directory = "pdf\\";
             {
@@ -285,9 +301,23 @@ namespace Warsztat_2
             renderer.PdfDocument.Save($"{directory + VIN}\\PDF.pdf");
             #endregion
             #region clear Data
-            data.Clear();
-            repairData.Clear();
             #endregion
+        }
+        private void DrawReactangle(Section section, Row row, byte num, string text)
+        {
+            TextFrame footerFrame1 = row.Cells[num].AddTextFrame();
+
+            Paragraph tableData1 = row.Cells[num].AddParagraph();
+            tableData1.Format.Font.Name = "Courier New"; // Задати назву шрифта
+            tableData1.AddFormattedText(text, TextFormat.Bold);
+
+
+            footerFrame1.Width = 100;
+            footerFrame1.Height = 50; // Висота прямокутника
+            footerFrame1.LineFormat.Color = MigraDoc.DocumentObjectModel.Colors.Black; // Колір межі
+            footerFrame1.LineFormat.Width = 1; // Ширина межі
+            footerFrame1.Left = 0; // Позиція по лівому краю
+            footerFrame1.Top = section.PageSetup.PageHeight; // Позиція по верхньому краю
         }
     }
 }

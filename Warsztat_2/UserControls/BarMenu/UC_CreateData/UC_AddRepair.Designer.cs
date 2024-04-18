@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
             IloscNumericUpDown = new NumericUpDown();
             PriceNumericUpDown = new NumericUpDown();
             StanCheckBox = new CheckBox();
@@ -50,7 +50,6 @@
             Ilość_Column = new DataGridViewTextBoxColumn();
             Suma_Column = new DataGridViewTextBoxColumn();
             DateRepair = new DataGridViewTextBoxColumn();
-            label6 = new Label();
             VIN_label = new Label();
             ViewCar = new DataGridView();
             ID_Column = new DataGridViewTextBoxColumn();
@@ -66,6 +65,7 @@
             DescriptionTextBox = new TextBox();
             RepairTimePicker = new DateTimePicker();
             label1 = new Label();
+            ButtonOrderManagement = new Button();
             ((System.ComponentModel.ISupportInitialize)IloscNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ViewRepair).BeginInit();
@@ -155,24 +155,24 @@
             ViewRepair.BorderStyle = BorderStyle.None;
             ViewRepair.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             ViewRepair.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.LightGray;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            ViewRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = Color.LightGray;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            ViewRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             ViewRepair.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ViewRepair.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID, Wykonane_Checked, Opis_Column, NrCzęści_Column, Cena_Column, Ilość_Column, Suma_Column, DateRepair });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            ViewRepair.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
+            ViewRepair.DefaultCellStyle = dataGridViewCellStyle9;
             ViewRepair.EnableHeadersVisualStyles = false;
             ViewRepair.Location = new Point(0, 305);
             ViewRepair.Name = "ViewRepair";
@@ -217,9 +217,9 @@
             // Cena_Column
             // 
             Cena_Column.DataPropertyName = "Cena";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            Cena_Column.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Format = "C2";
+            dataGridViewCellStyle8.NullValue = null;
+            Cena_Column.DefaultCellStyle = dataGridViewCellStyle8;
             Cena_Column.HeaderText = "Cena";
             Cena_Column.Name = "Cena_Column";
             // 
@@ -241,26 +241,15 @@
             DateRepair.HeaderText = "DataNapraw";
             DateRepair.Name = "DateRepair";
             // 
-            // label6
-            // 
-            label6.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.ForeColor = Color.FromArgb(224, 224, 224);
-            label6.Location = new Point(3, 271);
-            label6.Name = "label6";
-            label6.Size = new Size(302, 28);
-            label6.TabIndex = 25;
-            label6.Text = "Dane zostaną przypisane do samochodu VIN:";
-            // 
             // VIN_label
             // 
             VIN_label.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             VIN_label.ForeColor = Color.FromArgb(224, 224, 224);
-            VIN_label.Location = new Point(311, 271);
+            VIN_label.Location = new Point(295, 268);
             VIN_label.Name = "VIN_label";
             VIN_label.Size = new Size(187, 27);
             VIN_label.TabIndex = 25;
             VIN_label.Text = "Brak";
-            VIN_label.Click += VIN_label_Click;
             // 
             // ViewCar
             // 
@@ -270,24 +259,24 @@
             ViewCar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ViewCar.BorderStyle = BorderStyle.None;
             ViewCar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.LightGray;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            ViewCar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = Color.LightGray;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            ViewCar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             ViewCar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ViewCar.Columns.AddRange(new DataGridViewColumn[] { ID_Column, Marka_Column, Model_Column, RokProdukcji_Column, VIN_Column });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            ViewCar.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            ViewCar.DefaultCellStyle = dataGridViewCellStyle12;
             ViewCar.EnableHeadersVisualStyles = false;
             ViewCar.Location = new Point(0, 0);
             ViewCar.Name = "ViewCar";
@@ -324,9 +313,9 @@
             // VIN_Column
             // 
             VIN_Column.DataPropertyName = "VIN";
-            dataGridViewCellStyle5.Format = "km";
-            dataGridViewCellStyle5.NullValue = null;
-            VIN_Column.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Format = "km";
+            dataGridViewCellStyle11.NullValue = null;
+            VIN_Column.DefaultCellStyle = dataGridViewCellStyle11;
             VIN_Column.HeaderText = "VIN";
             VIN_Column.Name = "VIN_Column";
             // 
@@ -436,18 +425,34 @@
             label1.TabIndex = 25;
             label1.Text = "Zarządzenie Zleceniem";
             // 
+            // ButtonOrderManagement
+            // 
+            ButtonOrderManagement.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            ButtonOrderManagement.BackColor = Color.FromArgb(94, 148, 255);
+            ButtonOrderManagement.FlatAppearance.BorderSize = 0;
+            ButtonOrderManagement.FlatStyle = FlatStyle.Flat;
+            ButtonOrderManagement.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            ButtonOrderManagement.ForeColor = Color.LightGray;
+            ButtonOrderManagement.Location = new Point(0, 262);
+            ButtonOrderManagement.Name = "ButtonOrderManagement";
+            ButtonOrderManagement.Size = new Size(289, 36);
+            ButtonOrderManagement.TabIndex = 28;
+            ButtonOrderManagement.Text = "Zarządzaj zleceniem";
+            ButtonOrderManagement.UseVisualStyleBackColor = false;
+            ButtonOrderManagement.Click += ButtonOrderManagement_Click;
+            // 
             // UC_AddRepair
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.FromArgb(64, 64, 64);
+            Controls.Add(ButtonOrderManagement);
             Controls.Add(RepairTimePicker);
             Controls.Add(panelDodatkowy);
             Controls.Add(ViewCar);
             Controls.Add(ViewRepair);
             Controls.Add(label1);
-            Controls.Add(label6);
             Controls.Add(VIN_label);
             Name = "UC_AddRepair";
             Size = new Size(1040, 580);
@@ -469,7 +474,6 @@
         private DataGridView ViewRepair;
         private NumericUpDown IloscNumericUpDown;
         private NumericUpDown PriceNumericUpDown;
-        private Label label6;
         private Label VIN_label;
         private DataGridView ViewCar;
         private Panel panelDodatkowy;
@@ -494,5 +498,6 @@
         private DataGridViewTextBoxColumn Ilość_Column;
         private DataGridViewTextBoxColumn Suma_Column;
         private DataGridViewTextBoxColumn DateRepair;
+        private Button ButtonOrderManagement;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Data.SQLite;
+using Warsztat_2.UserControls.BarMenu.UC_CreateData;
 
 
 namespace Warsztat_2._0.UserControls.UC_CreateData
@@ -11,12 +12,11 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         Repair repair = new();
 
         private protected ushort Id_Repair;
+        private string? pricePart;
+
 
         #endregion
         #region Event
-        public event EventHandler<string> VINChanged;
-        public event EventHandler<ushort> Price;
-        private ushort pricePart;
         private async void UC_AddOrderRepair_Load(object sender, EventArgs e)
         {
             await LoadCarData();
@@ -53,7 +53,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             NrPartTextBox.Text = ViewRepair.CurrentRow.Cells["NrCzęści_Column"].Value.ToString();
             PriceNumericUpDown.Text = ViewRepair.CurrentRow.Cells["Cena_Column"].Value.ToString();
             IloscNumericUpDown.Text = ViewRepair.CurrentRow.Cells["Ilość_Column"].Value.ToString();
-            
+
             StanCheckBox.Checked = ViewRepair.CurrentRow.Cells["Wykonane_Checked"].Value.ToString() == "1";
 
             RepairTimePicker.Text = ViewRepair.CurrentRow.Cells["DateRepair"].Value.ToString();
@@ -267,8 +267,8 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
                     totalPrice += price;
                 }
             }
-            
-            pricePart = (ushort)totalPrice;
+
+            pricePart = totalPrice.ToString();
         }
 
         private void VIN_label_Click(object sender, EventArgs e)
@@ -276,8 +276,6 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             if (VIN_label.Text != "Brak")
             {
                 SumRepair();
-                VINChanged?.Invoke(this, VIN_label.Text);
-                Price.Invoke(this, pricePart);
             }
         }
 
@@ -292,8 +290,21 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
         }
         private void Sum()
         {
-           decimal sum = PriceNumericUpDown.Value * IloscNumericUpDown.Value;
+            decimal sum = PriceNumericUpDown.Value * IloscNumericUpDown.Value;
             SumLabel.Text = sum.ToString();
+        }
+
+        private void ButtonOrderManagement_Click(object sender, EventArgs e)
+        {
+            if (VIN_label.Text != "Brak")
+            {
+                SumRepair();
+                string[] data = { $"{VIN_label.Text}", $"{pricePart}" };
+                Form_AddOrderManagement form_AddOrderManagement = new();
+                form_AddOrderManagement.SendDataFromLastWindow(data);
+                form_AddOrderManagement.ShowDialog();
+
+            }                      
         }
     }
 }

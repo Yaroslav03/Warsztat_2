@@ -148,11 +148,11 @@ namespace Warsztat_2._0.UserControls
 
         void OrderButton_Click(object sender, EventArgs e)
         {
-            GeneretePDF pdf = new GeneretePDF();
+            GeneretePDF pdf = new();
             pdf.Create(vin);
         }
 
-        private void readData()
+        private void ReadData()
         {
 
             clientRead[0] = $"{ViewActualData.CurrentRow.Cells["Imię_Column"].Value.ToString()}";
@@ -166,7 +166,7 @@ namespace Warsztat_2._0.UserControls
         }
         private void ViewActualData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            readData();
+            ReadData();
         }
 
         private void ViewActualData_CellContentClick(object sender, DataGridViewCellEventArgs e)

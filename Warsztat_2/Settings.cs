@@ -1,6 +1,4 @@
-﻿using System.Data.SQLite;
-
-namespace Warsztat_2._0
+﻿namespace Warsztat_2._0
 {
     internal class Settings
     {
@@ -23,64 +21,6 @@ namespace Warsztat_2._0
 
             // Увімкнемо перередження після додавання контрола
             panel.ResumeLayout();
-        }
-        public static void CheckScheduleCar()
-        {
-            string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
-            Cursor.Current = Cursors.WaitCursor;
-            string today = DateTime.Today.ToString("D");
-
-            MessageBox.Show(today);
-            try
-            {
-                using SQLiteConnection conn = new(connection);
-
-                conn.Open();
-
-                using SQLiteCommand cmd = new("SELECT Imię, Nazwisko, Telefon, Marka, Model, Problem, DataPrzyjęcia FROM ZaplanowaneSamochody WHERE DataPrzyjęcia = @DataPrzyjęcia", conn);
-
-                cmd.Parameters.AddWithValue("@DataPrzyjęcia", today);
-
-                using SQLiteDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)//перевірка чи є стовпці в базі даних, якщо немає то код не буде засмічувати пам'ять коли не потрібно
-                {
-                    while (reader.Read())
-                    {
-                        Client client = new()
-                        {
-                            Name = reader["Imię"].ToString(),
-                            Surname = reader["Nazwisko"].ToString(),
-                            PhoneNumber = reader["Telefon"].ToString()
-                        };
-
-                        Car car = new()
-                        {
-                            Marka = reader["Marka"].ToString(),
-                            Model = reader["Model"].ToString(),
-                        };
-
-                        Repair order = new()
-                        {
-                            Problem = reader["Problem"].ToString(),
-                            ScheduleCar = reader["DataPrzyjęcia"].ToString()
-                        };
-
-                        MessageBox.Show($"Uwaga na dzisiaj {order.ScheduleCar} zaplanowano {car.Marka} {car.Model} klienta {client.Name} ({client.PhoneNumber}). Klient ma następujący problem: {order.Problem}",
-                            "Zaplanowana praca na dzisiaj", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Wystąpił błąd: " + ex.Message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                Car.Reset();
-                Client.Reset();
-                Repair.Reset();
-                Cursor.Current = Cursors.Default;
-            }
         }
         public static async Task Error(Exception ex, Queue<string> dataValue, string title_log, string category_log)
         {

@@ -64,14 +64,12 @@ namespace Warsztat_2.UserControls.BarMenu.Archive
                         }
                     }
 
-                    using (SQLiteCommand cmdCAR = new($"SELECT Model, Marka FROM Samochód WHERE VIN LIKE '%{vin}'", conn))
+                    using SQLiteCommand cmdCAR = new($"SELECT Model, Marka FROM Samochód WHERE VIN LIKE '%{vin}'", conn);
+                    using SQLiteDataReader carRead = cmdCAR.ExecuteReader();
+                    while (carRead.Read())
                     {
-                        using SQLiteDataReader carRead = cmdCAR.ExecuteReader();
-                        while (carRead.Read())
-                        {
-                            car[0] = $"{carRead["Marka"]}";
-                            car[1] = $"{carRead["Model"]}";
-                        }
+                        car[0] = $"{carRead["Marka"]}";
+                        car[1] = $"{carRead["Model"]}";
                     }
                 });
                 Task task2 = Task.Run(() =>
@@ -86,17 +84,15 @@ namespace Warsztat_2.UserControls.BarMenu.Archive
                         }
                     }
                     //////////////////////////////////////////////////
-                    using (SQLiteCommand cmdOrderManagement = new($"SELECT Przyjęty, OczekujeNaOdbiór, DataPrzyjęcie, KosztZMarżą FROM ZarządzanieZleceniami WHERE VIN LIKE '%{vin}'", conn))
+                    using SQLiteCommand cmdOrderManagement = new($"SELECT Przyjęty, OczekujeNaOdbiór, DataPrzyjęcie, KosztZMarżą FROM ZarządzanieZleceniami WHERE VIN LIKE '%{vin}'", conn);
+                    using SQLiteDataReader orderManagementRead = cmdOrderManagement.ExecuteReader();
+                    while (orderManagementRead.Read())
                     {
-                        using SQLiteDataReader orderManagementRead = cmdOrderManagement.ExecuteReader();
-                        while (orderManagementRead.Read())
-                        {
-                            orderManagemnt[0] = $"{orderManagementRead["Przyjęty"]}";
-                            orderManagemnt[1] = $"{orderManagementRead["OczekujeNaOdbiór"]}";
-                            orderManagemnt[2] = $"{orderManagementRead["DataPrzyjęcie"]}";
-                            orderManagemnt[3] = $"{orderManagementRead["KosztZMarżą"]}";
+                        orderManagemnt[0] = $"{orderManagementRead["Przyjęty"]}";
+                        orderManagemnt[1] = $"{orderManagementRead["OczekujeNaOdbiór"]}";
+                        orderManagemnt[2] = $"{orderManagementRead["DataPrzyjęcie"]}";
+                        orderManagemnt[3] = $"{orderManagementRead["KosztZMarżą"]}";
 
-                        }
                     }
                 });
                 Task.WaitAll(task1, task2);

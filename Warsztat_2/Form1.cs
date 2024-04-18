@@ -50,7 +50,7 @@ namespace Warsztat_2
             // Потік 1 для виконання Settings.CheckScheduleCar()
             Task task1 = Task.Run(() =>
             {
-                Settings.CheckScheduleCar();
+                SqlCmd.CheckScheduleCar();
             });
 
             // Очікуємо завершення обох завдань

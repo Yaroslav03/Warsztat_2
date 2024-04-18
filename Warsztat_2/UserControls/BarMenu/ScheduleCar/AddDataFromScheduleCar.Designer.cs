@@ -96,7 +96,7 @@
             AdressCompanyTextBox.Name = "AdressCompanyTextBox";
             AdressCompanyTextBox.PlaceholderText = "Adres Firmy";
             AdressCompanyTextBox.Size = new Size(222, 22);
-            AdressCompanyTextBox.TabIndex = 13;
+            AdressCompanyTextBox.TabIndex = 0;
             // 
             // NIPTextBox
             // 
@@ -110,7 +110,7 @@
             NIPTextBox.Name = "NIPTextBox";
             NIPTextBox.PlaceholderText = "NIP";
             NIPTextBox.Size = new Size(155, 22);
-            NIPTextBox.TabIndex = 13;
+            NIPTextBox.TabIndex = 1;
             // 
             // labelTelephone
             // 
@@ -190,8 +190,8 @@
             panel1.Controls.Add(EngineTextBox);
             panel1.Controls.Add(panel9);
             panel1.Controls.Add(NumLenghtNadwoziaLabel);
-            panel1.Controls.Add(label4);
             panel1.Controls.Add(VINTextBox);
+            panel1.Controls.Add(label4);
             panel1.Controls.Add(panel6);
             panel1.ForeColor = Color.DimGray;
             panel1.Location = new Point(14, 218);
@@ -211,7 +211,7 @@
             RegistrationNumberTextBox.Name = "RegistrationNumberTextBox";
             RegistrationNumberTextBox.PlaceholderText = "Numer Rejestracji";
             RegistrationNumberTextBox.Size = new Size(168, 22);
-            RegistrationNumberTextBox.TabIndex = 31;
+            RegistrationNumberTextBox.TabIndex = 6;
             // 
             // panel4
             // 
@@ -233,7 +233,7 @@
             MileageTextBox.Name = "MileageTextBox";
             MileageTextBox.PlaceholderText = "Przebieg";
             MileageTextBox.Size = new Size(155, 22);
-            MileageTextBox.TabIndex = 29;
+            MileageTextBox.TabIndex = 7;
             // 
             // panel11
             // 
@@ -255,7 +255,7 @@
             EngineTextBox.Name = "EngineTextBox";
             EngineTextBox.PlaceholderText = "Silnik";
             EngineTextBox.Size = new Size(155, 22);
-            EngineTextBox.TabIndex = 25;
+            EngineTextBox.TabIndex = 5;
             // 
             // panel9
             // 
@@ -269,7 +269,7 @@
             // 
             NumLenghtNadwoziaLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             NumLenghtNadwoziaLabel.ForeColor = Color.Silver;
-            NumLenghtNadwoziaLabel.Location = new Point(59, 21);
+            NumLenghtNadwoziaLabel.Location = new Point(42, 60);
             NumLenghtNadwoziaLabel.Name = "NumLenghtNadwoziaLabel";
             NumLenghtNadwoziaLabel.Size = new Size(34, 16);
             NumLenghtNadwoziaLabel.TabIndex = 19;
@@ -280,7 +280,7 @@
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(224, 224, 224);
-            label4.Location = new Point(23, 16);
+            label4.Location = new Point(6, 55);
             label4.Name = "label4";
             label4.Size = new Size(40, 21);
             label4.TabIndex = 20;
@@ -295,17 +295,17 @@
             VINTextBox.Cursor = Cursors.IBeam;
             VINTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             VINTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            VINTextBox.Location = new Point(14, 40);
+            VINTextBox.Location = new Point(3, 3);
             VINTextBox.Name = "VINTextBox";
             VINTextBox.PlaceholderText = "VIN";
             VINTextBox.Size = new Size(243, 22);
-            VINTextBox.TabIndex = 21;
+            VINTextBox.TabIndex = 4;
             VINTextBox.TextChanged += VINTextBox_TextChanged;
             // 
             // panel6
             // 
             panel6.BackColor = SystemColors.GrayText;
-            panel6.Location = new Point(14, 66);
+            panel6.Location = new Point(3, 29);
             panel6.Name = "panel6";
             panel6.Size = new Size(243, 10);
             panel6.TabIndex = 22;
@@ -351,7 +351,7 @@
             ProblemTextBox.Name = "ProblemTextBox";
             ProblemTextBox.PlaceholderText = "Problem samochodu";
             ProblemTextBox.Size = new Size(314, 67);
-            ProblemTextBox.TabIndex = 7;
+            ProblemTextBox.TabIndex = 2;
             // 
             // label1
             // 
@@ -399,7 +399,7 @@
             YearOfProductionNumericUpDown.Minimum = new decimal(new int[] { 1900, 0, 0, 0 });
             YearOfProductionNumericUpDown.Name = "YearOfProductionNumericUpDown";
             YearOfProductionNumericUpDown.Size = new Size(70, 23);
-            YearOfProductionNumericUpDown.TabIndex = 30;
+            YearOfProductionNumericUpDown.TabIndex = 3;
             YearOfProductionNumericUpDown.Value = new decimal(new int[] { 2000, 0, 0, 0 });
             // 
             // label11

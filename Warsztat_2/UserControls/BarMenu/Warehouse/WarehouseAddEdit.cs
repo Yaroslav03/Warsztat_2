@@ -20,7 +20,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
                 PrepareDataToSave();
 
                 using SQLiteConnection conn = new(connection);
-                conn.Open();
+                await conn.OpenAsync();
                 using SQLiteCommand add = new("INSERT INTO Magazyn (Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość) " +
                     "VALUES (@Typ, @Nazwa, @NumerCzęści, @Opis, @Cena, @Ilość)", conn);
 
@@ -46,9 +46,11 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
         }
         private void PrepareDataToSave()
         {
+            string type = CategoryListBox.SelectedItem?.ToString() ?? "Brak";
+
             warehouse = new WarehouseData
             {
-                Type = CategoryListBox.SelectedItem.ToString(),
+                Type = type,
                 PartNumber = NumberPartTextBox.Text,
                 Name = NameTextBox.Text,
                 Description = DescriptionTextBox.Text,

@@ -6,7 +6,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
     {
         private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
         private WarehouseData warehouseData = new();
-        WarehouseAddEdit warehouseAddEdit = new();
+        private readonly WarehouseAddEdit warehouseAddEdit = new();
         public UC_Warehouse()
         {
             InitializeComponent();
@@ -28,10 +28,12 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
 
         }
 
-        private void WarehouseAddButton_Click(object sender, EventArgs e)
+        private async void WarehouseAddButton_Click(object sender, EventArgs e)
         {
             warehouseAddEdit.ClearTextBox();
             warehouseAddEdit.ShowDialog();
+
+            await LoadTable();
         }
 
         private async void UC_Warehouse_Load(object sender, EventArgs e)

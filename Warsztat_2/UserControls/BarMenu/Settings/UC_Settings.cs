@@ -7,6 +7,7 @@ namespace Warsztat_2._0.UserControls
         // Змінна для збереження рядка підключення до бази даних
         private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
         readonly List<string> Employer = new();
+        private readonly string[] nameColumns = { "Imie", "Stanowisko", "Telefon" };
         public UC_Settings()
         {
             InitializeComponent();
@@ -18,7 +19,7 @@ namespace Warsztat_2._0.UserControls
             using SQLiteConnection conn = new(connection);
             conn.Open();
 
-            if (DataExists(conn))
+            if (SqlCmd.DataExists(conn, "DaneFirmy"))
             {
                 UpdateData(conn);
             }
@@ -26,6 +27,7 @@ namespace Warsztat_2._0.UserControls
             {
                 InsertData(conn);
             }
+            SaveDataButton.Text = "Odśwież";
         }
 
         private async void UC_Settings_Load(object sender, EventArgs e)
@@ -36,8 +38,8 @@ namespace Warsztat_2._0.UserControls
         }
         private async Task LoadData()
         {
-            await ReadDataEmployer();
             await LoadDataWarsztat();
+            await SqlCmd.ReadAddDataListBox(connection, "SELECT Imie, Stanowisko, Telefon FROM Pracownicy", nameColumns, ListBoxEmployer);
         }
         private async Task LoadDataWarsztat()
         {
@@ -54,7 +56,7 @@ namespace Warsztat_2._0.UserControls
                 using SQLiteDataReader reader = cmd.ExecuteReader();
 
                 // Перевірка наявності даних та виведення повідомлення при їх відсутності
-                if (!DataExistsRead(reader))
+                if (!SqlCmd.DataExistsRead(reader))
                 {
                     SaveDataButton.Text = "Zapisz";
                     MessageBox.Show("Brak recordów, Proszę wpisać dane firmy, dane wymagane do drukowania zamówień i faktur", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -104,22 +106,22 @@ namespace Warsztat_2._0.UserControls
 
             Employer.Clear();
 
-            await ReadDataEmployer();
+            await SqlCmd.ReadAddDataListBox(connection, "SELECT Imie, Stanowisko, Telefon FROM Pracownicy", nameColumns, ListBoxEmployer);
         }
 
         private async void RemoveEmployerButton_Click(object sender, EventArgs e)
         {
+            string? selectEmployer = (ListBoxEmployer.SelectedItem ?? "").ToString();
             // Переконатися, що є вибраний елемент у ListBoxEmployer
-            if (ListBoxEmployer.SelectedIndex >= 0)
+            if (ListBoxEmployer.SelectedIndex >= 0 && selectEmployer != null)
             {
-                // Отримати текст виділеного рядка
-                string? selectedRow = ListBoxEmployer.SelectedItem.ToString();
+                //string? selectEmployer = ListBoxEmployer.SelectedItem.ToString();
 
                 // Розділити рядок за допомогою коми
-                string[] rowData = selectedRow.Split(',');
+                string[] rowData = selectEmployer.Split(' ');
 
                 // Переконатися, що масив містить принаймні 3 елементи (Ім'я, Становище, Номер телефону)
-                if (rowData.Length >= 3)
+                if (rowData.Length == 3)
                 {
                     // Отримати номер телефону (третій елемент масиву після розділу)
                     string phoneNumber = rowData[2].Trim();
@@ -131,38 +133,28 @@ namespace Warsztat_2._0.UserControls
                     deletecmd.Parameters.AddWithValue("@Telefon", phoneNumber);
                     deletecmd.ExecuteNonQuery();
 
-                    phoneNumber = selectedRow = string.Empty;
+                    phoneNumber = selectEmployer = string.Empty;
                 }
                 else
                 {
                     MessageBox.Show("Обраний рядок не містить необхідних даних.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
             else
             {
                 MessageBox.Show("Brak danych, Proszę dodać pracowników zanim usuwać :D", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            await ReadDataEmployer();
+            await SqlCmd.ReadAddDataListBox(connection, "SELECT Imie, Stanowisko, Telefon FROM Pracownicy", nameColumns, ListBoxEmployer);
         }
 
         private async void UpdateEmployerButton_Click(object sender, EventArgs e)
         {
-            await ReadDataEmployer();
+            await SqlCmd.ReadAddDataListBox(connection, "SELECT Imie, Stanowisko, Telefon FROM Pracownicy", nameColumns, ListBoxEmployer);
         }
         #endregion
         #region Methods
-        private static bool DataExistsRead(SQLiteDataReader reader)
-        {
-            return reader.Read();
-        }
         ///////////
-        private static bool DataExists(SQLiteConnection conn)
-        {
-            using SQLiteCommand cmd = new("SELECT COUNT(*) FROM DaneFirmy", conn);
-            int count = Convert.ToInt32(cmd.ExecuteScalar());
-            return count > 0;
-        }
+
         private void InsertData(SQLiteConnection conn)
         {
             using SQLiteCommand cmd = new("INSERT INTO DaneFirmy (NazwaFirmy, AdresFirmy, NIP, NrTelefonu, BDO, KontoBankowe, Marża) " +
@@ -191,42 +183,6 @@ namespace Warsztat_2._0.UserControls
 
             cmd.ExecuteNonQuery();
         }
-        private async Task ReadDataEmployer()
-        {
-            try
-            {
-                List<string> Employer2 = new(); // Створюємо новий список, щоб зберігати дані
-
-                using SQLiteConnection conn = new(connection);
-                await conn.OpenAsync();
-                using SQLiteCommand readEmployer = new("SELECT Imie, Stanowisko, Telefon FROM Pracownicy", conn);
-                using SQLiteDataReader reader2 = readEmployer.ExecuteReader();
-
-                if (!DataExistsRead(reader2))
-                {
-                    MessageBox.Show("Brak recordów, Proszę wpisać dane pracowników", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                while (reader2.Read())
-                {
-                    Employer2.Add($"{reader2["Imie"]}, {reader2["Stanowisko"]}, {reader2["Telefon"]}");
-                }
-
-                // Встановлюємо нові дані у ListBoxEmployer за допомогою властивості Items
-                ListBoxEmployer.Items.Clear();
-                ListBoxEmployer.Items.AddRange(Employer2.ToArray());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Nie przewidziany warunek: " + ex.Message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
         #endregion
-
-        private void ListBoxEmployer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

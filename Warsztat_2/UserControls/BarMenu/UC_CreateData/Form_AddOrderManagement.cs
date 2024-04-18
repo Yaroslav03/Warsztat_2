@@ -1,14 +1,23 @@
-﻿using System.Data.SQLite;
-namespace Warsztat_2._0.UserControls.UC_CreateData
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SQLite;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Warsztat_2._0;
+using Warsztat_2._0.UserControls.UC_CreateData;
+
+namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
 {
-    public partial class UC_AddOrderManagement : UserControl
+    public partial class Form_AddOrderManagement : Form
     {
-        public UC_AddOrderManagement()
+        public Form_AddOrderManagement()
         {
             InitializeComponent();
-
-            OrderAddoptedTimePicker.Hide();
-            DateOfPay.Hide();
         }
         #region variables
         private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
@@ -52,6 +61,11 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             float num = (float)FinallPriceNumericUpDown.Value;
             MessageBox.Show($"{num}");
             await CalculateMarża(num);
+        }
+        public void SendDataFromLastWindow(string[] data)
+        {
+            Vin_Label.Text = data[0];
+            FinallPriceNumericUpDown.Value = Convert.ToDecimal(data[1]);
         }
 
         private async void UC_AddOrderManagement_Load(object sender, EventArgs e)
@@ -108,6 +122,15 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
 
         #endregion
         #region Methods
+        public void UpdateVIN(string newVIN)
+        {
+            Vin_Label.Text = newVIN;
+            VIN = newVIN;
+        }
+        public void AddPricePart(string pricePart)
+        {
+            LabelTotalCostOfParts.Text = pricePart;
+        }
         private void CollectData()
         {
 
@@ -364,5 +387,6 @@ namespace Warsztat_2._0.UserControls.UC_CreateData
             if (Vin_Label.Text != "")
                 await LoadDB();
         }
+
     }
 }

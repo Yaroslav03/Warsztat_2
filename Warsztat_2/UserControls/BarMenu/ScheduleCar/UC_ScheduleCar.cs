@@ -72,12 +72,12 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
             await SqlCmd.DeleteDataTable(DataScheduleView, e, connection, "BtnDelete", "ID_Column", "ZaplanowaneSamochody");
             if (e.ColumnIndex == DataScheduleView.Columns["btnAdd"].Index && DataScheduleView.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value)
             {
-                LoadDataToDB(e);
+                LoadDataToDB();
             }
 
             Cursor.Current = Cursors.Default;
         }
-        private async void LoadDataToDB(DataGridViewCellEventArgs e)
+        private async void LoadDataToDB()
         {
             try
             {
@@ -85,17 +85,17 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
                 TransferData transferData = new();
 
                 ////CopyDataToNewWindow
-                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["ID_Column"].Value.ToString()}");
-                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Imie_Column"].Value.ToString()}");
+                transferData.Data.Enqueue($"{DataScheduleView.CurrentRow.Cells["ID_Column"].Value.ToString()}");
+                transferData.Data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Imie_Column"].Value.ToString()}");
 
-                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Nazwisko_Column"].Value.ToString()}");
-                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Telefon_Column"].Value.ToString()}");
+                transferData.Data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Nazwisko_Column"].Value.ToString()}");
+                transferData.Data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Telefon_Column"].Value.ToString()}");
 
-                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Marka_Column"].Value.ToString()}");
-                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Model_Column"].Value.ToString()}");
+                transferData.Data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Marka_Column"].Value.ToString()}");
+                transferData.Data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Model_Column"].Value.ToString()}");
 
-                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["DataPrzyjecia_Column"].Value.ToString()}");
-                transferData.data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Problem_Column"].Value.ToString()}");
+                transferData.Data.Enqueue($"{DataScheduleView.CurrentRow.Cells["DataPrzyjecia_Column"].Value.ToString()}");
+                transferData.Data.Enqueue($"{DataScheduleView.CurrentRow.Cells["Problem_Column"].Value.ToString()}");
 
                 addData.SetDataToLoad(transferData);
 
@@ -183,5 +183,5 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
 }
 public class TransferData
 {
-    public Queue<string> data { get; set; } = new();
+    public Queue<string> Data { get; set; } = new();
 }

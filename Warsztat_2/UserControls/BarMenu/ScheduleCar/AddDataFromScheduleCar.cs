@@ -8,15 +8,13 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
         #region Values
         private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
         private Queue<string> data = new();
-        private string VIN, ID;
+        private string? VIN, ID;
         #endregion
 
         public AddDataFromScheduleCar()
         {
             InitializeComponent();
         }
-
-
         #region Event
 
         private void AddDataFromScheduleCar_Load(object sender, EventArgs e)
@@ -45,16 +43,10 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
         private void VINTextBox_TextChanged(object sender, EventArgs e)
         {
             NumLenghtNadwoziaLabel.Text = VINTextBox.TextLength.ToString();
-            VINTextBox.MaxLength = 17;
-            if (VINTextBox.TextLength == 17)
-            {
-                SaveDataButton.Enabled = true;
-            }
-            else
-            {
-                SaveDataButton.Enabled = false;
-            }
 
+            VINTextBox.MaxLength = 17;
+
+            SaveDataButton.Enabled = VINTextBox.TextLength == 17;
         }
         #endregion
         #region Method
@@ -104,7 +96,6 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
 
                 await history.ExecuteNonQueryAsync();
                 ////////////////////////////////////////////Видалення старої таблиці////////////////////////////////////////////
-                MessageBox.Show(ID);
                 using SQLiteCommand delete = new("DELETE FROM ZaplanowaneSamochody WHERE ID=@ID", conn);
                 delete.Parameters.AddWithValue("@ID", ID);
 
@@ -164,8 +155,7 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
         #region LoadData
         public void SetDataToLoad(TransferData transfer)
         {
-            UC_ScheduleCar scheduleCar = new();
-            data = transfer.data;
+            data = transfer.Data;
 
             AutocompleteData();
         }
@@ -184,7 +174,5 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
             ProblemTextBox.Text = data.Dequeue();
         }
         #endregion
-
-
     }
 }

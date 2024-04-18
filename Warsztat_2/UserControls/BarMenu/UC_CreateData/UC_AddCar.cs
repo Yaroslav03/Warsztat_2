@@ -18,9 +18,10 @@ public partial class UC_AddCar : UserControl
     public UC_AddCar() => InitializeComponent();
     private async void UC_AddCar_Load(object sender, EventArgs e)
     {
+        string[] nameColumns = { "Imię", "Nazwisko", "NrTelefonu", "ID" };
         AttachEventHandlers();
         LoadData();
-        await LoadDataClient();
+        await SqlCmd.ReadAddDataListBox(connection, "SELECT Imię, Nazwisko, NrTelefonu, ID FROM Klienty", nameColumns, ClientsList);
         Verefy();
     }
 
@@ -201,16 +202,16 @@ public partial class UC_AddCar : UserControl
         bool VIN17 = (VINTextBox.Text.Length == 17);
         bool test = !isMarkaEmpty && !isModelEmpty && !isEngineEmpty && VIN17;
         ButtoCarSave.Enabled = test;
-
-
     }
 
     private async Task AddVINToClient()
     {
-        if (ClientsList.SelectedIndex >= 0 && VINTextBox.Text.Length == 17)
+        string? selectedRow = ClientsList.SelectedItem.ToString();
+
+        if (ClientsList.SelectedIndex >= 0 && VINTextBox.Text.Length == 17 && selectedRow != null)
         {
             // Отримати текст виділеного рядка
-            string? selectedRow = ClientsList.SelectedItem.ToString();
+
 
             // Розділити рядок за допомогою коми
             string[] rowData = selectedRow.Split(' ');
@@ -250,40 +251,7 @@ public partial class UC_AddCar : UserControl
             }
         }
     }
-    private async Task LoadDataClient()
-    {
-        Cursor.Current = Cursors.WaitCursor;
-        try
-        {
-            ClientsList.Items.Clear();
-
-            List<string> Client = new();
-
-            using SQLiteConnection conn = new(connection);
-
-            await conn.OpenAsync();
-
-            using SQLiteCommand cmd = new("SELECT Imię, Nazwisko, NrTelefonu, ID FROM Klienty", conn);
-
-            using SQLiteDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                Client.Add($"{reader["Imię"]} {reader["Nazwisko"]} {reader["NrTelefonu"]} {reader["ID"]}");
-            }
-            ClientsList.Items.AddRange(Client.ToArray());
-
-            Client.Clear();
-        }
-        catch (Exception ex)
-        {
-            await Settings.Error(ex, dataError, "AddCar", "Read data db");
-        }
-
-
-        Cursor.Current = Cursors.Default;
-    }
     #endregion
-
 
     private async void AddVinToClient_Click(object sender, EventArgs e)
     {
@@ -332,15 +300,5 @@ public partial class UC_AddCar : UserControl
         {
             SearchDataEngine();
         }
-
-        else
-        {
-
-        }
-    }
-
-    private void EngineListBox_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
     }
 }

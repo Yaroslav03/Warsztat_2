@@ -51,12 +51,14 @@
             panel4 = new Panel();
             CashCheck = new RadioButton();
             CardCheck = new RadioButton();
-            label15 = new Label();
-            priceWithMarża = new Label();
+            LabelTotalCostOfParts = new Label();
+            LabelPriceWithMarża = new Label();
+            label1 = new Label();
             label10 = new Label();
+            EstimatedCostNumericUpDown = new NumericUpDown();
+            LabelPricePart = new Label();
             label4 = new Label();
             FinallPriceNumericUpDown = new NumericUpDown();
-            EstimatedCostNumericUpDown = new NumericUpDown();
             label3 = new Label();
             ViewOrderManagement = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
@@ -70,6 +72,7 @@
             KosztSzacunkowy_Column = new DataGridViewTextBoxColumn();
             KosztKońcowy_Column = new DataGridViewTextBoxColumn();
             ZMarżą_Column = new DataGridViewTextBoxColumn();
+            TotalPriceOfPart_Column = new DataGridViewTextBoxColumn();
             WykonanaPraca_Column = new DataGridViewTextBoxColumn();
             WykonawcaPracy_Column = new DataGridViewTextBoxColumn();
             VIN_Column = new DataGridViewTextBoxColumn();
@@ -77,8 +80,8 @@
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)FinallPriceNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)EstimatedCostNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)FinallPriceNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ViewOrderManagement).BeginInit();
             SuspendLayout();
             // 
@@ -284,12 +287,14 @@
             panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Controls.Add(CashCheck);
             panel4.Controls.Add(CardCheck);
-            panel4.Controls.Add(label15);
-            panel4.Controls.Add(priceWithMarża);
+            panel4.Controls.Add(LabelTotalCostOfParts);
+            panel4.Controls.Add(LabelPriceWithMarża);
+            panel4.Controls.Add(label1);
             panel4.Controls.Add(label10);
+            panel4.Controls.Add(EstimatedCostNumericUpDown);
+            panel4.Controls.Add(LabelPricePart);
             panel4.Controls.Add(label4);
             panel4.Controls.Add(FinallPriceNumericUpDown);
-            panel4.Controls.Add(EstimatedCostNumericUpDown);
             panel4.Controls.Add(label3);
             panel4.ForeColor = Color.DimGray;
             panel4.Location = new Point(423, 136);
@@ -301,7 +306,7 @@
             // 
             CashCheck.AutoSize = true;
             CashCheck.Checked = true;
-            CashCheck.Location = new Point(21, 38);
+            CashCheck.Location = new Point(21, 25);
             CashCheck.Name = "CashCheck";
             CashCheck.Size = new Size(72, 19);
             CashCheck.TabIndex = 30;
@@ -312,52 +317,86 @@
             // CardCheck
             // 
             CardCheck.AutoSize = true;
-            CardCheck.Location = new Point(157, 38);
+            CardCheck.Location = new Point(157, 25);
             CardCheck.Name = "CardCheck";
             CardCheck.Size = new Size(52, 19);
             CardCheck.TabIndex = 30;
             CardCheck.Text = "Kartą";
             CardCheck.UseVisualStyleBackColor = true;
             // 
-            // label15
+            // LabelTotalCostOfParts
             // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label15.ForeColor = Color.FromArgb(224, 224, 224);
-            label15.Location = new Point(3, 112);
-            label15.Name = "label15";
-            label15.Size = new Size(206, 21);
-            label15.TabIndex = 27;
-            label15.Text = "Cena za części wraz z Marżą:";
+            LabelTotalCostOfParts.AutoSize = true;
+            LabelTotalCostOfParts.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            LabelTotalCostOfParts.ForeColor = Color.FromArgb(224, 224, 224);
+            LabelTotalCostOfParts.Location = new Point(121, 47);
+            LabelTotalCostOfParts.Name = "LabelTotalCostOfParts";
+            LabelTotalCostOfParts.Size = new Size(19, 21);
+            LabelTotalCostOfParts.TabIndex = 27;
+            LabelTotalCostOfParts.Text = "0";
             // 
-            // priceWithMarża
+            // LabelPriceWithMarża
             // 
-            priceWithMarża.AutoSize = true;
-            priceWithMarża.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            priceWithMarża.ForeColor = Color.FromArgb(224, 224, 224);
-            priceWithMarża.Location = new Point(212, 112);
-            priceWithMarża.Name = "priceWithMarża";
-            priceWithMarża.Size = new Size(19, 21);
-            priceWithMarża.TabIndex = 27;
-            priceWithMarża.Text = "0";
+            LabelPriceWithMarża.AutoSize = true;
+            LabelPriceWithMarża.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            LabelPriceWithMarża.ForeColor = Color.FromArgb(224, 224, 224);
+            LabelPriceWithMarża.Location = new Point(182, 68);
+            LabelPriceWithMarża.Name = "LabelPriceWithMarża";
+            LabelPriceWithMarża.Size = new Size(19, 21);
+            LabelPriceWithMarża.TabIndex = 27;
+            LabelPriceWithMarża.Text = "0";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(224, 224, 224);
+            label1.Location = new Point(3, 68);
+            label1.Name = "label1";
+            label1.Size = new Size(174, 21);
+            label1.TabIndex = 27;
+            label1.Text = "Koszt końcowy z Marżą:";
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label10.ForeColor = Color.FromArgb(224, 224, 224);
-            label10.Location = new Point(172, 65);
+            label10.Location = new Point(182, 90);
             label10.Name = "label10";
             label10.Size = new Size(113, 21);
             label10.TabIndex = 27;
             label10.Text = "Koszt końcowy";
+            // 
+            // EstimatedCostNumericUpDown
+            // 
+            EstimatedCostNumericUpDown.BackColor = Color.White;
+            EstimatedCostNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
+            EstimatedCostNumericUpDown.DecimalPlaces = 2;
+            EstimatedCostNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
+            EstimatedCostNumericUpDown.Location = new Point(3, 117);
+            EstimatedCostNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            EstimatedCostNumericUpDown.Name = "EstimatedCostNumericUpDown";
+            EstimatedCostNumericUpDown.Size = new Size(70, 23);
+            EstimatedCostNumericUpDown.TabIndex = 26;
+            // 
+            // LabelPricePart
+            // 
+            LabelPricePart.AutoSize = true;
+            LabelPricePart.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            LabelPricePart.ForeColor = Color.FromArgb(224, 224, 224);
+            LabelPricePart.Location = new Point(3, 47);
+            LabelPricePart.Name = "LabelPricePart";
+            LabelPricePart.Size = new Size(113, 21);
+            LabelPricePart.TabIndex = 27;
+            LabelPricePart.Text = "Koszt za części:";
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(224, 224, 224);
-            label4.Location = new Point(3, 65);
+            label4.Location = new Point(3, 90);
             label4.Name = "label4";
             label4.Size = new Size(137, 21);
             label4.TabIndex = 27;
@@ -369,24 +408,12 @@
             FinallPriceNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
             FinallPriceNumericUpDown.DecimalPlaces = 2;
             FinallPriceNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            FinallPriceNumericUpDown.Location = new Point(172, 86);
+            FinallPriceNumericUpDown.Location = new Point(182, 117);
             FinallPriceNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             FinallPriceNumericUpDown.Name = "FinallPriceNumericUpDown";
             FinallPriceNumericUpDown.Size = new Size(70, 23);
             FinallPriceNumericUpDown.TabIndex = 26;
             FinallPriceNumericUpDown.ValueChanged += FinallPriceNumericUpDown_ValueChanged;
-            // 
-            // EstimatedCostNumericUpDown
-            // 
-            EstimatedCostNumericUpDown.BackColor = Color.White;
-            EstimatedCostNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
-            EstimatedCostNumericUpDown.DecimalPlaces = 2;
-            EstimatedCostNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            EstimatedCostNumericUpDown.Location = new Point(3, 86);
-            EstimatedCostNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
-            EstimatedCostNumericUpDown.Name = "EstimatedCostNumericUpDown";
-            EstimatedCostNumericUpDown.Size = new Size(70, 23);
-            EstimatedCostNumericUpDown.TabIndex = 26;
             // 
             // label3
             // 
@@ -414,7 +441,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ViewOrderManagement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewOrderManagement.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewOrderManagement.Columns.AddRange(new DataGridViewColumn[] { ID, BtnDelete, Przyjęty_Column, OczekujeNaOdbiór_Column, DataPrzyjęcia_Column, DataWydania_Column, DataPayer_Column, TypPłatności_Column, KosztSzacunkowy_Column, KosztKońcowy_Column, ZMarżą_Column, WykonanaPraca_Column, WykonawcaPracy_Column, VIN_Column });
+            ViewOrderManagement.Columns.AddRange(new DataGridViewColumn[] { ID, BtnDelete, Przyjęty_Column, OczekujeNaOdbiór_Column, DataPrzyjęcia_Column, DataWydania_Column, DataPayer_Column, TypPłatności_Column, KosztSzacunkowy_Column, KosztKońcowy_Column, ZMarżą_Column, TotalPriceOfPart_Column, WykonanaPraca_Column, WykonawcaPracy_Column, VIN_Column });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -478,18 +505,21 @@
             DataWydania_Column.DefaultCellStyle = dataGridViewCellStyle2;
             DataWydania_Column.HeaderText = "Data 2";
             DataWydania_Column.Name = "DataWydania_Column";
+            DataWydania_Column.Visible = false;
             // 
             // DataPayer_Column
             // 
             DataPayer_Column.DataPropertyName = "DataPłatności";
             DataPayer_Column.HeaderText = "Data Płatności";
             DataPayer_Column.Name = "DataPayer_Column";
+            DataPayer_Column.Visible = false;
             // 
             // TypPłatności_Column
             // 
             TypPłatności_Column.DataPropertyName = "MetodaPłatności";
             TypPłatności_Column.HeaderText = "Metoda płatności";
             TypPłatności_Column.Name = "TypPłatności_Column";
+            TypPłatności_Column.Visible = false;
             // 
             // KosztSzacunkowy_Column
             // 
@@ -509,6 +539,13 @@
             ZMarżą_Column.HeaderText = "Koszt z marżą";
             ZMarżą_Column.Name = "ZMarżą_Column";
             // 
+            // TotalPriceOfPart_Column
+            // 
+            TotalPriceOfPart_Column.DataPropertyName = "KosztCałkowityCzęści";
+            TotalPriceOfPart_Column.HeaderText = "Koszt Całkowity Części";
+            TotalPriceOfPart_Column.Name = "TotalPriceOfPart_Column";
+            TotalPriceOfPart_Column.Visible = false;
+            // 
             // WykonanaPraca_Column
             // 
             WykonanaPraca_Column.DataPropertyName = "WykonanaPraca";
@@ -526,6 +563,7 @@
             VIN_Column.DataPropertyName = "VIN";
             VIN_Column.HeaderText = "VIN";
             VIN_Column.Name = "VIN_Column";
+            VIN_Column.Visible = false;
             // 
             // UC_AddOrderManagement
             // 
@@ -549,8 +587,8 @@
             panel3.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)FinallPriceNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)EstimatedCostNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)FinallPriceNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)ViewOrderManagement).EndInit();
             ResumeLayout(false);
         }
@@ -574,17 +612,21 @@
         private Panel panel4;
         private Label label3;
         private NumericUpDown EstimatedCostNumericUpDown;
-        private Label label15;
         private Label label10;
         private Label label4;
-        private NumericUpDown FinallPriceNumericUpDown;
-        private Label priceWithMarża;
         private DataGridView ViewOrderManagement;
         private RadioButton OtherDatePayCheck;
         private RadioButton TodayPaycheck;
         private RadioButton CardCheck;
         private RadioButton CashCheck;
         private Label Vin_Label;
+        private DateTimePicker OrderAddoptedTimePicker;
+        private DateTimePicker CarRealiseTimePicker;
+        public NumericUpDown FinallPriceNumericUpDown;
+        private Label LabelPricePart;
+        private Label LabelTotalCostOfParts;
+        private Label LabelPriceWithMarża;
+        private Label label1;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewButtonColumn BtnDelete;
         private DataGridViewCheckBoxColumn Przyjęty_Column;
@@ -596,10 +638,9 @@
         private DataGridViewTextBoxColumn KosztSzacunkowy_Column;
         private DataGridViewTextBoxColumn KosztKońcowy_Column;
         private DataGridViewTextBoxColumn ZMarżą_Column;
+        private DataGridViewTextBoxColumn TotalPriceOfPart_Column;
         private DataGridViewTextBoxColumn WykonanaPraca_Column;
         private DataGridViewTextBoxColumn WykonawcaPracy_Column;
         private DataGridViewTextBoxColumn VIN_Column;
-        private DateTimePicker OrderAddoptedTimePicker;
-        private DateTimePicker CarRealiseTimePicker;
     }
 }
