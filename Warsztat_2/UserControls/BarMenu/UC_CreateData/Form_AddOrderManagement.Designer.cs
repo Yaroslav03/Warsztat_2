@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             CardCheck = new RadioButton();
             LabelTotalCostOfParts = new Label();
             LabelPriceWithMarża = new Label();
@@ -76,6 +76,7 @@
             FinallPriceNumericUpDown = new NumericUpDown();
             label3 = new Label();
             panel4 = new Panel();
+            CloseOrder = new Button();
             ((System.ComponentModel.ISupportInitialize)ViewOrderManagement).BeginInit();
             panelDodatkowy.SuspendLayout();
             panel1.SuspendLayout();
@@ -131,24 +132,24 @@
             ViewOrderManagement.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ViewOrderManagement.BorderStyle = BorderStyle.None;
             ViewOrderManagement.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle19.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle19.ForeColor = Color.LightGray;
-            dataGridViewCellStyle19.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = DataGridViewTriState.True;
-            ViewOrderManagement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            ViewOrderManagement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewOrderManagement.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ViewOrderManagement.Columns.AddRange(new DataGridViewColumn[] { ID, BtnDelete, Przyjęty_Column, OczekujeNaOdbiór_Column, DataPrzyjęcia_Column, DataWydania_Column, DataPayer_Column, TypPłatności_Column, KosztSzacunkowy_Column, KosztKońcowy_Column, ZMarżą_Column, TotalPriceOfPart_Column, WykonanaPraca_Column, WykonawcaPracy_Column, VIN_Column });
-            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle21.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle21.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle21.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = DataGridViewTriState.False;
-            ViewOrderManagement.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            ViewOrderManagement.DefaultCellStyle = dataGridViewCellStyle3;
             ViewOrderManagement.EnableHeadersVisualStyles = false;
             ViewOrderManagement.Location = new Point(12, 309);
             ViewOrderManagement.Name = "ViewOrderManagement";
@@ -198,9 +199,9 @@
             // DataWydania_Column
             // 
             DataWydania_Column.DataPropertyName = "DataOczekiwaniaOdbioru";
-            dataGridViewCellStyle20.Format = "km";
-            dataGridViewCellStyle20.NullValue = null;
-            DataWydania_Column.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Format = "km";
+            dataGridViewCellStyle2.NullValue = null;
+            DataWydania_Column.DefaultCellStyle = dataGridViewCellStyle2;
             DataWydania_Column.HeaderText = "Data 2";
             DataWydania_Column.Name = "DataWydania_Column";
             DataWydania_Column.Visible = false;
@@ -336,7 +337,7 @@
             ButtonOrderManagementSave.ForeColor = Color.LightGray;
             ButtonOrderManagementSave.Location = new Point(12, 12);
             ButtonOrderManagementSave.Name = "ButtonOrderManagementSave";
-            ButtonOrderManagementSave.Size = new Size(1012, 30);
+            ButtonOrderManagementSave.Size = new Size(496, 30);
             ButtonOrderManagementSave.TabIndex = 30;
             ButtonOrderManagementSave.Text = "Zapisz";
             ButtonOrderManagementSave.UseVisualStyleBackColor = false;
@@ -410,6 +411,7 @@
             Vin_Label.Name = "Vin_Label";
             Vin_Label.Size = new Size(196, 28);
             Vin_Label.TabIndex = 0;
+            Vin_Label.TextChanged += Vin_Label_TextChanged;
             // 
             // panel3
             // 
@@ -563,12 +565,29 @@
             panel4.Size = new Size(300, 147);
             panel4.TabIndex = 34;
             // 
+            // CloseOrder
+            // 
+            CloseOrder.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            CloseOrder.BackColor = Color.FromArgb(94, 148, 255);
+            CloseOrder.FlatAppearance.BorderSize = 0;
+            CloseOrder.FlatStyle = FlatStyle.Flat;
+            CloseOrder.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            CloseOrder.ForeColor = Color.LightGray;
+            CloseOrder.Location = new Point(518, 12);
+            CloseOrder.Name = "CloseOrder";
+            CloseOrder.Size = new Size(506, 30);
+            CloseOrder.TabIndex = 36;
+            CloseOrder.Text = "Zamknij Zlecenie";
+            CloseOrder.UseVisualStyleBackColor = false;
+            CloseOrder.Click += CloseOrder_Click;
+            // 
             // Form_AddOrderManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
             ClientSize = new Size(1036, 418);
+            Controls.Add(CloseOrder);
             Controls.Add(ViewOrderManagement);
             Controls.Add(panelDodatkowy);
             Controls.Add(ButtonOrderManagementSave);
@@ -639,5 +658,6 @@
         public NumericUpDown FinallPriceNumericUpDown;
         private Label label3;
         private Panel panel4;
+        private Button CloseOrder;
     }
 }

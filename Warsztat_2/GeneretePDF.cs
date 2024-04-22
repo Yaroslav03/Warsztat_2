@@ -115,7 +115,7 @@ namespace Warsztat_2
             clientInfo.Format.Font.Name = "Courier New"; // Задати назву шрифта
             clientInfo.AddFormattedText("Dane klienta:", TextFormat.Bold);
 
-            for(byte x = 0; x<clientWrite.Length; x++)
+            for (byte x = 0; x < clientWrite.Length; x++)
             {
                 clientInfo.AddLineBreak();
                 clientInfo.AddText($"{clientWrite[x]}: {client[x]}");
@@ -163,11 +163,11 @@ namespace Warsztat_2
             Row headerRow = historyTable.AddRow();
             headerRow.Format.Font.Name = "Courier New"; // Задати назву шрифта
             headerRow.HeadingFormat = true;
-            string[] historyWriteTable = { "Data przyjęcia", "Nr Rejestracji", "Przebieg", "Zlecenie", "Diagnostyka", "Naprawa"};
+            string[] historyWriteTable = { "Data przyjęcia", "Nr Rejestracji", "Przebieg", "Zlecenie", "Diagnostyka", "Naprawa" };
 
-            for (byte x = 0; x< historyWriteTable.Length; x++)
+            for (byte x = 0; x < historyWriteTable.Length; x++)
                 headerRow.Cells[x].AddParagraph(historyWriteTable[x]);
-            
+
             #endregion
             #region add data to table
             Row dataRow = historyTable.AddRow();
@@ -209,7 +209,7 @@ namespace Warsztat_2
             rowRepair.HeadingFormat = true;
             rowRepair.Format.Font.Name = "Courier New"; // Задати назву шрифта
 
-            string[] RepairWriteTable = { "Opis", "Numer części", "Cena", "Ilość"};
+            string[] RepairWriteTable = { "Opis", "Numer części", "Cena", "Ilość" };
             for (byte x = 0; x < RepairWriteTable.Length; x++)
                 rowRepair.Cells[x].AddParagraph(RepairWriteTable[x]);
 
@@ -253,7 +253,7 @@ namespace Warsztat_2
             Paragraph orderManagementInfo = section.AddParagraph();
             orderManagementInfo.Format.Font.Name = "Courier New"; // Задати назву шрифта
             orderManagementInfo.Format.Font.Size = 10;
-            
+
             for (byte x = 0; x < orderManagementWrite.Length; x++)
             {
                 orderManagementInfo.AddLineBreak();

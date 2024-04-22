@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SQLite;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data.SQLite;
 using Warsztat_2._0;
-using Warsztat_2._0.UserControls.UC_CreateData;
 
 namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
 {
     public partial class Form_AddOrderManagement : Form
     {
+        private readonly string[] connectionStringArray = new string[] { "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;", "Data Source=Archive.db;Version=3;New=False;Compress=True;" };
         public Form_AddOrderManagement()
         {
             InitializeComponent();
@@ -31,13 +22,26 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
         #endregion
 
         #region Event
+        private void SendDataToArchive()
+        {
+            DialogResult dialogResult = MessageBox.Show("Na pewno chcesz oznaczyć samochód jak wykonany?", "Potwierdzenie wykonania", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+
+            }
+        }
 
         private async void ButtonOrderManagementSave_Click(object sender, EventArgs e)
         {
+            byte row = (byte)ViewOrderManagement.RowCount;
 
-            if (ButtonOrderManagementSave.Text == "Zapisz")
+            if (ButtonOrderManagementSave.Text == "Zapisz" && row == 0)
             {
                 await SaveDB();
+            }
+            if (ButtonOrderManagementSave.Text == "Zapisz" && row == 1)
+            {
+                SendDataToArchive();
             }
             else if (ButtonOrderManagementSave.Text == "Odśwież")
             {
@@ -388,5 +392,10 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 await LoadDB();
         }
 
+        private async void CloseOrder_Click(object sender, EventArgs e)
+        {
+            SqlCmd.SendDataToArchive(Vin_Label.Text, connectionStringArray);
+            await LoadDB();
+        }
     }
 }

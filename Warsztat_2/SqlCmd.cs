@@ -130,6 +130,112 @@ internal class SqlCmd
         return result != null && result.ToString() == tableName;
     }
     #endregion
+    #region Send Data To Archive
+    public static void SendDataToArchive(string vin, string[] connectionString)
+    {
+        Cursor.Current = Cursors.WaitCursor;
+        TableData[] tableData = new TableData[] // Ініціалізація даних таблиць для зберігання даних
+            {
+                new() { TableName = "Klienty", Columns = new string[] { "Imię", "Nazwisko", "NrTelefonu", "AdresFirmy", "NIP", "VIN" }, Data = new string[6] },
+                new() { TableName = "Samochód", Columns = new string[] { "Marka", "Model", "Silnik", "RokProdukcji", "VIN" }, Data = new string[5] },
+                new() { TableName = "HistoriaNapraw", Columns = new string[] { "DataPrzyjęcia", "NrRejestracji", "Przebieg", "DokumentySamochodu", "KluczykiSamochodu", "TestDrive", "Zlecenie", "Diagnostyka", "Naprawa", "VIN" }, Data = new string[10] },
+                new() { TableName = "NaprawaSamochodu", Columns = new string[] { "Opis", "NumerCzęści", "Cena", "Ilość", "Stan", "DataNapraw", "VIN" }, Data = new string[7] },
+                new() { TableName = "ZarządzanieZleceniami", Columns = new string[] { "VIN", "Przyjęty", "OczekujeNaOdbiór", "DataPrzyjęcie", "DataOczekiwaniaOdbioru", "DataPłatności", "MetodaPłatności", "KosztSzacunkowy", "KosztKońcowy", "KosztZMarżą", "WykonanaPraca", "WykonawcaPracy" }, Data = new string[12] }
+            };
+
+        ReadData(vin, connectionString[0], tableData);
+        SaveData(vin, connectionString, tableData);
+
+        Cursor.Current = Cursors.Default;
+        MessageBox.Show("Operacja przebiegła pomyślne i bez problemu");
+    }
+    private static async Task DeleteData(string vin, string connectionString)
+    {
+        string[] nameTable = { "Klienty", "Samochód", "HistoriaNapraw", "ZarządzanieZleceniami", "NaprawaSamochodu" };
+        try
+        {
+            using SQLiteConnection conn = new(connectionString);
+            await conn.OpenAsync();
+
+            foreach (string table in nameTable)
+            {
+                SQLiteCommand delete = new($"DELETE FROM {table} WHERE VIN = @VIN", conn);
+                delete.Parameters.AddWithValue("@VIN", vin);
+                await delete.ExecuteNonQueryAsync();
+            }
+        }
+        catch
+        {
+            MessageBox.Show("Błąd usunięcia tabeli");
+        }
+    }
+    private static void ReadData(string vin, string connectionString, TableData[] tableData)
+    {
+        try
+        {
+            using SQLiteConnection conn = new(connectionString);
+
+            conn.Open();
+
+            foreach (var table in tableData)
+            {
+                string columns = string.Join(", ", table.Columns); // Формування SQL-запиту для кожної таблиці
+                string querry = $"SELECT {columns} FROM {table.TableName} WHERE VIN LIKE '%{vin}'";
+
+                using SQLiteCommand cmd = new(querry, conn);
+                using SQLiteDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    for (byte i = 0; i < table.Columns.Length; i++)
+                    {
+                        object columnValue = reader[table.Columns[i]];
+                        table.Data[i] = columnValue?.ToString() ?? string.Empty;
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Błąd pod czas odczytu bazy danych\n" + ex);
+            throw;
+        }
+    }
+    private static void SaveData(string vin, string[] connectionString, TableData[] tableData)
+    {
+        using SQLiteConnection conn = new(connectionString[1]);
+
+        conn.Open();
+
+        using var transaction = conn.BeginTransaction();
+        try
+        {
+            foreach (var table in tableData)
+            {
+                string columns = string.Join(", ", table.Columns);
+                string values = "@" + string.Join(", @", table.Columns);
+
+                string query = $"INSERT INTO {table.TableName} ({columns}) VALUES ({values})";
+
+                using SQLiteCommand cmd = new(query, conn);
+                for (byte i = 0; i < table.Columns.Length; i++)
+                {
+                    cmd.Parameters.AddWithValue($"{table.Columns[i]}", table.Data[i]);
+                }
+                cmd.ExecuteNonQuery();
+            }
+            transaction.Commit();
+
+            DeleteData(vin, connectionString[0]).Wait();
+        }
+        catch (Exception ex)
+        {
+            transaction.Rollback();
+            MessageBox.Show("Błąd pod czas archiwizacji bazy danych\n " + ex);
+            throw;
+        }
+    }
+#endregion
     public static void CheckScheduleCar()
     {
         string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
@@ -169,5 +275,12 @@ internal class SqlCmd
             MessageBox.Show("Wystąpił błąd: " + ex.Message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         Cursor.Current = Cursors.Default;
+    }
+
+    public class TableData
+    {
+        public string? TableName { get; set; }
+        public string[] Columns { get; set; }
+        public string[] Data { get; set; }
     }
 }
