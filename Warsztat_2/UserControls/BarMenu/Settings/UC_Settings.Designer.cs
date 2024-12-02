@@ -27,7 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
+            {
             ListBoxEmployer = new ListBox();
             label4 = new Label();
             label1 = new Label();
@@ -352,7 +352,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
-        }
+            }
 
         #endregion
         private Label label4;
@@ -376,5 +376,5 @@
         private TextBox NumerTelefonuTextBox;
         private TextBox ImiePracownikaTextBox;
         private ComboBox StanowiskoSelect;
-    }
+        }
 }

@@ -1,10 +1,8 @@
 ﻿using System.Data.SQLite;
 using Warsztat_2.UserControls.BarMenu.ScheduleCar;
 
-namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
-{
-    internal class EditDataScheduleCar
-    {
+namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar {
+    internal class EditDataScheduleCar {
         private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
 
         private Car car = new();
@@ -12,115 +10,89 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
         public Client client = new();
 
 
-        public void SaveData(UC_ScheduleCar selectTab)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-            ////////////////////////////////////
-
-            /////////////////////////////////////
-            try
+        public async void SaveData(UC_ScheduleCar selectTab)
             {
-                PrepareData(selectTab);
+            var scheduleCarData = GetScheduleCar(selectTab);
 
-                using SQLiteConnection conn = new(connection);
-                conn.Open();
-
-                using SQLiteCommand insert = new("INSERT INTO ZaplanowaneSamochody (Imię, Nazwisko, Marka, Model, Problem, Telefon, DataPrzyjęcia) " +
-                    "VALUES (@Imię, @Nazwisko, @Marka, @Model, @Problem, @Telefon, @DataPrzyjęcia)", conn);
-                ValueDB(insert);
-
-                insert.ExecuteNonQuery();
-
-                MessageBox.Show($"Samochód został zaplanowany, kliknij OK żeby dodać kolejny", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Wystąpił błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                Client.Reset();
-                Car.Reset();
-                Repair.Reset();
-                Cursor.Current = Cursors.Default;
-            }
-        }
-        private void ValueDB(SQLiteCommand cmd)
-        {
-            cmd.Parameters.AddWithValue("@Imię", client.Name);
-            cmd.Parameters.AddWithValue("@Nazwisko", client.Surname);
-            cmd.Parameters.AddWithValue("@Telefon", client.PhoneNumber);
-
-            cmd.Parameters.AddWithValue("@Marka", car.Marka);
-            cmd.Parameters.AddWithValue("@Model", car.Model);
-            cmd.Parameters.AddWithValue("@Problem", repair.Problem);
-            cmd.Parameters.AddWithValue("@DataPrzyjęcia", repair.ScheduleCar);
-        }
-        public void UpdateData(UC_ScheduleCar selectTab)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-
-            PrepareData(selectTab);
-            try
-            {
-                using SQLiteConnection conn = new(connection);
-                conn.Open();
-                using SQLiteCommand update = new("UPDATE ZaplanowaneSamochody SET Imię = @Imię, Nazwisko = @Nazwisko, Telefon = @Telefon, Marka = @Marka, Model = @Model, Problem = @Problem, DataPrzyjęcia = @DataPrzyjęcia WHERE ID = @ID", conn);
-
-                // Встановіть значення параметрів перед виконанням запиту
-                update.Parameters.AddWithValue("@ID", client.ID);
-                ValueDB(update);
-
-                int rowsUpdate = update.ExecuteNonQuery();
-
-                if (!(rowsUpdate > 0))
+            bool isSucced =  await SqlCmd.AddRecordAsync("ZaplanowaneSamochody", scheduleCarData);
+            if(isSucced)
                 {
-                    MessageBox.Show($"Zapłanowany samochód nie został odświeżony", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                MessageBox.Show($"Samochód został zaplanowany, kliknij OK żeby dodać kolejny", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                MessageBox.Show($"Zapłanowany samochód został odświeżony", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+        private Dictionary<string, object> GetScheduleCar(UC_ScheduleCar selectTab)
             {
-                MessageBox.Show($"Wystąpił błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return new Dictionary<string, object>
+                {
+                    {"Imię",  selectTab.NameTextBox.Text.Trim()},
+                    {"Nazwisko",  selectTab.SurnameTextBox.Text.Trim()},
+
+                    {"Telefon",  selectTab.TelephonTextBox.Text.Trim()},
+                    {"Marka",  selectTab.CarComboBox.Text.Trim()},
+
+                    {"Model",  selectTab.ScheduleModelTextBox0.Text.Trim()},
+                    {"Problem",  selectTab.ProblemCar.Text.Trim()},
+
+                    {"DataPrzyjęcia",  selectTab.ScheduleTimePicker.Text},
+                };
             }
-            finally
+
+                /*ID = Convert.ToByte(selectTab.ID_label.Text),*/
+
+            public async void UpdateData(UC_ScheduleCar selectTab)
             {
-                Client.Reset();
-                Car.Reset();
-                Repair.Reset();
-                Cursor.Current = Cursors.Default;
+            var scheduleCarData = GetScheduleCar(selectTab);
+            var scheduleCarID = new Dictionary<string, object>
+                {
+                    {"ID", selectTab.ID_label.Text}
+                };
+            await SqlCmd.UpdateRecordAsync("ZaplanowaneSamochody",scheduleCarData, "ID=@ID", scheduleCarID);
+          
             }
-        }
-        private void PrepareData(UC_ScheduleCar selectTab)
-        {
-            client = new Client
-            {
-                ID = Convert.ToByte(selectTab.ID_label.Text),
-                Name = selectTab.NameTextBox.Text,
-                Surname = selectTab.SurnameTextBox.Text,
-                PhoneNumber = selectTab.TelephonTextBox.Text
-            };
-            car = new Car
-            {
-                Marka = selectTab.CarComboBox.Text,
-                Model = selectTab.ScheduleModelTextBox0.Text,
-            };
-            repair = new Repair
-            {
-                Problem = selectTab.ProblemCar.Text,
-                ScheduleCar = selectTab.ScheduleTimePicker.Text
-            };
-        }
+
         public void SetDataEdit(Client clientToEdit, Car carToEdit, Repair repairToEdit)
-        {//сетування даних при переході між класами
+            {//сетування даних при переході між класами
             client = clientToEdit;
             car = carToEdit;
             repair = repairToEdit;
 
-        }
+            }
+        public void AutocompleteDataSQL(UC_ScheduleCar UC, string telephone)
+            {
+            List<string> SQLResult = new();
+            string[] data = { "Imię", "Nazwisko", "NrTelefonu", "VIN", "Marka", "Model" };
+            try
+                {
+
+                using SQLiteConnection sqlConn = new("Data Source=Archive.db;Version=3;New=False;Compress=True;");
+                sqlConn.Open();
+                using SQLiteCommand search = new(@"SELECT K.Imię, K.Nazwisko, K.NrTelefonu, K.VIN, S.Marka, S.Model 
+                                                    FROM Klienty K 
+                                                    LEFT JOIN Samochód S ON K.VIN = S.VIN 
+                                                    WHERE K.NrTelefonu LIKE @Telephone", sqlConn);
+
+                search.Parameters.AddWithValue("@Telephone", "%" + telephone + "%");
+
+                using SQLiteDataReader reader = search.ExecuteReader();
+
+                while(reader.Read())
+                    {
+                    foreach(string s in data)
+                        SQLResult.Add($"{reader[s]}");
+                    }
+
+                UC.label17.Text = $"{SQLResult[0]} {SQLResult[1]}";
+                UC.label23.Text = $"{SQLResult[2]}";
+                UC.label25.Text = $"{SQLResult[4]} {SQLResult[5]}";
+                }
+            catch
+                {
+
+                }
+            SQLResult.Clear();
+            }
         public void AutocompleteData(UC_ScheduleCar selectTab)
-        {
+            {
             selectTab.ID_label.Text = client.ID.ToString();
 
             selectTab.NameTextBox.Text = client.Name;
@@ -133,9 +105,9 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
             selectTab.ProblemCar.Text = repair.Problem;
 
             selectTab.ScheduleTimePicker.Text = repair.ScheduleCar;
-        }
+            }
         public static void ClearTextBox(UC_ScheduleCar editData)
-        {
+            {
             editData.NameTextBox.Text = editData.SurnameTextBox.Text = editData.TelephonTextBox.Text = string.Empty;
 
             editData.CarComboBox.SelectedItem = editData.ScheduleModelTextBox0.Text = editData.ProblemCar.Text = string.Empty;
@@ -143,6 +115,6 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
             editData.ScheduleTimePicker.Text = DateTime.Today.ToString("D");
 
             editData.ID_label.Text = "0";
+            }
         }
     }
-}

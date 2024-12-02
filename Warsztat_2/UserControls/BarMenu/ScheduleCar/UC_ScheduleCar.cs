@@ -1,46 +1,42 @@
 ﻿using System.Data;
 using Warsztat_2._0.UserControls.BarMenu.ScheduleCar;
 
-namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
-{
-    public partial class UC_ScheduleCar : UserControl
-    {
-        private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
-
+namespace Warsztat_2.UserControls.BarMenu.ScheduleCar {
+    public partial class UC_ScheduleCar :UserControl {
         private Client client = new();
         private Car car = new();
         private Repair repair = new();
 
         public UC_ScheduleCar()
-        {
+            {
             InitializeComponent();
-        }
+            }
         #region Event
         private async void UC_ScheduleCarSelectTab_Load(object sender, EventArgs e)
-        {
+            {
             ControlPanel(ViewData, EditData);
-            await SqlCmd.LoadData(connection, "SELECT ID, DataPrzyjęcia ,Telefon, Imię, Nazwisko, Marka, Model, Problem FROM ZaplanowaneSamochody", DataScheduleView, "ZaplanowaneSamochody", "Load table ZaplanowaneSamochody From DB");
+            await SqlCmd.LoadData("SELECT ID, DataPrzyjęcia ,Telefon, Imię, Nazwisko, Marka, Model, Problem FROM ZaplanowaneSamochody", DataScheduleView, "ZaplanowaneSamochody", "Load table ZaplanowaneSamochody From DB");
             /////Update data time
             ScheduleTimePicker.Text = DateTime.Today.ToString();
-        }
+            }
 
         public void ScheduleCarAddButton_Click(object sender, EventArgs e)
-        {
+            {
             ControlPanel(EditData, ViewData);
             ScheduleCarButton.Text = "Zapłanuj samochód";
-        }
+            }
 
         private async void ViewScheduleCarButton_Click(object sender, EventArgs e)
-        {
+            {
             ControlPanel(ViewData, EditData);
-            await SqlCmd.LoadData(connection, "SELECT ID, DataPrzyjęcia ,Telefon, Imię, Nazwisko, Marka, Model, Problem FROM ZaplanowaneSamochody", DataScheduleView, "ZaplanowaneSamochody", "Load table ZaplanowaneSamochody From DB");
+            await SqlCmd.LoadData("SELECT ID, DataPrzyjęcia ,Telefon, Imię, Nazwisko, Marka, Model, Problem FROM ZaplanowaneSamochody", DataScheduleView, "ZaplanowaneSamochody", "Load table ZaplanowaneSamochody From DB");
 
             EditDataScheduleCar.ClearTextBox(this);
-        }
+            }
         private void DataScheduleView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (DataScheduleView.CurrentRow.Cells["DataPrzyjecia_Column"].Value.ToString() != "")//  Якщо дата не відсутня тоді можна виконувати наступний код
             {
+            if(DataScheduleView.CurrentRow.Cells["DataPrzyjecia_Column"].Value.ToString() != "")//  Якщо дата не відсутня тоді можна виконувати наступний код
+                {
                 EditDataScheduleCar edit = new();
 
                 PrepareDataToEdit();
@@ -50,37 +46,37 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
                 ControlPanel(EditData, ViewData);
 
                 ScheduleCarButton.Text = "Odśwież zapłanowany samochód";
+                }
             }
-        }
 
         private void ScheduleCarButton_Click(object sender, EventArgs e)
-        {
-            EditDataScheduleCar editData = new();
-            if (ScheduleCarButton.Text == "Odśwież zapłanowany samochód")
             {
+            EditDataScheduleCar editData = new();
+            if(ScheduleCarButton.Text == "Odśwież zapłanowany samochód")
+                {
                 editData.UpdateData(this);
                 return;
-            }
+                }
             editData.SaveData(this);
             ControlPanel(EditData, ViewData);
-        }
-
-        private async void DataScheduleView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            Cursor.Current = Cursors.WaitCursor;
-            await SqlCmd.DeleteDataTable(DataScheduleView, e, connection, "BtnDelete", "ID_Column", "ZaplanowaneSamochody");
-            if (e.ColumnIndex == DataScheduleView.Columns["btnAdd"].Index && DataScheduleView.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value)
-            {
-                LoadDataToDB();
             }
 
-            Cursor.Current = Cursors.Default;
-        }
-        private async void LoadDataToDB()
-        {
-            try
+        private async void DataScheduleView_CellContentClick(object sender, DataGridViewCellEventArgs e)
             {
+
+            Cursor.Current = Cursors.WaitCursor;
+            await SqlCmd.DeleteDataTable(DataScheduleView, e, "BtnDelete", "ID_Column", "ZaplanowaneSamochody");
+            if(e.ColumnIndex == DataScheduleView.Columns["btnAdd"].Index && DataScheduleView.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value)
+                {
+                LoadDataToDB();
+                }
+
+            Cursor.Current = Cursors.Default;
+            }
+        private async void LoadDataToDB()
+            {
+            try
+                {
                 AddDataFromScheduleCar addData = new();
                 TransferData transferData = new();
 
@@ -100,88 +96,118 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar
                 addData.SetDataToLoad(transferData);
 
                 addData.ShowDialog();
-            }
-            catch (Exception ex)
-            {
+                }
+            catch(Exception ex)
+                {
                 MessageBox.Show("Błąd podczas Dodawania daynych: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                }
             /////////////////////
-            await SqlCmd.LoadData(connection, "SELECT ID, DataPrzyjęcia ,Telefon, Imię, Nazwisko, Marka, Model, Problem FROM ZaplanowaneSamochody", DataScheduleView, "ZaplanowaneSamochody", "Load table ZaplanowaneSamochody From DB");
-        }
+            await SqlCmd.LoadData("SELECT ID, DataPrzyjęcia ,Telefon, Imię, Nazwisko, Marka, Model, Problem FROM ZaplanowaneSamochody", DataScheduleView, "ZaplanowaneSamochody", "Load table ZaplanowaneSamochody From DB");
+            }
         #endregion
 
         private static void ControlPanel(Panel Show, Panel Hide)
-        {
+            {
             Show.Show();
             Hide.Hide();
-        }
+            }
 
         private void PrepareDataToEdit()
-        {
-            client = new Client
             {
+            client = new Client
+                {
                 ID = Convert.ToByte(DataScheduleView.CurrentRow.Cells["ID_Column"].Value.ToString()),
                 Name = DataScheduleView.CurrentRow.Cells["Imie_Column"].Value.ToString(),
                 Surname = DataScheduleView.CurrentRow.Cells["Nazwisko_Column"].Value.ToString(),
                 PhoneNumber = DataScheduleView.CurrentRow.Cells["Telefon_Column"].Value.ToString()
-            };
+                };
 
             car = new Car
-            {
+                {
                 Marka = DataScheduleView.CurrentRow.Cells["Marka_Column"].Value.ToString(),
                 Model = DataScheduleView.CurrentRow.Cells["Model_Column"].Value.ToString()
-            };
+                };
 
             repair = new Repair
-            {
+                {
                 Problem = DataScheduleView.CurrentRow.Cells["Problem_Column"].Value.ToString(),
                 ScheduleCar = DataScheduleView.CurrentRow.Cells["DataPrzyjecia_Column"].Value.ToString()
-            };
-        }
+                };
+            }
 
         private void SearchScheduleCar_TextChanged(object sender, EventArgs e)
-        {
+            {
 
             BindingSource bindingSource = new()
-            {
+                {
                 DataSource = DataScheduleView.DataSource
-            };
+                };
             DataScheduleView.DataSource = bindingSource;
 
-            if (string.IsNullOrWhiteSpace(SearchScheduleCar.Text))
-            {
+            if(string.IsNullOrWhiteSpace(SearchScheduleCar.Text))
+                {
                 bindingSource.RemoveFilter();
-            }
+                }
             // Використання параметрів для фільтрації
             string[] searchTerms = SearchScheduleCar.Text.Split(','); // Розділити введений текст на окремі слова
                                                                       // Фільтр за умовами
             string filter = string.Join(" AND ", searchTerms.Select(term => $"Imię LIKE '%{term}%' OR Nazwisko LIKE '%{term}%' OR Marka LIKE '%{term}%' OR Model LIKE '%{term}%' OR DataPrzyjęcia LIKE '%{term}%' OR Telefon LIKE '%{term}%'"));
             bindingSource.Filter = filter;
-        }
+            }
 
         private void SearchScheduleCar_MouseHover(object sender, EventArgs e)
-        {
+            {
             helpingLabel.Text = "* Wpisz [,] dla wyszukiwaniu kilku słów";
-        }
+            }
 
         private void SearchScheduleCar_MouseLeave(object sender, EventArgs e)
-        {
+            {
             helpingLabel.Text = "*";
-        }
+            }
 
         private void TelephonTextBox_MouseHover(object sender, EventArgs e)
-        {
+            {
             helpTelephoneLabel.Text = "* Dla wygody czytania polecam np. 945-342-234, pisząc co czwarty symbol [-]";
-        }
+            }
 
         private void TelephonTextBox_MouseLeave(object sender, EventArgs e)
-        {
+            {
             helpTelephoneLabel.Text = "*";
-        }
+            }
 
+        private void AutocompleteButton_Click(object sender, EventArgs e)
+            {
+            string[] NameSurname = label17.Text.Split(" ");
+            string[] MarkaModel = label25.Text.Split(" ");
+
+            NameTextBox.Text = NameSurname[0];
+            SurnameTextBox.Text = NameSurname[1];
+            TelephonTextBox.Text = label23.Text;
+
+            bool found = CarComboBox.Items.Cast<string>().Any(item => item.Equals(MarkaModel[0]));
+            if(!found)
+                {
+                CarComboBox.Items.Add(MarkaModel[0]);
+
+                }
+            CarComboBox.SelectedItem = MarkaModel[0];
+            ScheduleModelTextBox0.Text = MarkaModel[1];
+
+            Array.Clear(NameSurname);
+            Array.Clear(MarkaModel);
+            }
+
+        private void TelephonTextBox_TextChanged(object sender, EventArgs e)
+            {
+            if(TelephonTextBox.TextLength > 6)
+                {
+                EditDataScheduleCar editDataScheduleCar = new();
+                editDataScheduleCar.AutocompleteDataSQL(this, TelephonTextBox.Text);
+                }
+
+            }
+        }
     }
-}
-public class TransferData
-{
+public class TransferData {
     public Queue<string> Data { get; set; } = new();
-}
+    }

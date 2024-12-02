@@ -27,22 +27,18 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            {
             WorkerListBox = new ListBox();
             label7 = new Label();
             panelDodatkowy = new Panel();
             WorkPerfomedTextBox = new TextBox();
             ButtonOrderManagementSave = new Button();
-            OrderAddoptedCheck = new CheckBox();
             panel1 = new Panel();
             OrderAddoptedTimePicker = new DateTimePicker();
-            CarRealiseTimePicker = new DateTimePicker();
             label13 = new Label();
             realiseOrderCheck = new CheckBox();
             Vin_Label = new Label();
+            label5 = new Label();
             panel3 = new Panel();
             OtherDatePayCheck = new RadioButton();
             TodayPaycheck = new RadioButton();
@@ -60,29 +56,12 @@
             label4 = new Label();
             FinallPriceNumericUpDown = new NumericUpDown();
             label3 = new Label();
-            ViewOrderManagement = new DataGridView();
-            ID = new DataGridViewTextBoxColumn();
-            BtnDelete = new DataGridViewButtonColumn();
-            Przyjęty_Column = new DataGridViewCheckBoxColumn();
-            OczekujeNaOdbiór_Column = new DataGridViewCheckBoxColumn();
-            DataPrzyjęcia_Column = new DataGridViewTextBoxColumn();
-            DataWydania_Column = new DataGridViewTextBoxColumn();
-            DataPayer_Column = new DataGridViewTextBoxColumn();
-            TypPłatności_Column = new DataGridViewTextBoxColumn();
-            KosztSzacunkowy_Column = new DataGridViewTextBoxColumn();
-            KosztKońcowy_Column = new DataGridViewTextBoxColumn();
-            ZMarżą_Column = new DataGridViewTextBoxColumn();
-            TotalPriceOfPart_Column = new DataGridViewTextBoxColumn();
-            WykonanaPraca_Column = new DataGridViewTextBoxColumn();
-            WykonawcaPracy_Column = new DataGridViewTextBoxColumn();
-            VIN_Column = new DataGridViewTextBoxColumn();
             panelDodatkowy.SuspendLayout();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)EstimatedCostNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)FinallPriceNumericUpDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ViewOrderManagement).BeginInit();
             SuspendLayout();
             // 
             // WorkerListBox
@@ -147,27 +126,15 @@
             ButtonOrderManagementSave.UseVisualStyleBackColor = false;
             ButtonOrderManagementSave.Click += ButtonOrderManagementSave_Click;
             // 
-            // OrderAddoptedCheck
-            // 
-            OrderAddoptedCheck.AutoSize = true;
-            OrderAddoptedCheck.Location = new Point(23, 73);
-            OrderAddoptedCheck.Name = "OrderAddoptedCheck";
-            OrderAddoptedCheck.Size = new Size(67, 19);
-            OrderAddoptedCheck.TabIndex = 21;
-            OrderAddoptedCheck.Text = "Przyjęty";
-            OrderAddoptedCheck.UseVisualStyleBackColor = true;
-            OrderAddoptedCheck.CheckedChanged += OrderAddoptedCheck_CheckedChanged;
-            // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(64, 64, 70);
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(OrderAddoptedTimePicker);
-            panel1.Controls.Add(CarRealiseTimePicker);
             panel1.Controls.Add(label13);
             panel1.Controls.Add(realiseOrderCheck);
-            panel1.Controls.Add(OrderAddoptedCheck);
             panel1.Controls.Add(Vin_Label);
+            panel1.Controls.Add(label5);
             panel1.ForeColor = Color.DimGray;
             panel1.Location = new Point(12, 37);
             panel1.Name = "panel1";
@@ -176,22 +143,15 @@
             // 
             // OrderAddoptedTimePicker
             // 
-            OrderAddoptedTimePicker.Location = new Point(23, 176);
+            OrderAddoptedTimePicker.Location = new Point(3, 69);
             OrderAddoptedTimePicker.Name = "OrderAddoptedTimePicker";
             OrderAddoptedTimePicker.Size = new Size(269, 23);
             OrderAddoptedTimePicker.TabIndex = 23;
             // 
-            // CarRealiseTimePicker
-            // 
-            CarRealiseTimePicker.Location = new Point(23, 98);
-            CarRealiseTimePicker.Name = "CarRealiseTimePicker";
-            CarRealiseTimePicker.Size = new Size(269, 23);
-            CarRealiseTimePicker.TabIndex = 23;
-            // 
             // label13
             // 
             label13.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.Location = new Point(3, 0);
+            label13.Location = new Point(3, 5);
             label13.Name = "label13";
             label13.Size = new Size(153, 28);
             label13.TabIndex = 0;
@@ -200,7 +160,7 @@
             // realiseOrderCheck
             // 
             realiseOrderCheck.AutoSize = true;
-            realiseOrderCheck.Location = new Point(23, 151);
+            realiseOrderCheck.Location = new Point(144, 49);
             realiseOrderCheck.Name = "realiseOrderCheck";
             realiseOrderCheck.Size = new Size(128, 19);
             realiseOrderCheck.TabIndex = 21;
@@ -211,11 +171,22 @@
             // Vin_Label
             // 
             Vin_Label.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            Vin_Label.Location = new Point(23, 30);
+            Vin_Label.Location = new Point(195, 5);
             Vin_Label.Name = "Vin_Label";
             Vin_Label.Size = new Size(196, 28);
             Vin_Label.TabIndex = 0;
             Vin_Label.TextChanged += Vin_Label_TextChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.ForeColor = Color.FromArgb(224, 224, 224);
+            label5.Location = new Point(3, 45);
+            label5.Name = "label5";
+            label5.Size = new Size(107, 21);
+            label5.TabIndex = 27;
+            label5.Text = "Data Wydania";
             // 
             // panel3
             // 
@@ -424,160 +395,18 @@
             label3.TabIndex = 0;
             label3.Text = "Sposób Płatności";
             // 
-            // ViewOrderManagement
-            // 
-            ViewOrderManagement.AllowUserToAddRows = false;
-            ViewOrderManagement.AllowUserToDeleteRows = false;
-            ViewOrderManagement.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ViewOrderManagement.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            ViewOrderManagement.BorderStyle = BorderStyle.None;
-            ViewOrderManagement.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.LightGray;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            ViewOrderManagement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            ViewOrderManagement.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewOrderManagement.Columns.AddRange(new DataGridViewColumn[] { ID, BtnDelete, Przyjęty_Column, OczekujeNaOdbiór_Column, DataPrzyjęcia_Column, DataWydania_Column, DataPayer_Column, TypPłatności_Column, KosztSzacunkowy_Column, KosztKońcowy_Column, ZMarżą_Column, TotalPriceOfPart_Column, WykonanaPraca_Column, WykonawcaPracy_Column, VIN_Column });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            ViewOrderManagement.DefaultCellStyle = dataGridViewCellStyle3;
-            ViewOrderManagement.EnableHeadersVisualStyles = false;
-            ViewOrderManagement.Location = new Point(0, 288);
-            ViewOrderManagement.Name = "ViewOrderManagement";
-            ViewOrderManagement.RowTemplate.Height = 25;
-            ViewOrderManagement.Size = new Size(1040, 292);
-            ViewOrderManagement.TabIndex = 29;
-            ViewOrderManagement.CellContentClick += ViewOrderManagement_CellContentClick;
-            ViewOrderManagement.MouseDoubleClick += ViewOrderManagement_MouseDoubleClick;
-            // 
-            // ID
-            // 
-            ID.DataPropertyName = "ID";
-            ID.HeaderText = "ID";
-            ID.Name = "ID";
-            ID.Visible = false;
-            // 
-            // BtnDelete
-            // 
-            BtnDelete.HeaderText = "Usuń";
-            BtnDelete.Name = "BtnDelete";
-            // 
-            // Przyjęty_Column
-            // 
-            Przyjęty_Column.DataPropertyName = "Przyjęty";
-            Przyjęty_Column.FalseValue = "0";
-            Przyjęty_Column.HeaderText = "Przyjęty";
-            Przyjęty_Column.Name = "Przyjęty_Column";
-            Przyjęty_Column.Resizable = DataGridViewTriState.True;
-            Przyjęty_Column.SortMode = DataGridViewColumnSortMode.Automatic;
-            Przyjęty_Column.TrueValue = "1";
-            // 
-            // OczekujeNaOdbiór_Column
-            // 
-            OczekujeNaOdbiór_Column.DataPropertyName = "OczekujeNaOdbiór";
-            OczekujeNaOdbiór_Column.FalseValue = "0";
-            OczekujeNaOdbiór_Column.HeaderText = "Oczekuje na odbiór";
-            OczekujeNaOdbiór_Column.Name = "OczekujeNaOdbiór_Column";
-            OczekujeNaOdbiór_Column.Resizable = DataGridViewTriState.True;
-            OczekujeNaOdbiór_Column.SortMode = DataGridViewColumnSortMode.Automatic;
-            OczekujeNaOdbiór_Column.TrueValue = "1";
-            // 
-            // DataPrzyjęcia_Column
-            // 
-            DataPrzyjęcia_Column.DataPropertyName = "DataPrzyjęcie";
-            DataPrzyjęcia_Column.HeaderText = "Data 1";
-            DataPrzyjęcia_Column.Name = "DataPrzyjęcia_Column";
-            // 
-            // DataWydania_Column
-            // 
-            DataWydania_Column.DataPropertyName = "DataOczekiwaniaOdbioru";
-            dataGridViewCellStyle2.Format = "km";
-            dataGridViewCellStyle2.NullValue = null;
-            DataWydania_Column.DefaultCellStyle = dataGridViewCellStyle2;
-            DataWydania_Column.HeaderText = "Data 2";
-            DataWydania_Column.Name = "DataWydania_Column";
-            DataWydania_Column.Visible = false;
-            // 
-            // DataPayer_Column
-            // 
-            DataPayer_Column.DataPropertyName = "DataPłatności";
-            DataPayer_Column.HeaderText = "Data Płatności";
-            DataPayer_Column.Name = "DataPayer_Column";
-            DataPayer_Column.Visible = false;
-            // 
-            // TypPłatności_Column
-            // 
-            TypPłatności_Column.DataPropertyName = "MetodaPłatności";
-            TypPłatności_Column.HeaderText = "Metoda płatności";
-            TypPłatności_Column.Name = "TypPłatności_Column";
-            TypPłatności_Column.Visible = false;
-            // 
-            // KosztSzacunkowy_Column
-            // 
-            KosztSzacunkowy_Column.DataPropertyName = "KosztSzacunkowy";
-            KosztSzacunkowy_Column.HeaderText = "koszt szacunkowy";
-            KosztSzacunkowy_Column.Name = "KosztSzacunkowy_Column";
-            // 
-            // KosztKońcowy_Column
-            // 
-            KosztKońcowy_Column.DataPropertyName = "KosztKońcowy";
-            KosztKońcowy_Column.HeaderText = "koszt końcowy";
-            KosztKońcowy_Column.Name = "KosztKońcowy_Column";
-            // 
-            // ZMarżą_Column
-            // 
-            ZMarżą_Column.DataPropertyName = "KosztZMarżą";
-            ZMarżą_Column.HeaderText = "Koszt z marżą";
-            ZMarżą_Column.Name = "ZMarżą_Column";
-            // 
-            // TotalPriceOfPart_Column
-            // 
-            TotalPriceOfPart_Column.DataPropertyName = "KosztCałkowityCzęści";
-            TotalPriceOfPart_Column.HeaderText = "Koszt Całkowity Części";
-            TotalPriceOfPart_Column.Name = "TotalPriceOfPart_Column";
-            TotalPriceOfPart_Column.Visible = false;
-            // 
-            // WykonanaPraca_Column
-            // 
-            WykonanaPraca_Column.DataPropertyName = "WykonanaPraca";
-            WykonanaPraca_Column.HeaderText = "Co bylo robione";
-            WykonanaPraca_Column.Name = "WykonanaPraca_Column";
-            // 
-            // WykonawcaPracy_Column
-            // 
-            WykonawcaPracy_Column.DataPropertyName = "WykonawcaPracy";
-            WykonawcaPracy_Column.HeaderText = "Pracownik który wykonał";
-            WykonawcaPracy_Column.Name = "WykonawcaPracy_Column";
-            // 
-            // VIN_Column
-            // 
-            VIN_Column.DataPropertyName = "VIN";
-            VIN_Column.HeaderText = "VIN";
-            VIN_Column.Name = "VIN_Column";
-            VIN_Column.Visible = false;
-            // 
             // UC_AddOrderManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            Controls.Add(ViewOrderManagement);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(panelDodatkowy);
             Controls.Add(ButtonOrderManagementSave);
             Name = "UC_AddOrderManagement";
-            Size = new Size(1040, 580);
+            Size = new Size(1040, 298);
             Load += UC_AddOrderManagement_Load;
             panelDodatkowy.ResumeLayout(false);
             panelDodatkowy.PerformLayout();
@@ -589,9 +418,8 @@
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)EstimatedCostNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)FinallPriceNumericUpDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ViewOrderManagement).EndInit();
             ResumeLayout(false);
-        }
+            }
 
         #endregion
         private Label label7;
@@ -599,7 +427,6 @@
         private Panel panelDodatkowy;
         private Button ButtonOrderManagementSave;
         private TextBox WorkPerfomedTextBox;
-        private CheckBox OrderAddoptedCheck;
         private Panel panel1;
         private Label label13;
         private CheckBox realiseOrderCheck;
@@ -614,33 +441,17 @@
         private NumericUpDown EstimatedCostNumericUpDown;
         private Label label10;
         private Label label4;
-        private DataGridView ViewOrderManagement;
         private RadioButton OtherDatePayCheck;
         private RadioButton TodayPaycheck;
         private RadioButton CardCheck;
         private RadioButton CashCheck;
         private Label Vin_Label;
         private DateTimePicker OrderAddoptedTimePicker;
-        private DateTimePicker CarRealiseTimePicker;
         public NumericUpDown FinallPriceNumericUpDown;
         private Label LabelPricePart;
         private Label LabelTotalCostOfParts;
         private Label LabelPriceWithMarża;
         private Label label1;
-        private DataGridViewTextBoxColumn ID;
-        private DataGridViewButtonColumn BtnDelete;
-        private DataGridViewCheckBoxColumn Przyjęty_Column;
-        private DataGridViewCheckBoxColumn OczekujeNaOdbiór_Column;
-        private DataGridViewTextBoxColumn DataPrzyjęcia_Column;
-        private DataGridViewTextBoxColumn DataWydania_Column;
-        private DataGridViewTextBoxColumn DataPayer_Column;
-        private DataGridViewTextBoxColumn TypPłatności_Column;
-        private DataGridViewTextBoxColumn KosztSzacunkowy_Column;
-        private DataGridViewTextBoxColumn KosztKońcowy_Column;
-        private DataGridViewTextBoxColumn ZMarżą_Column;
-        private DataGridViewTextBoxColumn TotalPriceOfPart_Column;
-        private DataGridViewTextBoxColumn WykonanaPraca_Column;
-        private DataGridViewTextBoxColumn WykonawcaPracy_Column;
-        private DataGridViewTextBoxColumn VIN_Column;
-    }
+        private Label label5;
+        }
 }

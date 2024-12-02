@@ -27,7 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
+            {
             CategoryListBox = new ListBox();
             label4 = new Label();
             label5 = new Label();
@@ -38,6 +38,9 @@
             NumberPartTextBox = new TextBox();
             QuantityNumericUpDown = new NumericUpDown();
             PriceNumericUpDown = new NumericUpDown();
+            label1 = new Label();
+            label2 = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)QuantityNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).BeginInit();
             SuspendLayout();
@@ -57,7 +60,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(224, 224, 224);
-            label4.Location = new Point(351, 11);
+            label4.Location = new Point(147, 98);
             label4.Name = "label4";
             label4.Size = new Size(45, 21);
             label4.TabIndex = 0;
@@ -68,7 +71,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(224, 224, 224);
-            label5.Location = new Point(351, 68);
+            label5.Location = new Point(252, 98);
             label5.Name = "label5";
             label5.Size = new Size(41, 21);
             label5.TabIndex = 0;
@@ -120,7 +123,7 @@
             NameTextBox.Cursor = Cursors.IBeam;
             NameTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             NameTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            NameTextBox.Location = new Point(156, 94);
+            NameTextBox.Location = new Point(147, 57);
             NameTextBox.Name = "NameTextBox";
             NameTextBox.PlaceholderText = "Nazwa";
             NameTextBox.Size = new Size(171, 30);
@@ -133,7 +136,7 @@
             NumberPartTextBox.Cursor = Cursors.IBeam;
             NumberPartTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             NumberPartTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            NumberPartTextBox.Location = new Point(156, 35);
+            NumberPartTextBox.Location = new Point(147, 10);
             NumberPartTextBox.Name = "NumberPartTextBox";
             NumberPartTextBox.PlaceholderText = "Numer części";
             NumberPartTextBox.Size = new Size(171, 30);
@@ -143,23 +146,60 @@
             // 
             QuantityNumericUpDown.BackColor = Color.White;
             QuantityNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
-            QuantityNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            QuantityNumericUpDown.Location = new Point(351, 101);
+            QuantityNumericUpDown.Location = new Point(252, 121);
             QuantityNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            QuantityNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             QuantityNumericUpDown.Name = "QuantityNumericUpDown";
             QuantityNumericUpDown.Size = new Size(75, 23);
             QuantityNumericUpDown.TabIndex = 26;
+            QuantityNumericUpDown.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            QuantityNumericUpDown.ValueChanged += QuantityNumericUpDown_ValueChanged;
             // 
             // PriceNumericUpDown
             // 
             PriceNumericUpDown.BackColor = Color.White;
             PriceNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
+            PriceNumericUpDown.DecimalPlaces = 2;
             PriceNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            PriceNumericUpDown.Location = new Point(351, 42);
+            PriceNumericUpDown.Location = new Point(147, 121);
             PriceNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             PriceNumericUpDown.Name = "PriceNumericUpDown";
             PriceNumericUpDown.Size = new Size(75, 23);
             PriceNumericUpDown.TabIndex = 26;
+            PriceNumericUpDown.ValueChanged += PriceNumericUpDown_ValueChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(224, 224, 224);
+            label1.Location = new Point(360, 123);
+            label1.Name = "label1";
+            label1.Size = new Size(19, 21);
+            label1.TabIndex = 0;
+            label1.Text = "0";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(224, 224, 224);
+            label2.Location = new Point(333, 123);
+            label2.Name = "label2";
+            label2.Size = new Size(21, 21);
+            label2.TabIndex = 0;
+            label2.Text = "=";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.ForeColor = Color.FromArgb(224, 224, 224);
+            label6.Location = new Point(229, 126);
+            label6.Name = "label6";
+            label6.Size = new Size(17, 21);
+            label6.TabIndex = 0;
+            label6.Text = "*";
             // 
             // WarehouseAddEdit
             // 
@@ -175,6 +215,9 @@
             Controls.Add(DescriptionTextBox);
             Controls.Add(CategoryListBox);
             Controls.Add(label3);
+            Controls.Add(label6);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(label5);
             Controls.Add(label4);
             MaximizeBox = false;
@@ -190,7 +233,7 @@
             ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).EndInit();
             ResumeLayout(false);
             PerformLayout();
-        }
+            }
 
         #endregion
         private Label label4;
@@ -203,5 +246,8 @@
         private TextBox NumberPartTextBox;
         private NumericUpDown QuantityNumericUpDown;
         private NumericUpDown PriceNumericUpDown;
+        private Label label2;
+        private Label label6;
+        public Label label1;
     }
 }

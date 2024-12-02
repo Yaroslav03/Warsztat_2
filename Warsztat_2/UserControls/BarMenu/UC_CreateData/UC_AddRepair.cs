@@ -1,310 +1,261 @@
-﻿using System.Data.SQLite;
+﻿using MigraDoc.DocumentObjectModel.Tables;
+using System.Data.SQLite;
+using System.Windows.Forms;
 using Warsztat_2.UserControls.BarMenu.UC_CreateData;
 
 
-namespace Warsztat_2._0.UserControls.UC_CreateData
-{
-    public partial class UC_AddRepair : UserControl
-    {
+namespace Warsztat_2._0.UserControls.UC_CreateData {
+    public partial class UC_AddRepair :UserControl {
+        private List<string> tranferData = new();
         #region variables
-        private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
-        private readonly Queue<string> dataError = new();
-        Repair repair = new();
 
         private protected ushort Id_Repair;
         private string? pricePart;
 
-
         #endregion
         #region Event
         private async void UC_AddOrderRepair_Load(object sender, EventArgs e)
-        {
+            {
             await LoadCarData();
             GC.Collect();
-        }
+            }
 
         private async void ViewCar_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
+            {
             VIN_label.Text = ViewCar.CurrentRow.Cells["VIN_Column"].Value.ToString();
             await LoadRepair();
-        }
-        #endregion
-        #region Methods
-
-        private void CollectData()
-        {
-            repair = new()
-            {
-                Description = DescriptionTextBox.Text,
-                NrPart = NrPartTextBox.Text,
-                Price = PriceNumericUpDown.Value,
-                Ilość = (byte)IloscNumericUpDown.Value,
-                Sum = Convert.ToDecimal(SumLabel.Text),
-                Stan = StanCheckBox.Checked,
-                DateOfAcceptance = RepairTimePicker.Text.ToString()
-
-            };
-        }
-        private void CollectDataFromTable()
-        {
-            Id_Repair = Convert.ToUInt16(ViewRepair.CurrentRow.Cells["ID"].Value.ToString());
-
-            DescriptionTextBox.Text = ViewRepair.CurrentRow.Cells["Opis_Column"].Value.ToString();
-            NrPartTextBox.Text = ViewRepair.CurrentRow.Cells["NrCzęści_Column"].Value.ToString();
-            PriceNumericUpDown.Text = ViewRepair.CurrentRow.Cells["Cena_Column"].Value.ToString();
-            IloscNumericUpDown.Text = ViewRepair.CurrentRow.Cells["Ilość_Column"].Value.ToString();
-
-            StanCheckBox.Checked = ViewRepair.CurrentRow.Cells["Wykonane_Checked"].Value.ToString() == "1";
-
-            RepairTimePicker.Text = ViewRepair.CurrentRow.Cells["DateRepair"].Value.ToString();
-        }
-        /*private void SaveData()
-        {
-            Cursor.Current = Cursors.WaitCursor;
-
-            CollectData();
-
-            using SQLiteConnection conn = new(pathHistoryRepair);
-
-            await conn.OpenAsync();
-
-            using var transaction = conn.BeginTransaction();
-            try
-            {
-                SQLiteCommand add = new($"INSERT INTO {VIN_label.Text} (Zlecenie, Diagnostyka, Naprawa, Opis, NumerCzęści, Cena, Ilość, Wykonane) VALUES(@Zlecenie, @Diagnostyka, @Naprawa, @Opis, @NumerCzęści, @Cena, @Ilość, @Wykonane)", conn);
-
-                add.Parameters.AddWithValue("@Zlecenie", repair.Zlecenie);
-                add.Parameters.AddWithValue("@Diagnostyka", orderRepair.Diagnostic);
-                add.Parameters.AddWithValue("@Naprawa", orderRepair.Repair);
-                add.Parameters.AddWithValue("@Opis", orderRepair.Description);
-                add.Parameters.AddWithValue("@NumerCzęści", orderRepair.NrPart);
-                add.Parameters.AddWithValue("@Cena", orderRepair.Price);
-                add.Parameters.AddWithValue("@Ilość", orderRepair.Ilość);
-                add.Parameters.AddWithValue("@Wykonane", orderRepair.Stan);
-
-                await add.ExecuteNonQueryAsync();
-                await transaction.CommitAsync();
-
-                await LoadCarData();
             }
-            catch (Exception ex)
-            {
-                transaction.Rollback();
-                throw;
-            }
-            Cursor.Current = Cursors.Default;
-            ViewHistoriRepair.Rows.Add(orderRepair)
-            ViewHistoriRepair.Rows.Add.Cells["Diagnostyka_Column"].Value = orderRepair.Diagnostic;
-            ViewHistoriRepair.Rows[rowCount].Cells["Naprawa_Column"].Value = orderRepair.Repair;
-            ViewHistoriRepair.Rows[rowCount].Cells["Opis_Column"].Value = orderRepair.Description;
-            ViewHistoriRepair.Rows[rowCount].Cells["NrCzęści_Column"].Value = orderRepair.NrPart;
-            ViewHistoriRepair.Rows[rowCount].Cells["Cena_Column"].Value = orderRepair.Price;
-            ViewHistoriRepair.Rows[rowCount].Cells["Ilość_Column"].Value = orderRepair.Ilość;
-        }*/
-
-        private async Task LoadCarData()
-        {
-            await SqlCmd.LoadData(connection, "SELECT ID, Marka, Model, RokProdukcji, VIN FROM Samochód", ViewCar, "history", "Load table Car From DB");
-        }
-
-        #endregion
         public UC_AddRepair()
-        {
+            {
             InitializeComponent();
-        }
+            }
 
         private async void ButtonOrderRepairSave_Click(object sender, EventArgs e)
-        {
-            if (ButtonRepairSave.Text == "Zapisz")
             {
+            if(ButtonRepairSave.Text == "Zapisz")
+                {
                 await SaveRepair();
-            }
-            else if (ButtonRepairSave.Text == "Odśwież")
-            {
+                }
+            else if(ButtonRepairSave.Text == "Odśwież")
+                {
                 await UpdateRepair();
                 ButtonRepairSave.Text = "Zapisz";
-            }
-            await LoadRepair();
-        }
-        private async Task UpdateRepair()
-        {
-            CollectData();
-
-            using SQLiteConnection conn = new(connection);
-
-            await conn.OpenAsync();
-
-            using var transaction = conn.BeginTransaction();
-            try
-            {
-                using SQLiteCommand update = new($"UPDATE NaprawaSamochodu SET Opis=@Opis, NumerCzęści=@NumerCzęści, Cena=@Cena, Ilość=@Ilość, Suma=@Suma, Stan=@Stan, DataNapraw=@DataNapraw WHERE  ID=@ID", conn);
-
-                update.Parameters.AddWithValue("@ID", Id_Repair);
-                update.Parameters.AddWithValue("@Opis", repair.Description);
-                update.Parameters.AddWithValue("@NumerCzęści", repair.NrPart);
-                update.Parameters.AddWithValue("@Cena", repair.Price);
-                update.Parameters.AddWithValue("@Ilość", repair.Ilość);
-                update.Parameters.AddWithValue("@Suma", repair.Sum);
-                update.Parameters.AddWithValue("@Stan", repair.Stan);
-                update.Parameters.AddWithValue("@DataNapraw", repair.DateOfAcceptance);
-
-                await update.ExecuteNonQueryAsync();
-
-                await transaction.CommitAsync();
-
-                await conn.CloseAsync();
-            }
-            catch (Exception ex)
-            {
-                transaction.Rollback();
-                dataError.Enqueue($"VIN:{VIN_label.Text}");
-                dataError.Enqueue($"Opis:{repair.Description}");
-                dataError.Enqueue($"Numer części:{repair.NrPart}");
-                dataError.Enqueue($"Cena:{repair.Price}");
-                dataError.Enqueue($"Ilość:{repair.Ilość}");
-                dataError.Enqueue($"Suma:{repair.Sum}");
-                dataError.Enqueue($"Stan:{repair.Stan}");
-                dataError.Enqueue($"Data:{repair.DateOfAcceptance}");
-
-                await Settings.Error(ex, dataError, "AddRepair", "problem with saving data or cmd SQL to Repair");
-                throw;
-            }
-            finally
-            {
-                Id_Repair = 0;
-                Repair.Reset();
-                Settings.ClearTextBox(panelDodatkowy);
-                StanCheckBox.Checked = false;
-                ButtonRepairSave.Text = "Zapisz";
-                PriceNumericUpDown.Value = 0; IloscNumericUpDown.Value = 1;
-            }
-        }
-        private async Task SaveRepair()
-        {
-            CollectData();
-
-            using SQLiteConnection conn = new(connection);
-
-            await conn.OpenAsync();
-
-            using var transaction = conn.BeginTransaction();
-
-            try
-            {
-                // Використовуйте IF NOT EXISTS для створення таблиці лише у випадку, якщо вона не існує
-                using SQLiteCommand createTable = new($"CREATE TABLE IF NOT EXISTS NaprawaSamochodu (ID INTEGER PRIMARY KEY AUTOINCREMENT, Opis TEXT, NumerCzęści TEXT, Cena INTEGER, Ilość INTEGER, Suma INTEGER, Stan TEXT, DataNapraw TEXT, VIN TEXT);", conn);
-
-                await createTable.ExecuteNonQueryAsync();
-
-                using SQLiteCommand insert = new($"INSERT INTO NaprawaSamochodu (Opis, NumerCzęści, Cena, Ilość, Suma, Stan, DataNapraw, VIN)" +
-                        "VALUES (@Opis, @NumerCzęści, @Cena, @Ilość, @Suma, @Stan, @DataNapraw, @VIN)", conn);
-
-                insert.Parameters.AddWithValue("@VIN", VIN_label.Text);
-                insert.Parameters.AddWithValue("@Opis", repair.Description);
-                insert.Parameters.AddWithValue("@NumerCzęści", repair.NrPart);
-                insert.Parameters.AddWithValue("@Cena", repair.Price);
-                insert.Parameters.AddWithValue("@Ilość", repair.Ilość);
-                insert.Parameters.AddWithValue("@Suma", repair.Sum);
-                insert.Parameters.AddWithValue("@Stan", repair.Stan);
-                insert.Parameters.AddWithValue("@DataNapraw", repair.DateOfAcceptance);
-
-                await insert.ExecuteNonQueryAsync();
-
-                await transaction.CommitAsync();
-            }
-            catch (Exception ex)
-            {
-                transaction.Rollback();
-                dataError.Enqueue($"VIN:{VIN_label.Text}");
-                dataError.Enqueue($"Opis:{repair.Description}");
-                dataError.Enqueue($"Numer części:{repair.NrPart}");
-                dataError.Enqueue($"Cena:{repair.Price}");
-                dataError.Enqueue($"Ilość:{repair.Ilość}");
-                dataError.Enqueue($"Suma:{repair.Sum}");
-                dataError.Enqueue($"Stan:{repair.Stan}");
-                dataError.Enqueue($"Data:{repair.DateOfAcceptance}");
-
-                await Settings.Error(ex, dataError, "AddRepair", "problem with saving data or cmd SQL to Repair");
-                throw;
-            }
-            finally
-            {
-                HistoryCar.Reset();
-                Settings.ClearTextBox(panelDodatkowy);
-                StanCheckBox.Checked = false;
-                PriceNumericUpDown.Value = 0; IloscNumericUpDown.Value = 1;
-            }
-
-        }
-        private async Task LoadRepair()
-        {
-            await SqlCmd.LoadData(connection, $"SELECT ID, Opis, NumerCzęści, Cena, Ilość, Suma, Stan, DataNapraw FROM NaprawaSamochodu WHERE VIN LIKE '%{VIN_label.Text}'", ViewRepair, "Repair", "Load table Repair from DB");
-            //}
-            /*            else if (ViewRepair.DataSource != null)
-                        {
-                            ((DataTable)ViewRepair.DataSource).Clear();
-                        }*/
-        }
-
-        private async void ViewRepair_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            await SqlCmd.DeleteDataTable(ViewRepair, e, connection, "BtnDelete", "ID", "NaprawaSamochodu");
-        }
-
-        private void ViewRepair_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            CollectDataFromTable();
-            ButtonRepairSave.Text = "Odśwież";
-        }
-
-        private void SumRepair()
-        {
-            decimal totalPrice = 0;
-            foreach (DataGridViewRow row in ViewRepair.Rows)
-            {
-                if (row.Cells["Suma_Column"].Value != null && decimal.TryParse(row.Cells["Suma_Column"].Value.ToString(), out decimal price))
-                {
-                    totalPrice += price;
                 }
+            await LoadRepair();
             }
-
-            pricePart = totalPrice.ToString();
-        }
-
-        private void VIN_label_Click(object sender, EventArgs e)
-        {
-            if (VIN_label.Text != "Brak")
-            {
-                SumRepair();
-            }
-        }
-
-        private void PriceNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            Sum();
-        }
-
-        private void IloscNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            Sum();
-        }
-        private void Sum()
-        {
-            decimal sum = PriceNumericUpDown.Value * IloscNumericUpDown.Value;
-            SumLabel.Text = sum.ToString();
-        }
-
         private void ButtonOrderManagement_Click(object sender, EventArgs e)
-        {
-            if (VIN_label.Text != "Brak")
             {
+            if(VIN_label.Text != "Brak")
+                {
                 SumRepair();
                 string[] data = { $"{VIN_label.Text}", $"{pricePart}" };
                 Form_AddOrderManagement form_AddOrderManagement = new();
                 form_AddOrderManagement.SendDataFromLastWindow(data);
                 form_AddOrderManagement.ShowDialog();
+                }
+            }
+        #endregion
+        #region Methods
 
+        private void CollectDataFromTable()
+            {
+            string GetCellValue(string columnName) => ViewRepair.CurrentRow.Cells[columnName]?.Value?.ToString() ?? string.Empty;
+            Id_Repair = Convert.ToUInt16(GetCellValue("ID"));
+
+            DescriptionTextBox.Text = GetCellValue("Opis_Column");
+            NazwaTextBox.Text = GetCellValue("Nazwa_Column_");
+            NrPartTextBox.Text = GetCellValue("NrCzęści_Column");
+            PriceNumericUpDown.Text = GetCellValue("Cena_Column");
+            IloscNumericUpDown.Text = GetCellValue("Ilość_Column");
+
+            StanCheckBox.Checked = GetCellValue("Wykonane_Checked") =="1";
+
+            RepairTimePicker.Text = GetCellValue("DateRepair");
+            }
+
+        private async Task LoadCarData()
+            {
+            await SqlCmd.LoadData("SELECT ID, Marka, Model, RokProdukcji, VIN FROM Samochód", ViewCar, "history", "Load table Car From DB");
+            await SqlCmd.LoadData("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, Suma FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
+            }
+
+        #endregion
+
+        private async Task UpdateRepair()
+            {
+            var repairUpdateData = GetValue();
+            var repairId = new Dictionary<string, object>
+                {
+                    {"ID", Id_Repair}
+                };
+
+            await SqlCmd.UpdateRecordAsync("NaprawaSamochodu", repairUpdateData, "ID=@ID", repairId);
+
+                Id_Repair = 0;
+                Settings.ClearTextBox(panelDodatkowy);
+                StanCheckBox.Checked = false;
+                ButtonRepairSave.Text = "Zapisz";
+                PriceNumericUpDown.Value = 0; IloscNumericUpDown.Value = 1;                
+            }
+        private Dictionary<string, object> GetValue()
+            {
+            return new Dictionary<string, object>
+                {
+                    {"Typ", "" },
+                    {"Nazwa", NazwaTextBox.Text.Trim()},
+                    {"Opis", DescriptionTextBox.Text.Trim()},
+                    {"NumerCzęści", NrPartTextBox.Text.Trim()},
+                    {"Cena", PriceNumericUpDown.Value },
+                    {"Ilość", (byte)IloscNumericUpDown.Value},
+                    {"Suma", Convert.ToDecimal(SumLabel.Text)},
+                    {"Stan", StanCheckBox.Checked},
+                    {"DataNapraw", RepairTimePicker.Text.Trim()},
+                    {"VIN", VIN_label.Text}
+                };
+            }
+        private async Task SaveRepair()
+            {
+            var repairData = GetValue();
+
+            await SqlCmd.AddRecordAsync("NaprawaSamochodu", repairData);
+            Settings.ClearTextBox(panelDodatkowy);
+            StanCheckBox.Checked = false;
+            PriceNumericUpDown.Value = 0; IloscNumericUpDown.Value = 1;
+            }
+        private async Task LoadRepair()
+            {
+            await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan, DataNapraw FROM NaprawaSamochodu WHERE VIN LIKE '%{VIN_label.Text}'", ViewRepair, "Repair", "Load table Repair from DB");
+            }
+
+        private async void ViewRepair_CellContentClick(object sender, DataGridViewCellEventArgs e)
+            {
+            
+            string[] columnData = {"Type_Column", "Nazwa_Column_", "Opis_Column", "NrCzęści_Column", "Cena_Column", "Ilość_Column", "Suma_Column" };
+            string[] sqlColumns = {"Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma"};
+
+            GetDataTable(ViewRepair, columnData);
+            var warehouseData = new Dictionary<string, object>();
+
+
+            for(byte i = 0;i < sqlColumns.Length;i++)
+                {
+                warehouseData.Add(sqlColumns[i], tranferData[i]);
+                }
+            bool IsSuccsesful = await SqlCmd.AddRecordAsync("Magazyn", warehouseData);
+            if(IsSuccsesful)
+                {
+                await SqlCmd.DeleteDataTable(ViewRepair, e, "BtnDelete", "ID", "NaprawaSamochodu");
+                await SqlCmd.LoadData("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, Suma FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
+                }
+            tranferData.Clear();
+            warehouseData.Clear();
+            }
+
+        private void ViewRepair_MouseDoubleClick(object sender, MouseEventArgs e)
+            {
+            if(VIN_label.Text != "Brak")
+                {
+                CollectDataFromTable();
+                ButtonRepairSave.Text = "Odśwież";
+                }
+            }
+
+        private void SumRepair()
+            {
+            decimal totalPrice = 0;
+            foreach(DataGridViewRow row in ViewRepair.Rows)
+                {
+                if(row.Cells["Suma_Column"].Value != null && decimal.TryParse(row.Cells["Suma_Column"].Value.ToString(), out decimal price))
+                    {
+                    totalPrice += price;
+                    }
+                }
+
+            pricePart = totalPrice.ToString();
+            }
+
+        private void VIN_label_Click(object sender, EventArgs e)
+            {
+            if(VIN_label.Text != "Brak")
+                {
+                SumRepair();
+                }
+            }
+
+        private void PriceNumericUpDown_ValueChanged(object sender, EventArgs e)
+            {
+            Sum();
+            }
+
+        private void IloscNumericUpDown_ValueChanged(object sender, EventArgs e)
+            {
+            Sum();
+            }
+        private void Sum()
+            {
+            decimal sum = PriceNumericUpDown.Value * IloscNumericUpDown.Value;
+            SumLabel.Text = sum.ToString();
+            }
+
+        private async void WarehouseView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+            {
+            if(e.ColumnIndex == WarehouseView.Columns["SelectButton"].Index && WarehouseView.Rows[e.RowIndex].Cells["ID_Column_"].Value != DBNull.Value && VIN_label.Text != "Brak")
+                {
+                TransferData();
+
+                await LoadRepair();
+                await SqlCmd.LoadData("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, Suma FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
+                }
+            else if(e.ColumnIndex == WarehouseView.Columns["BtnDelete_Warehouse"].Index && WarehouseView.Rows[e.RowIndex].Cells["ID_Column_"].Value != DBNull.Value)
+                {
+                await SqlCmd.DeleteDataTable(WarehouseView, e, "BtnDelete_Warehouse", "ID_Column_", "Magazyn");
+                }
+            }
+        private void TransferData()
+            {
+            string[] data = { "ID_Column_", "TypCzesci_Column", "Nazwa_Column", "Opis_Column_", "NumerCzesci_Column", "Price_Column", "Quantity_Column", "Sum_Column" };
+            GetDataTable(WarehouseView, data);
+            tranferData.Add(DateTime.Now.ToString("D"));
+            tranferData.Add(VIN_label.Text);
+
+            if(Convert.ToByte(tranferData[6]) == 1)
+                {
+                TransferDataWithRemoveSQL();
+                }
+            else if(Convert.ToByte(tranferData[6]) > 1)
+                {
+                QuantityItemsWarehous quantityItemsMesssage = new();
+                quantityItemsMesssage.TransferListData(tranferData);
+                quantityItemsMesssage.ShowDialog();
+                }
+            tranferData.Clear();
+
+            }
+        private void GetDataTable(DataGridView dataGridView, string[] columnName)
+            {
+            foreach(string SaveData in columnName)
+                tranferData.Add(dataGridView.CurrentRow.Cells[SaveData]?.Value?.ToString() ?? string.Empty);                
+            }
+
+        private async void TransferDataWithRemoveSQL()
+            {
+            string[] values = {"Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma", "DataNapraw", "VIN" };
+
+            var transferDataId = new Dictionary<string, object>
+                {
+                    {"ID", tranferData[0]}
+                };
+            tranferData.RemoveAt(0);
+
+            var repairCarData = new Dictionary<string, object>();
+
+            for(byte i = 0;i < tranferData.Count;i++)
+                {
+                repairCarData.Add(values[i], tranferData[i]);
+                }
+
+            await SqlCmd.AddRecordAsync("NaprawaSamochodu", repairCarData);
+            await SqlCmd.DeleteRecordAsync("Magazyn", "ID=@ID", transferDataId);
             }
         }
     }
-}

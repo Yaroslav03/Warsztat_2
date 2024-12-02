@@ -27,7 +27,7 @@
         /// jej zawartości w edytorze kodu.
         /// </summary>
         private void InitializeComponent()
-        {
+            {
             Button AddCategoryButton;
             Button RemoveCategoryButton;
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
@@ -46,6 +46,7 @@
             Opis_Column = new DataGridViewTextBoxColumn();
             Quantity_Column = new DataGridViewTextBoxColumn();
             Price_Column = new DataGridViewTextBoxColumn();
+            Sum_Column = new DataGridViewTextBoxColumn();
             SearchTextBox = new TextBox();
             label1 = new Label();
             CategoryTextBox = new TextBox();
@@ -138,7 +139,7 @@
             WarehouseAddButton.Name = "WarehouseAddButton";
             WarehouseAddButton.Size = new Size(192, 30);
             WarehouseAddButton.TabIndex = 24;
-            WarehouseAddButton.Text = "Zapisz";
+            WarehouseAddButton.Text = "Dodaj część";
             WarehouseAddButton.UseVisualStyleBackColor = false;
             WarehouseAddButton.Click += WarehouseAddButton_Click;
             // 
@@ -160,7 +161,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             WarehouseView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             WarehouseView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            WarehouseView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID_Column_, TypCzesci_Column, NrCzęści_Column, Nazwa_Column, Opis_Column, Quantity_Column, Price_Column });
+            WarehouseView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID_Column_, TypCzesci_Column, NrCzęści_Column, Nazwa_Column, Opis_Column, Quantity_Column, Price_Column, Sum_Column });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -228,6 +229,12 @@
             Price_Column.DataPropertyName = "Cena";
             Price_Column.HeaderText = "Cena";
             Price_Column.Name = "Price_Column";
+            // 
+            // Sum_Column
+            // 
+            Sum_Column.DataPropertyName = "Suma";
+            Sum_Column.HeaderText = "Suma";
+            Sum_Column.Name = "Sum_Column";
             // 
             // SearchTextBox
             // 
@@ -311,7 +318,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
-        }
+            }
 
         #endregion
         private Label label4;
@@ -333,5 +340,6 @@
         private DataGridViewTextBoxColumn Opis_Column;
         private DataGridViewTextBoxColumn Quantity_Column;
         private DataGridViewTextBoxColumn Price_Column;
+        private DataGridViewTextBoxColumn Sum_Column;
     }
 }

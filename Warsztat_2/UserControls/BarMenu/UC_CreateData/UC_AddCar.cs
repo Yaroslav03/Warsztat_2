@@ -1,13 +1,12 @@
 ﻿using System.Data.SQLite;
+using Warsztat_2.Models;
 
 namespace Warsztat_2._0.UserControls;
-public partial class UC_AddCar : UserControl
-{
+public partial class UC_AddCar :UserControl {
     #region variables
     private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
     private readonly string carDB = "Data Source=DBCar.db;Version=3;New=False;Compress=True;";
 
-    private readonly List<string?> carData = new();
     private readonly Queue<string> dataError = new();
 
     private Car car = new();
@@ -17,102 +16,59 @@ public partial class UC_AddCar : UserControl
     #region Events
     public UC_AddCar() => InitializeComponent();
     private async void UC_AddCar_Load(object sender, EventArgs e)
-    {
+        {
         string[] nameColumns = { "Imię", "Nazwisko", "NrTelefonu", "ID" };
         AttachEventHandlers();
         LoadData();
-        await SqlCmd.ReadAddDataListBox(connection, "SELECT Imię, Nazwisko, NrTelefonu, ID FROM Klienty", nameColumns, ClientsList);
+        await SqlCmd.ReadAddDataListBox("SELECT Imię, Nazwisko, NrTelefonu, ID FROM Klienty", nameColumns, ClientsList);
         Verefy();
-    }
+        }
 
     private async void ButtoCarSave_Click(object sender, EventArgs e)
-    {
-
-        Cursor.Current = Cursors.WaitCursor;
-        try
         {
-            await SaveCar();
-
+        await SaveCar();
         }
-        catch (Exception ex)
-        {
-            await Settings.Error(ex, dataError, "AddCar", "problem with opening db car");
-        }
-
-        Cursor.Current = Cursors.Default;
-    }
     private void HandleTextBoxChanged(object? sender, EventArgs e)
-    {
+        {
         Verefy();
-    }
+        }
     private void HandleListBoxMouseClick(object? sender, EventArgs e)
-    {
+        {
         Verefy();
-    }
+        }
     #endregion
 
     #region methods
-    private void CollectCarData()
-    {
-        List<string?> carData = new()
-        {
-            string.IsNullOrEmpty(MarkaSearch.Text) ? MarkaListBox.SelectedItem?.ToString() : MarkaSearch.Text,
-            string.IsNullOrEmpty(ModelSearch.Text) ? ModelListBox.SelectedItem?.ToString() : ModelSearch.Text,
-            string.IsNullOrEmpty(PojemnośćSilnikaSearch.Text) ? EngineListBox.SelectedItem?.ToString() : PojemnośćSilnikaSearch.Text,
-            string.IsNullOrEmpty(RokProdukcjitextBox.Text) ? RokProdukcjiListBox.SelectedItem?.ToString() : RokProdukcjitextBox.Text
-        };
-        car = new()
-        {
-            Marka = carData[0],
-            Model = carData[1],
-            Engine = carData[2],
-            YearOfProduktion = carData[3],
 
-            VIN = VINTextBox.Text
-        };
-        // File.ReadAllText("tempFile.txt")
-
-    }
     private async Task SaveCar()
-    {
-        CollectCarData();
-
-        using SQLiteConnection conn = new(connection);
-
-        await conn.OpenAsync();
-
-        using var transaction = conn.BeginTransaction();
-        try
         {
-            using SQLiteCommand insert = new("INSERT INTO Samochód (Marka, Model, Silnik, RokProdukcji, VIN)" +
-                "VALUES (@Marka, @Model, @Silnik, @RokProdukcji, @VIN)", conn);
-
-            insert.Parameters.AddWithValue("@Marka", car.Marka);
-            insert.Parameters.AddWithValue("@Model", car.Model);
-            insert.Parameters.AddWithValue("@Silnik", car.Engine);
-            insert.Parameters.AddWithValue("@RokProdukcji", car.YearOfProduktion);
-            insert.Parameters.AddWithValue("@VIN", car.VIN);
-
-            await insert.ExecuteNonQueryAsync();
-
-            await transaction.CommitAsync();
+        CarModel carModel = new()
+            {
+            Marka = string.IsNullOrEmpty(MarkaSearch.Text) ? MarkaListBox.SelectedItem?.ToString() : MarkaSearch.Text.Trim(),
+            Model = string.IsNullOrEmpty(ModelSearch.Text) ? ModelListBox.SelectedItem?.ToString() : ModelSearch.Text.Trim(),
+            Engine = string.IsNullOrEmpty(PojemnośćSilnikaSearch.Text) ? EngineListBox.SelectedItem?.ToString() : PojemnośćSilnikaSearch.Text.Trim(),
+            YearOfProduktion = string.IsNullOrEmpty(RokProdukcjitextBox.Text) ? RokProdukcjiListBox.SelectedItem?.ToString() : RokProdukcjitextBox.Text.Trim(),
+            VIN = VINTextBox.Text.Trim()
+            };
+        if(carModel.Marka == null || carModel.Model == null || carModel.Engine == null || carModel.YearOfProduktion == null)
+            {
+            MessageBox.Show($"Proszę wpisać wszystkie dane samochodu");
+            return;
+            }
+        var CarData = new Dictionary<string, object>
+            {
+                {"Marka", carModel.Marka},
+                {"Model", carModel.Model},
+                {"Silnik", carModel.Engine},
+                {"RokProdukcji", carModel.YearOfProduktion},
+                {"VIN", carModel.VIN}
+            };
+        await SqlCmd.AddRecordAsync("Samochód", CarData);
         }
-        catch (Exception ex)
-        {
-            transaction.Rollback();
-            MessageBox.Show("Coś poszło nie tak w czasie zapisu samochodu: " + ex);
-            throw;
-        }
-        finally
-        {
-            Car.Reset();
-            carData.Clear();
-        }
-    }
 
 
     private void AttachEventHandlers()
-    {
+        {
         MarkaSearch.TextChanged += HandleTextBoxChanged;
         ModelSearch.TextChanged += HandleTextBoxChanged;
         PojemnośćSilnikaSearch.TextChanged += HandleTextBoxChanged;
@@ -124,77 +80,68 @@ public partial class UC_AddCar : UserControl
         UC_AddCar ucAddCarInstance = this;
 
         ucAddCarInstance.Load += (sender, e) => { LoadData(); Verefy(); };
-    }
+        }
 
     private async void LoadData()
-    {
-        try
         {
-            using SQLiteConnection conn = new(carDB);
-            conn.Open();
-            using SQLiteCommand readCar = new($"SELECT Marka FROM Cars", conn);
-
-            using SQLiteDataReader dataReader = readCar.ExecuteReader();
-            while (dataReader.Read())
-                MarkaListBox.Items.Add(dataReader.GetString(0));
+        var DataNull = new Dictionary<string, object>
+            {
+                {string.Empty, null}
+            };
+        await SqlCmd.CarReadListBoxAsync(MarkaListBox, "SELECT Marka FROM Cars", "Marka", DataNull);
         }
-        catch (Exception ex)
-        {
-            await Settings.Error(ex, dataError, "AddCar", "Load all marka from DB");
-        }
-    }
     private async void SearchData(ListBox SelectlistBox, ListBox AddList, string Search)
-    {
+        {
         HashSet<string> uniqueData = new();
         EngineListBox.Items.Clear();
         AddList.Items.Clear();
         try
-        {
+            {
             using SQLiteConnection conn = new(carDB);
             conn.Open();
             using SQLiteCommand readModel = new($"SELECT {Search} FROM {SelectlistBox.SelectedItem}", conn);
             using SQLiteDataReader dataReader = readModel.ExecuteReader();
 
-            while (dataReader.Read())
+            while(dataReader.Read())
                 uniqueData.Add(dataReader.GetString(0));
 
-            foreach (string uniqueValue in uniqueData)
+            foreach(string uniqueValue in uniqueData)
                 ModelListBox.Items.Add(uniqueValue);
-        }
-        catch (Exception ex)
-        {
+            }
+        catch(Exception ex)
+            {
             dataError.Enqueue($"Select DB:{Search}");
             dataError.Enqueue($"From DB:{SelectlistBox.SelectedItem}");
             await Settings.Error(ex, dataError, "AddCar", "Search Data model");
-        }
+            }
         finally
-        {
+            {
             uniqueData.Clear();
+            }
         }
-    }
     private async void SearchDataEngine()
-    {
+        {
         EngineListBox.Items.Clear();
         try
-        {
+            {
             using SQLiteConnection conn = new(carDB);
             conn.Open();
             using SQLiteCommand readModel = new($"SELECT Silnik FROM {MarkaListBox.SelectedItem} WHERE Model=@Model", conn);
             readModel.Parameters.AddWithValue("@Model", ModelListBox.SelectedItem);
             using SQLiteDataReader dataReader = readModel.ExecuteReader();
 
-            while (dataReader.Read())
+            while(dataReader.Read())
                 EngineListBox.Items.Add(dataReader.GetString(0));
-        }
-        catch (Exception ex)
-        {
+            }
+        catch(Exception ex)
+            {
             dataError.Enqueue($"Search model:{ModelListBox.SelectedItem}");
             dataError.Enqueue($"From DB:{MarkaListBox.SelectedItem}");
             await Settings.Error(ex, dataError, "AddCar", "Search Data Engine");
+            }
         }
-    }
     private void Verefy()
-    {
+        {
         // bool VIN17 = false;
         bool isMarkaEmpty = string.IsNullOrEmpty(MarkaSearch.Text) && string.IsNullOrEmpty(MarkaListBox.SelectedItem?.ToString());
         bool isModelEmpty = string.IsNullOrEmpty(ModelSearch.Text) && string.IsNullOrEmpty(ModelListBox.SelectedItem?.ToString());
@@ -202,14 +149,14 @@ public partial class UC_AddCar : UserControl
         bool VIN17 = (VINTextBox.Text.Length == 17);
         bool test = !isMarkaEmpty && !isModelEmpty && !isEngineEmpty && VIN17;
         ButtoCarSave.Enabled = test;
-    }
+        }
 
     private async Task AddVINToClient()
-    {
+        {
         string? selectedRow = ClientsList.SelectedItem.ToString();
 
-        if (ClientsList.SelectedIndex >= 0 && VINTextBox.Text.Length == 17 && selectedRow != null)
-        {
+        if(ClientsList.SelectedIndex >= 0 && VINTextBox.Text.Length == 17 && selectedRow != null)
+            {
             // Отримати текст виділеного рядка
 
 
@@ -217,88 +164,72 @@ public partial class UC_AddCar : UserControl
             string[] rowData = selectedRow.Split(' ');
 
             // Переконатися, що масив містить принаймні 3 елементи (Ім'я, Становище, Номер телефону)
-            if (rowData.Length >= 4)
-            {
+            if(rowData.Length >= 4)
+                {
                 // Отримати номер телефону (четвертий елемент масиву після розділу)
                 string iD = rowData[3].Trim();
-
-                using SQLiteConnection conn = new(connection);
-                await conn.OpenAsync();
-
-                // Початок транзакції
-                using SQLiteTransaction transaction = conn.BeginTransaction();
-
-                try
-                {
-                    using SQLiteCommand update = new("UPDATE Klienty SET VIN_Samochodu = @VIN_Samochodu WHERE ID = @ID", conn, transaction);
-                    update.Parameters.AddWithValue("@VIN_Samochodu", VINTextBox.Text.ToString());
-                    update.Parameters.AddWithValue("@ID", iD);
-
-                    await update.ExecuteNonQueryAsync();
-
-                    // Завершення транзакції (збереження змін у базі даних)
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    // Виникла помилка, скасовуємо транзакцію
-                    transaction.Rollback();
-                    dataError.Enqueue($"VIN:{VINTextBox.Text}");
-                    dataError.Enqueue($"ID:{iD}");
-                    await Settings.Error(ex, dataError, "AddCar", "Add VIN to client");
-                    throw;
+                var clientUpdate = new Dictionary<string, object>
+                    {
+                        {"VIN", VINTextBox.Text.ToString()},                        
+                    };
+                var clientUpdateID = new Dictionary<string, object>
+                    {
+                        {"ID", iD}
+                    };
+                bool isSucceed = await SqlCmd.UpdateRecordAsync("Klienty", clientUpdate, "ID=@ID", clientUpdateID);
+                if(isSucceed)
+                    MessageBox.Show("Samochód został przypisany do klienta");                
                 }
             }
         }
-    }
     #endregion
 
     private async void AddVinToClient_Click(object sender, EventArgs e)
-    {
+        {
         try
-        {
+            {
             await AddVINToClient();
-        }
+            }
 
-        catch (Exception ex)
-        {
+        catch(Exception ex)
+            {
             await Settings.Error(ex, dataError, "AddCar", "Add VIN To Client");
+            }
         }
-    }
 
     private void VINTextBox_TextChanged(object sender, EventArgs e)
-    {
+        {
         VINTextBox.MaxLength = 17;
         VINTextBox.Text = String.Concat(VINTextBox.Text.Where(char.IsLetterOrDigit));
         NumLenghtNadwoziaLabel.Text = VINTextBox.Text.Length.ToString();
         Verefy();
-    }
+        }
 
     private void MarkaListBox_MouseUp(object sender, MouseEventArgs e)
-    {
-        if (e.Button == MouseButtons.Right)
         {
+        if(e.Button == MouseButtons.Right)
+            {
             MarkaListBox.ClearSelected();
+            }
         }
-    }
 
     private async void MarkaListBox_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (await SqlCmd.TableExist(carDB, MarkaListBox.Text.ToString()))
         {
+        if(await SqlCmd.TableExist(carDB, MarkaListBox.Text.ToString()))
+            {
             SearchData(MarkaListBox, ModelListBox, "Model");
-        }
+            }
         else
-        {
+            {
             ModelListBox.Items.Clear();
+            }
         }
-    }
 
     private async void ModelListBox_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (await SqlCmd.TableExist(carDB, MarkaListBox.Text.ToString()))
         {
+        if(await SqlCmd.TableExist(carDB, MarkaListBox.Text.ToString()))
+            {
             SearchDataEngine();
+            }
         }
     }
-}

@@ -1,88 +1,97 @@
-﻿using System.Data.SQLite;
+﻿using Warsztat_2.Models;
 
-namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
-{
-    public partial class WarehouseAddEdit : Form
-    {
-        private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
-        WarehouseData warehouse = new();
+namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
+    public partial class WarehouseAddEdit :Form {
+        WarehouseModel warehouseModel = new WarehouseModel();
+        private readonly SqlCmd sqlCmd = new();
+
+        uint id;
 
         public WarehouseAddEdit()
-        {
+            {
             InitializeComponent();
-        }
+            }
 
         private async void AddEditWarehouseButton_Click(object sender, EventArgs e)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-            try
             {
-                PrepareDataToSave();
+            MessageBox.Show($"{warehouseModel.Id}");
+            var data = new Dictionary<string, object>
+                {
+                    {"Typ",  CategoryListBox.SelectedItem?.ToString() ?? "Brak"},
+                    {"Nazwa", NameTextBox.Text.Trim()},
+                    {"NumerCzęści", NumberPartTextBox.Text.Trim() },
+                    {"Opis", DescriptionTextBox.Text.Trim()},
+                    {"Cena",  PriceNumericUpDown.Value},
+                    {"Ilość", QuantityNumericUpDown.Value},
+                    {"Suma",label1.Text},
+                };
+            var dataId = new Dictionary<string, object>
+                {
+                    {"ID", warehouseModel.Id}
+                };
+            string[] magazyn = { $"{data["Nazwa"].ToString()}", $"{data["Opis"].ToString()}", $"{data["NumerCzęści"].ToString()}" };
 
-                using SQLiteConnection conn = new(connection);
-                await conn.OpenAsync();
-                using SQLiteCommand add = new("INSERT INTO Magazyn (Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość) " +
-                    "VALUES (@Typ, @Nazwa, @NumerCzęści, @Opis, @Cena, @Ilość)", conn);
-
-                add.Parameters.AddWithValue("@Typ", warehouse.Type);
-                add.Parameters.AddWithValue("@Nazwa", warehouse.Name);
-                add.Parameters.AddWithValue("@NumerCzęści", warehouse.PartNumber);
-                add.Parameters.AddWithValue("@Opis", warehouse.Description);
-                add.Parameters.AddWithValue("@Cena", warehouse.Price);
-                add.Parameters.AddWithValue("@Ilość", warehouse.Quantity);
-                add.ExecuteNonQuery();
-
-                MessageBox.Show($"{warehouse.Name} ({warehouse.Description}) o numerze [{warehouse.PartNumber}] został dodany do magazynu, kliknij OK żeby dodać kolejny", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if(AddEditWarehouseButton.Text == "Zapisz")
+                {
+                await SqlCmd.AddRecordAsync("Magazyn", data);
+                MessageBox.Show($"{magazyn[0]} ({magazyn[1]}) o numerze [{magazyn[2]}] został dodany do magazynu, kliknij OK żeby dodać kolejny", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                magazyn = null;
+                warehouseModel.Clear();
+                return;
+                }
+            await SqlCmd.UpdateRecordAsync("Magazyn", data, "ID=@ID", dataId);
+            warehouseModel.Clear();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Wystąpił błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                WarehouseData.Reset();
-                Cursor.Current = Cursors.Default;
-            }
-        }
-        private void PrepareDataToSave()
-        {
-            string type = CategoryListBox.SelectedItem?.ToString() ?? "Brak";
 
-            warehouse = new WarehouseData
-            {
-                Type = type,
-                PartNumber = NumberPartTextBox.Text,
-                Name = NameTextBox.Text,
-                Description = DescriptionTextBox.Text,
-                Price = Convert.ToUInt16(PriceNumericUpDown.Value),
-                Quantity = Convert.ToUInt16(QuantityNumericUpDown.Value)
-            };
-        }
-        public void SetDataEdit(WarehouseData Data)
-        {//сетування даних при переході між класами
-            warehouse = Data;
-        }
+        public void SetDataEdit(WarehouseModel Data)
+            {//сетування даних при переході між класами
+            warehouseModel = Data;
+
+            }
         public void AutocompleteData()
-        {
-            CategoryListBox.SelectedItem = warehouse.Type;
-            NumberPartTextBox.Text = warehouse.PartNumber;
-            NameTextBox.Text = warehouse.Name;
-            DescriptionTextBox.Text = warehouse.Description;
-            PriceNumericUpDown.Value = (ushort)warehouse.Price;
-            QuantityNumericUpDown.Value = (ushort)warehouse.Quantity;
-        }
+            {
+            CategoryListBox.SelectedItem = warehouseModel.Type;
+            NumberPartTextBox.Text = warehouseModel.PartNumber;
+            NameTextBox.Text = warehouseModel.Name;
+            DescriptionTextBox.Text = warehouseModel.Description;
+            PriceNumericUpDown.Value = (decimal)warehouseModel.Price;
+            QuantityNumericUpDown.Value = (byte)warehouseModel.Quantity;
+            label1.Text = warehouseModel.Sum;            
+            }
         public void ClearTextBox()
-        {
-            NumberPartTextBox.Text = String.Empty;
-            NameTextBox.Text = String.Empty;
-            DescriptionTextBox.Text = String.Empty;
+            {
+            NumberPartTextBox.Text = NameTextBox.Text = DescriptionTextBox.Text = String.Empty;
             PriceNumericUpDown.Value = 0;
-            QuantityNumericUpDown.Value = 0;
-        }
+            QuantityNumericUpDown.Value = 1;
+            label1.Text = "0";
+            }
 
-        private void WarehouseAddEdit_Load(object sender, EventArgs e)
-        {
-            UC_Warehouse.UpdateList("Data_Warehouse", CategoryListBox);
+        private void PriceNumericUpDown_ValueChanged(object sender, EventArgs e)
+            {
+            Sum();
+            }
+
+        private void QuantityNumericUpDown_ValueChanged(object sender, EventArgs e)
+            {
+            Sum();
+            }
+        private void Sum()
+            {
+            decimal sum = PriceNumericUpDown.Value * QuantityNumericUpDown.Value;
+            label1.Text = sum.ToString();
+            }
+
+        private async void WarehouseAddEdit_Load(object sender, EventArgs e)
+            {
+            await SqlCmd.ReadRecordListBoxAsync(CategoryListBox, "SELECT Typ FROM Kategorie", "Typ");
+            if(warehouseModel.Id == 0)
+                {
+                AddEditWarehouseButton.Text = "Zapisz";
+                }
+            else if(warehouseModel.Id >0) {
+                AddEditWarehouseButton.Text = "Odśwież";
+                }
+
+            }
         }
     }
-}

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             ScheduleCarAddButton = new Button();
             ID_label = new Label();
             ScheduleCarButton = new Button();
@@ -41,7 +41,7 @@
             panel1 = new Panel();
             ViewScheduleCarButton = new Button();
             CarComboBox = new ComboBox();
-            CarButton = new Button();
+            AutocompleteButton = new Button();
             ScheduleModelTextBox0 = new TextBox();
             label28 = new Label();
             ScheduleTimePicker = new DateTimePicker();
@@ -237,21 +237,22 @@
             CarComboBox.Size = new Size(140, 29);
             CarComboBox.TabIndex = 31;
             // 
-            // CarButton
+            // AutocompleteButton
             // 
-            CarButton.Anchor = AnchorStyles.Top;
-            CarButton.BackColor = Color.FromArgb(94, 148, 255);
-            CarButton.FlatAppearance.BorderSize = 0;
-            CarButton.FlatStyle = FlatStyle.Flat;
-            CarButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            CarButton.ForeColor = Color.LightGray;
-            CarButton.ImeMode = ImeMode.NoControl;
-            CarButton.Location = new Point(396, 136);
-            CarButton.Name = "CarButton";
-            CarButton.Size = new Size(181, 32);
-            CarButton.TabIndex = 24;
-            CarButton.Text = "Autouzupełnianie";
-            CarButton.UseVisualStyleBackColor = false;
+            AutocompleteButton.Anchor = AnchorStyles.Top;
+            AutocompleteButton.BackColor = Color.FromArgb(94, 148, 255);
+            AutocompleteButton.FlatAppearance.BorderSize = 0;
+            AutocompleteButton.FlatStyle = FlatStyle.Flat;
+            AutocompleteButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            AutocompleteButton.ForeColor = Color.LightGray;
+            AutocompleteButton.ImeMode = ImeMode.NoControl;
+            AutocompleteButton.Location = new Point(396, 136);
+            AutocompleteButton.Name = "AutocompleteButton";
+            AutocompleteButton.Size = new Size(181, 32);
+            AutocompleteButton.TabIndex = 24;
+            AutocompleteButton.Text = "Autouzupełnianie";
+            AutocompleteButton.UseVisualStyleBackColor = false;
+            AutocompleteButton.Click += AutocompleteButton_Click;
             // 
             // ScheduleModelTextBox0
             // 
@@ -345,6 +346,7 @@
             TelephonTextBox.PlaceholderText = "Telefon";
             TelephonTextBox.Size = new Size(171, 30);
             TelephonTextBox.TabIndex = 21;
+            TelephonTextBox.TextChanged += TelephonTextBox_TextChanged;
             TelephonTextBox.MouseLeave += TelephonTextBox_MouseLeave;
             TelephonTextBox.MouseHover += TelephonTextBox_MouseHover;
             // 
@@ -430,24 +432,24 @@
             DataScheduleView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataScheduleView.BorderStyle = BorderStyle.None;
             DataScheduleView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.LightGray;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            DataScheduleView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.LightGray;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            DataScheduleView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             DataScheduleView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataScheduleView.Columns.AddRange(new DataGridViewColumn[] { btnAdd, BtnDelete, DataPrzyjecia_Column, ID_Column, Imie_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Problem_Column });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            DataScheduleView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            DataScheduleView.DefaultCellStyle = dataGridViewCellStyle4;
             DataScheduleView.EnableHeadersVisualStyles = false;
             DataScheduleView.Location = new Point(3, 43);
             DataScheduleView.Name = "DataScheduleView";
@@ -601,7 +603,7 @@
             panel2.BackColor = Color.FromArgb(64, 64, 70);
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(CarComboBox);
-            panel2.Controls.Add(CarButton);
+            panel2.Controls.Add(AutocompleteButton);
             panel2.Controls.Add(ScheduleModelTextBox0);
             panel2.Controls.Add(label28);
             panel2.Controls.Add(ScheduleTimePicker);
@@ -660,8 +662,8 @@
             BackColor = Color.FromArgb(64, 64, 64);
             Controls.Add(ScheduleCarAddButton);
             Controls.Add(ViewScheduleCarButton);
-            Controls.Add(ViewData);
             Controls.Add(EditData);
+            Controls.Add(ViewData);
             Name = "UC_ScheduleCar";
             Size = new Size(1007, 643);
             Load += UC_ScheduleCarSelectTab_Load;
@@ -690,7 +692,7 @@
         private Panel panel1;
         private Button ViewScheduleCarButton;
         public ComboBox CarComboBox;
-        private Button CarButton;
+        private Button AutocompleteButton;
         public TextBox ScheduleModelTextBox0;
         private Label label28;
         public DateTimePicker ScheduleTimePicker;
@@ -703,16 +705,13 @@
         public TextBox SurnameTextBox;
         private Label label21;
         private Label label6;
-        private Label label25;
         private DataGridView DataScheduleView;
         public Panel ViewData;
         private TextBox SearchScheduleCar;
         public Label helpingLabel;
         public TextBox NameTextBox;
         private Label label24;
-        private Label label17;
         private Panel panel2;
-        private Label label23;
         public Panel EditData;
         private DataGridViewButtonColumn btnAdd;
         private DataGridViewButtonColumn BtnDelete;
@@ -724,5 +723,8 @@
         private DataGridViewTextBoxColumn Marka_Column;
         private DataGridViewTextBoxColumn Model_Column;
         private DataGridViewTextBoxColumn Problem_Column;
+        public Label label17;
+        public Label label25;
+        public Label label23;
     }
 }
