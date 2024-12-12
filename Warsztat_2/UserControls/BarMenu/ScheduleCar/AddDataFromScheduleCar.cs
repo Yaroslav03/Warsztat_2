@@ -55,12 +55,14 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar {
 
         private async Task SaveToDB()
             {
+            Guid uniqueKey = Guid.NewGuid();
             var clientData = new Dictionary<string, object>{
                     {"Imię", GetLabelValue(NameLabel)},
                     {"Nazwisko", GetLabelValue(SurnameLabel)},
                     {"NrTelefonu", GetLabelValue(labelTelephone)},
                     {"AdresFirmy", AdressCompanyTextBox.Text.Trim()},
                     {"NIP", NIPTextBox.Text.Trim()},
+                    {"UniqueKey", uniqueKey}
                 };
             var carData = new Dictionary<string, object>{
                     {"Marka", GetLabelValue(labelMarka)},
@@ -68,13 +70,15 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar {
                     {"Silnik", EngineTextBox.Text.Trim()},
                     {"RokProdukcji", YearOfProductionNumericUpDown.Value.ToString()},
                     {"VIN", VINTextBox.Text.Trim()},
+                    {"UniqueKey", uniqueKey}
                 };
             var historiaNaprawData = new Dictionary<string, object>{
                     {"DataPrzyjęcia", GetLabelValue(labelOrderAddopted)},
                     {"Zlecenie", ProblemTextBox.Text.Trim()},
                     {"NrRejestracji", RegistrationNumberTextBox.Text.Trim()},
                     {"Przebieg", MileageTextBox.Text.Trim()},
-                    {"VIN", VINTextBox.Text.Trim()}
+                    {"VIN", VINTextBox.Text.Trim()},
+                    {"UniqueKey", uniqueKey}
                 };
             var scheduleCarID = new Dictionary<string, object>
                 {

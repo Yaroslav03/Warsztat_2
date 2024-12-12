@@ -58,5 +58,39 @@
                     box1.Clear();
                 }
             }
+        public static void SearchTextBox(TextBox textBox, DataGridView table)
+            {
+            string[] searchTerms = textBox.Text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            if(searchTerms.Length == 0)
+                {
+                // Якщо поле пошуку порожнє, знімаємо вибір з усіх осередків
+                foreach(DataGridViewRow row in table.Rows)
+                    {
+                    foreach(DataGridViewCell cell in row.Cells)
+                        {
+                        cell.Selected = false;
+                        }
+                    }
+                return;
+                }
+
+            // Виділення відповідних осередків у таблиці
+            foreach(DataGridViewRow row in table.Rows)
+                {
+                foreach(DataGridViewCell cell in row.Cells)
+                    {
+                    // Перевіряємо, чи значення осередку відповідає хоча б одному терміну
+                    if(cell.Value != null && searchTerms.Any(term => cell.Value.ToString().Contains(term, StringComparison.OrdinalIgnoreCase)))
+                        {
+                        cell.Selected = true;
+                        }
+                    else
+                        {
+                        cell.Selected = false;
+                        }
+                    }
+                }
+            }
         }
     }

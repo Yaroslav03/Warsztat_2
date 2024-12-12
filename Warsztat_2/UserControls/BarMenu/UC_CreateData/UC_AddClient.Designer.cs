@@ -30,25 +30,15 @@
             {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             ViewClients = new DataGridView();
             BtnDelete = new DataGridViewButtonColumn();
+            UniqueKey_Column = new DataGridViewTextBoxColumn();
             ID_Column = new DataGridViewTextBoxColumn();
             Name_Column = new DataGridViewTextBoxColumn();
             Surname_Column = new DataGridViewTextBoxColumn();
             Telephone_Column = new DataGridViewTextBoxColumn();
             Adress_Column = new DataGridViewTextBoxColumn();
             NIP_Column = new DataGridViewTextBoxColumn();
-            VIN_Client_Column = new DataGridViewTextBoxColumn();
-            ViewCar = new DataGridView();
-            BtnDeleteCar = new DataGridViewButtonColumn();
-            ID_CAR = new DataGridViewTextBoxColumn();
-            Marka_Column = new DataGridViewTextBoxColumn();
-            Model_Column = new DataGridViewTextBoxColumn();
-            Engine_Column = new DataGridViewTextBoxColumn();
-            YearOfProduction_Column = new DataGridViewTextBoxColumn();
-            VIN_Column = new DataGridViewTextBoxColumn();
             panel4 = new Panel();
             panel3 = new Panel();
             NameTextBox = new TextBox();
@@ -68,11 +58,6 @@
             ID_Client_label_0 = new Label();
             label3 = new Label();
             panel1 = new Panel();
-            setCarToClientButton = new Button();
-            HelpMessage = new Label();
-            SetCarToClientCheckBox = new CheckBox();
-            SearchCarTextBox = new TextBox();
-            panel2 = new Panel();
             TextBoxSearchClientData = new TextBox();
             panel9 = new Panel();
             panel10 = new Panel();
@@ -81,7 +66,6 @@
             ClearPanel = new Button();
             ButtonClientUpdate = new Button();
             ((System.ComponentModel.ISupportInitialize)ViewClients).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ViewCar).BeginInit();
             panelKontaktowy.SuspendLayout();
             panelDodatkowy.SuspendLayout();
             panel1.SuspendLayout();
@@ -105,7 +89,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ViewClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewClients.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID_Column, Name_Column, Surname_Column, Telephone_Column, Adress_Column, NIP_Column, VIN_Client_Column });
+            ViewClients.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, UniqueKey_Column, ID_Column, Name_Column, Surname_Column, Telephone_Column, Adress_Column, NIP_Column });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -118,7 +102,7 @@
             ViewClients.Location = new Point(10, 45);
             ViewClients.Name = "ViewClients";
             ViewClients.RowTemplate.Height = 25;
-            ViewClients.Size = new Size(874, 262);
+            ViewClients.Size = new Size(955, 262);
             ViewClients.TabIndex = 3;
             ViewClients.CellContentClick += ViewClients_CellContentClick;
             ViewClients.CellDoubleClick += ViewClients_CellDoubleClick;
@@ -127,6 +111,13 @@
             // 
             BtnDelete.HeaderText = "Usuń";
             BtnDelete.Name = "BtnDelete";
+            // 
+            // UniqueKey_Column
+            // 
+            UniqueKey_Column.DataPropertyName = "UniqueKey";
+            UniqueKey_Column.HeaderText = "Unikatowy klucz";
+            UniqueKey_Column.Name = "UniqueKey_Column";
+            UniqueKey_Column.Visible = false;
             // 
             // ID_Column
             // 
@@ -169,93 +160,6 @@
             NIP_Column.HeaderText = "NIP";
             NIP_Column.Name = "NIP_Column";
             NIP_Column.ReadOnly = true;
-            // 
-            // VIN_Client_Column
-            // 
-            VIN_Client_Column.DataPropertyName = "VIN";
-            VIN_Client_Column.HeaderText = "VIN";
-            VIN_Client_Column.Name = "VIN_Client_Column";
-            // 
-            // ViewCar
-            // 
-            ViewCar.AllowUserToAddRows = false;
-            ViewCar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ViewCar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            ViewCar.BorderStyle = BorderStyle.None;
-            ViewCar.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            ViewCar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.LightGray;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            ViewCar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            ViewCar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewCar.Columns.AddRange(new DataGridViewColumn[] { BtnDeleteCar, ID_CAR, Marka_Column, Model_Column, Engine_Column, YearOfProduction_Column, VIN_Column });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.DimGray;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            ViewCar.DefaultCellStyle = dataGridViewCellStyle4;
-            ViewCar.EnableHeadersVisualStyles = false;
-            ViewCar.Location = new Point(10, 365);
-            ViewCar.Name = "ViewCar";
-            ViewCar.RowTemplate.Height = 25;
-            ViewCar.Size = new Size(874, 273);
-            ViewCar.TabIndex = 22;
-            ViewCar.CellContentClick += ViewCar_CellContentClick;
-            // 
-            // BtnDeleteCar
-            // 
-            BtnDeleteCar.HeaderText = "Usuń";
-            BtnDeleteCar.Name = "BtnDeleteCar";
-            // 
-            // ID_CAR
-            // 
-            ID_CAR.DataPropertyName = "ID";
-            ID_CAR.HeaderText = "ID";
-            ID_CAR.Name = "ID_CAR";
-            ID_CAR.ReadOnly = true;
-            ID_CAR.Visible = false;
-            // 
-            // Marka_Column
-            // 
-            Marka_Column.DataPropertyName = "Marka";
-            Marka_Column.HeaderText = "Marka";
-            Marka_Column.Name = "Marka_Column";
-            Marka_Column.ReadOnly = true;
-            // 
-            // Model_Column
-            // 
-            Model_Column.DataPropertyName = "Model";
-            Model_Column.HeaderText = "Model";
-            Model_Column.Name = "Model_Column";
-            Model_Column.ReadOnly = true;
-            // 
-            // Engine_Column
-            // 
-            Engine_Column.DataPropertyName = "Silnik";
-            Engine_Column.HeaderText = "Silnik";
-            Engine_Column.Name = "Engine_Column";
-            Engine_Column.ReadOnly = true;
-            // 
-            // YearOfProduction_Column
-            // 
-            YearOfProduction_Column.DataPropertyName = "RokProdukcji";
-            YearOfProduction_Column.HeaderText = "Rok Produkcji";
-            YearOfProduction_Column.Name = "YearOfProduction_Column";
-            // 
-            // VIN_Column
-            // 
-            VIN_Column.DataPropertyName = "VIN";
-            VIN_Column.HeaderText = "VIN";
-            VIN_Column.Name = "VIN_Column";
-            VIN_Column.ReadOnly = true;
             // 
             // panel4
             // 
@@ -386,7 +290,7 @@
             ButtonClientSave.Location = new Point(5, 4);
             ButtonClientSave.MinimumSize = new Size(203, 35);
             ButtonClientSave.Name = "ButtonClientSave";
-            ButtonClientSave.Size = new Size(225, 35);
+            ButtonClientSave.Size = new Size(333, 35);
             ButtonClientSave.TabIndex = 17;
             ButtonClientSave.Text = "Zapisz";
             ButtonClientSave.TextAlign = ContentAlignment.MiddleRight;
@@ -405,7 +309,7 @@
             panelDodatkowy.Controls.Add(ID_Client_label_0);
             panelDodatkowy.Controls.Add(label3);
             panelDodatkowy.ForeColor = Color.DimGray;
-            panelDodatkowy.Location = new Point(570, 3);
+            panelDodatkowy.Location = new Point(678, 3);
             panelDodatkowy.Name = "panelDodatkowy";
             panelDodatkowy.Size = new Size(322, 203);
             panelDodatkowy.TabIndex = 4;
@@ -437,7 +341,7 @@
             panel8.BackColor = SystemColors.GrayText;
             panel8.Location = new Point(19, 162);
             panel8.Name = "panel8";
-            panel8.Size = new Size(226, 10);
+            panel8.Size = new Size(283, 10);
             panel8.TabIndex = 14;
             // 
             // AdressCompanyTextBox
@@ -451,7 +355,7 @@
             AdressCompanyTextBox.Location = new Point(19, 136);
             AdressCompanyTextBox.Name = "AdressCompanyTextBox";
             AdressCompanyTextBox.PlaceholderText = "Adres Firmy";
-            AdressCompanyTextBox.Size = new Size(226, 23);
+            AdressCompanyTextBox.Size = new Size(283, 23);
             AdressCompanyTextBox.TabIndex = 13;
             // 
             // ID_Client_label_0
@@ -480,84 +384,14 @@
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(64, 64, 68);
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(setCarToClientButton);
-            panel1.Controls.Add(HelpMessage);
-            panel1.Controls.Add(SetCarToClientCheckBox);
-            panel1.Controls.Add(ViewCar);
             panel1.Controls.Add(ViewClients);
-            panel1.Controls.Add(SearchCarTextBox);
-            panel1.Controls.Add(panel2);
             panel1.Controls.Add(TextBoxSearchClientData);
             panel1.Controls.Add(panel9);
             panel1.ForeColor = Color.DimGray;
             panel1.Location = new Point(3, 235);
             panel1.Name = "panel1";
-            panel1.Size = new Size(889, 666);
+            panel1.Size = new Size(997, 341);
             panel1.TabIndex = 4;
-            // 
-            // setCarToClientButton
-            // 
-            setCarToClientButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            setCarToClientButton.BackColor = Color.FromArgb(94, 148, 255);
-            setCarToClientButton.FlatAppearance.BorderSize = 0;
-            setCarToClientButton.FlatStyle = FlatStyle.Flat;
-            setCarToClientButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            setCarToClientButton.ForeColor = Color.LightGray;
-            setCarToClientButton.Location = new Point(765, 3);
-            setCarToClientButton.Name = "setCarToClientButton";
-            setCarToClientButton.Size = new Size(119, 35);
-            setCarToClientButton.TabIndex = 26;
-            setCarToClientButton.Text = "Przypisz";
-            setCarToClientButton.UseVisualStyleBackColor = false;
-            setCarToClientButton.Click += SetCarToClientButton_Click;
-            // 
-            // HelpMessage
-            // 
-            HelpMessage.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            HelpMessage.AutoSize = true;
-            HelpMessage.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            HelpMessage.ForeColor = Color.Gray;
-            HelpMessage.Location = new Point(480, 20);
-            HelpMessage.Name = "HelpMessage";
-            HelpMessage.Size = new Size(86, 24);
-            HelpMessage.TabIndex = 25;
-            HelpMessage.Text = "Wskazówka";
-            HelpMessage.Click += HelpMessage_Click;
-            // 
-            // SetCarToClientCheckBox
-            // 
-            SetCarToClientCheckBox.AutoSize = true;
-            SetCarToClientCheckBox.ForeColor = Color.FromArgb(224, 224, 224);
-            SetCarToClientCheckBox.Location = new Point(460, 3);
-            SetCarToClientCheckBox.Name = "SetCarToClientCheckBox";
-            SetCarToClientCheckBox.Size = new Size(182, 19);
-            SetCarToClientCheckBox.TabIndex = 24;
-            SetCarToClientCheckBox.Text = "Przypisz samochód do klienta";
-            SetCarToClientCheckBox.UseVisualStyleBackColor = true;
-            SetCarToClientCheckBox.CheckedChanged += SetCarToClientCheckBox_CheckedChanged;
-            // 
-            // SearchCarTextBox
-            // 
-            SearchCarTextBox.BackColor = Color.FromArgb(64, 64, 70);
-            SearchCarTextBox.BorderStyle = BorderStyle.None;
-            SearchCarTextBox.CausesValidation = false;
-            SearchCarTextBox.Cursor = Cursors.IBeam;
-            SearchCarTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            SearchCarTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            SearchCarTextBox.Location = new Point(10, 323);
-            SearchCarTextBox.Name = "SearchCarTextBox";
-            SearchCarTextBox.PlaceholderText = "Szukaj samochód";
-            SearchCarTextBox.Size = new Size(405, 23);
-            SearchCarTextBox.TabIndex = 1;
-            SearchCarTextBox.TextChanged += SearchCarTextBox_TextChanged;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(64, 64, 68);
-            panel2.Location = new Point(10, 349);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(405, 10);
-            panel2.TabIndex = 0;
             // 
             // TextBoxSearchClientData
             // 
@@ -594,7 +428,7 @@
             panel10.Location = new Point(331, 11);
             panel10.MinimumSize = new Size(215, 195);
             panel10.Name = "panel10";
-            panel10.Size = new Size(233, 195);
+            panel10.Size = new Size(341, 195);
             panel10.TabIndex = 25;
             // 
             // label1
@@ -632,7 +466,7 @@
             ClearPanel.Location = new Point(5, 157);
             ClearPanel.MinimumSize = new Size(203, 35);
             ClearPanel.Name = "ClearPanel";
-            ClearPanel.Size = new Size(225, 35);
+            ClearPanel.Size = new Size(333, 35);
             ClearPanel.TabIndex = 17;
             ClearPanel.Text = "Wyczyść";
             ClearPanel.TextAlign = ContentAlignment.MiddleRight;
@@ -650,7 +484,7 @@
             ButtonClientUpdate.Location = new Point(5, 81);
             ButtonClientUpdate.MinimumSize = new Size(203, 35);
             ButtonClientUpdate.Name = "ButtonClientUpdate";
-            ButtonClientUpdate.Size = new Size(225, 35);
+            ButtonClientUpdate.Size = new Size(333, 35);
             ButtonClientUpdate.TabIndex = 17;
             ButtonClientUpdate.Text = "Odśwież";
             ButtonClientUpdate.TextAlign = ContentAlignment.MiddleRight;
@@ -667,12 +501,11 @@
             Controls.Add(panel10);
             Controls.Add(panelKontaktowy);
             Controls.Add(panelDodatkowy);
-            MinimumSize = new Size(900, 580);
+            MinimumSize = new Size(915, 580);
             Name = "UC_AddClient";
-            Size = new Size(932, 580);
+            Size = new Size(1040, 580);
             Load += UC_AddClient_Load;
             ((System.ComponentModel.ISupportInitialize)ViewClients).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ViewCar).EndInit();
             panelKontaktowy.ResumeLayout(false);
             panelKontaktowy.PerformLayout();
             panelDodatkowy.ResumeLayout(false);
@@ -688,7 +521,6 @@
         private Label label12;
         private Label DaneKlientaTxt;
         private DataGridView ViewClients;
-        private DataGridView ViewCar;
         private TextBox SurnameTextBox;
         private Panel panel3;
         private Panel panel4;
@@ -705,8 +537,6 @@
         private TextBox TextBoxSearchClientData;
         private Panel panel9;
         private Panel panel10;
-        private TextBox SearchCarTextBox;
-        private Panel panel2;
         private Label label1;
         private Button ClearPanel;
         private Label label2;
@@ -714,23 +544,13 @@
         private Label label3;
         protected Label ID_Client_label;
         protected Label ID_Client_label_0;
-        private CheckBox SetCarToClientCheckBox;
-        private Label HelpMessage;
-        private Button setCarToClientButton;
-        private DataGridViewButtonColumn BtnDeleteCar;
-        private DataGridViewTextBoxColumn ID_CAR;
-        private DataGridViewTextBoxColumn Marka_Column;
-        private DataGridViewTextBoxColumn Model_Column;
-        private DataGridViewTextBoxColumn Engine_Column;
-        private DataGridViewTextBoxColumn YearOfProduction_Column;
-        private DataGridViewTextBoxColumn VIN_Column;
         private DataGridViewButtonColumn BtnDelete;
+        private DataGridViewTextBoxColumn UniqueKey_Column;
         private DataGridViewTextBoxColumn ID_Column;
         private DataGridViewTextBoxColumn Name_Column;
         private DataGridViewTextBoxColumn Surname_Column;
         private DataGridViewTextBoxColumn Telephone_Column;
         private DataGridViewTextBoxColumn Adress_Column;
         private DataGridViewTextBoxColumn NIP_Column;
-        private DataGridViewTextBoxColumn VIN_Client_Column;
         }
 }

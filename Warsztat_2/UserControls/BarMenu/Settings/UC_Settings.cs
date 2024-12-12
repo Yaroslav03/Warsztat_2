@@ -30,7 +30,6 @@ namespace Warsztat_2._0.UserControls {
             if(SaveDataButton.Text == "Zapisz")
                 {
                 await SqlCmd.AddRecordAsync("DaneFirmy", data);
-
                 }
             else if(SaveDataButton.Text == "Odśwież")
                 {
@@ -42,7 +41,6 @@ namespace Warsztat_2._0.UserControls {
         private async void UC_Settings_Load(object sender, EventArgs e)
             {
             EmployerAddButton.Enabled = false;
-            SaveDataButton.Text = "Odśwież";
             await LoadData();
             }
         private async Task LoadData()
@@ -52,42 +50,18 @@ namespace Warsztat_2._0.UserControls {
             }
         private async Task LoadDataWarsztat()
             {
-            try
+            var data = await SqlCmd.LoadDataAsync(SaveDataButton, "DaneFirmy");
+
+            if(data.Count > 0)
                 {
-                // Використовуємо using для автоматичного закриття з'єднання після виходу з блоку
-                using SQLiteConnection conn = new("Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;");
-                await conn.OpenAsync();
-
-                // Використовуємо using для автоматичного закриття команди після виходу з блоку
-                using SQLiteCommand cmd = new("SELECT * FROM DaneFirmy", conn);
-
-                // Використовуємо using для автоматичного закриття читача даних після виходу з блоку
-                using SQLiteDataReader reader = cmd.ExecuteReader();
-
-                // Перевірка наявності даних та виведення повідомлення при їх відсутності
-                if(!SqlCmd.DataExistsRead(reader))
-                    {
-                    SaveDataButton.Text = "Zapisz";
-                    MessageBox.Show("Brak recordów, Proszę wpisać dane firmy, dane wymagane do drukowania zamówień i faktur", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                    }
-
-                // Якщо дані є, зчитуємо та відображаємо їх на текстових полях
-                id = Convert.ToByte(reader["ID"].ToString());
-                NazwaFirmyTextBox.Text = reader["NazwaFirmy"].ToString();
-                AdresFirmyTextBox.Text = reader["AdresFirmy"].ToString();
-                NIPTextBox.Text = reader["NIP"].ToString();
-                NrTelefonuTextBox.Text = reader["NrTelefonu"].ToString();
-                NumerBDOTextBox.Text = reader["BDO"].ToString();
-                KontoBankoweTextBox.Text = reader["KontoBankowe"].ToString();
-                MarzaTextBox.Text = reader["Marża"].ToString();
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                }
-            catch(Exception ex)
-                {
-                //не передбачена подія
-                MessageBox.Show("Nie przewidziany warunek, proszę zrobić zdjęcie błędu i wysłać na adres yaroslavturbo13@gmail.com: \n" + ex.Message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                id = Convert.ToByte(data["ID"].ToString());
+                NazwaFirmyTextBox.Text = data["NazwaFirmy"].ToString();
+                AdresFirmyTextBox.Text = data["AdresFirmy"].ToString();
+                NIPTextBox.Text = data["NIP"].ToString();
+                NrTelefonuTextBox.Text = data["NrTelefonu"].ToString();
+                NumerBDOTextBox.Text = data["BDO"].ToString();
+                KontoBankoweTextBox.Text = data["KontoBankowe"].ToString();
+                MarzaTextBox.Text = data["Marża"].ToString();
                 }
             }
         // Метод для перевірки текстового поля чи він пустий, запобігаючи записанню пустих даних

@@ -5,7 +5,8 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
     public partial class QuantityItemsWarehous :Form {
         private List<string> transferData = new();
         private string id;
-        string[] values = { "Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma", "DataNapraw", "VIN" };
+        Guid uniqueKey;
+        string[] values = { "Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma", "DataNapraw" };
 
 
         public QuantityItemsWarehous()
@@ -39,9 +40,11 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             }
         #endregion
 
-        public void TransferListData(List<string> tranferListData)
+        public void TransferListData(List<string> tranferListData, Guid key)
             {
             transferData = tranferListData;
+            uniqueKey = key;
+
             }
         private Dictionary<string, object> GetValue()
             {
@@ -51,7 +54,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 {
                 repairCarData.Add(values[i], transferData[i]);
                 }
-
+            repairCarData.Add("UniqueKey", uniqueKey);
             return repairCarData;
             }
         private Dictionary<string, object> GetValueID()

@@ -27,7 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
+            {
             PojemnośćSilnikaSearch = new TextBox();
             MarkaSearch = new TextBox();
             ModelSearch = new TextBox();
@@ -38,13 +38,13 @@
             panelDodatkowy = new Panel();
             label6 = new Label();
             RokProdukcjitextBox = new TextBox();
-            AddVinToClient = new Button();
             VINTextBox = new TextBox();
             panel2 = new Panel();
             ClientsList = new ListBox();
             label2 = new Label();
             NumLenghtNadwoziaLabel = new Label();
             panel3 = new Panel();
+            label1 = new Label();
             ButtoCarSave = new Button();
             panelDodatkowy.SuspendLayout();
             panel3.SuspendLayout();
@@ -159,23 +159,6 @@
             RokProdukcjitextBox.Size = new Size(169, 23);
             RokProdukcjitextBox.TabIndex = 5;
             // 
-            // AddVinToClient
-            // 
-            AddVinToClient.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            AddVinToClient.BackColor = Color.FromArgb(94, 148, 255);
-            AddVinToClient.FlatAppearance.BorderSize = 0;
-            AddVinToClient.FlatStyle = FlatStyle.Flat;
-            AddVinToClient.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            AddVinToClient.ForeColor = Color.LightGray;
-            AddVinToClient.Location = new Point(8, 5);
-            AddVinToClient.Name = "AddVinToClient";
-            AddVinToClient.Size = new Size(258, 35);
-            AddVinToClient.TabIndex = 19;
-            AddVinToClient.Text = "Przypisz samochód do klienta";
-            AddVinToClient.TextAlign = ContentAlignment.MiddleLeft;
-            AddVinToClient.UseVisualStyleBackColor = false;
-            AddVinToClient.Click += AddVinToClient_Click;
-            // 
             // VINTextBox
             // 
             VINTextBox.BackColor = Color.FromArgb(64, 64, 70);
@@ -185,7 +168,7 @@
             VINTextBox.Cursor = Cursors.IBeam;
             VINTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             VINTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            VINTextBox.Location = new Point(8, 76);
+            VINTextBox.Location = new Point(8, 36);
             VINTextBox.Name = "VINTextBox";
             VINTextBox.PlaceholderText = "VIN";
             VINTextBox.Size = new Size(243, 23);
@@ -195,7 +178,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.GrayText;
-            panel2.Location = new Point(8, 102);
+            panel2.Location = new Point(8, 62);
             panel2.Name = "panel2";
             panel2.Size = new Size(243, 10);
             panel2.TabIndex = 18;
@@ -205,17 +188,18 @@
             ClientsList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             ClientsList.FormattingEnabled = true;
             ClientsList.ItemHeight = 15;
-            ClientsList.Location = new Point(7, 130);
+            ClientsList.Location = new Point(5, 78);
             ClientsList.Name = "ClientsList";
-            ClientsList.Size = new Size(244, 289);
+            ClientsList.Size = new Size(258, 349);
             ClientsList.TabIndex = 12;
+            ClientsList.DoubleClick += ClientsList_DoubleClick;
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(224, 224, 224);
-            label2.Location = new Point(5, 52);
+            label2.Location = new Point(5, 12);
             label2.Name = "label2";
             label2.Size = new Size(40, 21);
             label2.TabIndex = 10;
@@ -225,7 +209,7 @@
             // 
             NumLenghtNadwoziaLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             NumLenghtNadwoziaLabel.ForeColor = Color.Silver;
-            NumLenghtNadwoziaLabel.Location = new Point(41, 57);
+            NumLenghtNadwoziaLabel.Location = new Point(41, 17);
             NumLenghtNadwoziaLabel.Name = "NumLenghtNadwoziaLabel";
             NumLenghtNadwoziaLabel.Size = new Size(34, 16);
             NumLenghtNadwoziaLabel.TabIndex = 0;
@@ -237,7 +221,7 @@
             panel3.BackColor = Color.FromArgb(64, 64, 70);
             panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Controls.Add(NumLenghtNadwoziaLabel);
-            panel3.Controls.Add(AddVinToClient);
+            panel3.Controls.Add(label1);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(VINTextBox);
             panel3.Controls.Add(panel2);
@@ -247,6 +231,17 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(271, 534);
             panel3.TabIndex = 29;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(224, 224, 224);
+            label1.Location = new Point(8, 433);
+            label1.Name = "label1";
+            label1.Size = new Size(255, 90);
+            label1.TabIndex = 10;
+            label1.Text = "Proszę kliknąć 2 razy po wybranym kliencie, wtedy samochód automatycznie zostanie przypisany do klienta.\r\n";
             // 
             // ButtoCarSave
             // 
@@ -282,7 +277,7 @@
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
-        }
+            }
 
         #endregion
         public ListBox CategoryListBox;
@@ -295,7 +290,6 @@
         public ListBox EngineListBox;
         private Panel panelDodatkowy;
         private Label label6;
-        private Button AddVinToClient;
         private TextBox VINTextBox;
         private Panel panel2;
         private ListBox ClientsList;
@@ -304,5 +298,6 @@
         private Panel panel3;
         private TextBox RokProdukcjitextBox;
         private Button ButtoCarSave;
-    }
+        private Label label1;
+        }
 }

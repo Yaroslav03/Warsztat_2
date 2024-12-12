@@ -129,7 +129,6 @@
             // 
             // WarehouseAddButton
             // 
-            WarehouseAddButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             WarehouseAddButton.BackColor = Color.FromArgb(94, 148, 255);
             WarehouseAddButton.FlatAppearance.BorderSize = 0;
             WarehouseAddButton.FlatStyle = FlatStyle.Flat;
@@ -147,7 +146,7 @@
             // 
             WarehouseView.AllowUserToAddRows = false;
             WarehouseView.AllowUserToDeleteRows = false;
-            WarehouseView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            WarehouseView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             WarehouseView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             WarehouseView.BorderStyle = BorderStyle.None;
             WarehouseView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;

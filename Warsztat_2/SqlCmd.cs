@@ -45,20 +45,31 @@ internal class SqlCmd {
             Cursor.Current = Cursors.Default;
             }
         }
-    public static async Task<Dictionary<string, object>> LoadDataAsync(Button button, string tableName, string keyColumnName, object keyValue)
+    public static async Task<Dictionary<string, object>> LoadDataAsync(Button button, string tableName, string keyColumnName = null, object keyValue = null)
         {
         Cursor.Current = Cursors.WaitCursor;
         var data = new Dictionary<string, object>();
-
+        string query = "";
         try
             {
             using SQLiteConnection conn = new(_connectionString);
             await conn.OpenAsync();
 
-            // Використовуємо параметризований запит для запобігання SQL-ін'єкціям
-            string query = $"SELECT * FROM {tableName} WHERE {keyColumnName} = @KeyValue";
+            if(!string.IsNullOrEmpty(keyColumnName) && keyValue != null)
+                {
+                query = $"SELECT * FROM {tableName} WHERE {keyColumnName} = @KeyValue";
+                }
+            else
+                {
+                query = $"SELECT * FROM {tableName}";
+                }
+
             using SQLiteCommand cmd = new(query, conn);
-            cmd.Parameters.AddWithValue("@KeyValue", keyValue);
+
+            if(!string.IsNullOrEmpty(keyColumnName) && keyValue != null)
+                {
+                cmd.Parameters.AddWithValue("@KeyValue", keyValue);
+                }
 
             using DbDataReader reader = await cmd.ExecuteReaderAsync();
 
@@ -115,6 +126,38 @@ internal class SqlCmd {
 
         return marzha;
         }
+    public static async Task<Guid> GetUniqueKey(string id, string table)
+        {
+        Guid uniqueKey = new();
+
+        try
+            {
+            using SQLiteConnection conn = new(_connectionString);
+            await conn.OpenAsync();
+
+            using SQLiteCommand cmd = new($"SELECT UniqueKey FROM {table} WHERE ID=@ID", conn);
+
+            cmd.Parameters.AddWithValue("@ID", id);
+            using DbDataReader reader = await cmd.ExecuteReaderAsync();
+
+            if(await reader.ReadAsync()) // Перевірка, чи є дані
+                {
+                //string uniqueKeyString = reader["UniqueKey"].ToString();
+                //MessageBox.Show($"{uniqueKeyString}");
+
+                byte[] uniqueKeyBytes = (byte[])reader["UniqueKey"];
+                uniqueKey = new Guid(uniqueKeyBytes);
+                }
+            }
+        catch(Exception ex)
+            {
+            // Обробка виключення
+            MessageBox.Show("Wystąpił błąd podczas pobierania wartości 'UniqueKey': " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        return uniqueKey;
+        }
+
 
     // Універсальний метод для оновлення запису в будь-якій таблиці
     public static async Task<bool> UpdateRecordAsync(string tableName, Dictionary<string, object> columns, string whereClause, Dictionary<string, object> whereParams)
@@ -165,53 +208,7 @@ internal class SqlCmd {
             Cursor.Current = Cursors.Default;
             }
         }
-    //Спростити кількість передач як в AddRecordAsync
-    public static async Task UpdateRecordAsyncTest(string tableName, Dictionary<string, object> columns, string whereClause, Dictionary<string, object> whereParams)
-        {
-        Cursor.Current = Cursors.WaitCursor;
 
-        // Формуємо SQL-запит для оновлення запису в базі даних
-        var setClause = string.Join(", ", columns.Keys.Select(k => $"{k} = @{k}"));
-        var query = $"UPDATE {tableName} SET {setClause} WHERE {whereClause}";
-
-        using SQLiteConnection conn = new(_connectionString);
-        await conn.OpenAsync();
-
-        // Використовуємо транзакцію для надійного виконання змін
-        using var transaction = await conn.BeginTransactionAsync();
-        try
-            {
-            using SQLiteCommand cmd = new(query, conn);
-
-            // Додаємо параметри для запиту (дані, які будемо оновлювати)
-            foreach(var column in columns)
-                {
-                cmd.Parameters.AddWithValue("@" + column.Key, column.Value ?? DBNull.Value);
-                }
-
-            // Додаємо параметри для умов (наприклад, де саме слід оновлювати)
-            foreach(var param in whereParams)
-                {
-                cmd.Parameters.AddWithValue("@" + param.Key, param.Value ?? DBNull.Value);
-                }
-
-            // Виконуємо команду оновлення
-            await cmd.ExecuteNonQueryAsync();
-            // Підтверджуємо транзакцію, якщо все пройшло успішно
-            await transaction.CommitAsync();
-            }
-        catch(Exception ex)
-            {
-            // Відкочуємо транзакцію у разі виникнення помилки
-            await transaction.RollbackAsync();
-            MessageBox.Show($"Nie przewidziany warunek w czasie aktualizacji danych : {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            throw;
-            }
-        finally
-            {
-            Cursor.Current = Cursors.Default;
-            }
-        }
     public static async Task ReadRecordListBoxAsync(ListBox updateListBox, string query, string ColumnName)
         {
         updateListBox.Items.Clear();
@@ -295,25 +292,35 @@ internal class SqlCmd {
 
     #endregion
     #region Read data 
-    public static async Task LoadData(string cmd, DataGridView view, string categoryError, string textError)
+    public static async Task LoadData(string cmd, DataGridView view, string categoryError, string textError, Dictionary<string, object> parameters = null)
         {
         Cursor.Current = Cursors.WaitCursor;
         try
             {
             using SQLiteConnection conn = new(_connectionString);
-
             await conn.OpenAsync();
 
-            using SQLiteDataAdapter adapter = new(cmd, conn);
+            using SQLiteCommand command = new(cmd, conn);
+
+            // Якщо є параметри, додаємо їх до команди
+            if(parameters != null)
                 {
-                using DataTable dataTable = new();
-                dataTable.Clear();// Очищаємо дані, якщо вони вже були завантажені
-                adapter.Fill(dataTable);
-                view.DataSource = dataTable;
+                foreach(var param in parameters)
+                    {
+                    command.Parameters.AddWithValue(param.Key, param.Value);
+                    }
                 }
+
+            using SQLiteDataAdapter adapter = new(command);
+            DataTable dataTable = new();
+            await Task.Run(() => adapter.Fill(dataTable));
+            view.DataSource = dataTable;
+
+
             }
         catch(Exception ex)
             {
+            MessageBox.Show($"{cmd}");
             Queue<string> dataError = new();
             await Settings.Error(ex, dataError, categoryError, textError);
             }
@@ -398,10 +405,6 @@ internal class SqlCmd {
         }
     #endregion
     #region check data 
-    public static bool DataExistsRead(SQLiteDataReader reader)
-        {
-        return reader.Read();
-        }
     public static async Task<bool> TableExist(string path, string tableName)
         {
         using SQLiteConnection conn = new(path);

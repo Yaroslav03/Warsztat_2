@@ -6,9 +6,10 @@ using Warsztat_2.UserControls.BarMenu.UC_CreateData;
 
 namespace Warsztat_2._0.UserControls.UC_CreateData {
     public partial class UC_AddRepair :UserControl {
-        private List<string> tranferData = new();
-        #region variables
 
+        #region variables
+        private List<string> tranferData = new();
+        Guid uniqueKey;
         private protected ushort Id_Repair;
         private string? pricePart;
 
@@ -17,12 +18,15 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
         private async void UC_AddOrderRepair_Load(object sender, EventArgs e)
             {
             await LoadCarData();
-            GC.Collect();
+            RepairTimePicker.Value = DateTime.Now;
             }
 
         private async void ViewCar_CellClick(object sender, DataGridViewCellEventArgs e)
             {
             VIN_label.Text = ViewCar.CurrentRow.Cells["VIN_Column"].Value.ToString();
+            string? id = ViewCar.CurrentRow.Cells["ID_Column"].Value.ToString();
+
+            uniqueKey = await SqlCmd.GetUniqueKey(id, "Samochód");
             await LoadRepair();
             }
         public UC_AddRepair()
@@ -48,9 +52,8 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
             if(VIN_label.Text != "Brak")
                 {
                 SumRepair();
-                string[] data = { $"{VIN_label.Text}", $"{pricePart}" };
                 Form_AddOrderManagement form_AddOrderManagement = new();
-                form_AddOrderManagement.SendDataFromLastWindow(data);
+                form_AddOrderManagement.SendDataFromLastWindow(pricePart, uniqueKey);
                 form_AddOrderManagement.ShowDialog();
                 }
             }
@@ -110,7 +113,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
                     {"Suma", Convert.ToDecimal(SumLabel.Text)},
                     {"Stan", StanCheckBox.Checked},
                     {"DataNapraw", RepairTimePicker.Text.Trim()},
-                    {"VIN", VIN_label.Text}
+                    {"UniqueKey", uniqueKey }
                 };
             }
         private async Task SaveRepair()
@@ -124,7 +127,11 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
             }
         private async Task LoadRepair()
             {
-            await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan, DataNapraw FROM NaprawaSamochodu WHERE VIN LIKE '%{VIN_label.Text}'", ViewRepair, "Repair", "Load table Repair from DB");
+            var searchKey = new Dictionary<string, object>
+                {
+                    {"UniqueKey", uniqueKey }
+                };
+            await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan, DataNapraw FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
             }
 
         private async void ViewRepair_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -216,7 +223,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
             string[] data = { "ID_Column_", "TypCzesci_Column", "Nazwa_Column", "Opis_Column_", "NumerCzesci_Column", "Price_Column", "Quantity_Column", "Sum_Column" };
             GetDataTable(WarehouseView, data);
             tranferData.Add(DateTime.Now.ToString("D"));
-            tranferData.Add(VIN_label.Text);
+            
 
             if(Convert.ToByte(tranferData[6]) == 1)
                 {
@@ -225,7 +232,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
             else if(Convert.ToByte(tranferData[6]) > 1)
                 {
                 QuantityItemsWarehous quantityItemsMesssage = new();
-                quantityItemsMesssage.TransferListData(tranferData);
+                quantityItemsMesssage.TransferListData(tranferData, uniqueKey);
                 quantityItemsMesssage.ShowDialog();
                 }
             tranferData.Clear();
@@ -239,7 +246,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
 
         private async void TransferDataWithRemoveSQL()
             {
-            string[] values = {"Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma", "DataNapraw", "VIN" };
+            string[] values = {"Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma", "DataNapraw" };
 
             var transferDataId = new Dictionary<string, object>
                 {
@@ -253,9 +260,14 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
                 {
                 repairCarData.Add(values[i], tranferData[i]);
                 }
+            repairCarData.Add("UniqueKey", uniqueKey);
 
-            await SqlCmd.AddRecordAsync("NaprawaSamochodu", repairCarData);
-            await SqlCmd.DeleteRecordAsync("Magazyn", "ID=@ID", transferDataId);
+            bool isSucceed = await SqlCmd.AddRecordAsync("NaprawaSamochodu", repairCarData);
+            if(isSucceed)
+                {
+                await SqlCmd.DeleteRecordAsync("Magazyn", "ID=@ID", transferDataId);
+                }
+            
             }
         }
     }

@@ -4,7 +4,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
     public partial class UC_AddHistoryCar :UserControl {
 
         #region variables
-
+        Guid uniqueKey;
         private protected ushort Id_Car;
         #endregion
         public UC_AddHistoryCar()
@@ -30,10 +30,14 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
         private async void UC_AddHistoryCar_Load(object sender, EventArgs e)
             {
             await LoadDataCar();
+            ScheduleTimePicker.Value = DateTime.Now;
             }
         private async void ViewCar_CellClick(object sender, DataGridViewCellEventArgs e)
             {
             VINTextBox.Text = ViewAllCar.CurrentRow.Cells["VIN_Car_Column"].Value.ToString();
+            string? id = ViewAllCar.CurrentRow.Cells["ID_Column_"].Value.ToString();
+
+            uniqueKey = await SqlCmd.GetUniqueKey(id, "Samochód");
             await LoadOfHistoryCar();
             }
         private void VINTextBox_TextChanged(object sender, EventArgs e)
@@ -57,7 +61,8 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                     {"Diagnostyka", DiagnosticTextBox.Text.Trim()},
                     {"Naprawa", RepairTextBox.Text.Trim()},
                     {"DataPrzyjęcia", ScheduleTimePicker.Text.ToString()},
-                    {"VIN", VINTextBox.Text.Trim()}
+                    {"VIN", VINTextBox.Text.Trim()},
+                    {"UniqueKey", uniqueKey }
 
                 };
             }

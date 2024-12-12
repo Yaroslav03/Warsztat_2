@@ -27,7 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
+            {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
@@ -69,7 +69,7 @@
             label3 = new Label();
             label1 = new Label();
             ViewAllCar = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            ID_Column_ = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
@@ -495,7 +495,7 @@
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
             ViewAllCar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             ViewAllCar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewAllCar.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, VIN_Car_Column });
+            ViewAllCar.Columns.AddRange(new DataGridViewColumn[] { ID_Column_, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, VIN_Car_Column });
             dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -512,12 +512,12 @@
             ViewAllCar.TabIndex = 36;
             ViewAllCar.CellClick += ViewCar_CellClick;
             // 
-            // dataGridViewTextBoxColumn1
+            // ID_Column_
             // 
-            dataGridViewTextBoxColumn1.DataPropertyName = "ID";
-            dataGridViewTextBoxColumn1.HeaderText = "ID";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Visible = false;
+            ID_Column_.DataPropertyName = "ID";
+            ID_Column_.HeaderText = "ID";
+            ID_Column_.Name = "ID_Column_";
+            ID_Column_.Visible = false;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -567,7 +567,7 @@
             panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ViewAllCar).EndInit();
             ResumeLayout(false);
-        }
+            }
 
         #endregion
 
@@ -591,11 +591,6 @@
         private Label label1;
         private DataGridView ViewAllCar;
         private TextBox RepairTextBox;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn VIN_Car_Column;
         private Label label3;
         public DateTimePicker ScheduleTimePicker;
         private TextBox MileageTextBox;
@@ -610,5 +605,10 @@
         private DataGridViewTextBoxColumn Zlecenie_Column;
         private DataGridViewTextBoxColumn Diagnostic_Column;
         private DataGridViewTextBoxColumn Repair_Column;
-    }
+        private DataGridViewTextBoxColumn ID_Column_;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn VIN_Car_Column;
+        }
 }

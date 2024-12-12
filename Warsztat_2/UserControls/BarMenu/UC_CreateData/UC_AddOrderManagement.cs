@@ -19,7 +19,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
         #region Event
         private async void Vin_Label_TextChanged(object sender, EventArgs e)
             {
-            if(Vin_Label.Text != "") ;
+            if(Vin_Label.Text != "");
             }
 
         private async void ButtonOrderManagementSave_Click(object sender, EventArgs e)

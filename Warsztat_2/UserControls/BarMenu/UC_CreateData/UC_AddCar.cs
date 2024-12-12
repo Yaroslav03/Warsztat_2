@@ -9,7 +9,7 @@ public partial class UC_AddCar :UserControl {
 
     private readonly Queue<string> dataError = new();
 
-    private Car car = new();
+    Guid uniqueKey = new();
 
     #endregion
 
@@ -50,7 +50,7 @@ public partial class UC_AddCar :UserControl {
             YearOfProduktion = string.IsNullOrEmpty(RokProdukcjitextBox.Text) ? RokProdukcjiListBox.SelectedItem?.ToString() : RokProdukcjitextBox.Text.Trim(),
             VIN = VINTextBox.Text.Trim()
             };
-        if(carModel.Marka == null || carModel.Model == null || carModel.Engine == null || carModel.YearOfProduktion == null)
+        if(carModel.Marka == null || carModel.Model == null || carModel.Engine == null || carModel.YearOfProduktion == null || uniqueKey == Guid.Empty)
             {
             MessageBox.Show($"Proszę wpisać wszystkie dane samochodu");
             return;
@@ -61,7 +61,8 @@ public partial class UC_AddCar :UserControl {
                 {"Model", carModel.Model},
                 {"Silnik", carModel.Engine},
                 {"RokProdukcji", carModel.YearOfProduktion},
-                {"VIN", carModel.VIN}
+                {"VIN", carModel.VIN},
+                {"UniqueKey", uniqueKey}
             };
         await SqlCmd.AddRecordAsync("Samochód", CarData);
         }
@@ -150,52 +151,7 @@ public partial class UC_AddCar :UserControl {
         bool test = !isMarkaEmpty && !isModelEmpty && !isEngineEmpty && VIN17;
         ButtoCarSave.Enabled = test;
         }
-
-    private async Task AddVINToClient()
-        {
-        string? selectedRow = ClientsList.SelectedItem.ToString();
-
-        if(ClientsList.SelectedIndex >= 0 && VINTextBox.Text.Length == 17 && selectedRow != null)
-            {
-            // Отримати текст виділеного рядка
-
-
-            // Розділити рядок за допомогою коми
-            string[] rowData = selectedRow.Split(' ');
-
-            // Переконатися, що масив містить принаймні 3 елементи (Ім'я, Становище, Номер телефону)
-            if(rowData.Length >= 4)
-                {
-                // Отримати номер телефону (четвертий елемент масиву після розділу)
-                string iD = rowData[3].Trim();
-                var clientUpdate = new Dictionary<string, object>
-                    {
-                        {"VIN", VINTextBox.Text.ToString()},                        
-                    };
-                var clientUpdateID = new Dictionary<string, object>
-                    {
-                        {"ID", iD}
-                    };
-                bool isSucceed = await SqlCmd.UpdateRecordAsync("Klienty", clientUpdate, "ID=@ID", clientUpdateID);
-                if(isSucceed)
-                    MessageBox.Show("Samochód został przypisany do klienta");                
-                }
-            }
-        }
     #endregion
-
-    private async void AddVinToClient_Click(object sender, EventArgs e)
-        {
-        try
-            {
-            await AddVINToClient();
-            }
-
-        catch(Exception ex)
-            {
-            await Settings.Error(ex, dataError, "AddCar", "Add VIN To Client");
-            }
-        }
 
     private void VINTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -230,6 +186,28 @@ public partial class UC_AddCar :UserControl {
         if(await SqlCmd.TableExist(carDB, MarkaListBox.Text.ToString()))
             {
             SearchDataEngine();
+            }
+        }
+
+    private async void ClientsList_DoubleClick(object sender, EventArgs e)
+        {
+        string? selectedRow = ClientsList.SelectedItem.ToString();
+        if(selectedRow != null)
+            {
+            // Розділити рядок за допомогою коми
+            string[] rowData = selectedRow.Split(' ');
+
+            // Переконатися, що масив містить принаймні 3 елементи (Ім'я, Становище, Номер телефону)
+            if(rowData.Length >= 4)
+                {
+                // Отримати номер телефону (четвертий елемент масиву після розділу)
+                string iD = rowData[3].Trim();
+
+                uniqueKey = await SqlCmd.GetUniqueKey(iD, "Klienty");
+
+                MessageBox.Show("Samochód został przypisany do klienta");
+
+                }
             }
         }
     }

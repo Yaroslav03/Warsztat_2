@@ -125,7 +125,7 @@
             // 
             StanCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             StanCheckBox.AutoSize = true;
-            StanCheckBox.Location = new Point(745, 237);
+            StanCheckBox.Location = new Point(616, 258);
             StanCheckBox.Name = "StanCheckBox";
             StanCheckBox.Size = new Size(82, 19);
             StanCheckBox.TabIndex = 4;
@@ -402,7 +402,7 @@
             RepairTimePicker.CalendarTitleForeColor = Color.FromArgb(94, 148, 255);
             RepairTimePicker.Cursor = Cursors.Hand;
             RepairTimePicker.CustomFormat = "";
-            RepairTimePicker.Location = new Point(751, 262);
+            RepairTimePicker.Location = new Point(743, 253);
             RepairTimePicker.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             RepairTimePicker.Name = "RepairTimePicker";
             RepairTimePicker.Size = new Size(227, 23);

@@ -33,7 +33,7 @@ namespace Warsztat_2._0.UserControls {
 
         private async Task LoadDB()
             {
-            string[] tableNames = { "Imię", "Nazwisko", "NrTelefonu", "Marka", "Model", "Zlecenie", "DataPrzyjęcia", "WykonawcaPracy", "DataOczekiwaniaOdbioru", "KosztKońcowy", "VIN" };
+            //string[] tableNames = { "Imię", "Nazwisko", "NrTelefonu", "Marka", "Model", "Zlecenie", "DataPrzyjęcia", "WykonawcaPracy", "DataOczekiwaniaOdbioru", "KosztKońcowy", "UniqueKey" };
 
             string query = @"
     SELECT 
@@ -42,23 +42,23 @@ namespace Warsztat_2._0.UserControls {
         Klienty.NrTelefonu, 
         Samochód.Marka, 
         Samochód.Model, 
+        Samochód.VIN,
         HistoriaNapraw.Zlecenie,
         HistoriaNapraw.DataPrzyjęcia,
         ZarządzanieZleceniem.WykonawcaPracy, 
         ZarządzanieZleceniem.DataOczekiwaniaOdbioru, 
-        ZarządzanieZleceniem.KosztKońcowy, 
-        Klienty.VIN
+        ZarządzanieZleceniem.KosztKońcowy
     FROM Klienty
-    LEFT JOIN Samochód ON Klienty.VIN = Samochód.VIN
-    LEFT JOIN HistoriaNapraw ON Klienty.VIN = HistoriaNapraw.VIN
-    LEFT JOIN ZarządzanieZleceniem ON Klienty.VIN = ZarządzanieZleceniem.VIN
-    WHERE Klienty.VIN IS NOT NULL";
+    LEFT JOIN Samochód ON Klienty.UniqueKey = Samochód.UniqueKey
+    LEFT JOIN HistoriaNapraw ON Klienty.UniqueKey = HistoriaNapraw.UniqueKey
+    LEFT JOIN ZarządzanieZleceniem ON Klienty.UniqueKey = ZarządzanieZleceniem.UniqueKey
+    WHERE Klienty.UniqueKey IS NOT NULL";
 
             using SQLiteConnection conn = new(connectionStringArray[0]);
             await conn.OpenAsync();
 
-            SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, conn);
-            DataTable dataTable = new DataTable();
+            SQLiteDataAdapter adapter = new(query, conn);
+            DataTable dataTable = new ();
 
             adapter.Fill(dataTable);
 

@@ -13,6 +13,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
         private decimal priceOfPart, PricePartWithMarzha, Marzha, finallyPrice, wasPayed;
         uint ID;
         private bool isDataLoadedFromDB = false;
+        Guid uniqueKey;
 
 
         //private decimal pricePart_;
@@ -149,16 +150,14 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             }
         private Dictionary<string, object> GetValue()
             {
-            if(CashRadioButton.Checked == true)
+            wasPayed = CashRadioButton.Checked ? PaidnumericUpDown.Value : finallyPrice;
+
+            if(OtherDatePayCheck.Checked == true)
                 {
-                wasPayed = Convert.ToDecimal(PaidnumericUpDown.Value);
-                }
-            else
-                {
-                wasPayed = finallyPrice;
+                paymentDay = DateOfPay.Text.ToString();
                 }
 
-            return new Dictionary<string, object>
+                return new Dictionary<string, object>
                 {
                     {"VIN", Vin_Label.Text},
                     {"DataOczekiwaniaOdbioru", orderAddoptedDay},
@@ -170,7 +169,8 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                     {"KosztPracyRęcznej", FinallPriceNumericUpDown.Value.ToString()},
                     {"KosztKońcowy",  finallyPrice},
                     {"WykonanaPraca", WorkPerfomedTextBox.Text},
-                    {"WykonawcaPracy", WorkerListBox.SelectedItem}
+                    {"WykonawcaPracy", WorkerListBox.SelectedItem},
+                    {"UniqueKey", uniqueKey }
                 };
             }
         private async Task SaveDB()
@@ -200,10 +200,10 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             string[] columns = { "Imie", "Stanowisko" };
             await SqlCmd.ReadAddDataListBox("SELECT Imie, Stanowisko FROM Pracownicy", columns, WorkerListBox);
             }
-        public void SendDataFromLastWindow(string[] data)
+        public void SendDataFromLastWindow(string price, Guid key)
             {
-            Vin_Label.Text = data[0];
-            priceOfPart = Convert.ToDecimal(data[1]);
+            uniqueKey = key;
+            priceOfPart = Convert.ToDecimal(price);
             labelPriceofPart.Text = labelPriceofPart.Text + " " + priceOfPart;
             }
         #endregion
@@ -231,7 +231,6 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             {
             if(OtherDatePayCheck.Checked == true)
                 {
-                paymentDay = DateOfPay.Text.ToString();
                 DateOfPay.Show();
                 }
             }

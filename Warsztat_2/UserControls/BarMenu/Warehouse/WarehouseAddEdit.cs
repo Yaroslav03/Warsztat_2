@@ -14,7 +14,6 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
 
         private async void AddEditWarehouseButton_Click(object sender, EventArgs e)
             {
-            MessageBox.Show($"{warehouseModel.Id}");
             var data = new Dictionary<string, object>
                 {
                     {"Typ",  CategoryListBox.SelectedItem?.ToString() ?? "Brak"},
