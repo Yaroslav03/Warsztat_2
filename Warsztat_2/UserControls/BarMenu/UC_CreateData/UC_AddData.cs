@@ -6,7 +6,6 @@ namespace Warsztat_2._0.UserControls {
         readonly UC_AddCar addCar = new();
         readonly UC_AddClient addClient = new();
         readonly UC_AddRepair addRepair = new();
-        readonly UC_AddOrderManagement addOrderManagement = new();
         readonly UC_AddHistoryCar addHistoryCar = new();
 
         public UC_AddData()
@@ -28,12 +27,6 @@ namespace Warsztat_2._0.UserControls {
         private void RepairButton_Click(object sender, EventArgs e)
             {
             Settings.ChangeWindow(addRepair, splitContainer1.Panel2);
-            }
-
-        private void OrderManagementButton_Click(object sender, EventArgs e)
-            {
-            // Використовуємо існуючий екземпляр UC_AddRepair
-            Settings.ChangeWindow(addOrderManagement, splitContainer1.Panel2);
             }
 
         private void CustommerButton_Click(object sender, EventArgs e)

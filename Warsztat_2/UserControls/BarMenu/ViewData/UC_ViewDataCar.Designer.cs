@@ -27,15 +27,15 @@
         /// </summary>
         private void InitializeComponent()
             {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             label1 = new Label();
             label3 = new Label();
-            button1 = new Button();
+            PathButton = new Button();
             OrderButton = new Button();
             button3 = new Button();
             ViewActualData = new DataGridView();
-            ID = new DataGridViewTextBoxColumn();
+            ID_Column = new DataGridViewTextBoxColumn();
             BtnDelete = new DataGridViewButtonColumn();
             BtnFinish = new DataGridViewButtonColumn();
             DataPrzyjęcia_Column = new DataGridViewTextBoxColumn();
@@ -49,7 +49,9 @@
             WykonawaPracy_Column = new DataGridViewTextBoxColumn();
             KosztKońcowy_Column = new DataGridViewTextBoxColumn();
             VIN_Column = new DataGridViewTextBoxColumn();
+            panelDodatkowy = new Panel();
             ((System.ComponentModel.ISupportInitialize)ViewActualData).BeginInit();
+            panelDodatkowy.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -57,7 +59,7 @@
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.ForeColor = Color.Silver;
-            label1.Location = new Point(770, 20);
+            label1.Location = new Point(722, 12);
             label1.Name = "label1";
             label1.Size = new Size(50, 15);
             label1.TabIndex = 3;
@@ -68,24 +70,25 @@
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.ForeColor = Color.Silver;
-            label3.Location = new Point(902, 20);
+            label3.Location = new Point(868, 12);
             label3.Name = "label3";
             label3.Size = new Size(66, 15);
             label3.TabIndex = 3;
             label3.Text = "Stwórz PDF";
             // 
-            // button1
+            // PathButton
             // 
-            button1.BackColor = Color.FromArgb(94, 148, 255);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.LightGray;
-            button1.Location = new Point(757, 38);
-            button1.Name = "button1";
-            button1.Size = new Size(84, 22);
-            button1.TabIndex = 15;
-            button1.Text = "Lokalizacja";
-            button1.UseVisualStyleBackColor = false;
+            PathButton.BackColor = Color.FromArgb(94, 148, 255);
+            PathButton.FlatAppearance.BorderSize = 0;
+            PathButton.FlatStyle = FlatStyle.Flat;
+            PathButton.ForeColor = Color.LightGray;
+            PathButton.Location = new Point(725, 30);
+            PathButton.Name = "PathButton";
+            PathButton.Size = new Size(84, 22);
+            PathButton.TabIndex = 15;
+            PathButton.Text = "Lokalizacja";
+            PathButton.UseVisualStyleBackColor = false;
+            PathButton.Click += PathButton_Click;
             // 
             // OrderButton
             // 
@@ -93,7 +96,7 @@
             OrderButton.FlatAppearance.BorderSize = 0;
             OrderButton.FlatStyle = FlatStyle.Flat;
             OrderButton.ForeColor = Color.LightGray;
-            OrderButton.Location = new Point(847, 38);
+            OrderButton.Location = new Point(815, 30);
             OrderButton.Name = "OrderButton";
             OrderButton.Size = new Size(84, 22);
             OrderButton.TabIndex = 15;
@@ -107,7 +110,7 @@
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = FlatStyle.Flat;
             button3.ForeColor = Color.LightGray;
-            button3.Location = new Point(937, 39);
+            button3.Location = new Point(905, 31);
             button3.Name = "button3";
             button3.Size = new Size(84, 22);
             button3.TabIndex = 15;
@@ -122,39 +125,39 @@
             ViewActualData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ViewActualData.BorderStyle = BorderStyle.None;
             ViewActualData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.LightGray;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            ViewActualData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.LightGray;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            ViewActualData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             ViewActualData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewActualData.Columns.AddRange(new DataGridViewColumn[] { ID, BtnDelete, BtnFinish, DataPrzyjęcia_Column, DataOczekiwaniaOdbioru_Column, Imię_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Column7, WykonawaPracy_Column, KosztKońcowy_Column, VIN_Column });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            ViewActualData.DefaultCellStyle = dataGridViewCellStyle2;
+            ViewActualData.Columns.AddRange(new DataGridViewColumn[] { ID_Column, BtnDelete, BtnFinish, DataPrzyjęcia_Column, DataOczekiwaniaOdbioru_Column, Imię_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Column7, WykonawaPracy_Column, KosztKońcowy_Column, VIN_Column });
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.DimGray;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            ViewActualData.DefaultCellStyle = dataGridViewCellStyle4;
             ViewActualData.EnableHeadersVisualStyles = false;
-            ViewActualData.Location = new Point(3, 67);
+            ViewActualData.Location = new Point(3, 59);
             ViewActualData.Name = "ViewActualData";
             ViewActualData.RowTemplate.Height = 25;
-            ViewActualData.Size = new Size(1040, 548);
+            ViewActualData.Size = new Size(983, 548);
             ViewActualData.TabIndex = 30;
             ViewActualData.CellContentClick += ViewActualData_CellContentClick;
             ViewActualData.MouseDoubleClick += ViewActualData_MouseDoubleClick;
             // 
-            // ID
+            // ID_Column
             // 
-            ID.DataPropertyName = "ID";
-            ID.HeaderText = "ID";
-            ID.Name = "ID";
-            ID.Visible = false;
+            ID_Column.DataPropertyName = "ID";
+            ID_Column.HeaderText = "ID";
+            ID_Column.Name = "ID_Column";
+            ID_Column.Visible = false;
             // 
             // BtnDelete
             // 
@@ -232,34 +235,47 @@
             VIN_Column.HeaderText = "VIN";
             VIN_Column.Name = "VIN_Column";
             // 
+            // panelDodatkowy
+            // 
+            panelDodatkowy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelDodatkowy.BackColor = Color.FromArgb(64, 64, 70);
+            panelDodatkowy.BorderStyle = BorderStyle.FixedSingle;
+            panelDodatkowy.Controls.Add(ViewActualData);
+            panelDodatkowy.Controls.Add(button3);
+            panelDodatkowy.Controls.Add(label3);
+            panelDodatkowy.Controls.Add(OrderButton);
+            panelDodatkowy.Controls.Add(label1);
+            panelDodatkowy.Controls.Add(PathButton);
+            panelDodatkowy.ForeColor = Color.DimGray;
+            panelDodatkowy.Location = new Point(4, 3);
+            panelDodatkowy.Name = "panelDodatkowy";
+            panelDodatkowy.Size = new Size(993, 612);
+            panelDodatkowy.TabIndex = 31;
+            // 
             // UC_ViewDataCar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            Controls.Add(ViewActualData);
-            Controls.Add(button3);
-            Controls.Add(OrderButton);
-            Controls.Add(button1);
-            Controls.Add(label3);
-            Controls.Add(label1);
+            Controls.Add(panelDodatkowy);
             Name = "UC_ViewDataCar";
-            Size = new Size(1043, 615);
+            Size = new Size(1000, 615);
             Load += UC_ViewDataCar_Load;
             ((System.ComponentModel.ISupportInitialize)ViewActualData).EndInit();
+            panelDodatkowy.ResumeLayout(false);
+            panelDodatkowy.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
             }
 
         #endregion
 
         private Label label1;
         private Label label3;
-        private Button button1;
+        private Button PathButton;
         private Button OrderButton;
         private Button button3;
         private DataGridView ViewActualData;
-        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn ID_Column;
         private DataGridViewButtonColumn BtnDelete;
         private DataGridViewButtonColumn BtnFinish;
         private DataGridViewTextBoxColumn DataPrzyjęcia_Column;
@@ -273,5 +289,6 @@
         private DataGridViewTextBoxColumn WykonawaPracy_Column;
         private DataGridViewTextBoxColumn KosztKońcowy_Column;
         private DataGridViewTextBoxColumn VIN_Column;
+        private Panel panelDodatkowy;
         }
     }

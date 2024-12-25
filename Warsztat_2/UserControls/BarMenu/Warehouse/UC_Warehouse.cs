@@ -1,5 +1,4 @@
-﻿using System.Data;
-using Warsztat_2.Models;
+﻿using Warsztat_2.Models;
 
 namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
     public partial class UC_Warehouse :UserControl {
@@ -10,24 +9,6 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
             {
             InitializeComponent();
             }
-
-        private async void WarehouseView_DoubleClick(object sender, EventArgs e)
-            {
-
-            if(WarehouseView.CurrentRow != null && WarehouseView.CurrentRow.Cells["TypCzesci_Column"].Value != DBNull.Value)
-                {
-                PrepareDataToRead();
-
-                warehouseAddEdit.SetDataEdit(warehouseModel);
-                warehouseAddEdit.ClearTextBox();
-                warehouseAddEdit.AutocompleteData();
-
-                warehouseAddEdit.ShowDialog();
-
-                await LoadTable();
-                }
-            }
-
         private async void WarehouseAddButton_Click(object sender, EventArgs e)
             {
             warehouseAddEdit.ClearTextBox();
@@ -44,20 +25,20 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
         public async Task LoadTable()
             {
             await SqlCmd.LoadData("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, Suma FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
-            WarehouseView.Columns["ID_Column_"].Visible = false;
+            WarehouseView.Columns["ID_Column"].Visible = false;
             }
         private void PrepareDataToRead()
             {
             warehouseModel = new()
                 {
-                Id = Convert.ToUInt16(WarehouseView.CurrentRow.Cells["ID_Column_"].Value.ToString()),
-                Type = WarehouseView.CurrentRow.Cells["TypCzesci_Column"].Value.ToString(),
-                PartNumber = WarehouseView.CurrentRow.Cells["NrCzęści_Column"].Value.ToString(),
-                Name = WarehouseView.CurrentRow.Cells["Nazwa_Column"].Value.ToString(),
-                Description = WarehouseView.CurrentRow.Cells["Opis_Column"].Value.ToString(),
-                Price = Convert.ToDecimal(WarehouseView.CurrentRow.Cells["Price_Column"].Value.ToString()),
-                Quantity = Convert.ToByte(WarehouseView.CurrentRow.Cells["Quantity_Column"].Value.ToString()),
-                Sum = WarehouseView.CurrentRow.Cells["Sum_Column"].Value.ToString()
+                Id = Convert.ToUInt16(WarehouseView.CurrentRow.Cells["ID_Column"].Value.ToString()),
+                Type = WarehouseView.CurrentRow.Cells["Typ_column"].Value.ToString(),
+                PartNumber = WarehouseView.CurrentRow.Cells["NumerCzęści_column"].Value.ToString(),
+                Name = WarehouseView.CurrentRow.Cells["Nazwa_column_"].Value.ToString(),
+                Description = WarehouseView.CurrentRow.Cells["Opis_column_"].Value.ToString(),
+                Price = Convert.ToDecimal(WarehouseView.CurrentRow.Cells["Cena_column"].Value.ToString()),
+                Quantity = Convert.ToByte(WarehouseView.CurrentRow.Cells["Ilość_column"].Value.ToString()),
+                Sum = WarehouseView.CurrentRow.Cells["Suma_Column"].Value.ToString()
                 };
             }
 
@@ -82,7 +63,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
                 {"Typ", CategoryTextBox.Text.Trim() }
             };
 
-            await SqlCmd.AddRecordAsync("Kategorie", data);
+            await SqlCmd.AddRecordAsync("WarsztatDB", "Kategorie", data);
 
             CategorylistBox.Items.Add(data["Typ"]);
             CategoryTextBox.Text = string.Empty;
@@ -101,7 +82,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
                     { "Typ", categoryToRemove }
                 };
 
-            await SqlCmd.DeleteRecordAsync("Kategorie", "Typ = @Typ", whereParams);
+            await SqlCmd.DeleteRecordAsync("WarsztatDB", "Kategorie", "Typ = @Typ", whereParams);
             CategorylistBox.Items.Remove(categoryToRemove);
             }
 
@@ -112,26 +93,9 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
             await SqlCmd.ReadRecordListBoxAsync(CategorylistBox, "SELECT Typ FROM Kategorie", "Typ");
             }
 
-        private async void WarehouseView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-            {
-            await SqlCmd.DeleteDataTable(WarehouseView, e, "BtnDelete", "ID_Column_", "Magazyn");
-            }
-
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
             {
-            BindingSource bindingSource = new()
-                {
-                DataSource = WarehouseView.DataSource
-                };
-            if(string.IsNullOrEmpty(SearchTextBox.Text))
-                {
-                bindingSource.RemoveFilter();
-                CategorylistBox.SelectedIndices.Clear();
-                }
-            string[] search = SearchTextBox.Text.Split(',');
-
-            string filter = string.Join(" AND ", search.Select(term => $"NumerCzęści LIKE '%{term}%' OR Nazwa LIKE '%{term}%' OR Opis LIKE '%{term}%'"));
-            bindingSource.Filter = filter;
+            Settings.SearchTextBox(SearchTextBox, WarehouseView);
             }
 
         private void CategorylistBox_MouseClick(object sender, MouseEventArgs e)
@@ -151,6 +115,27 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
                 };
             CategorylistBox.SelectedIndices.Clear();
             bindingSource.RemoveFilter();
+            }
+
+        private async void WarehouseView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+            {
+            await SqlCmd.DeleteDataTable(WarehouseView, e, "BtnDelete_", "ID_Column", "Magazyn");
+            }
+
+        private async void WarehouseView_DoubleClick(object sender, EventArgs e)
+            {
+            if(WarehouseView.CurrentRow != null && WarehouseView.CurrentRow.Cells["Typ_column"].Value != DBNull.Value)
+                {
+                PrepareDataToRead();
+
+                warehouseAddEdit.SetDataEdit(warehouseModel);
+                warehouseAddEdit.ClearTextBox();
+                warehouseAddEdit.AutocompleteData();
+
+                warehouseAddEdit.ShowDialog();
+
+                await LoadTable();
+                }
             }
         }
     }

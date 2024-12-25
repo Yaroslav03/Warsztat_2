@@ -160,6 +160,7 @@
             OrderAddoptedTimePicker.Name = "OrderAddoptedTimePicker";
             OrderAddoptedTimePicker.Size = new Size(288, 23);
             OrderAddoptedTimePicker.TabIndex = 23;
+            OrderAddoptedTimePicker.ValueChanged += OrderAddoptedTimePicker_ValueChanged;
             // 
             // label13
             // 
@@ -379,7 +380,7 @@
             CashRadioButton.TabStop = true;
             CashRadioButton.Text = "Gotówką";
             CashRadioButton.UseVisualStyleBackColor = true;
-            CashRadioButton.CheckedChanged += radioButton1_CheckedChanged;
+            CashRadioButton.CheckedChanged += RadioButton1_CheckedChanged;
             // 
             // radioButton2
             // 
@@ -390,7 +391,7 @@
             radioButton2.TabIndex = 30;
             radioButton2.Text = "Kartą";
             radioButton2.UseVisualStyleBackColor = true;
-            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
+            radioButton2.CheckedChanged += RadioButton2_CheckedChanged;
             // 
             // label5
             // 

@@ -4,7 +4,7 @@ using Warsztat_2.Models;
 namespace Warsztat_2._0.UserControls;
 public partial class UC_AddCar :UserControl {
     #region variables
-    private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
+
     private readonly string carDB = "Data Source=DBCar.db;Version=3;New=False;Compress=True;";
 
     private readonly Queue<string> dataError = new();
@@ -64,7 +64,7 @@ public partial class UC_AddCar :UserControl {
                 {"VIN", carModel.VIN},
                 {"UniqueKey", uniqueKey}
             };
-        await SqlCmd.AddRecordAsync("Samochód", CarData);
+        await SqlCmd.AddRecordAsync("WarsztatDB", "Samochód", CarData);
         }
 
 
@@ -205,7 +205,7 @@ public partial class UC_AddCar :UserControl {
 
                 uniqueKey = await SqlCmd.GetUniqueKey(iD, "Klienty");
 
-                MessageBox.Show("Samochód został przypisany do klienta");
+                MessageBox.Show($"Samochód zostanie przypisany do {rowData[0]} {rowData[1]}");
 
                 }
             }

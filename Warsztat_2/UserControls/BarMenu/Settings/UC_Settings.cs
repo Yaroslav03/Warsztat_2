@@ -29,7 +29,7 @@ namespace Warsztat_2._0.UserControls {
                 };
             if(SaveDataButton.Text == "Zapisz")
                 {
-                await SqlCmd.AddRecordAsync("DaneFirmy", data);
+                await SqlCmd.AddRecordAsync("WarsztatDB", "DaneFirmy", data);
                 }
             else if(SaveDataButton.Text == "Odśwież")
                 {
@@ -47,10 +47,11 @@ namespace Warsztat_2._0.UserControls {
             {
             await LoadDataWarsztat();
             await SqlCmd.ReadAddDataListBox("SELECT Imie, Stanowisko, Telefon FROM Pracownicy", nameColumns, ListBoxEmployer);
+            await SqlCmd.LoadData("SELECT ID, NazwaWydatku, CenaWydatku, DataPotrącenia FROM WydatkiFirmy", ViewDataOfDeduction, "WydatkiFirmy", "Load table WydatkiFirmy From DB");
             }
         private async Task LoadDataWarsztat()
             {
-            var data = await SqlCmd.LoadDataAsync(SaveDataButton, "DaneFirmy");
+            var data = await SqlCmd.LoadDataAsync("WarsztatDB", "DaneFirmy", SaveDataButton);
 
             if(data.Count > 0)
                 {
@@ -78,7 +79,7 @@ namespace Warsztat_2._0.UserControls {
                     {"Stanowisko", StanowiskoSelect.Text},
                     {"Telefon", NumerTelefonuTextBox.Text.Trim()}
                 };
-            await SqlCmd.AddRecordAsync("Pracownicy", data);
+            await SqlCmd.AddRecordAsync("WarsztatDB", "Pracownicy", data);
             await SqlCmd.ReadAddDataListBox("SELECT Imie, Stanowisko, Telefon FROM Pracownicy", nameColumns, ListBoxEmployer);
             }
 
@@ -125,5 +126,29 @@ namespace Warsztat_2._0.UserControls {
             await SqlCmd.ReadAddDataListBox("SELECT Imie, Stanowisko, Telefon FROM Pracownicy", nameColumns, ListBoxEmployer);
             }
         #endregion
+
+        private void label3_Click(object sender, EventArgs e)
+            {
+
+            }
+
+        private async void BtnSaveDateOfDeduction_Click(object sender, EventArgs e)
+            {
+            var data = new Dictionary<string, object>
+                {
+                    {"NazwaWydatku", ExpenseNameTextBox.Text.Trim()},
+                    {"CenaWydatku", PriceNumericUpDown.Value},
+                    {"DataPotrącenia", DateOfDeductionCalendar.Text}
+                };
+            await SqlCmd.AddRecordAsync("WarsztatDB", "WydatkiFirmy", data);
+            await SqlCmd.LoadData("SELECT ID, NazwaWydatku, CenaWydatku, DataPotrącenia FROM WydatkiFirmy", ViewDataOfDeduction, "WydatkiFirmy", "Load table WydatkiFirmy From DB");
+            PriceNumericUpDown.Value = 0;
+            ExpenseNameTextBox.Text = string.Empty;
+            }
+
+        private async void ViewDataOfDeduction_CellContentClick(object sender, DataGridViewCellEventArgs e)
+            {
+            await SqlCmd.DeleteDataTable(ViewDataOfDeduction, e, "BtnDelete", "ID_Column", "WydatkiFirmy");
+            }
         }
     }

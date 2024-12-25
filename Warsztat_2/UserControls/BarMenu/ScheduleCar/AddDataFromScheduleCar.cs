@@ -1,11 +1,8 @@
-﻿
-using System.Data.SQLite;
-
-namespace Warsztat_2.UserControls.BarMenu.ScheduleCar {
+﻿namespace Warsztat_2.UserControls.BarMenu.ScheduleCar {
     public partial class AddDataFromScheduleCar :Form {
         #region Values
         private Queue<string> data = new();
-        private string? VIN, ID;
+        private string? ID;
         #endregion
 
         public AddDataFromScheduleCar()
@@ -25,7 +22,7 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar {
                 await SaveToDB();
                 MessageBox.Show("Dane zostali przypisane do odpowiednich tabeli w bazie danych");
 
-                ID = VIN = "";
+                ID = "";
                 Close();
                 }
             catch
@@ -86,11 +83,11 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar {
                 };
             //await SqlCmd.AddAndReadLastRecordAddedWithoutDublicatedRecord(await SqlCmd.AddRecordAsync("Klienty", clientData), await SqlCmd.CheckLastAddedRecord());
 
-            await SqlCmd.AddRecordAsync("Klienty", clientData);
-            await SqlCmd.AddRecordAsync("Samochód", carData);
-            await SqlCmd.AddRecordAsync("HistoriaNapraw", historiaNaprawData);
+            await SqlCmd.AddRecordAsync("WarsztatDB", "Klienty", clientData);
+            await SqlCmd.AddRecordAsync("WarsztatDB", "Samochód", carData);
+            await SqlCmd.AddRecordAsync("WarsztatDB", "HistoriaNapraw", historiaNaprawData);
 
-            await SqlCmd.DeleteRecordAsync("ZaplanowaneSamochody", "ID=@ID", scheduleCarID);
+            await SqlCmd.DeleteRecordAsync("WarsztatDB", "ZaplanowaneSamochody", "ID=@ID", scheduleCarID);
             }
         #endregion
         #region LoadData

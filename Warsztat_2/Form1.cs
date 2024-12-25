@@ -1,4 +1,4 @@
-using Warsztat_2._0;
+﻿using Warsztat_2._0;
 using Warsztat_2._0.UserControls;
 using Warsztat_2._0.UserControls.BarMenu.Warehouse;
 using Warsztat_2.UserControls.BarMenu.Archive;
@@ -45,11 +45,34 @@ namespace Warsztat_2 {
 
             LoadUserControl(new UC_ViewDataCar());
 
+            LoadDataInterface();
+
             }
 
         private void LoadUserControl(UserControl control)
             {
             Settings.ChangeWindow(control, splitContainer1.Panel2);
+            }
+        private async void LoadDataInterface()
+            {
+            var companyData = await SqlCmd.LoadDataAsync("WarsztatDB", "DaneFirmy");
+            uint clientCount = await SqlCmd.CountDataAsync("Klienty");
+            uint carCount = await SqlCmd.CountDataAsync("Samochód");
+            uint scheduleCount = await SqlCmd.CountDataAsync("ZaplanowaneSamochody");
+            decimal costOfDependecis = await SqlCmd.GetTotalDependecisForCurrentMonthAsync();
+            decimal sumEarnings = await SqlCmd.GetTotalEarningsForCurrentMonthAsync();
+
+            if(companyData.ContainsKey("NazwaFirmy"))
+                {
+                companyNameLabel.Text = companyData["NazwaFirmy"].ToString();
+                }
+
+            label4.Text += carCount.ToString();
+            label5.Text += scheduleCount.ToString();
+            label1.Text += clientCount.ToString();
+            label7.Text += sumEarnings.ToString() + "zł";
+            label8.Text += costOfDependecis.ToString() + "zł";
+            label9.Text += (sumEarnings - costOfDependecis) + "zł";
             }
         }
     }

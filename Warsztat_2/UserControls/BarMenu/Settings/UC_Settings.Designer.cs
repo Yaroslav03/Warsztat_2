@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
             {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             ListBoxEmployer = new ListBox();
             label4 = new Label();
             label1 = new Label();
@@ -49,8 +52,26 @@
             NumerTelefonuTextBox = new TextBox();
             ImiePracownikaTextBox = new TextBox();
             label2 = new Label();
+            panel3 = new Panel();
+            DateOfDeductionCalendar = new DateTimePicker();
+            label7 = new Label();
+            ViewDataOfDeduction = new DataGridView();
+            ID_Column = new DataGridViewTextBoxColumn();
+            BtnDelete = new DataGridViewButtonColumn();
+            NazwaWydatku_Column = new DataGridViewTextBoxColumn();
+            CenaWydatku_Column = new DataGridViewTextBoxColumn();
+            DataPotrącenia_Column = new DataGridViewTextBoxColumn();
+            ExpenseNameTextBox = new TextBox();
+            PriceNumericUpDown = new NumericUpDown();
+            label6 = new Label();
+            label5 = new Label();
+            BtnSaveDateOfDeduction = new Button();
+            label3 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ViewDataOfDeduction).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // ListBoxEmployer
@@ -87,6 +108,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(64, 64, 70);
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(SaveDataButton);
@@ -101,7 +123,7 @@
             panel1.ForeColor = Color.DimGray;
             panel1.Location = new Point(0, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1016, 204);
+            panel1.Size = new Size(1016, 190);
             panel1.TabIndex = 29;
             // 
             // SaveDataButton
@@ -222,6 +244,7 @@
             // 
             // panel2
             // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.FromArgb(64, 64, 70);
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(StanowiskoSelect);
@@ -235,9 +258,9 @@
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label1);
             panel2.ForeColor = Color.DimGray;
-            panel2.Location = new Point(3, 263);
+            panel2.Location = new Point(0, 427);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1016, 255);
+            panel2.Size = new Size(1016, 216);
             panel2.TabIndex = 29;
             // 
             // StanowiskoSelect
@@ -271,7 +294,6 @@
             // 
             // UpdateEmployerButton
             // 
-            UpdateEmployerButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             UpdateEmployerButton.BackColor = Color.FromArgb(94, 148, 255);
             UpdateEmployerButton.FlatAppearance.BorderSize = 0;
             UpdateEmployerButton.FlatStyle = FlatStyle.Flat;
@@ -337,12 +359,197 @@
             label2.TabIndex = 0;
             label2.Text = "Pracownicy";
             // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel3.BackColor = Color.FromArgb(64, 64, 70);
+            panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(DateOfDeductionCalendar);
+            panel3.Controls.Add(label7);
+            panel3.Controls.Add(ViewDataOfDeduction);
+            panel3.Controls.Add(ExpenseNameTextBox);
+            panel3.Controls.Add(PriceNumericUpDown);
+            panel3.Controls.Add(label6);
+            panel3.Controls.Add(label5);
+            panel3.Controls.Add(BtnSaveDateOfDeduction);
+            panel3.Controls.Add(label3);
+            panel3.ForeColor = Color.DimGray;
+            panel3.Location = new Point(3, 199);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1013, 222);
+            panel3.TabIndex = 29;
+            // 
+            // DateOfDeductionCalendar
+            // 
+            DateOfDeductionCalendar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            DateOfDeductionCalendar.Format = DateTimePickerFormat.Short;
+            DateOfDeductionCalendar.Location = new Point(560, 42);
+            DateOfDeductionCalendar.Name = "DateOfDeductionCalendar";
+            DateOfDeductionCalendar.Size = new Size(200, 23);
+            DateOfDeductionCalendar.TabIndex = 38;
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.ForeColor = Color.FromArgb(224, 224, 224);
+            label7.Location = new Point(597, 18);
+            label7.Name = "label7";
+            label7.Size = new Size(119, 21);
+            label7.TabIndex = 36;
+            label7.Text = "Data potrącenia";
+            // 
+            // ViewDataOfDeduction
+            // 
+            ViewDataOfDeduction.AllowUserToAddRows = false;
+            ViewDataOfDeduction.AllowUserToDeleteRows = false;
+            ViewDataOfDeduction.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            ViewDataOfDeduction.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ViewDataOfDeduction.BorderStyle = BorderStyle.None;
+            ViewDataOfDeduction.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            ViewDataOfDeduction.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            ViewDataOfDeduction.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ViewDataOfDeduction.Columns.AddRange(new DataGridViewColumn[] { ID_Column, BtnDelete, NazwaWydatku_Column, CenaWydatku_Column, DataPotrącenia_Column });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.DimGray;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            ViewDataOfDeduction.DefaultCellStyle = dataGridViewCellStyle3;
+            ViewDataOfDeduction.EnableHeadersVisualStyles = false;
+            ViewDataOfDeduction.Location = new Point(13, 31);
+            ViewDataOfDeduction.Name = "ViewDataOfDeduction";
+            ViewDataOfDeduction.RowTemplate.Height = 25;
+            ViewDataOfDeduction.Size = new Size(477, 174);
+            ViewDataOfDeduction.TabIndex = 34;
+            ViewDataOfDeduction.CellContentClick += ViewDataOfDeduction_CellContentClick;
+            // 
+            // ID_Column
+            // 
+            ID_Column.DataPropertyName = "ID";
+            ID_Column.HeaderText = "ID";
+            ID_Column.Name = "ID_Column";
+            ID_Column.Visible = false;
+            // 
+            // BtnDelete
+            // 
+            BtnDelete.HeaderText = "Usuń";
+            BtnDelete.Name = "BtnDelete";
+            // 
+            // NazwaWydatku_Column
+            // 
+            NazwaWydatku_Column.DataPropertyName = "NazwaWydatku";
+            NazwaWydatku_Column.HeaderText = "Nazwa Wydatku";
+            NazwaWydatku_Column.Name = "NazwaWydatku_Column";
+            // 
+            // CenaWydatku_Column
+            // 
+            CenaWydatku_Column.DataPropertyName = "CenaWydatku";
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            CenaWydatku_Column.DefaultCellStyle = dataGridViewCellStyle2;
+            CenaWydatku_Column.HeaderText = "Stała kwota potręcenia";
+            CenaWydatku_Column.Name = "CenaWydatku_Column";
+            // 
+            // DataPotrącenia_Column
+            // 
+            DataPotrącenia_Column.DataPropertyName = "DataPotrącenia";
+            DataPotrącenia_Column.HeaderText = "Data";
+            DataPotrącenia_Column.Name = "DataPotrącenia_Column";
+            // 
+            // ExpenseNameTextBox
+            // 
+            ExpenseNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ExpenseNameTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            ExpenseNameTextBox.CausesValidation = false;
+            ExpenseNameTextBox.Cursor = Cursors.IBeam;
+            ExpenseNameTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            ExpenseNameTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            ExpenseNameTextBox.Location = new Point(820, 43);
+            ExpenseNameTextBox.Name = "ExpenseNameTextBox";
+            ExpenseNameTextBox.Size = new Size(181, 30);
+            ExpenseNameTextBox.TabIndex = 33;
+            // 
+            // PriceNumericUpDown
+            // 
+            PriceNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            PriceNumericUpDown.BackColor = Color.White;
+            PriceNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
+            PriceNumericUpDown.DecimalPlaces = 2;
+            PriceNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
+            PriceNumericUpDown.Location = new Point(903, 100);
+            PriceNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            PriceNumericUpDown.Name = "PriceNumericUpDown";
+            PriceNumericUpDown.Size = new Size(98, 23);
+            PriceNumericUpDown.TabIndex = 32;
+            // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.ForeColor = Color.FromArgb(224, 224, 224);
+            label6.Location = new Point(818, 76);
+            label6.Name = "label6";
+            label6.Size = new Size(183, 21);
+            label6.TabIndex = 31;
+            label6.Text = "Stały wydatek za miesiąc:";
+            // 
+            // label5
+            // 
+            label5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.ForeColor = Color.FromArgb(224, 224, 224);
+            label5.Location = new Point(820, 19);
+            label5.Name = "label5";
+            label5.Size = new Size(123, 21);
+            label5.TabIndex = 31;
+            label5.Text = "Nazwa wydatku:";
+            // 
+            // BtnSaveDateOfDeduction
+            // 
+            BtnSaveDateOfDeduction.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            BtnSaveDateOfDeduction.BackColor = Color.FromArgb(94, 148, 255);
+            BtnSaveDateOfDeduction.FlatAppearance.BorderSize = 0;
+            BtnSaveDateOfDeduction.FlatStyle = FlatStyle.Flat;
+            BtnSaveDateOfDeduction.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            BtnSaveDateOfDeduction.ForeColor = Color.LightGray;
+            BtnSaveDateOfDeduction.Location = new Point(886, 175);
+            BtnSaveDateOfDeduction.Name = "BtnSaveDateOfDeduction";
+            BtnSaveDateOfDeduction.Size = new Size(122, 30);
+            BtnSaveDateOfDeduction.TabIndex = 7;
+            BtnSaveDateOfDeduction.Text = "Zapisz";
+            BtnSaveDateOfDeduction.UseVisualStyleBackColor = false;
+            BtnSaveDateOfDeduction.Click += BtnSaveDateOfDeduction_Click;
+            // 
+            // label3
+            // 
+            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(335, -1);
+            label3.Name = "label3";
+            label3.Size = new Size(192, 28);
+            label3.TabIndex = 0;
+            label3.Text = "Wydatki stałe firmy";
+            label3.Click += label3_Click;
+            // 
             // UC_Settings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
             Controls.Add(panel2);
+            Controls.Add(panel3);
             Controls.Add(panel1);
             Name = "UC_Settings";
             Size = new Size(1019, 643);
@@ -351,6 +558,10 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ViewDataOfDeduction).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).EndInit();
             ResumeLayout(false);
             }
 
@@ -376,5 +587,20 @@
         private TextBox NumerTelefonuTextBox;
         private TextBox ImiePracownikaTextBox;
         private ComboBox StanowiskoSelect;
+        private Panel panel3;
+        private Button BtnSaveDateOfDeduction;
+        private Label label5;
+        private Label label6;
+        private Label label3;
+        private TextBox ExpenseNameTextBox;
+        private NumericUpDown PriceNumericUpDown;
+        private DataGridView ViewDataOfDeduction;
+        private DataGridViewTextBoxColumn ID_Column;
+        private DataGridViewButtonColumn BtnDelete;
+        private DataGridViewTextBoxColumn NazwaWydatku_Column;
+        private DataGridViewTextBoxColumn CenaWydatku_Column;
+        private DataGridViewTextBoxColumn DataPotrącenia_Column;
+        private Label label7;
+        private DateTimePicker DateOfDeductionCalendar;
         }
 }

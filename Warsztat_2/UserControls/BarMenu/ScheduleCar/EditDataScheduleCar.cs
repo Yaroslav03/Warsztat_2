@@ -3,7 +3,6 @@ using Warsztat_2.UserControls.BarMenu.ScheduleCar;
 
 namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar {
     internal class EditDataScheduleCar {
-        private readonly string connection = "Data Source=Warsztat_2DB.db;Version=3;New=False;Compress=True;";
 
         private Car car = new();
         private Repair repair = new();
@@ -14,7 +13,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar {
             {
             var scheduleCarData = GetScheduleCar(selectTab);
 
-            bool isSucced =  await SqlCmd.AddRecordAsync("ZaplanowaneSamochody", scheduleCarData);
+            bool isSucced = await SqlCmd.AddRecordAsync("WarsztatDB", "ZaplanowaneSamochody", scheduleCarData);
             if(isSucced)
                 {
                 MessageBox.Show($"Samochód został zaplanowany, kliknij OK żeby dodać kolejny", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -37,17 +36,17 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar {
                 };
             }
 
-                /*ID = Convert.ToByte(selectTab.ID_label.Text),*/
+        /*ID = Convert.ToByte(selectTab.ID_label.Text),*/
 
-            public async void UpdateData(UC_ScheduleCar selectTab)
+        public async void UpdateData(UC_ScheduleCar selectTab)
             {
             var scheduleCarData = GetScheduleCar(selectTab);
             var scheduleCarID = new Dictionary<string, object>
                 {
                     {"ID", selectTab.ID_label.Text}
                 };
-            await SqlCmd.UpdateRecordAsync("ZaplanowaneSamochody",scheduleCarData, "ID=@ID", scheduleCarID);
-          
+            await SqlCmd.UpdateRecordAsync("ZaplanowaneSamochody", scheduleCarData, "ID=@ID", scheduleCarID);
+
             }
 
         public void SetDataEdit(Client clientToEdit, Car carToEdit, Repair repairToEdit)

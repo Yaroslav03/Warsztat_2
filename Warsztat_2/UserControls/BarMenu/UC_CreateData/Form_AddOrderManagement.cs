@@ -1,15 +1,8 @@
-﻿using System.Data.SQLite;
-using System.Windows.Forms;
-using Warsztat_2._0;
-
-namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
+﻿namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
     public partial class Form_AddOrderManagement :Form {
         #region variables
-        private readonly string[] connectionStringArray = new string[] { "Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;", "Data Source=Archive.db;Version=3;New=False;Compress=True;" };
-
 
         private string? paymentDay, paymentType, orderAddoptedDay;
-        private OrderManagment orderManagment = new();
         private decimal priceOfPart, PricePartWithMarzha, Marzha, finallyPrice, wasPayed;
         uint ID;
         private bool isDataLoadedFromDB = false;
@@ -22,14 +15,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             {
             InitializeComponent();
             }
-        private void SendDataToArchive()
-            {
-            DialogResult dialogResult = MessageBox.Show("Na pewno chcesz oznaczyć samochód jak wykonany?", "Potwierdzenie wykonania", MessageBoxButtons.YesNo);
-            if(dialogResult == DialogResult.Yes)
-                {
 
-                }
-            }
         #region Event
         private async void ButtonOrderManagementSave_Click(object sender, EventArgs e)
             {
@@ -48,11 +34,29 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             PrepereUIToClient();
             await LoadWorkerListBox();
             await LoadDataFromDB();
-            
+
             }
         private async void CloseOrder_Click(object sender, EventArgs e)
             {
-            SqlCmd.SendDataToArchive(Vin_Label.Text, connectionStringArray);
+            DialogResult dialogResult = MessageBox.Show("Na pewno chcesz oznaczyć samochód jak wykonany?", "Potwierdzenie wykonania", MessageBoxButtons.YesNo);
+            if(dialogResult == DialogResult.Yes)
+                {
+                var managementDataUpdate = GetValue();
+                var managementDataUpdateID = new Dictionary<string, object>
+                {
+                    {"ID", ID}
+                };
+                managementDataUpdate.Add("DataZamknięciaZlecenia", DateTime.Today.ToString("D"));
+                bool isSucceed = await SqlCmd.UpdateRecordAsync("ZarządzanieZleceniem", managementDataUpdate, "ID=@ID", managementDataUpdateID);
+                if(isSucceed)
+                    {
+                    bool isSucceed2 = await SqlCmd.SendToArchive(uniqueKey);
+                    if(isSucceed2)
+                        {
+                        MessageBox.Show("Dane zostałe wysłane do archiwum");
+                        }
+                    }               
+                }
             }
 
         private void FinallPriceNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -68,11 +72,12 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             if(!isDataLoadedFromDB)
                 {
                 CostEstimation();
-                }           
+                }
 
             OrderAddoptedTimePicker.Value = DateTime.Now;
             DateOfPay.Value = DateTime.Now;
             OrderAddoptedTimePicker.Hide();
+            CloseOrder.Hide();
             DateOfPay.Hide();
             paymentDay = "Brak";
             }
@@ -86,11 +91,11 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             {
 
             PricePartWithMarzha = Math.Round(priceOfPart * (1 + (Marzha / 100)), 2);
-            LabelPricePartWithMarzha.Text = LabelPricePartWithMarzha.Text + PricePartWithMarzha;
+            LabelPricePartWithMarzha.Text += PricePartWithMarzha;
             }
         private async Task LoadDataFromDB()
             {
-            var data = await SqlCmd.LoadDataAsync(ButtonOrderManagementSave, "ZarządzanieZleceniem", "VIN", Vin_Label.Text);
+            var data = await SqlCmd.LoadDataAsync("WarsztatDB", "ZarządzanieZleceniem", ButtonOrderManagementSave, "UniqueKey", uniqueKey);
 
             if(data.Count > 0)
                 {
@@ -100,18 +105,18 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 OrderAddoptedTimePicker.Text = data["DataOczekiwaniaOdbioru"]?.ToString();
                 paymentDay = data["DataPłatności"]?.ToString();
                 paymentType = data["MetodaPłatności"]?.ToString();
-                priceOfPart = Convert.ToDecimal(data["KosztCzęści"]);
-                PricePartWithMarzha = Convert.ToDecimal(data["KosztCzęściZMarżą"]);
+                //priceOfPart = Convert.ToDecimal(data["KosztCzęści"]);
+                //PricePartWithMarzha = Convert.ToDecimal(data["KosztCzęściZMarżą"]);
                 FinallPriceNumericUpDown.Value = Convert.ToDecimal(data["KosztPracyRęcznej"]);
-                finallyPrice = Convert.ToDecimal(data["KosztKońcowy"]);
+                //finallyPrice = Convert.ToDecimal(data["KosztKońcowy"]);
                 wasPayed = Convert.ToDecimal(data["Zapłacono"]);
                 WorkPerfomedTextBox.Text = data["WykonanaPraca"]?.ToString();
                 WorkerListBox.SelectedItem = data["WykonawcaPracy"]?.ToString();
 
                 // Оновлення текстових полів або міток
-                labelPriceofPart.Text = "Koszt części: " + priceOfPart;
-                LabelPricePartWithMarzha.Text = "Koszt części z marżą: " + PricePartWithMarzha;
-                LabelFinallyPrice.Text = "Koszt końcowy: " + finallyPrice;
+                //labelPriceofPart.Text = "Koszt części: " + priceOfPart;
+                //LabelPricePartWithMarzha.Text = "Koszt części z marżą: " + PricePartWithMarzha;
+                //LabelFinallyPrice.Text = "Koszt końcowy: " + finallyPrice;
 
                 // Встановлення стану елементів управління на основі отриманих даних
                 if(paymentType == "gotówka")
@@ -140,12 +145,14 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                     DateOfPay.Show();
                     }
                 // Якщо замовлення реалізовано, відображаємо дату
-                if(data["DataOczekiwaniaOdbioru"]?.ToString() != null)
+                if(data["DataOczekiwaniaOdbioru"]?.ToString() != null && data["DataOczekiwaniaOdbioru"]?.ToString().Length != 0)
                     {
                     realiseOrderCheck.Checked = true;
                     OrderAddoptedTimePicker.Text = data["DataOczekiwaniaOdbioru"]?.ToString();
                     OrderAddoptedTimePicker.Show();
                     }
+
+                CloseOrder.Show();
                 }
             }
         private Dictionary<string, object> GetValue()
@@ -157,7 +164,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 paymentDay = DateOfPay.Text.ToString();
                 }
 
-                return new Dictionary<string, object>
+            return new Dictionary<string, object>
                 {
                     {"VIN", Vin_Label.Text},
                     {"DataOczekiwaniaOdbioru", orderAddoptedDay},
@@ -176,7 +183,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
         private async Task SaveDB()
             {
             var managementData = GetValue();
-            bool isSucceed = await SqlCmd.AddRecordAsync("ZarządzanieZleceniem", managementData);
+            bool isSucceed = await SqlCmd.AddRecordAsync("WarsztatDB", "ZarządzanieZleceniem", managementData);
             if(isSucceed)
                 {
                 MessageBox.Show("Zlecenie zostało zapisane");
@@ -204,7 +211,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             {
             uniqueKey = key;
             priceOfPart = Convert.ToDecimal(price);
-            labelPriceofPart.Text = labelPriceofPart.Text + " " + priceOfPart;
+            labelPriceofPart.Text +=priceOfPart;
             }
         #endregion
         #region CheckBoxes and RadioBoxes
@@ -212,12 +219,10 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             {
             if(realiseOrderCheck.Checked == true)
                 {
-                orderAddoptedDay = OrderAddoptedTimePicker.Text;
                 OrderAddoptedTimePicker.Show();
                 return;
                 }
             OrderAddoptedTimePicker.Hide();
-            orderAddoptedDay = null;
             }
         private void TodayPaycheck_CheckedChanged(object sender, EventArgs e)
             {
@@ -234,14 +239,14 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 DateOfPay.Show();
                 }
             }
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
             {
             paymentType = "gotówka";
             label5.Show();
             PaidnumericUpDown.Show();
             }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
             {
             paymentType = "kartą płatniczą";
             label5.Hide();
@@ -257,5 +262,10 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 }
             }
         #endregion      
+
+        private void OrderAddoptedTimePicker_ValueChanged(object sender, EventArgs e)
+            {
+            orderAddoptedDay = OrderAddoptedTimePicker.Text;
+            }
         }
     }

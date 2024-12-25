@@ -27,7 +27,7 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
+            {
             splitContainer1 = new SplitContainer();
             panel3 = new Panel();
             label9 = new Label();
@@ -39,7 +39,7 @@
             label1 = new Label();
             label6 = new Label();
             panel1 = new Panel();
-            label3 = new Label();
+            companyNameLabel = new Label();
             SettingsButton = new Button();
             button1 = new Button();
             AddButton = new Button();
@@ -96,7 +96,7 @@
             label9.ForeColor = Color.FromArgb(224, 224, 224);
             label9.Location = new Point(35, 237);
             label9.Name = "label9";
-            label9.Size = new Size(77, 17);
+            label9.Size = new Size(211, 17);
             label9.TabIndex = 1;
             label9.Text = "Brakuje:";
             // 
@@ -107,7 +107,7 @@
             label8.ForeColor = Color.FromArgb(224, 224, 224);
             label8.Location = new Point(8, 209);
             label8.Name = "label8";
-            label8.Size = new Size(165, 17);
+            label8.Size = new Size(238, 17);
             label8.TabIndex = 1;
             label8.Text = "Wydatki za miesiąc:";
             // 
@@ -118,7 +118,7 @@
             label7.ForeColor = Color.FromArgb(224, 224, 224);
             label7.Location = new Point(8, 181);
             label7.Name = "label7";
-            label7.Size = new Size(165, 17);
+            label7.Size = new Size(238, 17);
             label7.TabIndex = 1;
             label7.Text = "zarobki za miesiąc:";
             // 
@@ -127,9 +127,9 @@
             label5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label5.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(224, 224, 224);
-            label5.Location = new Point(25, 133);
+            label5.Location = new Point(25, 134);
             label5.Name = "label5";
-            label5.Size = new Size(189, 17);
+            label5.Size = new Size(221, 17);
             label5.TabIndex = 1;
             label5.Text = "Zaplanowane samochody:";
             // 
@@ -140,7 +140,7 @@
             label4.ForeColor = Color.FromArgb(224, 224, 224);
             label4.Location = new Point(25, 105);
             label4.Name = "label4";
-            label4.Size = new Size(165, 17);
+            label4.Size = new Size(221, 17);
             label4.TabIndex = 1;
             label4.Text = "Obecnie samochodów:";
             // 
@@ -162,7 +162,7 @@
             label1.ForeColor = Color.FromArgb(224, 224, 224);
             label1.Location = new Point(8, 49);
             label1.Name = "label1";
-            label1.Size = new Size(133, 17);
+            label1.Size = new Size(218, 17);
             label1.TabIndex = 1;
             label1.Text = "Ilość klientów:";
             // 
@@ -181,7 +181,7 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(label3);
+            panel1.Controls.Add(companyNameLabel);
             panel1.Controls.Add(SettingsButton);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(AddButton);
@@ -194,16 +194,15 @@
             panel1.Size = new Size(250, 353);
             panel1.TabIndex = 0;
             // 
-            // label3
+            // companyNameLabel
             // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label3.Font = new Font("AR DESTINE", 30F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.ForeColor = Color.FromArgb(224, 224, 224);
-            label3.Location = new Point(10, 4);
-            label3.Name = "label3";
-            label3.Size = new Size(235, 39);
-            label3.TabIndex = 1;
-            label3.Text = "ALEKSAUTO";
+            companyNameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            companyNameLabel.Font = new Font("AR DESTINE", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            companyNameLabel.ForeColor = Color.FromArgb(224, 224, 224);
+            companyNameLabel.Location = new Point(10, 4);
+            companyNameLabel.Name = "companyNameLabel";
+            companyNameLabel.Size = new Size(235, 39);
+            companyNameLabel.TabIndex = 1;
             // 
             // SettingsButton
             // 
@@ -332,7 +331,7 @@
             panel3.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ResumeLayout(false);
-        }
+            }
 
         #endregion
 
@@ -353,7 +352,7 @@
         private Label label7;
         private Label label5;
         private Label label4;
-        private Label label3;
+        private Label companyNameLabel;
         private Button ArchiveButton;
     }
 }

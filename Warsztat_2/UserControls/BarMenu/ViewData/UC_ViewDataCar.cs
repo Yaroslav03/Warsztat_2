@@ -1,14 +1,11 @@
-﻿using System.Data;
-using System.Data.Common;
-using System.Data.SQLite;
-
-namespace Warsztat_2._0.UserControls {
+﻿namespace Warsztat_2._0.UserControls {
     public partial class UC_ViewDataCar :UserControl {
         #region VALUE
         private readonly string[] connectionStringArray = new string[] { "Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;", "Data Source=Archive.db;Version=3;New=False;Compress=True;" };
-
-
+        readonly private string directory = "pdf\\";
+        Guid uniqueKey;
         private string? vin;
+        private string id;
 
         #endregion
         public UC_ViewDataCar()
@@ -18,25 +15,16 @@ namespace Warsztat_2._0.UserControls {
         #region Event
         private async void UC_ViewDataCar_Load(object sender, EventArgs e)
             {
-
-            try
-                {
-                await LoadDB();
-                }
-            catch
-                {
-
-                }
+            await LoadDB();
             }
         #endregion
         #region Methods
 
         private async Task LoadDB()
             {
-            //string[] tableNames = { "Imię", "Nazwisko", "NrTelefonu", "Marka", "Model", "Zlecenie", "DataPrzyjęcia", "WykonawcaPracy", "DataOczekiwaniaOdbioru", "KosztKońcowy", "UniqueKey" };
-
             string query = @"
     SELECT 
+        Klienty.ID,
         Klienty.Imię, 
         Klienty.Nazwisko, 
         Klienty.NrTelefonu, 
@@ -53,56 +41,42 @@ namespace Warsztat_2._0.UserControls {
     LEFT JOIN HistoriaNapraw ON Klienty.UniqueKey = HistoriaNapraw.UniqueKey
     LEFT JOIN ZarządzanieZleceniem ON Klienty.UniqueKey = ZarządzanieZleceniem.UniqueKey
     WHERE Klienty.UniqueKey IS NOT NULL";
+            await SqlCmd.LoadData(query, ViewActualData, "ViewData", "error");
 
-            using SQLiteConnection conn = new(connectionStringArray[0]);
-            await conn.OpenAsync();
-
-            SQLiteDataAdapter adapter = new(query, conn);
-            DataTable dataTable = new ();
-
-            adapter.Fill(dataTable);
-
-            ViewActualData.DataSource = dataTable;
             }
         #endregion
 
-        void OrderButton_Click(object sender, EventArgs e)
+        public async void OrderButton_Click(object sender, EventArgs e)
             {
-            if(vin != null)
+            if(uniqueKey != null)
                 {
                 GeneretePDF pdf = new();
-                pdf.Create(vin);
-
+                pdf.Create(uniqueKey);
                 }
             }
 
-        private void ReadData()
-            {
-/*
-            clientRead[0] = $"{ViewActualData.CurrentRow.Cells["Imię_Column"].Value}";
-            clientRead[1] = $"{ViewActualData.CurrentRow.Cells["Nazwisko_Column"].Value}";
-            clientRead[2] = $"{ViewActualData.CurrentRow.Cells["Telefon_Column"].Value}";
-            carRead[0] = $"{ViewActualData.CurrentRow.Cells["Marka_Column"].Value}";
-            carRead[1] = $"{ViewActualData.CurrentRow.Cells["Model_Column"].Value}";
-            carRead[2] = $"{ViewActualData.CurrentRow.Cells["VIN_Column"].Value}";
-            historyRead[0] = $"{ViewActualData.CurrentRow.Cells["DataPrzyjęcie_Column"].Value}";
-            historyRead[1] = $"{ViewActualData.CurrentRow.Cells["KosztZMarżą_Column"].Value}";*/
-            }
         private void ViewActualData_MouseDoubleClick(object sender, MouseEventArgs e)
             {
-            ReadData();
+
             }
 
-        private void ViewActualData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void ViewActualData_CellContentClick(object sender, DataGridViewCellEventArgs e)
             {
-            vin = $"{ViewActualData.CurrentRow.Cells["VIN_Column"].Value}";
+            id = $"{ViewActualData.CurrentRow.Cells["ID_Column"].Value}";
             int selectedIndex = (int)ViewActualData.CurrentRow.Index;
+
+            uniqueKey = await SqlCmd.GetUniqueKey(id, "Klienty");
+
             if(e.ColumnIndex == ViewActualData.Columns["BtnDelete"].Index)
                 {
                 DialogResult dialogResult = MessageBox.Show("Na pewno chcesz usunąć te dane?", "Potwierdzenie usunięcia", MessageBoxButtons.YesNo);
                 if(dialogResult == DialogResult.Yes)
                     {
-                    DeleteData(vin, selectedIndex);
+                    bool isSucced = await DeleteData(uniqueKey);
+                    if(isSucced)
+                        {
+                        ViewActualData.Rows.RemoveAt(selectedIndex);
+                        }
                     }
                 }
             else if(e.ColumnIndex == ViewActualData.Columns["BtnFinish"].Index)
@@ -111,32 +85,39 @@ namespace Warsztat_2._0.UserControls {
                 if(dialogResult == DialogResult.Yes)
                     {
 
-                    SqlCmd.SendDataToArchive(vin, connectionStringArray);
-                    ViewActualData.Rows.RemoveAt(selectedIndex);
+                    bool isSucceed = await SqlCmd.SendToArchive(uniqueKey);
+                    if(isSucceed)
+                        {
+                        MessageBox.Show("Dane zostałe wysłane do archiwum");
+                        ViewActualData.Rows.RemoveAt(selectedIndex);
+                        }
                     }
                 }
             }
-        private async void DeleteData(string vin, int index)
+        private async Task<bool> DeleteData(Guid uniqueKey)
             {
-            Cursor.Current = Cursors.WaitCursor;
-            string[] nameTable = { "Klienty", "Samochód", "HistoriaNapraw", "ZarządzanieZleceniami", "NaprawaSamochodu" };
+            string[] tables = { "Klienty", "Samochód", "NaprawaSamochodu", "HistoriaNapraw", "ZarządzanieZleceniem" };
+            var key = new Dictionary<string, object>
+            {
+                {"UniqueKey", uniqueKey}
+            };
             try
                 {
-                using SQLiteConnection conn = new(connectionStringArray[0]);
-                await conn.OpenAsync();
-
-                foreach(string table in nameTable)
+                foreach(var table in tables)
                     {
-                    SQLiteCommand delete = new($"DELETE FROM {table} WHERE VIN = @VIN", conn);
-                    delete.Parameters.AddWithValue("@VIN", vin);
-                    await delete.ExecuteNonQueryAsync();
+                    await SqlCmd.DeleteRecordAsync("WarsztatDB", table, "UniqueKey=@UniqueKey", key);
                     }
-                ViewActualData.Rows.RemoveAt(index);
+                return true;
                 }
-            catch
+            catch(Exception ex)
                 {
-                MessageBox.Show("Błąd usunięcia tabeli");
+                return false;
                 }
+            }
+
+        private void PathButton_Click(object sender, EventArgs e)
+            {
+            System.Diagnostics.Process.Start("explorer.exe", directory);
             }
         }
     }

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.SQLite;
-
-namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
+﻿namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
     public partial class QuantityItemsWarehous :Form {
         private List<string> transferData = new();
         private string id;
@@ -70,9 +67,9 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
 
             var repairCarID = GetValueID();
 
-            await SqlCmd.AddRecordAsync("NaprawaSamochodu", repairCarData);
+            await SqlCmd.AddRecordAsync("WarsztatDB", "NaprawaSamochodu", repairCarData);
 
-            await SqlCmd.DeleteRecordAsync("Magazyn", "ID=@ID", repairCarID);
+            await SqlCmd.DeleteRecordAsync("WarsztatDB", "Magazyn", "ID=@ID", repairCarID);
             }
         private async void TransferDataWithMines(byte valueQuantity)
             {
@@ -96,7 +93,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             var repairCarData = GetValue();
 
             await SqlCmd.UpdateRecordAsync("Magazyn", transfertDataWithMines, "ID=@ID", transferDataID);
-            await SqlCmd.AddRecordAsync("NaprawaSamochodu", repairCarData);
+            await SqlCmd.AddRecordAsync("WarsztatDB", "NaprawaSamochodu", repairCarData);
             }
 
         private void QuantityItemsWarehous_Load(object sender, EventArgs e)

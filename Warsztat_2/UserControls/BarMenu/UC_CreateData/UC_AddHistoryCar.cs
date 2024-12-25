@@ -100,7 +100,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             {
             var historyData = GetHistoryData();
 
-            await SqlCmd.AddRecordAsync("HistoriaNapraw", historyData);
+            await SqlCmd.AddRecordAsync("WarsztatDB", "HistoriaNapraw", historyData);
             }
         private async Task LoadDataCar()
             {

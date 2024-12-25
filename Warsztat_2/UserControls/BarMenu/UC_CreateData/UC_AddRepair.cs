@@ -1,7 +1,4 @@
-﻿using MigraDoc.DocumentObjectModel.Tables;
-using System.Data.SQLite;
-using System.Windows.Forms;
-using Warsztat_2.UserControls.BarMenu.UC_CreateData;
+﻿using Warsztat_2.UserControls.BarMenu.UC_CreateData;
 
 
 namespace Warsztat_2._0.UserControls.UC_CreateData {
@@ -71,7 +68,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
             PriceNumericUpDown.Text = GetCellValue("Cena_Column");
             IloscNumericUpDown.Text = GetCellValue("Ilość_Column");
 
-            StanCheckBox.Checked = GetCellValue("Wykonane_Checked") =="1";
+            StanCheckBox.Checked = GetCellValue("Wykonane_Checked") == "1";
 
             RepairTimePicker.Text = GetCellValue("DateRepair");
             }
@@ -94,11 +91,11 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
 
             await SqlCmd.UpdateRecordAsync("NaprawaSamochodu", repairUpdateData, "ID=@ID", repairId);
 
-                Id_Repair = 0;
-                Settings.ClearTextBox(panelDodatkowy);
-                StanCheckBox.Checked = false;
-                ButtonRepairSave.Text = "Zapisz";
-                PriceNumericUpDown.Value = 0; IloscNumericUpDown.Value = 1;                
+            Id_Repair = 0;
+            Settings.ClearTextBox(panelDodatkowy);
+            StanCheckBox.Checked = false;
+            ButtonRepairSave.Text = "Zapisz";
+            PriceNumericUpDown.Value = 0; IloscNumericUpDown.Value = 1;
             }
         private Dictionary<string, object> GetValue()
             {
@@ -120,7 +117,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
             {
             var repairData = GetValue();
 
-            await SqlCmd.AddRecordAsync("NaprawaSamochodu", repairData);
+            await SqlCmd.AddRecordAsync("WarsztatDB", "NaprawaSamochodu", repairData);
             Settings.ClearTextBox(panelDodatkowy);
             StanCheckBox.Checked = false;
             PriceNumericUpDown.Value = 0; IloscNumericUpDown.Value = 1;
@@ -136,9 +133,9 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
 
         private async void ViewRepair_CellContentClick(object sender, DataGridViewCellEventArgs e)
             {
-            
-            string[] columnData = {"Type_Column", "Nazwa_Column_", "Opis_Column", "NrCzęści_Column", "Cena_Column", "Ilość_Column", "Suma_Column" };
-            string[] sqlColumns = {"Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma"};
+
+            string[] columnData = { "Type_Column", "Nazwa_Column_", "Opis_Column", "NrCzęści_Column", "Cena_Column", "Ilość_Column", "Suma_Column" };
+            string[] sqlColumns = { "Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma" };
 
             GetDataTable(ViewRepair, columnData);
             var warehouseData = new Dictionary<string, object>();
@@ -148,7 +145,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
                 {
                 warehouseData.Add(sqlColumns[i], tranferData[i]);
                 }
-            bool IsSuccsesful = await SqlCmd.AddRecordAsync("Magazyn", warehouseData);
+            bool IsSuccsesful = await SqlCmd.AddRecordAsync("WarsztatDB", "Magazyn", warehouseData);
             if(IsSuccsesful)
                 {
                 await SqlCmd.DeleteDataTable(ViewRepair, e, "BtnDelete", "ID", "NaprawaSamochodu");
@@ -223,7 +220,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
             string[] data = { "ID_Column_", "TypCzesci_Column", "Nazwa_Column", "Opis_Column_", "NumerCzesci_Column", "Price_Column", "Quantity_Column", "Sum_Column" };
             GetDataTable(WarehouseView, data);
             tranferData.Add(DateTime.Now.ToString("D"));
-            
+
 
             if(Convert.ToByte(tranferData[6]) == 1)
                 {
@@ -241,12 +238,12 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
         private void GetDataTable(DataGridView dataGridView, string[] columnName)
             {
             foreach(string SaveData in columnName)
-                tranferData.Add(dataGridView.CurrentRow.Cells[SaveData]?.Value?.ToString() ?? string.Empty);                
+                tranferData.Add(dataGridView.CurrentRow.Cells[SaveData]?.Value?.ToString() ?? string.Empty);
             }
 
         private async void TransferDataWithRemoveSQL()
             {
-            string[] values = {"Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma", "DataNapraw" };
+            string[] values = { "Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma", "DataNapraw" };
 
             var transferDataId = new Dictionary<string, object>
                 {
@@ -262,12 +259,12 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
                 }
             repairCarData.Add("UniqueKey", uniqueKey);
 
-            bool isSucceed = await SqlCmd.AddRecordAsync("NaprawaSamochodu", repairCarData);
+            bool isSucceed = await SqlCmd.AddRecordAsync("WarsztatDB", "NaprawaSamochodu", repairCarData);
             if(isSucceed)
                 {
-                await SqlCmd.DeleteRecordAsync("Magazyn", "ID=@ID", transferDataId);
+                await SqlCmd.DeleteRecordAsync("WarsztatDB", "Magazyn", "ID=@ID", transferDataId);
                 }
-            
+
             }
         }
     }

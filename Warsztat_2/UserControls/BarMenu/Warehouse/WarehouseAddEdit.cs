@@ -32,7 +32,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
 
             if(AddEditWarehouseButton.Text == "Zapisz")
                 {
-                await SqlCmd.AddRecordAsync("Magazyn", data);
+                await SqlCmd.AddRecordAsync("WarsztatDB", "Magazyn", data);
                 MessageBox.Show($"{magazyn[0]} ({magazyn[1]}) o numerze [{magazyn[2]}] został dodany do magazynu, kliknij OK żeby dodać kolejny", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 magazyn = null;
                 warehouseModel.Clear();
@@ -55,7 +55,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
             DescriptionTextBox.Text = warehouseModel.Description;
             PriceNumericUpDown.Value = (decimal)warehouseModel.Price;
             QuantityNumericUpDown.Value = (byte)warehouseModel.Quantity;
-            label1.Text = warehouseModel.Sum;            
+            label1.Text = warehouseModel.Sum;
             }
         public void ClearTextBox()
             {
@@ -87,7 +87,8 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
                 {
                 AddEditWarehouseButton.Text = "Zapisz";
                 }
-            else if(warehouseModel.Id >0) {
+            else if(warehouseModel.Id > 0)
+                {
                 AddEditWarehouseButton.Text = "Odśwież";
                 }
 

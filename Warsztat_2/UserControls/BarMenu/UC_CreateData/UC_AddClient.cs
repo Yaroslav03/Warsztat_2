@@ -1,6 +1,4 @@
 ﻿//size: 1019; 580
-using System.Data;
-
 namespace Warsztat_2._0.UserControls.UC_CreateData {
     public partial class UC_AddClient :UserControl {
         Guid uniqueKey;
@@ -29,7 +27,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
             Settings.ClearTextBox(panelDodatkowy);
             }
 
-        private async void ViewClients_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void ViewClients_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
             {
             // Метод для безпечного отримання значення з DataGridView
             string GetCellValue(string columnName) => ViewClients.CurrentRow.Cells[columnName]?.Value?.ToString() ?? string.Empty;
@@ -47,7 +45,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
             ButtonClientUpdate.Show();
             label2.Show();
             }
- 
+
         private async void ButtonClientUpdate_Click(object sender, EventArgs e)
             {
             try
@@ -85,7 +83,7 @@ namespace Warsztat_2._0.UserControls.UC_CreateData {
             uniqueKey = Guid.NewGuid();
             var client = GetClientData();
 
-            await SqlCmd.AddRecordAsync("Klienty", client);
+            await SqlCmd.AddRecordAsync("WarsztatDB", "Klienty", client);
 
             await LoadDataClient();
             }

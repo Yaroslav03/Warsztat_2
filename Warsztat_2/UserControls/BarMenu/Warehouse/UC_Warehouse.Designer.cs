@@ -31,32 +31,31 @@
             Button AddCategoryButton;
             Button RemoveCategoryButton;
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             CategorylistBox = new ListBox();
             label4 = new Label();
             UpdateCategoryList = new Label();
             WarehouseAddButton = new Button();
-            WarehouseView = new DataGridView();
-            BtnDelete = new DataGridViewButtonColumn();
-            ID_Column_ = new DataGridViewTextBoxColumn();
-            TypCzesci_Column = new DataGridViewTextBoxColumn();
-            NrCzęści_Column = new DataGridViewTextBoxColumn();
-            Nazwa_Column = new DataGridViewTextBoxColumn();
-            Opis_Column = new DataGridViewTextBoxColumn();
-            Quantity_Column = new DataGridViewTextBoxColumn();
-            Price_Column = new DataGridViewTextBoxColumn();
-            Sum_Column = new DataGridViewTextBoxColumn();
             SearchTextBox = new TextBox();
             label1 = new Label();
             CategoryTextBox = new TextBox();
             panel1 = new Panel();
             panel2 = new Panel();
+            WarehouseView = new DataGridView();
+            BtnDelete_ = new DataGridViewButtonColumn();
+            ID_Column = new DataGridViewTextBoxColumn();
+            Typ_column = new DataGridViewTextBoxColumn();
+            NumerCzęści_column = new DataGridViewTextBoxColumn();
+            Nazwa_column_ = new DataGridViewTextBoxColumn();
+            Opis_column_ = new DataGridViewTextBoxColumn();
+            Ilość_column = new DataGridViewTextBoxColumn();
+            Cena_column = new DataGridViewTextBoxColumn();
+            Suma_Column = new DataGridViewTextBoxColumn();
             AddCategoryButton = new Button();
             RemoveCategoryButton = new Button();
-            ((System.ComponentModel.ISupportInitialize)WarehouseView).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)WarehouseView).BeginInit();
             SuspendLayout();
             // 
             // AddCategoryButton
@@ -66,7 +65,7 @@
             AddCategoryButton.FlatStyle = FlatStyle.Flat;
             AddCategoryButton.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             AddCategoryButton.ForeColor = Color.LightGray;
-            AddCategoryButton.Location = new Point(17, 72);
+            AddCategoryButton.Location = new Point(8, 79);
             AddCategoryButton.Name = "AddCategoryButton";
             AddCategoryButton.Size = new Size(169, 26);
             AddCategoryButton.TabIndex = 15;
@@ -82,7 +81,7 @@
             RemoveCategoryButton.FlatStyle = FlatStyle.Flat;
             RemoveCategoryButton.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             RemoveCategoryButton.ForeColor = Color.LightGray;
-            RemoveCategoryButton.Location = new Point(15, 111);
+            RemoveCategoryButton.Location = new Point(8, 111);
             RemoveCategoryButton.Name = "RemoveCategoryButton";
             RemoveCategoryButton.Size = new Size(169, 26);
             RemoveCategoryButton.TabIndex = 15;
@@ -142,99 +141,6 @@
             WarehouseAddButton.UseVisualStyleBackColor = false;
             WarehouseAddButton.Click += WarehouseAddButton_Click;
             // 
-            // WarehouseView
-            // 
-            WarehouseView.AllowUserToAddRows = false;
-            WarehouseView.AllowUserToDeleteRows = false;
-            WarehouseView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            WarehouseView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            WarehouseView.BorderStyle = BorderStyle.None;
-            WarehouseView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            WarehouseView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.LightGray;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            WarehouseView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            WarehouseView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            WarehouseView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID_Column_, TypCzesci_Column, NrCzęści_Column, Nazwa_Column, Opis_Column, Quantity_Column, Price_Column, Sum_Column });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            WarehouseView.DefaultCellStyle = dataGridViewCellStyle3;
-            WarehouseView.EnableHeadersVisualStyles = false;
-            WarehouseView.Location = new Point(215, 0);
-            WarehouseView.Name = "WarehouseView";
-            WarehouseView.RowTemplate.Height = 25;
-            WarehouseView.Size = new Size(792, 640);
-            WarehouseView.TabIndex = 25;
-            WarehouseView.CellContentClick += WarehouseView_CellContentClick;
-            WarehouseView.DoubleClick += WarehouseView_DoubleClick;
-            // 
-            // BtnDelete
-            // 
-            BtnDelete.HeaderText = "Usuń";
-            BtnDelete.Name = "BtnDelete";
-            // 
-            // ID_Column_
-            // 
-            ID_Column_.DataPropertyName = "ID";
-            ID_Column_.HeaderText = "ID";
-            ID_Column_.Name = "ID_Column_";
-            ID_Column_.Visible = false;
-            // 
-            // TypCzesci_Column
-            // 
-            TypCzesci_Column.DataPropertyName = "Typ";
-            TypCzesci_Column.HeaderText = "Typ";
-            TypCzesci_Column.Name = "TypCzesci_Column";
-            // 
-            // NrCzęści_Column
-            // 
-            NrCzęści_Column.DataPropertyName = "NumerCzęści";
-            NrCzęści_Column.HeaderText = "Numer";
-            NrCzęści_Column.Name = "NrCzęści_Column";
-            // 
-            // Nazwa_Column
-            // 
-            Nazwa_Column.DataPropertyName = "Nazwa";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            Nazwa_Column.DefaultCellStyle = dataGridViewCellStyle2;
-            Nazwa_Column.HeaderText = "Nazwa";
-            Nazwa_Column.Name = "Nazwa_Column";
-            // 
-            // Opis_Column
-            // 
-            Opis_Column.DataPropertyName = "Opis";
-            Opis_Column.HeaderText = "Opis";
-            Opis_Column.Name = "Opis_Column";
-            // 
-            // Quantity_Column
-            // 
-            Quantity_Column.DataPropertyName = "Ilość";
-            Quantity_Column.HeaderText = "Ilość";
-            Quantity_Column.Name = "Quantity_Column";
-            // 
-            // Price_Column
-            // 
-            Price_Column.DataPropertyName = "Cena";
-            Price_Column.HeaderText = "Cena";
-            Price_Column.Name = "Price_Column";
-            // 
-            // Sum_Column
-            // 
-            Sum_Column.DataPropertyName = "Suma";
-            Sum_Column.HeaderText = "Suma";
-            Sum_Column.Name = "Sum_Column";
-            // 
             // SearchTextBox
             // 
             SearchTextBox.BackColor = Color.FromArgb(64, 64, 70);
@@ -242,7 +148,7 @@
             SearchTextBox.Cursor = Cursors.IBeam;
             SearchTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             SearchTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            SearchTextBox.Location = new Point(8, 33);
+            SearchTextBox.Location = new Point(5, 33);
             SearchTextBox.Name = "SearchTextBox";
             SearchTextBox.Size = new Size(179, 30);
             SearchTextBox.TabIndex = 26;
@@ -266,7 +172,7 @@
             CategoryTextBox.Cursor = Cursors.IBeam;
             CategoryTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             CategoryTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            CategoryTextBox.Location = new Point(17, 28);
+            CategoryTextBox.Location = new Point(8, 28);
             CategoryTextBox.Name = "CategoryTextBox";
             CategoryTextBox.Size = new Size(169, 30);
             CategoryTextBox.TabIndex = 26;
@@ -299,29 +205,117 @@
             panel2.Size = new Size(192, 83);
             panel2.TabIndex = 29;
             // 
+            // WarehouseView
+            // 
+            WarehouseView.AllowUserToAddRows = false;
+            WarehouseView.AllowUserToDeleteRows = false;
+            WarehouseView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            WarehouseView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            WarehouseView.BorderStyle = BorderStyle.None;
+            WarehouseView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            WarehouseView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            WarehouseView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            WarehouseView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete_, ID_Column, Typ_column, NumerCzęści_column, Nazwa_column_, Opis_column_, Ilość_column, Cena_column, Suma_Column });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            WarehouseView.DefaultCellStyle = dataGridViewCellStyle2;
+            WarehouseView.EnableHeadersVisualStyles = false;
+            WarehouseView.Location = new Point(216, 39);
+            WarehouseView.Name = "WarehouseView";
+            WarehouseView.RowTemplate.Height = 25;
+            WarehouseView.Size = new Size(788, 604);
+            WarehouseView.TabIndex = 37;
+            WarehouseView.CellContentClick += WarehouseView_CellContentClick;
+            WarehouseView.DoubleClick += WarehouseView_DoubleClick;
+            // 
+            // BtnDelete_
+            // 
+            BtnDelete_.HeaderText = "Usuń";
+            BtnDelete_.Name = "BtnDelete_";
+            // 
+            // ID_Column
+            // 
+            ID_Column.DataPropertyName = "ID";
+            ID_Column.HeaderText = "ID";
+            ID_Column.Name = "ID_Column";
+            ID_Column.Visible = false;
+            // 
+            // Typ_column
+            // 
+            Typ_column.DataPropertyName = "Typ";
+            Typ_column.HeaderText = "Typ";
+            Typ_column.Name = "Typ_column";
+            // 
+            // NumerCzęści_column
+            // 
+            NumerCzęści_column.DataPropertyName = "NumerCzęści";
+            NumerCzęści_column.HeaderText = "Numer Części";
+            NumerCzęści_column.Name = "NumerCzęści_column";
+            // 
+            // Nazwa_column_
+            // 
+            Nazwa_column_.DataPropertyName = "Nazwa";
+            Nazwa_column_.HeaderText = "Nazwa";
+            Nazwa_column_.Name = "Nazwa_column_";
+            // 
+            // Opis_column_
+            // 
+            Opis_column_.DataPropertyName = "Opis";
+            Opis_column_.HeaderText = "Opis";
+            Opis_column_.Name = "Opis_column_";
+            // 
+            // Ilość_column
+            // 
+            Ilość_column.DataPropertyName = "Ilość";
+            Ilość_column.HeaderText = "Ilość";
+            Ilość_column.Name = "Ilość_column";
+            // 
+            // Cena_column
+            // 
+            Cena_column.DataPropertyName = "Cena";
+            Cena_column.HeaderText = "Cena";
+            Cena_column.Name = "Cena_column";
+            // 
+            // Suma_Column
+            // 
+            Suma_Column.DataPropertyName = "Suma";
+            Suma_Column.HeaderText = "Suma";
+            Suma_Column.Name = "Suma_Column";
+            // 
             // UC_Warehouse
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
+            Controls.Add(WarehouseView);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Controls.Add(WarehouseView);
             Controls.Add(WarehouseAddButton);
             Name = "UC_Warehouse";
             Size = new Size(1007, 643);
             Load += UC_Warehouse_Load;
-            ((System.ComponentModel.ISupportInitialize)WarehouseView).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)WarehouseView).EndInit();
             ResumeLayout(false);
             }
 
         #endregion
         private Label label4;
-        public DataGridView WarehouseView;
         public ListBox CategorylistBox;
         private Label UpdateCategoryList;
         private Button WarehouseAddButton;
@@ -340,5 +334,15 @@
         private DataGridViewTextBoxColumn Quantity_Column;
         private DataGridViewTextBoxColumn Price_Column;
         private DataGridViewTextBoxColumn Sum_Column;
-    }
+        private DataGridView WarehouseView;
+        private DataGridViewButtonColumn BtnDelete_;
+        private DataGridViewTextBoxColumn ID_Column;
+        private DataGridViewTextBoxColumn Typ_column;
+        private DataGridViewTextBoxColumn NumerCzęści_column;
+        private DataGridViewTextBoxColumn Nazwa_column_;
+        private DataGridViewTextBoxColumn Opis_column_;
+        private DataGridViewTextBoxColumn Ilość_column;
+        private DataGridViewTextBoxColumn Cena_column;
+        private DataGridViewTextBoxColumn Suma_Column;
+        }
 }
