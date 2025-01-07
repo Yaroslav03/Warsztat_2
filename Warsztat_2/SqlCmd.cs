@@ -65,14 +65,14 @@ internal class SqlCmd {
             Cursor.Current = Cursors.Default;
             }
         }
-    public static async Task<List<Dictionary<string, object>>> LoadListAsync(string tableName, string selectData, string keyColumnName, object keyValue)
+    public static async Task<List<Dictionary<string, object>>> LoadListAsync(string pathName, string tableName, string selectData, string keyColumnName, object keyValue)
         {
         Cursor.Current = Cursors.WaitCursor;
         var dataList = new List<Dictionary<string, object>>(); // Список для кількох рядків
         string query;
         try
             {
-            using SQLiteConnection conn = new($"Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;");
+            using SQLiteConnection conn = new($"Data Source={pathName}.db;Version=3;New=False;Compress=True;");
             await conn.OpenAsync();
 
             query = $"SELECT {selectData} FROM {tableName} WHERE {keyColumnName} = @KeyValue";
@@ -263,8 +263,6 @@ internal class SqlCmd {
 
         return uniqueKey;
         }
-
-
     // Універсальний метод для оновлення запису в будь-якій таблиці
     public static async Task<bool> UpdateRecordAsync(string tableName, Dictionary<string, object> columns, string whereClause, Dictionary<string, object> whereParams)
         {
@@ -314,7 +312,6 @@ internal class SqlCmd {
             Cursor.Current = Cursors.Default;
             }
         }
-
     public static async Task ReadRecordListBoxAsync(ListBox updateListBox, string query, string ColumnName)
         {
         updateListBox.Items.Clear();
@@ -397,7 +394,6 @@ internal class SqlCmd {
             Cursor.Current = Cursors.Default;
             }
         }
-
     #endregion
     #region Read data 
     public static async Task LoadData(string cmd, DataGridView view, string categoryError, string textError, Dictionary<string, object> parameters = null, string anotherConnection = null)
@@ -540,30 +536,90 @@ internal class SqlCmd {
             {
                 {"UniqueKey", uniqueKey}
             };
-        string[] tables = { "Klienty", "Samochód", "NaprawaSamochodu", "HistoriaNapraw", "ZarządzanieZleceniem" };
-        // Словник для зберігання даних кожної таблиці
-        var dataForTables = new Dictionary<string, Dictionary<string, object>>();
+        string[] tables =
+        {
+        "Klienty",
+        "Samochód",
+        "NaprawaSamochodu",
+        "HistoriaNapraw",
+        "ZarządzanieZleceniem"
+    };
+
+        // Тепер зберігаємо дані (список рядків) для кожної таблиці
+        var dataForTables = new Dictionary<string, List<Dictionary<string, object>>>();
+
+        // Завантажуємо всі відповідні рядки з Архіву
         foreach(string table in tables)
             {
-            dataForTables[table] = await LoadDataAsync("WarsztatDB", table, null, "UniqueKey", uniqueKey);
+            dataForTables[table] = await LoadListAsync(
+                pathName: "WarsztatDB",
+                tableName: table,
+                selectData: "*", // або перелік стовпців
+                keyColumnName: "UniqueKey",
+                keyValue: uniqueKey
+            );
             }
 
         try
             {
-            // Тепер можна перевірити, чи у всіх таблиць є записи
-            bool allHaveData = dataForTables.All(kvp => kvp.Value.Count > 0);
-            if(allHaveData)
+            foreach(var table in tables)
                 {
-                foreach(var table in tables)
+                var rows = dataForTables[table];
+
+                // 1. Додаємо всі рядки
+                foreach(var rowData in rows)
                     {
-                    // Використовуємо отримані дані з відповідної таблиці
-                    bool isSucceed = await AddRecordAsync("Archive", table, dataForTables[table]);
-                    if(isSucceed)
+                    bool isSucceed = await AddRecordAsync("Archive", table, rowData);
+                    if(!isSucceed)
                         {
-                        await DeleteRecordAsync("WarsztatDB", table, "UniqueKey=@UniqueKey", key);
+                        MessageBox.Show(
+                            $"Błąd zapisu danych у таблиці {table} (UniqueKey: {uniqueKey})",
+                            "Błąd",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+
+                        // Якщо не вдалося додати хоч один рядок — повертайте false
+                        return false;
                         }
                     }
-                return true;  // Запис успішний
+
+                // 2. Якщо всі рядки успішно додані — видаляємо їх з архіву
+                await DeleteRecordAsync("WarsztatDB", table, "UniqueKey=@UniqueKey", key);
+                }
+            return true; // Усі операції пройшли успішно
+            }
+        catch(Exception ex)
+            {
+            MessageBox.Show($"Nie przewidziany warunek w czasie zapisu danych: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+            }
+        finally
+            {
+            Cursor.Current = Cursors.Default;
+            }
+        }
+    public static async Task<bool> SendToArchiveOneTable(string ID)
+        {
+        Cursor.Current = Cursors.WaitCursor;
+        var key = new Dictionary<string, object>
+            {
+            {"ID", ID}
+            };
+        var data = await LoadDataAsync("WarsztatDB", "Pracownicy", null, "ID", key);
+        try
+            {
+            // Тепер можна перевірити, чи у всіх таблиць є записи
+            bool allHaveData = data.Count > 0;
+            if(allHaveData)
+                {// Використовуємо отримані дані з відповідної таблиці
+                bool isSucceed = await AddRecordAsync("Archive", "Pracownicy", data);
+                if(isSucceed)
+                    {
+                    await DeleteRecordAsync("WarsztatDB", "Pracownicy", "ID=@ID", key);
+
+                    return true;  // Запис успішний
+                    }
                 }
             return false;
             }
@@ -584,26 +640,58 @@ internal class SqlCmd {
             {
                 {"UniqueKey", uniqueKey}
             };
-        string[] tables = { "Klienty", "Samochód", "NaprawaSamochodu", "HistoriaNapraw", "ZarządzanieZleceniem" };
-        // Словник для зберігання даних кожної таблиці
-        var dataForTables = new Dictionary<string, Dictionary<string, object>>();
+        string[] tables =
+        {
+        "Klienty",
+        "Samochód",
+        "NaprawaSamochodu",
+        "HistoriaNapraw",
+        "ZarządzanieZleceniem"
+    };
+
+        // Тепер зберігаємо дані (список рядків) для кожної таблиці
+        var dataForTables = new Dictionary<string, List<Dictionary<string, object>>>();
+
+        // Завантажуємо всі відповідні рядки з Архіву
         foreach(string table in tables)
             {
-            dataForTables[table] = await LoadDataAsync("Archive", table, null, "UniqueKey", uniqueKey);
+            dataForTables[table] = await LoadListAsync(
+                pathName: "Archive",
+                tableName: table,
+                selectData: "*", // або перелік стовпців
+                keyColumnName: "UniqueKey",
+                keyValue: uniqueKey
+            );
             }
 
         try
             {
             foreach(var table in tables)
                 {
-                // Використовуємо отримані дані з відповідної таблиці
-                bool isSucceed = await AddRecordAsync("WarsztatDB", table, dataForTables[table]);
-                if(isSucceed)
+                var rows = dataForTables[table];
+
+                // 1. Додаємо всі рядки
+                foreach(var rowData in rows)
                     {
-                    await DeleteRecordAsync("Archive", table, "UniqueKey=@UniqueKey", key);
+                    bool isSucceed = await AddRecordAsync("WarsztatDB", table, rowData);
+                    if(!isSucceed)
+                        {
+                        MessageBox.Show(
+                            $"Błąd zapisu danych у таблиці {table} (UniqueKey: {uniqueKey})",
+                            "Błąd",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+
+                        // Якщо не вдалося додати хоч один рядок — повертайте false
+                        return false;
+                        }
                     }
+
+                // 2. Якщо всі рядки успішно додані — видаляємо їх з архіву
+                await DeleteRecordAsync("Archive", table, "UniqueKey=@UniqueKey", key);
                 }
-            return true;  // Запис успішний
+            return true; // Усі операції пройшли успішно
             }
         catch(Exception ex)
             {
@@ -669,29 +757,89 @@ internal class SqlCmd {
             }
         return totalEarnings;
         }
-    public static async Task<decimal> GetTotalDependecisForCurrentMonthAsync()
+    public static async Task<decimal> GetTotalEarningsOnPartsForCurrentMonthAsync()
         {
         decimal totalEarnings = 0m;
         try
             {
-            using SQLiteConnection conn = new("Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;");
+            using SQLiteConnection conn = new("Data Source=Archive.db;Version=3;New=False;Compress=True;");
             await conn.OpenAsync();
 
-            string query = "SELECT CenaWydatku, DataPotrącenia FROM WydatkiFirmy";
+            // Витягуємо всі записи (можна додати початкову приблизну фільтрацію, якщо потрібно)
+            string query = "SELECT DochódZCzęści, DataZamknięciaZlecenia FROM ZarządzanieZleceniem";
 
             using SQLiteCommand cmd = new(query, conn);
             using DbDataReader reader = await cmd.ExecuteReaderAsync();
 
+            // Отримуємо поточний рік та місяць
+            int currentYear = DateTime.Today.Year;
+            int currentMonth = DateTime.Today.Month;
 
             while(await reader.ReadAsync())
                 {
-                if(!reader.IsDBNull(0))
+                if(!reader.IsDBNull(0) && !reader.IsDBNull(1))
                     {
-                    decimal value = Convert.ToDecimal(reader["CenaWydatku"]);
+                    decimal value = Convert.ToDecimal(reader["DochódZCzęści"]);
+                    string dateString = reader["DataZamknięciaZlecenia"].ToString();
 
-                    totalEarnings += value;
+                    var culture = new System.Globalization.CultureInfo("pl-PL");
+
+                    if(DateTime.TryParse(dateString, culture,
+                        System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
+                        {
+                        // Перевіряємо чи дата належить поточному місяцю та року
+                        if(parsedDate.Year == currentYear && parsedDate.Month == currentMonth)
+                            {
+                            totalEarnings += value;
+                            }
+                        }
+                    else
+                        {
+                        // Якщо дата не розпарсилась, можна або проігнорувати, або зробити логування помилки
+                        }
                     }
                 }
+            }
+        catch(Exception ex)
+            {
+            MessageBox.Show("Nie przewidziany warunek, proszę zrobić zdjęcie błędu i wysłać na adres yaroslavturbo13@gmail.com: \n" + ex.Message,
+                "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        finally
+            {
+            Cursor.Current = Cursors.Default;
+            }
+        return totalEarnings;
+        }
+    public static async Task<decimal> GetTotalDependecisForCurrentMonthAsync()
+        {
+        decimal totalEarnings = 0m;
+        string[] dataWithFilter = { "StałeWydatkiFirmy", "WydatkiFirmy  WHERE date(substr(DataPotrącenia, 7, 4) || '-' || substr(DataPotrącenia, 4, 2) || '-' ||substr(DataPotrącenia, 1, 2))" +
+                                                                          ">= date('now', 'start of month') AND date(substr(DataPotrącenia, 7, 4) || '-' || substr(DataPotrącenia, 4, 2) || '-' ||substr(DataPotrącenia, 1, 2)) < " +
+                                                                          "date('now', 'start of month', '+1 month')" };
+        try
+            {
+            using SQLiteConnection conn = new("Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;");
+            await conn.OpenAsync();
+            foreach(string data in dataWithFilter)
+                {
+                string query = $"SELECT CenaWydatku, DataPotrącenia FROM {data}";
+
+                using SQLiteCommand cmd = new(query, conn);
+                using DbDataReader reader = await cmd.ExecuteReaderAsync();
+
+
+                while(await reader.ReadAsync())
+                    {
+                    if(!reader.IsDBNull(0))
+                        {
+                        decimal value = Convert.ToDecimal(reader["CenaWydatku"]);
+
+                        totalEarnings += value;
+                        }
+                    }
+                }
+
             }
         catch(Exception ex)
             {
@@ -703,7 +851,41 @@ internal class SqlCmd {
             }
         return totalEarnings;
         }
+    public static async Task<decimal> GetTotalDependecisOfEmployerForCurrentMonthAsync()
+        {
+        decimal totalDependecis = 0m;
 
+        try
+            {
+            using SQLiteConnection conn = new("Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;");
+            await conn.OpenAsync();
+
+            string query = $"SELECT Zarobek FROM Pracownicy";
+
+            using SQLiteCommand cmd = new(query, conn);
+            using DbDataReader reader = await cmd.ExecuteReaderAsync();
+
+
+            while(await reader.ReadAsync())
+                {
+                if(!reader.IsDBNull(0))
+                    {
+                    decimal value = Convert.ToDecimal(reader["Zarobek"]);
+
+                    totalDependecis += value;
+                    }
+                }
+            }
+        catch(Exception ex)
+            {
+            // Обробка виключення
+            }
+        finally
+            {
+            Cursor.Current = Cursors.Default;
+            }
+        return totalDependecis;
+        }
     public async static Task CheckScheduleCar()
         {
         Cursor.Current = Cursors.WaitCursor;

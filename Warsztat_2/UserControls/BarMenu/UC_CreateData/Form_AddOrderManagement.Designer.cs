@@ -50,6 +50,8 @@
             FinallPriceNumericUpDown = new NumericUpDown();
             label3 = new Label();
             panel4 = new Panel();
+            label1 = new Label();
+            marzhaNumericUpDown = new NumericUpDown();
             labelPriceofPart = new Label();
             CloseOrder = new Button();
             panel2 = new Panel();
@@ -63,6 +65,7 @@
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)FinallPriceNumericUpDown).BeginInit();
             panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)marzhaNumericUpDown).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PaidnumericUpDown).BeginInit();
             SuspendLayout();
@@ -314,6 +317,8 @@
             panel4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel4.BackColor = Color.FromArgb(64, 64, 70);
             panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(label1);
+            panel4.Controls.Add(marzhaNumericUpDown);
             panel4.Controls.Add(LabelFinallyPrice);
             panel4.Controls.Add(label10);
             panel4.Controls.Add(labelPriceofPart);
@@ -325,6 +330,28 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(396, 134);
             panel4.TabIndex = 34;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(224, 224, 224);
+            label1.Location = new Point(291, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(53, 21);
+            label1.TabIndex = 29;
+            label1.Text = "Marża";
+            // 
+            // marzhaNumericUpDown
+            // 
+            marzhaNumericUpDown.BackColor = Color.White;
+            marzhaNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
+            marzhaNumericUpDown.DecimalPlaces = 2;
+            marzhaNumericUpDown.Location = new Point(291, 32);
+            marzhaNumericUpDown.Name = "marzhaNumericUpDown";
+            marzhaNumericUpDown.Size = new Size(70, 23);
+            marzhaNumericUpDown.TabIndex = 28;
+            marzhaNumericUpDown.ValueChanged += marzhaNumericUpDown_ValueChanged;
             // 
             // labelPriceofPart
             // 
@@ -450,6 +477,7 @@
             ((System.ComponentModel.ISupportInitialize)FinallPriceNumericUpDown).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)marzhaNumericUpDown).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PaidnumericUpDown).EndInit();
@@ -487,5 +515,7 @@
         public NumericUpDown PaidnumericUpDown;
         private Label labelPriceofPart;
         private RadioButton NeitherRadioButton;
+        private Label label1;
+        public NumericUpDown marzhaNumericUpDown;
         }
 }

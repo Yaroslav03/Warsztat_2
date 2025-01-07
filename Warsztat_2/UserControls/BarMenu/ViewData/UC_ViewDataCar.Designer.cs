@@ -27,8 +27,8 @@
         /// </summary>
         private void InitializeComponent()
             {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label1 = new Label();
             label3 = new Label();
             PathButton = new Button();
@@ -78,6 +78,7 @@
             // 
             // PathButton
             // 
+            PathButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             PathButton.BackColor = Color.FromArgb(94, 148, 255);
             PathButton.FlatAppearance.BorderSize = 0;
             PathButton.FlatStyle = FlatStyle.Flat;
@@ -92,6 +93,7 @@
             // 
             // OrderButton
             // 
+            OrderButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             OrderButton.BackColor = Color.FromArgb(94, 148, 255);
             OrderButton.FlatAppearance.BorderSize = 0;
             OrderButton.FlatStyle = FlatStyle.Flat;
@@ -106,6 +108,7 @@
             // 
             // button3
             // 
+            button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button3.BackColor = Color.FromArgb(94, 148, 255);
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = FlatStyle.Flat;
@@ -125,24 +128,24 @@
             ViewActualData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ViewActualData.BorderStyle = BorderStyle.None;
             ViewActualData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.LightGray;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            ViewActualData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            ViewActualData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewActualData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ViewActualData.Columns.AddRange(new DataGridViewColumn[] { ID_Column, BtnDelete, BtnFinish, DataPrzyjęcia_Column, DataOczekiwaniaOdbioru_Column, Imię_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Column7, WykonawaPracy_Column, KosztKońcowy_Column, VIN_Column });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.DimGray;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            ViewActualData.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.DimGray;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            ViewActualData.DefaultCellStyle = dataGridViewCellStyle2;
             ViewActualData.EnableHeadersVisualStyles = false;
             ViewActualData.Location = new Point(3, 59);
             ViewActualData.Name = "ViewActualData";

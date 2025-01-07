@@ -79,7 +79,6 @@
             byte x = (byte)(maxQuantityNumber - valueQuantity);
 
             decimal sum = price * x;
-            MessageBox.Show($"{sum}");
             var transfertDataWithMines = new Dictionary<string, object>
                 {
                     {"Ilość", x},

@@ -41,12 +41,12 @@
             panel1 = new Panel();
             companyNameLabel = new Label();
             SettingsButton = new Button();
-            button1 = new Button();
             AddButton = new Button();
             ArchiveButton = new Button();
             ViewAllCar = new Button();
             WarehouseButton = new Button();
             ScheduleCarButton = new Button();
+            CompanyExpensesBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.SuspendLayout();
@@ -183,7 +183,7 @@
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(companyNameLabel);
             panel1.Controls.Add(SettingsButton);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(CompanyExpensesBtn);
             panel1.Controls.Add(AddButton);
             panel1.Controls.Add(ArchiveButton);
             panel1.Controls.Add(ViewAllCar);
@@ -219,21 +219,6 @@
             SettingsButton.Text = "Ustawienia";
             SettingsButton.UseVisualStyleBackColor = false;
             SettingsButton.Click += SettingsButton_Click;
-            // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            button1.BackColor = Color.FromArgb(94, 148, 255);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = Color.LightGray;
-            button1.Location = new Point(-1, 47);
-            button1.Name = "button1";
-            button1.Size = new Size(249, 37);
-            button1.TabIndex = 0;
-            button1.Text = "Menu";
-            button1.UseVisualStyleBackColor = false;
             // 
             // AddButton
             // 
@@ -315,6 +300,22 @@
             ScheduleCarButton.UseVisualStyleBackColor = false;
             ScheduleCarButton.Click += ScheduleCarButton_Click;
             // 
+            // CompanyExpensesBtn
+            // 
+            CompanyExpensesBtn.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            CompanyExpensesBtn.BackColor = Color.FromArgb(94, 148, 255);
+            CompanyExpensesBtn.FlatAppearance.BorderSize = 0;
+            CompanyExpensesBtn.FlatStyle = FlatStyle.Flat;
+            CompanyExpensesBtn.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            CompanyExpensesBtn.ForeColor = Color.LightGray;
+            CompanyExpensesBtn.Location = new Point(-1, 47);
+            CompanyExpensesBtn.Name = "CompanyExpensesBtn";
+            CompanyExpensesBtn.Size = new Size(249, 37);
+            CompanyExpensesBtn.TabIndex = 0;
+            CompanyExpensesBtn.Text = "Wydatki Firmy";
+            CompanyExpensesBtn.UseVisualStyleBackColor = false;
+            CompanyExpensesBtn.Click += CompanyExpensesBtn_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -336,7 +337,6 @@
         #endregion
 
         private SplitContainer splitContainer1;
-        private Button button1;
         private Button SettingsButton;
         private Button AddButton;
         private Button WarehouseButton;
@@ -354,5 +354,6 @@
         private Label label4;
         private Label companyNameLabel;
         private Button ArchiveButton;
-    }
+        private Button CompanyExpensesBtn;
+        }
 }

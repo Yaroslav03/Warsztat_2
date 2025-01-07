@@ -165,46 +165,34 @@ namespace Warsztat_2.UserControls.BarMenu.ScheduleCar {
             helpingLabel.Text = "*";
             }
 
-        private void TelephonTextBox_MouseHover(object sender, EventArgs e)
+        private async void AutocompleteButton_Click(object sender, EventArgs e)
             {
-            helpTelephoneLabel.Text = "* Dla wygody czytania polecam np. 945-342-234, pisząc co czwarty symbol [-]";
-            }
-
-        private void TelephonTextBox_MouseLeave(object sender, EventArgs e)
-            {
-            helpTelephoneLabel.Text = "*";
-            }
-
-        private void AutocompleteButton_Click(object sender, EventArgs e)
-            {
-            string[] NameSurname = label17.Text.Split(" ");
-            string[] MarkaModel = label25.Text.Split(" ");
-
-            NameTextBox.Text = NameSurname[0];
-            SurnameTextBox.Text = NameSurname[1];
-            TelephonTextBox.Text = label23.Text;
-
-            bool found = CarComboBox.Items.Cast<string>().Any(item => item.Equals(MarkaModel[0]));
-            if(!found)
+            var data = await SqlCmd.LoadDataAsync("Archive", "Klienty", null, "NrTelefonu", TelephonTextBox.Text);
+            if(data.Count > 0)
                 {
-                CarComboBox.Items.Add(MarkaModel[0]);
-
+                var carData = await SqlCmd.LoadDataAsync("Archive", "Samochód", null, "UniqueKey", data["UniqueKey"]);
+                NameTextBox.Text = data["Imię"].ToString();
+                SurnameTextBox.Text = data["Nazwisko"].ToString();
+                TelephonTextBox.Text = data["NrTelefonu"].ToString();
+                CarComboBox.Text = carData["Marka"].ToString();
+                ScheduleModelTextBox0.Text = carData["Model"].ToString();
                 }
-            CarComboBox.SelectedItem = MarkaModel[0];
-            ScheduleModelTextBox0.Text = MarkaModel[1];
-
-            Array.Clear(NameSurname);
-            Array.Clear(MarkaModel);
             }
 
-        private void TelephonTextBox_TextChanged(object sender, EventArgs e)
+        private async void TelephonTextBox_TextChanged(object sender, EventArgs e)
             {
-            if(TelephonTextBox.TextLength > 6)
+            var data = await SqlCmd.LoadDataAsync("Archive", "Klienty", null, "NrTelefonu", TelephonTextBox.Text);
+            if(data.Count > 0)
                 {
-                EditDataScheduleCar editDataScheduleCar = new();
-                editDataScheduleCar.AutocompleteDataSQL(this, TelephonTextBox.Text);
+                var carData = await SqlCmd.LoadDataAsync("Archive", "Samochód", null, "UniqueKey", data["UniqueKey"]);
+                label16.Text += $"{data["Imię"]} {data["Nazwisko"]}";
+                label21.Text += data["NrTelefonu"];
+                label24.Text += $"{carData["Marka"]} {carData["Model"]}";
+                return;
                 }
-
+            label16.Text = "Imię i Nazwisko:";
+            label21.Text = "nr. Telefonu:";
+            label24.Text = "Marka i model:";
             }
         }
     }

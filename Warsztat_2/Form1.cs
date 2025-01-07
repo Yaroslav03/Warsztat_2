@@ -3,6 +3,7 @@ using Warsztat_2._0.UserControls;
 using Warsztat_2._0.UserControls.BarMenu.Warehouse;
 using Warsztat_2.UserControls.BarMenu.Archive;
 using Warsztat_2.UserControls.BarMenu.ScheduleCar;
+using Warsztat_2.UserControls.BarMenu.Settings;
 namespace Warsztat_2 {
     public partial class Form1 :Form {
         public Form1()
@@ -46,7 +47,6 @@ namespace Warsztat_2 {
             LoadUserControl(new UC_ViewDataCar());
 
             LoadDataInterface();
-
             }
 
         private void LoadUserControl(UserControl control)
@@ -60,7 +60,9 @@ namespace Warsztat_2 {
             uint carCount = await SqlCmd.CountDataAsync("Samochód");
             uint scheduleCount = await SqlCmd.CountDataAsync("ZaplanowaneSamochody");
             decimal costOfDependecis = await SqlCmd.GetTotalDependecisForCurrentMonthAsync();
+            decimal dependecisOfEmployer = await SqlCmd.GetTotalDependecisOfEmployerForCurrentMonthAsync();
             decimal sumEarnings = await SqlCmd.GetTotalEarningsForCurrentMonthAsync();
+            decimal earningOnParts = await SqlCmd.GetTotalEarningsOnPartsForCurrentMonthAsync();
 
             if(companyData.ContainsKey("NazwaFirmy"))
                 {
@@ -70,9 +72,14 @@ namespace Warsztat_2 {
             label4.Text += carCount.ToString();
             label5.Text += scheduleCount.ToString();
             label1.Text += clientCount.ToString();
-            label7.Text += sumEarnings.ToString() + "zł";
-            label8.Text += costOfDependecis.ToString() + "zł";
-            label9.Text += (sumEarnings - costOfDependecis) + "zł";
+            label7.Text += sumEarnings + earningOnParts + "zł";
+            label8.Text += (costOfDependecis + dependecisOfEmployer).ToString() + "zł";
+            label9.Text += (sumEarnings + earningOnParts - costOfDependecis - dependecisOfEmployer) + "zł";
+            }
+
+        private void CompanyExpensesBtn_Click(object sender, EventArgs e)
+            {
+            LoadUserControl(new UC_CompanyExpenses());
             }
         }
     }

@@ -23,7 +23,7 @@ namespace Warsztat_2 {
             var companyData = await SqlCmd.LoadDataAsync("WarsztatDB", "DaneFirmy");
             var clientData = await SqlCmd.LoadDataAsync("WarsztatDB", "Klienty", null, "UniqueKey", uniqueKey);
             var carData = await SqlCmd.LoadDataAsync("WarsztatDB", "Samochód", null, "UniqueKey", uniqueKey);
-            var repairCarData = await SqlCmd.LoadListAsync("NaprawaSamochodu", "Opis, NumerCzęści, Cena, Ilość", "UniqueKey", uniqueKey);
+            var repairCarData = await SqlCmd.LoadListAsync("Archive", "NaprawaSamochodu", "Opis, NumerCzęści, Cena, Ilość", "UniqueKey", uniqueKey);
             var historyRepairData = await SqlCmd.LoadDataAsync("WarsztatDB", "HistoriaNapraw", null, "UniqueKey", uniqueKey);
             var managementData = await SqlCmd.LoadDataAsync("WarsztatDB", "ZarządzanieZleceniem", null, "UniqueKey", uniqueKey);
 
@@ -136,10 +136,10 @@ namespace Warsztat_2 {
             #region table of repair
             // Додавання простору
             section.AddParagraph();
-
             Paragraph RepairTitle = section.AddParagraph("Zamówione części");
             RepairTitle.Format.Font.Name = "Courier New"; // Задати назву шрифта
             RepairTitle.Format.Font.Size = 14;
+
             #region create a table of repair
             // Додавання таблиці "Історія машини"
             Table RepairTable = section.AddTable();
@@ -186,9 +186,9 @@ namespace Warsztat_2 {
                 dataRowRepair.Cells[3].AddParagraph(repairItem.ContainsKey("Ilość") ? repairItem["Ilość"].ToString() : "");
                 }
             Paragraph sumPriceRepair = section.AddParagraph($"Łączna cena: {managementData["KosztCzęści"]}");
-            sumPriceRepair.AddLineBreak();
             sumPriceRepair.Format.Font.Name = "Courier New"; // Задати назву шрифта
             sumPriceRepair.Format.Font.Size = 10;
+            sumPriceRepair.Format.Alignment = ParagraphAlignment.Right;
 
             #endregion
             #endregion
@@ -208,8 +208,8 @@ namespace Warsztat_2 {
             orderManagementInfo.Format.Font.Name = "Courier New"; // Задати назву шрифта
             orderManagementInfo.Format.Font.Size = 10;
 
-            string[] data0 = { "Data oczekiwania odbioru", "Data Płatności", "Sposób płatności", "cena na części wraz z marżą", "Koszt pracy ręcznej", "koszt końcowy", "Zostawione Dokumenty od samochodu", "Zostawione kluczyki od samochodu", "TestDrive", "Kto wykonał robotę" };
-            string[] data1 = { "DataOczekiwaniaOdbioru", "DataPłatności", "MetodaPłatności",  "KosztCzęściZMarżą", "KosztPracyRęcznej", "KosztKońcowy", "leftDocument", "leftKey", "TestDrive", "WykonawcaPracy" };
+            string[] data0 = { "Data oczekiwania odbioru", "Zostawione Dokumenty od samochodu", "Zostawione kluczyki od samochodu", "TestDrive", "Kto wykonał robotę", "Data Płatności", "Sposób płatności", "cena na części wraz z marżą", "Koszt pracy ręcznej", "koszt końcowy", };
+            string[] data1 = { "DataOczekiwaniaOdbioru", "leftDocument", "leftKey", "TestDrive", "WykonawcaPracy", "DataPłatności", "MetodaPłatności", "KosztCzęściZMarżą", "KosztPracyRęcznej", "KosztKońcowy", };
 
             orderManagementInfo.AddLineBreak();
             orderManagementInfo.AddText($"Przyjęty: {historyRepairData["DataPrzyjęcia"]}");

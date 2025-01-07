@@ -27,13 +27,12 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             ScheduleCarAddButton = new Button();
             ID_label = new Label();
             ScheduleCarButton = new Button();
-            helpTelephoneLabel = new Label();
             label20 = new Label();
             label22 = new Label();
             ProblemCar = new TextBox();
@@ -48,13 +47,11 @@
             label11 = new Label();
             label18 = new Label();
             label15 = new Label();
-            TelephonTextBox = new TextBox();
             label19 = new Label();
             label16 = new Label();
             SurnameTextBox = new TextBox();
             label21 = new Label();
             label6 = new Label();
-            label25 = new Label();
             DataScheduleView = new DataGridView();
             btnAdd = new DataGridViewButtonColumn();
             BtnDelete = new DataGridViewButtonColumn();
@@ -71,9 +68,9 @@
             helpingLabel = new Label();
             NameTextBox = new TextBox();
             label24 = new Label();
-            label17 = new Label();
             panel2 = new Panel();
-            label23 = new Label();
+            TelephonTextBox = new MaskedTextBox();
+            label12 = new Label();
             EditData = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataScheduleView).BeginInit();
@@ -128,18 +125,6 @@
             ScheduleCarButton.Text = "Zapłanuj samochód";
             ScheduleCarButton.UseVisualStyleBackColor = false;
             ScheduleCarButton.Click += ScheduleCarButton_Click;
-            // 
-            // helpTelephoneLabel
-            // 
-            helpTelephoneLabel.AutoSize = true;
-            helpTelephoneLabel.Font = new Font("Segoe UI", 12F, FontStyle.Italic, GraphicsUnit.Point);
-            helpTelephoneLabel.ForeColor = Color.FromArgb(224, 224, 224);
-            helpTelephoneLabel.ImeMode = ImeMode.NoControl;
-            helpTelephoneLabel.Location = new Point(30, 352);
-            helpTelephoneLabel.Name = "helpTelephoneLabel";
-            helpTelephoneLabel.Size = new Size(17, 21);
-            helpTelephoneLabel.TabIndex = 0;
-            helpTelephoneLabel.Text = "*";
             // 
             // label20
             // 
@@ -333,23 +318,6 @@
             label15.TabIndex = 0;
             label15.Text = "Marka";
             // 
-            // TelephonTextBox
-            // 
-            TelephonTextBox.BackColor = Color.FromArgb(64, 64, 70);
-            TelephonTextBox.CausesValidation = false;
-            TelephonTextBox.Cursor = Cursors.IBeam;
-            TelephonTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            TelephonTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            TelephonTextBox.Location = new Point(15, 160);
-            TelephonTextBox.Margin = new Padding(3, 4, 3, 4);
-            TelephonTextBox.Name = "TelephonTextBox";
-            TelephonTextBox.PlaceholderText = "Telefon";
-            TelephonTextBox.Size = new Size(171, 30);
-            TelephonTextBox.TabIndex = 21;
-            TelephonTextBox.TextChanged += TelephonTextBox_TextChanged;
-            TelephonTextBox.MouseLeave += TelephonTextBox_MouseLeave;
-            TelephonTextBox.MouseHover += TelephonTextBox_MouseHover;
-            // 
             // label19
             // 
             label19.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -370,9 +338,9 @@
             label16.ImeMode = ImeMode.NoControl;
             label16.Location = new Point(394, 59);
             label16.Name = "label16";
-            label16.Size = new Size(119, 21);
+            label16.Size = new Size(122, 21);
             label16.TabIndex = 25;
-            label16.Text = "Imię i Nazwisko";
+            label16.Text = "Imię i Nazwisko:";
             // 
             // SurnameTextBox
             // 
@@ -411,19 +379,6 @@
             label6.TabIndex = 0;
             label6.Text = "Dane Kontaktowe";
             // 
-            // label25
-            // 
-            label25.Anchor = AnchorStyles.Top;
-            label25.AutoSize = true;
-            label25.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label25.ForeColor = Color.FromArgb(224, 224, 224);
-            label25.ImeMode = ImeMode.NoControl;
-            label25.Location = new Point(510, 101);
-            label25.Name = "label25";
-            label25.Size = new Size(41, 21);
-            label25.TabIndex = 20;
-            label25.Text = "brak";
-            // 
             // DataScheduleView
             // 
             DataScheduleView.AllowUserToAddRows = false;
@@ -432,24 +387,24 @@
             DataScheduleView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataScheduleView.BorderStyle = BorderStyle.None;
             DataScheduleView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.LightGray;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            DataScheduleView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            DataScheduleView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             DataScheduleView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataScheduleView.Columns.AddRange(new DataGridViewColumn[] { btnAdd, BtnDelete, DataPrzyjecia_Column, ID_Column, Imie_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Problem_Column });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            DataScheduleView.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            DataScheduleView.DefaultCellStyle = dataGridViewCellStyle2;
             DataScheduleView.EnableHeadersVisualStyles = false;
             DataScheduleView.Location = new Point(3, 43);
             DataScheduleView.Name = "DataScheduleView";
@@ -580,28 +535,17 @@
             label24.ImeMode = ImeMode.NoControl;
             label24.Location = new Point(394, 101);
             label24.Name = "label24";
-            label24.Size = new Size(110, 21);
+            label24.Size = new Size(113, 21);
             label24.TabIndex = 23;
-            label24.Text = "Marka i model";
-            // 
-            // label17
-            // 
-            label17.Anchor = AnchorStyles.Top;
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.ForeColor = Color.FromArgb(224, 224, 224);
-            label17.ImeMode = ImeMode.NoControl;
-            label17.Location = new Point(510, 59);
-            label17.Name = "label17";
-            label17.Size = new Size(41, 21);
-            label17.TabIndex = 22;
-            label17.Text = "brak";
+            label24.Text = "Marka i model:";
             // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.FromArgb(64, 64, 70);
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(TelephonTextBox);
+            panel2.Controls.Add(label12);
             panel2.Controls.Add(CarComboBox);
             panel2.Controls.Add(AutocompleteButton);
             panel2.Controls.Add(ScheduleModelTextBox0);
@@ -610,17 +554,13 @@
             panel2.Controls.Add(label11);
             panel2.Controls.Add(label18);
             panel2.Controls.Add(label15);
-            panel2.Controls.Add(TelephonTextBox);
             panel2.Controls.Add(label19);
             panel2.Controls.Add(label16);
             panel2.Controls.Add(SurnameTextBox);
             panel2.Controls.Add(label21);
             panel2.Controls.Add(label6);
-            panel2.Controls.Add(label25);
             panel2.Controls.Add(NameTextBox);
             panel2.Controls.Add(label24);
-            panel2.Controls.Add(label17);
-            panel2.Controls.Add(label23);
             panel2.ForeColor = Color.DimGray;
             panel2.Location = new Point(3, 94);
             panel2.MinimumSize = new Size(923, 216);
@@ -628,18 +568,29 @@
             panel2.Size = new Size(1001, 216);
             panel2.TabIndex = 31;
             // 
-            // label23
+            // TelephonTextBox
             // 
-            label23.Anchor = AnchorStyles.Top;
-            label23.AutoSize = true;
-            label23.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label23.ForeColor = Color.FromArgb(224, 224, 224);
-            label23.ImeMode = ImeMode.NoControl;
-            label23.Location = new Point(485, 80);
-            label23.Name = "label23";
-            label23.Size = new Size(41, 21);
-            label23.TabIndex = 21;
-            label23.Text = "brak";
+            TelephonTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            TelephonTextBox.BorderStyle = BorderStyle.None;
+            TelephonTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            TelephonTextBox.ForeColor = Color.LightGray;
+            TelephonTextBox.Location = new Point(151, 163);
+            TelephonTextBox.Mask = "000-000-000";
+            TelephonTextBox.Name = "TelephonTextBox";
+            TelephonTextBox.Size = new Size(125, 23);
+            TelephonTextBox.TabIndex = 33;
+            TelephonTextBox.TextChanged += TelephonTextBox_TextChanged;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.ForeColor = Color.FromArgb(224, 224, 224);
+            label12.Location = new Point(3, 163);
+            label12.Name = "label12";
+            label12.Size = new Size(142, 24);
+            label12.TabIndex = 32;
+            label12.Text = "Telefon komórkowy:";
             // 
             // EditData
             // 
@@ -648,7 +599,6 @@
             EditData.Controls.Add(panel1);
             EditData.Controls.Add(ID_label);
             EditData.Controls.Add(ScheduleCarButton);
-            EditData.Controls.Add(helpTelephoneLabel);
             EditData.Controls.Add(label20);
             EditData.Location = new Point(1, 45);
             EditData.Name = "EditData";
@@ -677,14 +627,13 @@
             EditData.ResumeLayout(false);
             EditData.PerformLayout();
             ResumeLayout(false);
-        }
+            }
 
         #endregion
 
         private Button ScheduleCarAddButton;
         public Label ID_label;
         private Button ScheduleCarButton;
-        public Label helpTelephoneLabel;
         private Label label20;
         private Label label22;
         public TextBox ProblemCar;
@@ -699,7 +648,6 @@
         private Label label11;
         private Label label18;
         private Label label15;
-        public TextBox TelephonTextBox;
         private Label label19;
         private Label label16;
         public TextBox SurnameTextBox;
@@ -723,8 +671,7 @@
         private DataGridViewTextBoxColumn Marka_Column;
         private DataGridViewTextBoxColumn Model_Column;
         private DataGridViewTextBoxColumn Problem_Column;
-        public Label label17;
-        public Label label25;
-        public Label label23;
-    }
+        private Label label12;
+        public MaskedTextBox TelephonTextBox;
+        }
 }

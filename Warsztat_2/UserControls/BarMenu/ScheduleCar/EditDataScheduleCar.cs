@@ -1,5 +1,4 @@
-﻿using System.Data.SQLite;
-using Warsztat_2.UserControls.BarMenu.ScheduleCar;
+﻿using Warsztat_2.UserControls.BarMenu.ScheduleCar;
 
 namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar {
     internal class EditDataScheduleCar {
@@ -56,40 +55,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar {
             repair = repairToEdit;
 
             }
-        public void AutocompleteDataSQL(UC_ScheduleCar UC, string telephone)
-            {
-            List<string> SQLResult = new();
-            string[] data = { "Imię", "Nazwisko", "NrTelefonu", "VIN", "Marka", "Model" };
-            try
-                {
 
-                using SQLiteConnection sqlConn = new("Data Source=Archive.db;Version=3;New=False;Compress=True;");
-                sqlConn.Open();
-                using SQLiteCommand search = new(@"SELECT K.Imię, K.Nazwisko, K.NrTelefonu, K.VIN, S.Marka, S.Model 
-                                                    FROM Klienty K 
-                                                    LEFT JOIN Samochód S ON K.VIN = S.VIN 
-                                                    WHERE K.NrTelefonu LIKE @Telephone", sqlConn);
-
-                search.Parameters.AddWithValue("@Telephone", "%" + telephone + "%");
-
-                using SQLiteDataReader reader = search.ExecuteReader();
-
-                while(reader.Read())
-                    {
-                    foreach(string s in data)
-                        SQLResult.Add($"{reader[s]}");
-                    }
-
-                UC.label17.Text = $"{SQLResult[0]} {SQLResult[1]}";
-                UC.label23.Text = $"{SQLResult[2]}";
-                UC.label25.Text = $"{SQLResult[4]} {SQLResult[5]}";
-                }
-            catch
-                {
-
-                }
-            SQLResult.Clear();
-            }
         public void AutocompleteData(UC_ScheduleCar selectTab)
             {
             selectTab.ID_label.Text = client.ID.ToString();

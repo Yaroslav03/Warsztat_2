@@ -50,7 +50,6 @@
                     MessageBox.Show("Dane zostałe przywrócone do domyślnej tablicy danych");
                     ViewActualData.Rows.RemoveAt(selectedIndex);
                     }
-
                 }
             }
         }

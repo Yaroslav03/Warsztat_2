@@ -3,7 +3,7 @@
         #region variables
 
         private string? paymentDay, paymentType, orderAddoptedDay;
-        private decimal priceOfPart, PricePartWithMarzha, Marzha, finallyPrice, wasPayed;
+        private decimal priceOfPart, PricePartWithMarzha, Marzha, finallyPrice, wasPayed, earningOnParts;
         uint ID;
         private bool isDataLoadedFromDB = false;
         Guid uniqueKey;
@@ -55,7 +55,7 @@
                         {
                         MessageBox.Show("Dane zostałe wysłane do archiwum");
                         }
-                    }               
+                    }
                 }
             }
 
@@ -85,13 +85,17 @@
             {
             Marzha = await SqlCmd.GetMarzaAsync();
 
+            marzhaNumericUpDown.Value = Marzha;
+
             PricePartWithMarzhaCalculate();
+
+            earningOnParts = PricePartWithMarzha - priceOfPart;
             }
         private void PricePartWithMarzhaCalculate()
             {
 
             PricePartWithMarzha = Math.Round(priceOfPart * (1 + (Marzha / 100)), 2);
-            LabelPricePartWithMarzha.Text += PricePartWithMarzha;
+            LabelPricePartWithMarzha.Text = "Koszt za części z marzą: " + PricePartWithMarzha;
             }
         private async Task LoadDataFromDB()
             {
@@ -112,11 +116,10 @@
                 wasPayed = Convert.ToDecimal(data["Zapłacono"]);
                 WorkPerfomedTextBox.Text = data["WykonanaPraca"]?.ToString();
                 WorkerListBox.SelectedItem = data["WykonawcaPracy"]?.ToString();
-
-                // Оновлення текстових полів або міток
-                //labelPriceofPart.Text = "Koszt części: " + priceOfPart;
-                //LabelPricePartWithMarzha.Text = "Koszt części z marżą: " + PricePartWithMarzha;
-                //LabelFinallyPrice.Text = "Koszt końcowy: " + finallyPrice;
+                if(data["Marża"] != null)
+                    {
+                    marzhaNumericUpDown.Value = Convert.ToDecimal(data["Marża"].ToString());
+                    }               
 
                 // Встановлення стану елементів управління на основі отриманих даних
                 if(paymentType == "gotówka")
@@ -177,7 +180,9 @@
                     {"KosztKońcowy",  finallyPrice},
                     {"WykonanaPraca", WorkPerfomedTextBox.Text},
                     {"WykonawcaPracy", WorkerListBox.SelectedItem},
-                    {"UniqueKey", uniqueKey }
+                    {"UniqueKey", uniqueKey },
+                    {"DochódZCzęści", earningOnParts},
+                    {"Marża", Marzha}
                 };
             }
         private async Task SaveDB()
@@ -204,14 +209,14 @@
             }
         private async Task LoadWorkerListBox()
             {
-            string[] columns = { "Imie", "Stanowisko" };
-            await SqlCmd.ReadAddDataListBox("SELECT Imie, Stanowisko FROM Pracownicy", columns, WorkerListBox);
+            string[] columns = { "Imię", "Stanowisko" };
+            await SqlCmd.ReadAddDataListBox("SELECT Imię, Stanowisko FROM Pracownicy", columns, WorkerListBox);
             }
         public void SendDataFromLastWindow(string price, Guid key)
             {
             uniqueKey = key;
             priceOfPart = Convert.ToDecimal(price);
-            labelPriceofPart.Text +=priceOfPart;
+            labelPriceofPart.Text += priceOfPart;
             }
         #endregion
         #region CheckBoxes and RadioBoxes
@@ -266,6 +271,18 @@
         private void OrderAddoptedTimePicker_ValueChanged(object sender, EventArgs e)
             {
             orderAddoptedDay = OrderAddoptedTimePicker.Text;
+            }
+
+        private void marzhaNumericUpDown_ValueChanged(object sender, EventArgs e)
+            {
+            Marzha = marzhaNumericUpDown.Value;
+            PricePartWithMarzhaCalculate();
+
+            decimal x = FinallPriceNumericUpDown.Value;
+            finallyPrice = PricePartWithMarzha + x;
+            LabelFinallyPrice.Text = "Koszt końcowy: " + finallyPrice;
+
+            earningOnParts = PricePartWithMarzha - priceOfPart;
             }
         }
     }
