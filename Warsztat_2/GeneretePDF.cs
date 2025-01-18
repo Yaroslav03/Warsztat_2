@@ -23,7 +23,7 @@ namespace Warsztat_2 {
             var companyData = await SqlCmd.LoadDataAsync("WarsztatDB", "DaneFirmy");
             var clientData = await SqlCmd.LoadDataAsync("WarsztatDB", "Klienty", null, "UniqueKey", uniqueKey);
             var carData = await SqlCmd.LoadDataAsync("WarsztatDB", "Samochód", null, "UniqueKey", uniqueKey);
-            var repairCarData = await SqlCmd.LoadListAsync("Archive", "NaprawaSamochodu", "Opis, NumerCzęści, Cena, Ilość", "UniqueKey", uniqueKey);
+            var repairCarData = await SqlCmd.LoadListAsync("WarsztatDB", "NaprawaSamochodu", "Opis, NumerCzęści, Cena, Ilość", "UniqueKey", uniqueKey);
             var historyRepairData = await SqlCmd.LoadDataAsync("WarsztatDB", "HistoriaNapraw", null, "UniqueKey", uniqueKey);
             var managementData = await SqlCmd.LoadDataAsync("WarsztatDB", "ZarządzanieZleceniem", null, "UniqueKey", uniqueKey);
 
@@ -163,17 +163,13 @@ namespace Warsztat_2 {
 
             string[] RepairWriteTable = { "Opis", "Numer części", "Cena", "Ilość" };
             for(byte x = 0;x < RepairWriteTable.Length;x++)
+                {
                 rowRepair.Cells[x].AddParagraph(RepairWriteTable[x]);
+                }
+
 
             #endregion
             #region add repair data to table
-            // Перевіряємо, чи не вийшли за межі списку repairData
-            /*            foreach(var data in repairCarData)
-                            {
-                            Row dataRowRepair = RepairTable.AddRow();
-                            dataRowRepair.Format.Font.Name = "Courier New"; // Задати назву шрифта
-                            dataRowRepair.Format.Font.Size = 10;
-                            }*/
             foreach(var repairItem in repairCarData)
                 {
                 Row dataRowRepair = RepairTable.AddRow();

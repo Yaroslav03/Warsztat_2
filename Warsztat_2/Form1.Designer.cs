@@ -41,12 +41,12 @@
             panel1 = new Panel();
             companyNameLabel = new Label();
             SettingsButton = new Button();
+            CompanyExpensesBtn = new Button();
             AddButton = new Button();
             ArchiveButton = new Button();
             ViewAllCar = new Button();
             WarehouseButton = new Button();
             ScheduleCarButton = new Button();
-            CompanyExpensesBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.SuspendLayout();
@@ -105,9 +105,9 @@
             label8.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label8.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label8.ForeColor = Color.FromArgb(224, 224, 224);
-            label8.Location = new Point(8, 209);
+            label8.Location = new Point(-3, 207);
             label8.Name = "label8";
-            label8.Size = new Size(238, 17);
+            label8.Size = new Size(249, 17);
             label8.TabIndex = 1;
             label8.Text = "Wydatki za miesiąc:";
             // 
@@ -116,9 +116,9 @@
             label7.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label7.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = Color.FromArgb(224, 224, 224);
-            label7.Location = new Point(8, 181);
+            label7.Location = new Point(0, 181);
             label7.Name = "label7";
-            label7.Size = new Size(238, 17);
+            label7.Size = new Size(249, 17);
             label7.TabIndex = 1;
             label7.Text = "zarobki za miesiąc:";
             // 
@@ -220,6 +220,22 @@
             SettingsButton.UseVisualStyleBackColor = false;
             SettingsButton.Click += SettingsButton_Click;
             // 
+            // CompanyExpensesBtn
+            // 
+            CompanyExpensesBtn.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            CompanyExpensesBtn.BackColor = Color.FromArgb(94, 148, 255);
+            CompanyExpensesBtn.FlatAppearance.BorderSize = 0;
+            CompanyExpensesBtn.FlatStyle = FlatStyle.Flat;
+            CompanyExpensesBtn.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            CompanyExpensesBtn.ForeColor = Color.LightGray;
+            CompanyExpensesBtn.Location = new Point(-1, 47);
+            CompanyExpensesBtn.Name = "CompanyExpensesBtn";
+            CompanyExpensesBtn.Size = new Size(249, 37);
+            CompanyExpensesBtn.TabIndex = 0;
+            CompanyExpensesBtn.Text = "Wydatki Firmy";
+            CompanyExpensesBtn.UseVisualStyleBackColor = false;
+            CompanyExpensesBtn.Click += CompanyExpensesBtn_Click;
+            // 
             // AddButton
             // 
             AddButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -299,22 +315,6 @@
             ScheduleCarButton.Text = "Zaplanowane";
             ScheduleCarButton.UseVisualStyleBackColor = false;
             ScheduleCarButton.Click += ScheduleCarButton_Click;
-            // 
-            // CompanyExpensesBtn
-            // 
-            CompanyExpensesBtn.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            CompanyExpensesBtn.BackColor = Color.FromArgb(94, 148, 255);
-            CompanyExpensesBtn.FlatAppearance.BorderSize = 0;
-            CompanyExpensesBtn.FlatStyle = FlatStyle.Flat;
-            CompanyExpensesBtn.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            CompanyExpensesBtn.ForeColor = Color.LightGray;
-            CompanyExpensesBtn.Location = new Point(-1, 47);
-            CompanyExpensesBtn.Name = "CompanyExpensesBtn";
-            CompanyExpensesBtn.Size = new Size(249, 37);
-            CompanyExpensesBtn.TabIndex = 0;
-            CompanyExpensesBtn.Text = "Wydatki Firmy";
-            CompanyExpensesBtn.UseVisualStyleBackColor = false;
-            CompanyExpensesBtn.Click += CompanyExpensesBtn_Click;
             // 
             // Form1
             // 

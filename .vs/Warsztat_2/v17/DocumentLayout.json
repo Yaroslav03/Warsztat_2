@@ -3,43 +3,39 @@
   "WorkspaceRootPath": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\desktop\\warsztat_2\\warsztat_2\\warsztat_2\\usercontrols\\barmenu\\schedulecar\\uc_schedulecar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\usercontrols\\barmenu\\schedulecar\\uc_schedulecar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\desktop\\warsztat_2\\warsztat_2\\warsztat_2\\usercontrols\\barmenu\\schedulecar\\uc_schedulecar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\usercontrols\\barmenu\\schedulecar\\uc_schedulecar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\desktop\\warsztat_2\\warsztat_2\\warsztat_2\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\desktop\\warsztat_2\\warsztat_2\\warsztat_2\\usercontrols\\barmenu\\warehouse\\uc_warehouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\usercontrols\\barmenu\\warehouse\\uc_warehouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\desktop\\warsztat_2\\warsztat_2\\warsztat_2\\sqlcmd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\sqlcmd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\yaros\\AppData\\Local\\SourceServer\\8b2817de3c3a2e2ff120492580ae6ca91392c54c4d57047f92b838b72b2f1881\\src\\coreclr\\System.Private.CoreLib\\src\\System\\Delegate.CoreCLR.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\desktop\\warsztat_2\\warsztat_2\\warsztat_2\\generetepdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\generetepdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\desktop\\warsztat_2\\warsztat_2\\warsztat_2\\sqlcmd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\sqlcmd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\desktop\\warsztat_2\\warsztat_2\\warsztat_2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\warsztat_2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\desktop\\warsztat_2\\warsztat_2\\warsztat_2\\usercontrols\\barmenu\\menu\\uc_menu.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\usercontrols\\barmenu\\menu\\uc_menu.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\warsztat_2\\usercontrols\\barmenu\\menu\\uc_menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\usercontrols\\barmenu\\menu\\uc_menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\warsztat_2\\usercontrols\\barmenu\\uc_createdata\\uc_addclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\usercontrols\\barmenu\\uc_createdata\\uc_addclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\desktop\\warsztat_2\\warsztat_2\\warsztat_2\\usercontrols\\barmenu\\uc_createdata\\uc_addclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\usercontrols\\barmenu\\uc_createdata\\uc_addclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\yaros\\AppData\\Local\\SourceServer\\8b2817de3c3a2e2ff120492580ae6ca91392c54c4d57047f92b838b72b2f1881\\src\\coreclr\\System.Private.CoreLib\\src\\System\\Delegate.CoreCLR.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\desktop\\warsztat_2\\warsztat_2\\warsztat_2\\usercontrols\\barmenu\\viewdata\\uc_viewdatacar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\usercontrols\\barmenu\\viewdata\\uc_viewdatacar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\warsztat_2\\usercontrols\\barmenu\\viewdata\\uc_viewdatacar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\usercontrols\\barmenu\\viewdata\\uc_viewdatacar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -49,133 +45,117 @@
       "DocumentGroups": [
         {
           "DockedHeight": 185,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UC_AddClient.cs",
-              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddClient.cs",
-              "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddClient.cs",
-              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddClient.cs",
-              "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddClient.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T21:50:44.679Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UC_Warehouse.cs",
-              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\Warehouse\\UC_Warehouse.cs",
-              "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\Warehouse\\UC_Warehouse.cs",
-              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\Warehouse\\UC_Warehouse.cs",
-              "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\Warehouse\\UC_Warehouse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T21:48:24.945Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Settings.cs",
-              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\Settings.cs",
-              "RelativeDocumentMoniker": "Warsztat_2\\Settings.cs",
-              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\Settings.cs",
-              "RelativeToolTip": "Warsztat_2\\Settings.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAowFwAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T21:47:49.358Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UC_ScheduleCar.cs",
-              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\ScheduleCar\\UC_ScheduleCar.cs",
-              "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\ScheduleCar\\UC_ScheduleCar.cs",
-              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\ScheduleCar\\UC_ScheduleCar.cs",
-              "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\ScheduleCar\\UC_ScheduleCar.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAuwIoAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T21:47:07.022Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UC_ScheduleCar.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\ScheduleCar\\UC_ScheduleCar.cs",
-              "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\ScheduleCar\\UC_ScheduleCar.cs",
-              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\ScheduleCar\\UC_ScheduleCar.cs [Design]",
-              "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\ScheduleCar\\UC_ScheduleCar.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T21:46:47.205Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SqlCmd.cs",
-              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\SqlCmd.cs",
-              "RelativeDocumentMoniker": "Warsztat_2\\SqlCmd.cs",
-              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\SqlCmd.cs",
-              "RelativeToolTip": "Warsztat_2\\SqlCmd.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAALMCAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-06T19:42:16.717Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UC_ViewDataCar.cs",
-              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs",
-              "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs",
-              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs",
-              "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAewE4AAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-06T19:41:59.743Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GeneretePDF.cs",
-              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\GeneretePDF.cs",
-              "RelativeDocumentMoniker": "Warsztat_2\\GeneretePDF.cs",
-              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\GeneretePDF.cs",
-              "RelativeToolTip": "Warsztat_2\\GeneretePDF.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-06T18:23:52.932Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "Delegate.CoreCLR.cs",
               "DocumentMoniker": "C:\\Users\\yaros\\AppData\\Local\\SourceServer\\8b2817de3c3a2e2ff120492580ae6ca91392c54c4d57047f92b838b72b2f1881\\src\\coreclr\\System.Private.CoreLib\\src\\System\\Delegate.CoreCLR.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\SourceServer\\8b2817de3c3a2e2ff120492580ae6ca91392c54c4d57047f92b838b72b2f1881\\src\\coreclr\\System.Private.CoreLib\\src\\System\\Delegate.CoreCLR.cs",
               "ToolTip": "C:\\Users\\yaros\\AppData\\Local\\SourceServer\\8b2817de3c3a2e2ff120492580ae6ca91392c54c4d57047f92b838b72b2f1881\\src\\coreclr\\System.Private.CoreLib\\src\\System\\Delegate.CoreCLR.cs",
               "RelativeToolTip": "..\\..\\..\\AppData\\Local\\SourceServer\\8b2817de3c3a2e2ff120492580ae6ca91392c54c4d57047f92b838b72b2f1881\\src\\coreclr\\System.Private.CoreLib\\src\\System\\Delegate.CoreCLR.cs",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAMwFsAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAmwFsAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T21:27:49.81Z"
+              "WhenOpened": "2025-01-17T20:18:25.028Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UC_ViewDataCar.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs",
-              "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs",
-              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs [Design]",
-              "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs [Design]",
+              "DocumentIndex": 2,
+              "Title": "SqlCmd.cs",
+              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\SqlCmd.cs",
+              "RelativeDocumentMoniker": "Warsztat_2\\SqlCmd.cs",
+              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\SqlCmd.cs",
+              "RelativeToolTip": "Warsztat_2\\SqlCmd.cs",
+              "ViewState": "AgIAABMCAAAAAAAAAAA5wCkCAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-06T19:41:42.93Z"
+              "WhenOpened": "2025-01-17T20:05:03.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GeneretePDF.cs",
+              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\GeneretePDF.cs",
+              "RelativeDocumentMoniker": "Warsztat_2\\GeneretePDF.cs",
+              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\GeneretePDF.cs",
+              "RelativeToolTip": "Warsztat_2\\GeneretePDF.cs",
+              "ViewState": "AgIAAJQAAAAAAAAAAAAowK0AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T18:20:58.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UC_Menu.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\Menu\\UC_Menu.cs",
+              "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\Menu\\UC_Menu.cs",
+              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\Menu\\UC_Menu.cs [Design]",
+              "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\Menu\\UC_Menu.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T17:55:21.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UC_Menu.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\Menu\\UC_Menu.Designer.cs",
+              "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\Menu\\UC_Menu.Designer.cs",
+              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\Menu\\UC_Menu.Designer.cs",
+              "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\Menu\\UC_Menu.Designer.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAewDsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T17:55:05.238Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UC_AddClient.cs",
+              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddClient.cs",
+              "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddClient.cs",
+              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddClient.cs",
+              "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddClient.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAewEYAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T17:13:59.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UC_AddClient.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddClient.cs",
+              "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddClient.cs",
+              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddClient.cs [Design]",
+              "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddClient.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T17:13:58.062Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\Form1.cs",
+              "RelativeDocumentMoniker": "Warsztat_2\\Form1.cs",
+              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\Form1.cs",
+              "RelativeToolTip": "Warsztat_2\\Form1.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAqwEoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T16:51:47.884Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\Form1.cs",
+              "RelativeDocumentMoniker": "Warsztat_2\\Form1.cs",
+              "ToolTip": "C:\\Users\\yaros\\Desktop\\Warsztat_2\\Warsztat_2\\Warsztat_2\\Form1.cs [Design]",
+              "RelativeToolTip": "Warsztat_2\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T16:45:57.915Z"
             }
           ]
         }
