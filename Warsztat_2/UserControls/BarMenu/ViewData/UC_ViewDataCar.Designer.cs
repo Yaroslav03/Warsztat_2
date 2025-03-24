@@ -29,11 +29,10 @@
             {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             label1 = new Label();
-            label3 = new Label();
             PathButton = new Button();
-            OrderButton = new Button();
-            button3 = new Button();
+            InsuranceButton = new Button();
             ViewActualData = new DataGridView();
             ID_Column = new DataGridViewTextBoxColumn();
             BtnDelete = new DataGridViewButtonColumn();
@@ -49,9 +48,7 @@
             WykonawaPracy_Column = new DataGridViewTextBoxColumn();
             KosztKońcowy_Column = new DataGridViewTextBoxColumn();
             VIN_Column = new DataGridViewTextBoxColumn();
-            panelDodatkowy = new Panel();
             ((System.ComponentModel.ISupportInitialize)ViewActualData).BeginInit();
-            panelDodatkowy.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -59,22 +56,11 @@
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.ForeColor = Color.Silver;
-            label1.Location = new Point(722, 12);
+            label1.Location = new Point(888, 2);
             label1.Name = "label1";
             label1.Size = new Size(50, 15);
             label1.TabIndex = 3;
             label1.Text = "Plik PDF";
-            // 
-            // label3
-            // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label3.AutoSize = true;
-            label3.ForeColor = Color.Silver;
-            label3.Location = new Point(868, 12);
-            label3.Name = "label3";
-            label3.Size = new Size(66, 15);
-            label3.TabIndex = 3;
-            label3.Text = "Stwórz PDF";
             // 
             // PathButton
             // 
@@ -83,7 +69,7 @@
             PathButton.FlatAppearance.BorderSize = 0;
             PathButton.FlatStyle = FlatStyle.Flat;
             PathButton.ForeColor = Color.LightGray;
-            PathButton.Location = new Point(725, 30);
+            PathButton.Location = new Point(752, 20);
             PathButton.Name = "PathButton";
             PathButton.Size = new Size(84, 22);
             PathButton.TabIndex = 15;
@@ -91,34 +77,20 @@
             PathButton.UseVisualStyleBackColor = false;
             PathButton.Click += PathButton_Click;
             // 
-            // OrderButton
+            // InsuranceButton
             // 
-            OrderButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            OrderButton.BackColor = Color.FromArgb(94, 148, 255);
-            OrderButton.FlatAppearance.BorderSize = 0;
-            OrderButton.FlatStyle = FlatStyle.Flat;
-            OrderButton.ForeColor = Color.LightGray;
-            OrderButton.Location = new Point(815, 30);
-            OrderButton.Name = "OrderButton";
-            OrderButton.Size = new Size(84, 22);
-            OrderButton.TabIndex = 15;
-            OrderButton.Text = "Zlecenie";
-            OrderButton.UseVisualStyleBackColor = false;
-            OrderButton.Click += OrderButton_Click;
-            // 
-            // button3
-            // 
-            button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button3.BackColor = Color.FromArgb(94, 148, 255);
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.ForeColor = Color.LightGray;
-            button3.Location = new Point(905, 31);
-            button3.Name = "button3";
-            button3.Size = new Size(84, 22);
-            button3.TabIndex = 15;
-            button3.Text = "Faktura";
-            button3.UseVisualStyleBackColor = false;
+            InsuranceButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            InsuranceButton.BackColor = Color.FromArgb(94, 148, 255);
+            InsuranceButton.FlatAppearance.BorderSize = 0;
+            InsuranceButton.FlatStyle = FlatStyle.Flat;
+            InsuranceButton.ForeColor = Color.LightGray;
+            InsuranceButton.Location = new Point(842, 20);
+            InsuranceButton.Name = "InsuranceButton";
+            InsuranceButton.Size = new Size(155, 22);
+            InsuranceButton.TabIndex = 15;
+            InsuranceButton.Text = "Umowa po  obu Stronach";
+            InsuranceButton.UseVisualStyleBackColor = false;
+            InsuranceButton.Click += InsuranceButton_Click;
             // 
             // ViewActualData
             // 
@@ -131,7 +103,7 @@
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.ForeColor = Color.WhiteSmoke;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
@@ -141,19 +113,26 @@
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.DimGray;
+            dataGridViewCellStyle2.ForeColor = Color.WhiteSmoke;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             ViewActualData.DefaultCellStyle = dataGridViewCellStyle2;
             ViewActualData.EnableHeadersVisualStyles = false;
-            ViewActualData.Location = new Point(3, 59);
+            ViewActualData.Location = new Point(3, 62);
             ViewActualData.Name = "ViewActualData";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            ViewActualData.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             ViewActualData.RowTemplate.Height = 25;
-            ViewActualData.Size = new Size(983, 548);
+            ViewActualData.Size = new Size(994, 550);
             ViewActualData.TabIndex = 30;
             ViewActualData.CellContentClick += ViewActualData_CellContentClick;
-            ViewActualData.MouseDoubleClick += ViewActualData_MouseDoubleClick;
             // 
             // ID_Column
             // 
@@ -238,45 +217,29 @@
             VIN_Column.HeaderText = "VIN";
             VIN_Column.Name = "VIN_Column";
             // 
-            // panelDodatkowy
-            // 
-            panelDodatkowy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelDodatkowy.BackColor = Color.FromArgb(64, 64, 70);
-            panelDodatkowy.BorderStyle = BorderStyle.FixedSingle;
-            panelDodatkowy.Controls.Add(ViewActualData);
-            panelDodatkowy.Controls.Add(button3);
-            panelDodatkowy.Controls.Add(label3);
-            panelDodatkowy.Controls.Add(OrderButton);
-            panelDodatkowy.Controls.Add(label1);
-            panelDodatkowy.Controls.Add(PathButton);
-            panelDodatkowy.ForeColor = Color.DimGray;
-            panelDodatkowy.Location = new Point(4, 3);
-            panelDodatkowy.Name = "panelDodatkowy";
-            panelDodatkowy.Size = new Size(993, 612);
-            panelDodatkowy.TabIndex = 31;
-            // 
             // UC_ViewDataCar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            Controls.Add(panelDodatkowy);
+            Controls.Add(ViewActualData);
+            Controls.Add(PathButton);
+            Controls.Add(InsuranceButton);
+            Controls.Add(label1);
+            ForeColor = Color.WhiteSmoke;
             Name = "UC_ViewDataCar";
             Size = new Size(1000, 615);
             Load += UC_ViewDataCar_Load;
             ((System.ComponentModel.ISupportInitialize)ViewActualData).EndInit();
-            panelDodatkowy.ResumeLayout(false);
-            panelDodatkowy.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
             }
 
         #endregion
 
         private Label label1;
-        private Label label3;
         private Button PathButton;
-        private Button OrderButton;
-        private Button button3;
+        private Button InsuranceButton;
         private DataGridView ViewActualData;
         private DataGridViewTextBoxColumn ID_Column;
         private DataGridViewButtonColumn BtnDelete;
@@ -292,6 +255,5 @@
         private DataGridViewTextBoxColumn WykonawaPracy_Column;
         private DataGridViewTextBoxColumn KosztKońcowy_Column;
         private DataGridViewTextBoxColumn VIN_Column;
-        private Panel panelDodatkowy;
         }
     }

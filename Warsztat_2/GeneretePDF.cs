@@ -1,38 +1,187 @@
-﻿using MigraDoc.DocumentObjectModel;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
-using System.ComponentModel;
-using System.Diagnostics;
 
-namespace Warsztat_2 {
-    internal class GeneretePDF {
+namespace Warsztat_2
+{
+    internal class GeneretePDF
+    {
 
         readonly private string directory = "pdf\\";
         Guid uniqueKey;
         public void Create(Guid key)
-            {
+        {
             uniqueKey = key;
             CreatePDF();
-            }
-
-        private async void CreatePDF()
-            {
-
+        }
+        public void GeneratePDFSecondType(Guid key)
+        {
+            uniqueKey = key;
+            ClientAgreeToPayIfRefused();
+        }
+        private async void ClientAgreeToPayIfRefused()
+        {
             #region ReadData
             var companyData = await SqlCmd.LoadDataAsync("WarsztatDB", "DaneFirmy");
             var clientData = await SqlCmd.LoadDataAsync("WarsztatDB", "Klienty", null, "UniqueKey", uniqueKey);
             var carData = await SqlCmd.LoadDataAsync("WarsztatDB", "Samochód", null, "UniqueKey", uniqueKey);
-            var repairCarData = await SqlCmd.LoadListAsync("WarsztatDB", "NaprawaSamochodu", "Opis, NumerCzęści, Cena, Ilość", "UniqueKey", uniqueKey);
-            var historyRepairData = await SqlCmd.LoadDataAsync("WarsztatDB", "HistoriaNapraw", null, "UniqueKey", uniqueKey);
-            var managementData = await SqlCmd.LoadDataAsync("WarsztatDB", "ZarządzanieZleceniem", null, "UniqueKey", uniqueKey);
-
             #endregion
             #region generetePDF
             Document document = new();
             Section section = document.AddSection();
             #endregion
             #region title
+            // Додавання тексту "Назва фірми"
+            Paragraph companyName = section.AddParagraph($"{companyData["NazwaFirmy"]}");
+            companyName.Format.Font.Size = 22;
+            companyName.Format.Font.Name = "Courier New"; // Задати назву шрифта
+            companyName.Format.Alignment = ParagraphAlignment.Center;
+            #endregion
+            #region TitleDocuments
+            Paragraph SecondTitle = section.AddParagraph($"UMOWA NA ŚWIADCZENIE USŁUG DIAGNOSTYKI \n Miejscowość {companyData["AdresFirmy"]}, dnia {DateTime.Now.ToString("D")}");
+            SecondTitle.Format.Font.Name = "Courier New"; // Задати назву шрифта
+            SecondTitle.Format.Font.Size = 10;
+            SecondTitle.Format.Alignment = ParagraphAlignment.Center;
+
+            #endregion
+            #region Section Client && Przedsiebiorca
+            #region set two data but in diferent sides
+            Table clientEntrepreneurTable = section.AddTable();
+            clientEntrepreneurTable.Borders.Width = 0; // Зменшуємо товщину рамки
+
+            // Додаємо дві колонки
+            Column clientColumn = clientEntrepreneurTable.AddColumn(Unit.FromCentimeter(10)); // Встановлюємо ширину у 7.5 сантиметра
+            Column EntrepreneurColumn = clientEntrepreneurTable.AddColumn(Unit.FromCentimeter(10)); // Встановлюємо ширину у 7.5 сантиметра
+
+            // Додаємо один рядок
+            Row infoRow = clientEntrepreneurTable.AddRow();
+            infoRow.Height = 50; // Встановлюємо висоту рядка (можна змінити за потребою)
+            #endregion
+            #region client
+            // Дані клієнта
+            Paragraph clientInfo = infoRow.Cells[0].AddParagraph();
+            clientInfo.Format.Font.Name = "Courier New"; // Задати назву шрифта
+            clientInfo.AddFormattedText("Klient:", TextFormat.Bold);
+
+            clientInfo.AddLineBreak();
+            clientInfo.AddText($"{clientData["Imię"]} {clientData["Nazwisko"]}, zwanny dalej zamawiającym.");
+
+            #endregion
+            #region car
+            // Дані автомобіля
+            Paragraph entrepreneurInfo = infoRow.Cells[1].AddParagraph();
+            entrepreneurInfo.Format.Font.Name = "Courier New"; // Задати назву шрифта
+            entrepreneurInfo.AddFormattedText("Wykonawca usługi", TextFormat.Bold);
+
+            entrepreneurInfo.AddLineBreak();
+            entrepreneurInfo.AddText($"{companyData["NazwaFirmy"]}, zwany dalej wykonawcą");
+
+            #endregion
+            #endregion
+            #region Treść
+            Paragraph textData = section.AddParagraph();
+            textData.Format.Font.Name = "Courier New"; // Задати назву шрифта
+            textData.AddLineBreak();
+            textData.AddText($"1. Przedmiot umowy\r\n" +
+                $"1.1. Wykonawca zobowiązuje się do przeprowadzenia diagnostyki systemów elektrycznych i elektronicznych pojazdu marki {carData["Marka"]}, numer VIN {carData["VIN"]}, numer rejestracji ______________, w celu wykrycia usterek a Zamawiający zobowiązuje się do zapłaty za wykonane usługi.\r\n\r\n2. Warunki świadczenia usług\r\n" +
+                $"2.1. Diagnostyka jest usługą płatną i podlega opłacie niezależnie od stopnia skomplikowania lub „prostoty” wykrytej usterki.\r\n" +
+                $"2.2. Koszt diagnostyki wynosi ____ zł.\r\n" +
+                $"2.3. Płatność następuje po zakończeniu diagnostyki.\r\n\r\n" +
+                $"3. Obowiązki Stron\r\n" +
+                $"3.1. Wykonawca zobowiązuje się:\r\n\r\nPrzeprowadzić diagnostykę zgodnie z profesjonalnymi standardami;\r\n\r\nPoinformować Zamawiającego o wynikach przeprowadzonych prac.\r\n\r\n\r\n" +
+                $"3.2. Zamawiający zobowiązuje się:\r\n\r\nUdostępnić pojazd do przeprowadzenia diagnostyki;\r\n\r\nDokonać płatności za usługi Wykonawcy zgodnie z warunkami niniejszej umowy.\r\n\r\n\r\n" +
+                $"4. Dodatkowe warunki\r\n" +
+                $"4.1. Wykonawca nie ponosi odpowiedzialności za nowe usterki, które pojawiły się po przeprowadzeniu diagnostyki, jeśli nie są one związane z wykonanymi usługami.\r\n" +
+                $"4.2. Zamawiający potwierdza, że rozumie złożoność procesu diagnostyki i akceptuje koszt usługi.\r\n\r\n" +
+                $"5. Podpisy Stron\r\nPodpisując niniejszą umowę, Zamawiający potwierdza zgodę na wykonanie usług oraz zobowiązuje się do ich opłacenia.");
+
+            #endregion
+            #region signature
+            // Створюємо прямокутник
+            // Create a TextFrame for the page header
+            section.AddParagraph();
+            Table table0 = section.AddTable();
+            table0.Borders.Width = 0;
+
+            Column column0 = table0.AddColumn(Unit.FromCentimeter(10));
+            Column column1 = table0.AddColumn(Unit.FromCentimeter(10));
+
+
+            Row row0 = table0.AddRow();
+
+            row0.Height = 100;
+            DrawReactangle(section, row0, 0, "Podpis Klienta");//Прямокутник по лівій стороні
+            DrawReactangle(section, row0, 1, "Pieczątka Firmy");//Прямокутник по правій стороні
+            #endregion
+            #region save pdf
+            // Збереження документу
+
+            PdfDocumentRenderer renderer = new()
+            {
+                Document = document
+            };
+            renderer.RenderDocument();
+            if (!Directory.Exists(directory + carData["VIN"].ToString())) // string path = directory + vin;           rivate string directory = "pdf\\";
+            {
+                Directory.CreateDirectory(directory + carData["VIN"].ToString());
+            }
+            renderer.PdfDocument.Save($"{directory + carData["VIN"].ToString()}\\PDF_Umowa_Po_Obu_Stron_Zgody{DateTime.Now.ToString("d_M__yyyy")}.pdf");
+;
+
+            string path = Path.Combine($"{directory + carData["VIN"].ToString()}\\PDF_Umowa_Po_Obu_Stron_Zgody{DateTime.Now.ToString("d_M__yyyy")}.pdf");
+
+            try // Спосіб 1: відкрити PDF через асоційовану програму Windows (якщо встановлена)
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = path,
+                    UseShellExecute = true,
+                    Verb = "open"
+                });
+            }
+            catch (Win32Exception ex)
+            {
+                // У більшості випадків це означає, що Windows не знає, чим відкрити PDF
+                // Тому можна спробувати відкрити через браузер (Edge, Chrome, Opera).
+
+                MessageBox.Show("Nie znaleziono domyślnej aplikacji do plików PDF. Spróbujemy otworzyć w przeglądarce...",
+                    "Brak aplikacji PDF", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Спосіб 2: fallback на Microsoft Edge (якщо встановлений)
+                // або інший браузер — вирішуйте, який хочете використовувати.
+                try
+                {
+                    Process.Start("msedge.exe", $"\"{path}\"");
+                }
+                catch (Exception ex2)
+                {
+                    MessageBox.Show($"Niestety nie udało się otworzyć w przeglądarce (Edge). Błąd: {ex2.Message}",
+                        "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            #endregion
+        }
+
+        private async void CreatePDF()
+        {
+
+            #region ReadData
+            var companyData = await SqlCmd.LoadDataAsync("WarsztatDB", "DaneFirmy");
+            var clientData = await SqlCmd.LoadDataAsync("Archive", "Klienty", null, "UniqueKey", uniqueKey);
+            var carData = await SqlCmd.LoadDataAsync("Archive", "Samochód", null, "UniqueKey", uniqueKey);
+            var repairCarData = await SqlCmd.LoadListAsync("Archive", "NaprawaSamochodu", "Opis, NumerCzęści, Cena, Ilość", "UniqueKey", uniqueKey);
+            var historyRepairData = await SqlCmd.LoadDataAsync("Archive", "HistoriaNapraw", null, "UniqueKey", uniqueKey);
+            var managementData = await SqlCmd.LoadDataAsync("Archive", "ZarządzanieZleceniem", null, "UniqueKey", uniqueKey);
+
+            #endregion
+            #region generetePDF
+            Document document = new();
+            Section section = document.AddSection();
+            #endregion
+            #region title Company
             // Додавання тексту "Назва фірми"
             Paragraph companyName = section.AddParagraph($"{companyData["NazwaFirmy"]}");
             companyName.Format.Font.Size = 22;
@@ -82,11 +231,11 @@ namespace Warsztat_2 {
 
             string[] CarTable = { "Marka", "Model", "Silnik", "RokProdukcji", "VIN" };
             string[] CarData = { "Marka", "Model", "Silnik", "Rok produkcji", "Numer nadwozia" };
-            for(byte x = 0;x < CarTable.Length;x++)
-                {
+            for (byte x = 0; x < CarTable.Length; x++)
+            {
                 carInfo.AddLineBreak();
                 carInfo.AddText($"{CarData[x]}: {carData[CarTable[x]]}");
-                }
+            }
             #endregion
             #endregion
 
@@ -106,20 +255,20 @@ namespace Warsztat_2 {
             historyTable.Format.Alignment = ParagraphAlignment.Center;
 
             // Додаємо колонки до таблиці
-            for(byte i = 0;i < 6;i++)
-                {
+            for (byte i = 0; i < 6; i++)
+            {
                 Column column = historyTable.AddColumn();
                 column.Width = 80; // Зменшуємо ширину колонок
-                if(i == 5)
+                if (i == 5)
                     column.Width = 120;
-                }
+            }
 
             Row headerRow = historyTable.AddRow();
             headerRow.Format.Font.Name = "Courier New"; // Задати назву шрифта
             headerRow.HeadingFormat = true;
             string[] historyWriteTable = { "Data przyjęcia", "Numer Rejestracji", "Przebieg", "Zlecenie", "Diagnostyka", "Naprawa" };
 
-            for(byte x = 0;x < historyWriteTable.Length;x++)
+            for (byte x = 0; x < historyWriteTable.Length; x++)
                 headerRow.Cells[x].AddParagraph(historyWriteTable[x]);
 
             #endregion
@@ -128,7 +277,7 @@ namespace Warsztat_2 {
             dataRow.Format.Font.Name = "Courier New"; // Задати назву шрифта
             dataRow.Format.Font.Size = 10;
             string[] historyRepairTable = { "DataPrzyjęcia", "NrRejestracji", "Przebieg", "Zlecenie", "Diagnostyka", "Naprawa" };
-            for(byte x = 0;x <= 5;x++)
+            for (byte x = 0; x <= 5; x++)
                 dataRow.Cells[x].AddParagraph($"{historyRepairData[historyRepairTable[x]]}");
 
             #endregion                                 // Додавання лінії для підпису клієнта
@@ -148,13 +297,13 @@ namespace Warsztat_2 {
 
             // Додаємо колонки до таблиці
 
-            for(byte i = 0;i < 4;i++)
-                {
+            for (byte i = 0; i < 4; i++)
+            {
                 Column columnRepair = RepairTable.AddColumn();
                 columnRepair.Width = 200; // Зменшуємо ширину колонок
-                if(i > 1)
+                if (i > 1)
                     columnRepair.Width = 60;
-                }
+            }
 
             Row rowRepair = RepairTable.AddRow();
 
@@ -162,16 +311,16 @@ namespace Warsztat_2 {
             rowRepair.Format.Font.Name = "Courier New"; // Задати назву шрифта
 
             string[] RepairWriteTable = { "Opis", "Numer części", "Cena", "Ilość" };
-            for(byte x = 0;x < RepairWriteTable.Length;x++)
-                {
+            for (byte x = 0; x < RepairWriteTable.Length; x++)
+            {
                 rowRepair.Cells[x].AddParagraph(RepairWriteTable[x]);
-                }
+            }
 
 
             #endregion
             #region add repair data to table
-            foreach(var repairItem in repairCarData)
-                {
+            foreach (var repairItem in repairCarData)
+            {
                 Row dataRowRepair = RepairTable.AddRow();
                 dataRowRepair.Format.Font.Name = "Courier New"; // Задати назву шрифта
                 dataRowRepair.Format.Font.Size = 10;
@@ -180,7 +329,7 @@ namespace Warsztat_2 {
                 dataRowRepair.Cells[1].AddParagraph(repairItem.ContainsKey("NumerCzęści") ? repairItem["NumerCzęści"].ToString() : "");
                 dataRowRepair.Cells[2].AddParagraph(repairItem.ContainsKey("Cena") ? repairItem["Cena"].ToString() : "");
                 dataRowRepair.Cells[3].AddParagraph(repairItem.ContainsKey("Ilość") ? repairItem["Ilość"].ToString() : "");
-                }
+            }
             Paragraph sumPriceRepair = section.AddParagraph($"Łączna cena: {managementData["KosztCzęści"]}");
             sumPriceRepair.Format.Font.Name = "Courier New"; // Задати назву шрифта
             sumPriceRepair.Format.Font.Size = 10;
@@ -209,11 +358,11 @@ namespace Warsztat_2 {
 
             orderManagementInfo.AddLineBreak();
             orderManagementInfo.AddText($"Przyjęty: {historyRepairData["DataPrzyjęcia"]}");
-            for(byte x = 0;x < data0.Length;x++)
-                {
+            for (byte x = 0; x < data0.Length; x++)
+            {
                 orderManagementInfo.AddLineBreak();
                 orderManagementInfo.AddText($"{data0[x]}: {managementData[data1[x]]}");
-                }
+            }
             #endregion
             #region signature
             // Створюємо прямокутник
@@ -236,31 +385,31 @@ namespace Warsztat_2 {
             // Збереження документу
 
             PdfDocumentRenderer renderer = new()
-                {
+            {
                 Document = document
-                };
+            };
             renderer.RenderDocument();
-            if(!Directory.Exists(directory + carData["VIN"].ToString())) // string path = directory + vin;           rivate string directory = "pdf\\";
-                {
+            if (!Directory.Exists(directory + carData["VIN"].ToString())) // string path = directory + vin;           rivate string directory = "pdf\\";
+            {
                 Directory.CreateDirectory(directory + carData["VIN"].ToString());
-                }
-            renderer.PdfDocument.Save($"{directory + carData["VIN"].ToString()}\\PDF_{historyRepairData["DataPrzyjęcia"]}.pdf");
+            }
+            renderer.PdfDocument.Save($"{directory + carData["VIN"].ToString()}\\Zlecenie_{historyRepairData["DataPrzyjęcia"]}.pdf");
 
             //Process.Start($"{directory + carData["VIN"].ToString()}\\PDF_{historyRepairData["DataPrzyjęcia"]}.pdf");
 
-            string path = Path.Combine($"{directory + carData["VIN"].ToString()}\\PDF_{historyRepairData["DataPrzyjęcia"]}.pdf");
+            string path = Path.Combine($"{directory + carData["VIN"].ToString()}\\Zlecenie_{historyRepairData["DataPrzyjęcia"]}.pdf");
 
             try // Спосіб 1: відкрити PDF через асоційовану програму Windows (якщо встановлена)
-                {
+            {
                 Process.Start(new ProcessStartInfo
-                    {
+                {
                     FileName = path,
                     UseShellExecute = true,
                     Verb = "open"
-                    });
-                }
-            catch(Win32Exception ex)
-                {
+                });
+            }
+            catch (Win32Exception ex)
+            {
                 // У більшості випадків це означає, що Windows не знає, чим відкрити PDF
                 // Тому можна спробувати відкрити через браузер (Edge, Chrome, Opera).
 
@@ -270,19 +419,20 @@ namespace Warsztat_2 {
                 // Спосіб 2: fallback на Microsoft Edge (якщо встановлений)
                 // або інший браузер — вирішуйте, який хочете використовувати.
                 try
-                    {
+                {
                     Process.Start("msedge.exe", $"\"{path}\"");
-                    }
-                catch(Exception ex2)
-                    {
+                }
+                catch (Exception ex2)
+                {
                     MessageBox.Show($"Niestety nie udało się otworzyć w przeglądarce (Edge). Błąd: {ex2.Message}",
                         "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
-            #endregion
             }
+            #endregion
+        }
+
         private void DrawReactangle(Section section, Row row, byte num, string text)
-            {
+        {
             TextFrame footerFrame1 = row.Cells[num].AddTextFrame();
 
             Paragraph tableData1 = row.Cells[num].AddParagraph();
@@ -296,6 +446,6 @@ namespace Warsztat_2 {
             footerFrame1.LineFormat.Width = 1; // Ширина межі
             footerFrame1.Left = 0; // Позиція по лівому краю
             footerFrame1.Top = section.PageSetup.PageHeight; // Позиція по верхньому краю
-            }
         }
     }
+}

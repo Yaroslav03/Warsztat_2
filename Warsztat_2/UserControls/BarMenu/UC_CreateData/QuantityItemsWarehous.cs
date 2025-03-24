@@ -1,5 +1,7 @@
-﻿namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
-    public partial class QuantityItemsWarehous :Form {
+﻿namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
+{
+    public partial class QuantityItemsWarehous : Form
+    {
         private List<string> transferData = new();
         private string id;
         Guid uniqueKey;
@@ -7,62 +9,62 @@
 
 
         public QuantityItemsWarehous()
-            {
+        {
             InitializeComponent();
-            }
+        }
         #region Event
         private void SaveButton_Click(object sender, EventArgs e)
-            {
+        {
             byte quantity = (byte)QuantityNumericUpDown.Value;
-            if(quantity == Convert.ToUInt32(transferData[5]))
-                {
+            if (quantity == Convert.ToUInt32(transferData[5]))
+            {
                 TransferAllData();
-                }
+            }
 
-            else if(quantity < Convert.ToByte(transferData[5]))
-                {
+            else if (quantity < Convert.ToByte(transferData[5]))
+            {
 
                 TransferDataWithMines(quantity);
-                }
+            }
             MessageBox.Show("Udało się");
             this.Close();
-            }
+        }
         private void QuantityNumericUpDown_ValueChanged(object sender, EventArgs e)
-            {
+        {
             QuantityNumericUpDown.Maximum = Convert.ToDecimal(transferData[4]);
-            }
+        }
         private void CancelButton_Click(object sender, EventArgs e)
-            {
+        {
             this.Close();
-            }
+        }
         #endregion
 
         public void TransferListData(List<string> tranferListData, Guid key)
-            {
+        {
             transferData = tranferListData;
             uniqueKey = key;
 
-            }
+        }
         private Dictionary<string, object> GetValue()
-            {
+        {
             var repairCarData = new Dictionary<string, object>();
 
-            for(byte i = 0;i < transferData.Count;i++)
-                {
+            for (byte i = 0; i < transferData.Count; i++)
+            {
                 repairCarData.Add(values[i], transferData[i]);
-                }
+            }
             repairCarData.Add("UniqueKey", uniqueKey);
             return repairCarData;
-            }
+        }
         private Dictionary<string, object> GetValueID()
-            {
+        {
             return new Dictionary<string, object>
                 {
                     {"ID", id }
                 };
-            }
+        }
         private async void TransferAllData()
-            {
+        {
             var repairCarData = GetValue();
 
             var repairCarID = GetValueID();
@@ -70,9 +72,9 @@
             await SqlCmd.AddRecordAsync("WarsztatDB", "NaprawaSamochodu", repairCarData);
 
             await SqlCmd.DeleteRecordAsync("WarsztatDB", "Magazyn", "ID=@ID", repairCarID);
-            }
+        }
         private async void TransferDataWithMines(byte valueQuantity)
-            {
+        {
             byte maxQuantityNumber = Convert.ToByte(transferData[5]);
             decimal price = Convert.ToDecimal(transferData[4]);
 
@@ -93,10 +95,10 @@
 
             await SqlCmd.UpdateRecordAsync("Magazyn", transfertDataWithMines, "ID=@ID", transferDataID);
             await SqlCmd.AddRecordAsync("WarsztatDB", "NaprawaSamochodu", repairCarData);
-            }
+        }
 
         private void QuantityItemsWarehous_Load(object sender, EventArgs e)
-            {
+        {
             id = transferData[0];
             transferData.RemoveAt(0);
             /*            if(byte.TryParse(, out byte maxQuantity))
@@ -106,6 +108,6 @@
                             }*/
             /*            byte maxValue = Convert.ToByte(transferData[7]);
                         QuantityNumericUpDown.Maximum = maxValue;*/
-            }
         }
     }
+}
