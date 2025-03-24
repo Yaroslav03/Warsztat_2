@@ -1,19 +1,21 @@
 ﻿using Warsztat_2.Models;
 
-namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
-    public partial class WarehouseAddEdit :Form {
+namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
+{
+    public partial class WarehouseAddEdit : Form
+    {
         WarehouseModel warehouseModel = new WarehouseModel();
         private readonly SqlCmd sqlCmd = new();
 
         uint id;
 
         public WarehouseAddEdit()
-            {
+        {
             InitializeComponent();
-            }
+        }
 
         private async void AddEditWarehouseButton_Click(object sender, EventArgs e)
-            {
+        {
             var data = new Dictionary<string, object>
                 {
                     {"Typ",  CategoryListBox.SelectedItem?.ToString() ?? "Brak"},
@@ -30,25 +32,25 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
                 };
             string[] magazyn = { $"{data["Nazwa"].ToString()}", $"{data["Opis"].ToString()}", $"{data["NumerCzęści"].ToString()}" };
 
-            if(AddEditWarehouseButton.Text == "Zapisz")
-                {
+            if (AddEditWarehouseButton.Text == "Zapisz")
+            {
                 await SqlCmd.AddRecordAsync("WarsztatDB", "Magazyn", data);
                 MessageBox.Show($"{magazyn[0]} ({magazyn[1]}) o numerze [{magazyn[2]}] został dodany do magazynu, kliknij OK żeby dodać kolejny", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 magazyn = null;
                 warehouseModel.Clear();
                 return;
-                }
+            }
             await SqlCmd.UpdateRecordAsync("Magazyn", data, "ID=@ID", dataId);
             warehouseModel.Clear();
-            }
+        }
 
         public void SetDataEdit(WarehouseModel Data)
-            {//сетування даних при переході між класами
+        {//сетування даних при переході між класами
             warehouseModel = Data;
 
-            }
+        }
         public void AutocompleteData()
-            {
+        {
             CategoryListBox.SelectedItem = warehouseModel.Type;
             NumberPartTextBox.Text = warehouseModel.PartNumber;
             NameTextBox.Text = warehouseModel.Name;
@@ -56,42 +58,42 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
             PriceNumericUpDown.Value = (decimal)warehouseModel.Price;
             QuantityNumericUpDown.Value = (byte)warehouseModel.Quantity;
             label1.Text = warehouseModel.Sum;
-            }
+        }
         public void ClearTextBox()
-            {
+        {
             NumberPartTextBox.Text = NameTextBox.Text = DescriptionTextBox.Text = String.Empty;
             PriceNumericUpDown.Value = 0;
             QuantityNumericUpDown.Value = 1;
             label1.Text = "0";
-            }
+        }
 
         private void PriceNumericUpDown_ValueChanged(object sender, EventArgs e)
-            {
+        {
             Sum();
-            }
+        }
 
         private void QuantityNumericUpDown_ValueChanged(object sender, EventArgs e)
-            {
+        {
             Sum();
-            }
+        }
         private void Sum()
-            {
+        {
             decimal sum = PriceNumericUpDown.Value * QuantityNumericUpDown.Value;
             label1.Text = sum.ToString();
-            }
+        }
 
         private async void WarehouseAddEdit_Load(object sender, EventArgs e)
-            {
+        {
             await SqlCmd.ReadRecordListBoxAsync(CategoryListBox, "SELECT Typ FROM Kategorie", "Typ");
-            if(warehouseModel.Id == 0)
-                {
+            if (warehouseModel.Id == 0)
+            {
                 AddEditWarehouseButton.Text = "Zapisz";
-                }
-            else if(warehouseModel.Id > 0)
-                {
-                AddEditWarehouseButton.Text = "Odśwież";
-                }
-
             }
+            else if (warehouseModel.Id > 0)
+            {
+                AddEditWarehouseButton.Text = "Odśwież";
+            }
+
         }
     }
+}

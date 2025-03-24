@@ -27,26 +27,26 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-            {
+        {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             ViewActualData = new DataGridView();
-            VIN_Column = new DataGridViewTextBoxColumn();
-            KosztKońcowy_Column = new DataGridViewTextBoxColumn();
-            WykonawaPracy_Column = new DataGridViewTextBoxColumn();
-            Column7 = new DataGridViewTextBoxColumn();
-            Model_Column = new DataGridViewTextBoxColumn();
-            Marka_Column = new DataGridViewTextBoxColumn();
-            Telefon_Column = new DataGridViewTextBoxColumn();
-            Nazwisko_Column = new DataGridViewTextBoxColumn();
-            Imię_Column = new DataGridViewTextBoxColumn();
-            DataZamknięciaZlecenia_Column = new DataGridViewTextBoxColumn();
-            DataOczekiwaniaOdbioru_Column = new DataGridViewTextBoxColumn();
-            DataPrzyjęcia_Column = new DataGridViewTextBoxColumn();
-            BtnRecover = new DataGridViewButtonColumn();
-            BtnDelete = new DataGridViewButtonColumn();
             ID_Column = new DataGridViewTextBoxColumn();
+            BtnDelete = new DataGridViewButtonColumn();
+            BtnRecover = new DataGridViewButtonColumn();
+            DataPrzyjęcia_Column = new DataGridViewTextBoxColumn();
+            DataZamknięciaZlecenia_Column = new DataGridViewTextBoxColumn();
+            Imię_Column = new DataGridViewTextBoxColumn();
+            Nazwisko_Column = new DataGridViewTextBoxColumn();
+            Telefon_Column = new DataGridViewTextBoxColumn();
+            Marka_Column = new DataGridViewTextBoxColumn();
+            Model_Column = new DataGridViewTextBoxColumn();
+            Column7 = new DataGridViewTextBoxColumn();
+            WykonawaPracy_Column = new DataGridViewTextBoxColumn();
+            KosztKońcowy_Column = new DataGridViewTextBoxColumn();
+            VIN_Column = new DataGridViewTextBoxColumn();
             panelDodatkowy = new Panel();
+            OrderButton = new Button();
             ((System.ComponentModel.ISupportInitialize)ViewActualData).BeginInit();
             panelDodatkowy.SuspendLayout();
             SuspendLayout();
@@ -68,7 +68,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ViewActualData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewActualData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewActualData.Columns.AddRange(new DataGridViewColumn[] { ID_Column, BtnDelete, BtnRecover, DataPrzyjęcia_Column, DataOczekiwaniaOdbioru_Column, DataZamknięciaZlecenia_Column, Imię_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Column7, WykonawaPracy_Column, KosztKońcowy_Column, VIN_Column });
+            ViewActualData.Columns.AddRange(new DataGridViewColumn[] { ID_Column, BtnDelete, BtnRecover, DataPrzyjęcia_Column, DataZamknięciaZlecenia_Column, Imię_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Column7, WykonawaPracy_Column, KosztKońcowy_Column, VIN_Column });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -85,88 +85,6 @@
             ViewActualData.TabIndex = 38;
             ViewActualData.CellContentClick += ViewActualData_CellContentClick;
             // 
-            // VIN_Column
-            // 
-            VIN_Column.DataPropertyName = "VIN";
-            VIN_Column.HeaderText = "VIN";
-            VIN_Column.Name = "VIN_Column";
-            // 
-            // KosztKońcowy_Column
-            // 
-            KosztKońcowy_Column.DataPropertyName = "KosztKońcowy";
-            KosztKońcowy_Column.HeaderText = "Koszt Końcowy";
-            KosztKońcowy_Column.Name = "KosztKońcowy_Column";
-            // 
-            // WykonawaPracy_Column
-            // 
-            WykonawaPracy_Column.DataPropertyName = "WykonawcaPracy";
-            WykonawaPracy_Column.HeaderText = "Wykonawca Pracy";
-            WykonawaPracy_Column.Name = "WykonawaPracy_Column";
-            // 
-            // Column7
-            // 
-            Column7.DataPropertyName = "Zlecenie";
-            Column7.HeaderText = "Zlecenie";
-            Column7.Name = "Column7";
-            // 
-            // Model_Column
-            // 
-            Model_Column.DataPropertyName = "Model";
-            Model_Column.HeaderText = "Model";
-            Model_Column.Name = "Model_Column";
-            // 
-            // Marka_Column
-            // 
-            Marka_Column.DataPropertyName = "Marka";
-            Marka_Column.HeaderText = "Marka";
-            Marka_Column.Name = "Marka_Column";
-            // 
-            // Telefon_Column
-            // 
-            Telefon_Column.DataPropertyName = "NrTelefonu";
-            Telefon_Column.HeaderText = "Nr. telefonu";
-            Telefon_Column.Name = "Telefon_Column";
-            // 
-            // Nazwisko_Column
-            // 
-            Nazwisko_Column.DataPropertyName = "Nazwisko";
-            Nazwisko_Column.HeaderText = "Nazwisko Klienta";
-            Nazwisko_Column.Name = "Nazwisko_Column";
-            // 
-            // Imię_Column
-            // 
-            Imię_Column.DataPropertyName = "Imię";
-            Imię_Column.HeaderText = "Imię Klienta";
-            Imię_Column.Name = "Imię_Column";
-            // 
-            // DataZamknięciaZlecenia_Column
-            // 
-            DataZamknięciaZlecenia_Column.DataPropertyName = "DataZamknięciaZlecenia";
-            DataZamknięciaZlecenia_Column.HeaderText = "Data Zamknięcia Zlecenia";
-            DataZamknięciaZlecenia_Column.Name = "DataZamknięciaZlecenia_Column";
-            // 
-            // DataOczekiwaniaOdbioru_Column
-            // 
-            DataOczekiwaniaOdbioru_Column.DataPropertyName = "DataOczekiwaniaOdbioru";
-            DataOczekiwaniaOdbioru_Column.HeaderText = "Data oczekiwania odbioru";
-            DataOczekiwaniaOdbioru_Column.Name = "DataOczekiwaniaOdbioru_Column";
-            // 
-            // DataPrzyjęcia_Column
-            // 
-            DataPrzyjęcia_Column.DataPropertyName = "DataPrzyjęcia";
-            DataPrzyjęcia_Column.HeaderText = "Data Przyjęcia";
-            DataPrzyjęcia_Column.Name = "DataPrzyjęcia_Column";
-            // 
-            // BtnRecover
-            // 
-            BtnRecover.HeaderText = "Przywróć zlecenie";
-            BtnRecover.Name = "BtnRecover";
-            // 
-            // BtnDelete
-            // 
-            BtnDelete.HeaderText = "Usuń zgłoszenie";
-            BtnDelete.Name = "BtnDelete";
-            // 
             // ID_Column
             // 
             ID_Column.DataPropertyName = "ID";
@@ -174,17 +92,109 @@
             ID_Column.Name = "ID_Column";
             ID_Column.Visible = false;
             // 
+            // BtnDelete
+            // 
+            BtnDelete.HeaderText = "Usuń zgłoszenie";
+            BtnDelete.Name = "BtnDelete";
+            // 
+            // BtnRecover
+            // 
+            BtnRecover.HeaderText = "Przywróć zlecenie";
+            BtnRecover.Name = "BtnRecover";
+            // 
+            // DataPrzyjęcia_Column
+            // 
+            DataPrzyjęcia_Column.DataPropertyName = "DataPrzyjęcia";
+            DataPrzyjęcia_Column.HeaderText = "Data Przyjęcia";
+            DataPrzyjęcia_Column.Name = "DataPrzyjęcia_Column";
+            // 
+            // DataZamknięciaZlecenia_Column
+            // 
+            DataZamknięciaZlecenia_Column.DataPropertyName = "DataZamknięciaZlecenia";
+            DataZamknięciaZlecenia_Column.HeaderText = "Data Zamknięcia Zlecenia";
+            DataZamknięciaZlecenia_Column.Name = "DataZamknięciaZlecenia_Column";
+            // 
+            // Imię_Column
+            // 
+            Imię_Column.DataPropertyName = "Imię";
+            Imię_Column.HeaderText = "Imię Klienta";
+            Imię_Column.Name = "Imię_Column";
+            // 
+            // Nazwisko_Column
+            // 
+            Nazwisko_Column.DataPropertyName = "Nazwisko";
+            Nazwisko_Column.HeaderText = "Nazwisko Klienta";
+            Nazwisko_Column.Name = "Nazwisko_Column";
+            // 
+            // Telefon_Column
+            // 
+            Telefon_Column.DataPropertyName = "NrTelefonu";
+            Telefon_Column.HeaderText = "Nr. telefonu";
+            Telefon_Column.Name = "Telefon_Column";
+            // 
+            // Marka_Column
+            // 
+            Marka_Column.DataPropertyName = "Marka";
+            Marka_Column.HeaderText = "Marka";
+            Marka_Column.Name = "Marka_Column";
+            // 
+            // Model_Column
+            // 
+            Model_Column.DataPropertyName = "Model";
+            Model_Column.HeaderText = "Model";
+            Model_Column.Name = "Model_Column";
+            // 
+            // Column7
+            // 
+            Column7.DataPropertyName = "Zlecenie";
+            Column7.HeaderText = "Zlecenie";
+            Column7.Name = "Column7";
+            // 
+            // WykonawaPracy_Column
+            // 
+            WykonawaPracy_Column.DataPropertyName = "WykonawcaPracy";
+            WykonawaPracy_Column.HeaderText = "Wykonawca Pracy";
+            WykonawaPracy_Column.Name = "WykonawaPracy_Column";
+            // 
+            // KosztKońcowy_Column
+            // 
+            KosztKońcowy_Column.DataPropertyName = "KosztKońcowy";
+            KosztKońcowy_Column.HeaderText = "Koszt Końcowy";
+            KosztKońcowy_Column.Name = "KosztKońcowy_Column";
+            // 
+            // VIN_Column
+            // 
+            VIN_Column.DataPropertyName = "VIN";
+            VIN_Column.HeaderText = "VIN";
+            VIN_Column.Name = "VIN_Column";
+            // 
             // panelDodatkowy
             // 
             panelDodatkowy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelDodatkowy.BackColor = Color.FromArgb(64, 64, 70);
             panelDodatkowy.BorderStyle = BorderStyle.FixedSingle;
+            panelDodatkowy.Controls.Add(OrderButton);
             panelDodatkowy.Controls.Add(ViewActualData);
             panelDodatkowy.ForeColor = Color.DimGray;
             panelDodatkowy.Location = new Point(3, 3);
             panelDodatkowy.Name = "panelDodatkowy";
             panelDodatkowy.Size = new Size(1037, 609);
             panelDodatkowy.TabIndex = 39;
+            // 
+            // OrderButton
+            // 
+            OrderButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            OrderButton.BackColor = Color.FromArgb(94, 148, 255);
+            OrderButton.FlatAppearance.BorderSize = 0;
+            OrderButton.FlatStyle = FlatStyle.Flat;
+            OrderButton.ForeColor = Color.LightGray;
+            OrderButton.Location = new Point(877, 36);
+            OrderButton.Name = "OrderButton";
+            OrderButton.Size = new Size(155, 22);
+            OrderButton.TabIndex = 39;
+            OrderButton.Text = "Zlecenie";
+            OrderButton.UseVisualStyleBackColor = false;
+            OrderButton.Click += OrderButton_Click;
             // 
             // UC_Archive
             // 
@@ -198,16 +208,16 @@
             ((System.ComponentModel.ISupportInitialize)ViewActualData).EndInit();
             panelDodatkowy.ResumeLayout(false);
             ResumeLayout(false);
-            }
+        }
 
         #endregion
 
         private DataGridView ViewActualData;
+        private Panel panelDodatkowy;
         private DataGridViewTextBoxColumn ID_Column;
         private DataGridViewButtonColumn BtnDelete;
         private DataGridViewButtonColumn BtnRecover;
         private DataGridViewTextBoxColumn DataPrzyjęcia_Column;
-        private DataGridViewTextBoxColumn DataOczekiwaniaOdbioru_Column;
         private DataGridViewTextBoxColumn DataZamknięciaZlecenia_Column;
         private DataGridViewTextBoxColumn Imię_Column;
         private DataGridViewTextBoxColumn Nazwisko_Column;
@@ -218,6 +228,6 @@
         private DataGridViewTextBoxColumn WykonawaPracy_Column;
         private DataGridViewTextBoxColumn KosztKońcowy_Column;
         private DataGridViewTextBoxColumn VIN_Column;
-        private Panel panelDodatkowy;
-        }
+        private Button OrderButton;
+    }
 }

@@ -27,7 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-            {
+        {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             ScheduleCarAddButton = new Button();
@@ -202,7 +202,7 @@
             ViewScheduleCarButton.Location = new Point(1, 3);
             ViewScheduleCarButton.Name = "ViewScheduleCarButton";
             ViewScheduleCarButton.Size = new Size(291, 32);
-            ViewScheduleCarButton.TabIndex = 31;
+            ViewScheduleCarButton.TabIndex = 0;
             ViewScheduleCarButton.Text = "przegłąd zaplanowanych samochód";
             ViewScheduleCarButton.UseVisualStyleBackColor = false;
             ViewScheduleCarButton.Click += ViewScheduleCarButton_Click;
@@ -400,7 +400,7 @@
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.ForeColor = Color.WhiteSmoke;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
@@ -566,7 +566,7 @@
             panel2.MinimumSize = new Size(923, 216);
             panel2.Name = "panel2";
             panel2.Size = new Size(1001, 216);
-            panel2.TabIndex = 31;
+            panel2.TabIndex = 1;
             // 
             // TelephonTextBox
             // 
@@ -603,7 +603,7 @@
             EditData.Location = new Point(1, 45);
             EditData.Name = "EditData";
             EditData.Size = new Size(1007, 595);
-            EditData.TabIndex = 29;
+            EditData.TabIndex = 0;
             // 
             // UC_ScheduleCar
             // 
@@ -627,7 +627,7 @@
             EditData.ResumeLayout(false);
             EditData.PerformLayout();
             ResumeLayout(false);
-            }
+        }
 
         #endregion
 
