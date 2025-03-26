@@ -167,7 +167,6 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 Form_AddRepair addRepair = new();
                 addRepair.TransferUniqueKey(uniqueKey);
                 addRepair.ShowDialog();
-                MessageBox.Show($"SelectPartButton_Click->{uniqueKey}");
                 }
             }
         private void VINTextBox_TextChanged(object sender, EventArgs e)
@@ -210,6 +209,12 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             ScheduleTimePicker.Text = historyData["DataPrzyjęcia"].ToString();
             ///
             SaveButton.Text = "Odśwież";
+            //
+            var searchKey = new Dictionary<string, object>
+                {
+                    {"UniqueKey", uniqueKey }
+                };
+            await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
             }
         }
     };

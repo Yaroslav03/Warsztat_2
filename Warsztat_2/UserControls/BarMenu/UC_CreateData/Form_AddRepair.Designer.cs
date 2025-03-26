@@ -63,7 +63,7 @@
             Sum_Column = new DataGridViewTextBoxColumn();
             BtnDelete = new DataGridViewButtonColumn();
             ID_Column_ = new DataGridViewTextBoxColumn();
-            dataGridViewCheckBoxColumn1 = new DataGridViewCheckBoxColumn();
+            Wykonane_Checked = new DataGridViewCheckBoxColumn();
             Type_Column = new DataGridViewTextBoxColumn();
             Nazwa_Column = new DataGridViewTextBoxColumn();
             Opis_Column = new DataGridViewTextBoxColumn();
@@ -288,7 +288,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ViewRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewRepair.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewRepair.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID_Column_, dataGridViewCheckBoxColumn1, Type_Column, Nazwa_Column, Opis_Column, NrCzęści_Column, Cena_Column_, Ilość_Column_, Suma_Column });
+            ViewRepair.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID_Column_, Wykonane_Checked, Type_Column, Nazwa_Column, Opis_Column, NrCzęści_Column, Cena_Column_, Ilość_Column_, Suma_Column });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -436,14 +436,14 @@
             ID_Column_.Name = "ID_Column_";
             ID_Column_.Visible = false;
             // 
-            // dataGridViewCheckBoxColumn1
+            // Wykonane_Checked
             // 
-            dataGridViewCheckBoxColumn1.DataPropertyName = "Stan";
-            dataGridViewCheckBoxColumn1.FalseValue = "0";
-            dataGridViewCheckBoxColumn1.FillWeight = 83.94669F;
-            dataGridViewCheckBoxColumn1.HeaderText = "Wykonane";
-            dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            dataGridViewCheckBoxColumn1.TrueValue = "1";
+            Wykonane_Checked.DataPropertyName = "Stan";
+            Wykonane_Checked.FalseValue = "0";
+            Wykonane_Checked.FillWeight = 83.94669F;
+            Wykonane_Checked.HeaderText = "Wykonane";
+            Wykonane_Checked.Name = "Wykonane_Checked";
+            Wykonane_Checked.TrueValue = "1";
             // 
             // Type_Column
             // 
@@ -560,7 +560,7 @@
         private DataGridViewTextBoxColumn Sum_Column;
         private DataGridViewButtonColumn BtnDelete;
         private DataGridViewTextBoxColumn ID_Column_;
-        private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private DataGridViewCheckBoxColumn Wykonane_Checked;
         private DataGridViewTextBoxColumn Type_Column;
         private DataGridViewTextBoxColumn Nazwa_Column;
         private DataGridViewTextBoxColumn Opis_Column;
