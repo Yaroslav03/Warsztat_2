@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\source\\repos\\yaroslav03\\warsztat_2\\warsztat_2\\usercontrols\\barmenu\\uc_createdata\\uc_addalldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\source\\repos\\yaroslav03\\warsztat_2\\warsztat_2\\usercontrols\\barmenu\\uc_createdata\\uc_addalldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\usercontrols\\barmenu\\uc_createdata\\uc_addalldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\source\\repos\\yaroslav03\\warsztat_2\\warsztat_2\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\warsztat_2\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\warsztat_2\\usercontrols\\barmenu\\uc_createdata\\uc_addalldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\usercontrols\\barmenu\\uc_createdata\\uc_addalldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\source\\repos\\yaroslav03\\warsztat_2\\warsztat_2\\usercontrols\\barmenu\\viewdata\\uc_viewdatacar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\usercontrols\\barmenu\\viewdata\\uc_viewdatacar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\source\\repos\\yaroslav03\\warsztat_2\\warsztat_2\\sqlcmd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|solutionrelative:warsztat_2\\sqlcmd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{72F3E7CA-40E7-4BA2-A714-C3644FC55E79}|Warsztat_2\\Warsztat_2.csproj|c:\\users\\yaros\\source\\repos\\yaroslav03\\warsztat_2\\warsztat_2\\usercontrols\\barmenu\\viewdata\\uc_viewdatacar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,12 +33,36 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 575,
+          "DockedHeight": 365,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "Form2.cs",
+              "DocumentMoniker": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\Form2.cs",
+              "RelativeDocumentMoniker": "Warsztat_2\\Form2.cs",
+              "ToolTip": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\Form2.cs",
+              "RelativeToolTip": "Warsztat_2\\Form2.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAqwDoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T15:37:16.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form2.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\Form2.cs",
+              "RelativeDocumentMoniker": "Warsztat_2\\Form2.cs",
+              "ToolTip": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\Form2.cs [Design]",
+              "RelativeToolTip": "Warsztat_2\\Form2.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T15:37:13.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "UC_AddAllData.cs [Design]",
               "DocumentMoniker": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddAllData.cs",
               "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddAllData.cs",
@@ -38,28 +74,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "UC_ViewDataCar.cs",
               "DocumentMoniker": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs",
               "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs",
               "ToolTip": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs",
               "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAswD0AAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH4AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T21:25:31.907Z",
+              "WhenOpened": "2025-03-23T21:25:31.907Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 785,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UC_AddAllData.cs",
+              "DocumentMoniker": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddAllData.cs",
+              "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddAllData.cs",
+              "ToolTip": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddAllData.cs",
+              "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\UC_CreateData\\UC_AddAllData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T22:29:41.417Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UC_ViewDataCar.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs",
-              "RelativeDocumentMoniker": "Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs",
-              "ToolTip": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs [Design]",
-              "RelativeToolTip": "Warsztat_2\\UserControls\\BarMenu\\ViewData\\UC_ViewDataCar.cs [Design]",
+              "DocumentIndex": 4,
+              "Title": "SqlCmd.cs",
+              "DocumentMoniker": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\SqlCmd.cs",
+              "RelativeDocumentMoniker": "Warsztat_2\\SqlCmd.cs",
+              "ToolTip": "C:\\Users\\yaros\\source\\repos\\Yaroslav03\\Warsztat_2\\Warsztat_2\\SqlCmd.cs",
+              "RelativeToolTip": "Warsztat_2\\SqlCmd.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAD4v4kAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T21:25:00.222Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-03-26T15:21:57.29Z"
             }
           ]
         }

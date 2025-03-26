@@ -133,6 +133,7 @@
             ViewActualData.Size = new Size(994, 550);
             ViewActualData.TabIndex = 30;
             ViewActualData.CellContentClick += ViewActualData_CellContentClick;
+            ViewActualData.CellContentDoubleClick += ViewActualData_CellContentDoubleClick;
             // 
             // ID_Column
             // 
