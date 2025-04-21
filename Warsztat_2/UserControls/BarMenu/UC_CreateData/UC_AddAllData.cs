@@ -49,7 +49,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             {
             await SqlCmd.UpdateAllData(
                 uniqueKey,
-                GetClientData(), 
+                GetClientData(),
                 GetCarData(),
                 GetHistoryData()
                 );
@@ -169,6 +169,12 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 addRepair.ShowDialog();
                 }
             }
+        private void SelectServiceButton_Click(object sender, EventArgs e)
+            {
+            Form_AddService addService = new();
+            //addService.TransferUniqueKey(uniqueKey);
+            addService.ShowDialog();
+            }
         private void VINTextBox_TextChanged(object sender, EventArgs e)
             {
             VINTextBox.MaxLength = 17;
@@ -182,7 +188,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             var clientData = await SqlCmd.LoadDataAsync("WarsztatDB", "Klienty", null, "UniqueKey", uniqueKey);
             var carData = await SqlCmd.LoadDataAsync("WarsztatDB", "Samochód", null, "UniqueKey", uniqueKey);
             var historyData = await SqlCmd.LoadDataAsync("WarsztatDB", "HistoriaNapraw", null, "UniqueKey", uniqueKey);
-            
+
             //client
             NameTextBox.Text = clientData["Imię"].ToString();
             SurnameTextBox.Text = clientData["Nazwisko"].ToString();
@@ -216,5 +222,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 };
             await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
             }
+
+
         }
     };

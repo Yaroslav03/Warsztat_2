@@ -30,9 +30,9 @@
             {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panelKontaktowy = new Panel();
             label6 = new Label();
             AdressCompanyTextBox = new TextBox();
@@ -78,6 +78,15 @@
             label13 = new Label();
             SaveButton = new Button();
             ViewRepair = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            Wykonane_Checked = new DataGridViewCheckBoxColumn();
+            Type_Column = new DataGridViewTextBoxColumn();
+            Nazwa_Column_ = new DataGridViewTextBoxColumn();
+            Opis_Column = new DataGridViewTextBoxColumn();
+            NrCzęści_Column = new DataGridViewTextBoxColumn();
+            Cena_Column = new DataGridViewTextBoxColumn();
+            Ilość_Column = new DataGridViewTextBoxColumn();
+            Suma_Column = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
             SelectPartButton = new Button();
             label16 = new Label();
@@ -94,15 +103,6 @@
             ButtonOrderManagement = new Button();
             panel1 = new Panel();
             numericUpDown1 = new NumericUpDown();
-            ID = new DataGridViewTextBoxColumn();
-            Wykonane_Checked = new DataGridViewCheckBoxColumn();
-            Type_Column = new DataGridViewTextBoxColumn();
-            Nazwa_Column_ = new DataGridViewTextBoxColumn();
-            Opis_Column = new DataGridViewTextBoxColumn();
-            NrCzęści_Column = new DataGridViewTextBoxColumn();
-            Cena_Column = new DataGridViewTextBoxColumn();
-            Ilość_Column = new DataGridViewTextBoxColumn();
-            Suma_Column = new DataGridViewTextBoxColumn();
             panelKontaktowy.SuspendLayout();
             panelDodatkowy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)YearNumericUpDown).BeginInit();
@@ -720,6 +720,73 @@
             ViewRepair.Size = new Size(930, 222);
             ViewRepair.TabIndex = 58;
             // 
+            // ID
+            // 
+            ID.DataPropertyName = "ID";
+            ID.HeaderText = "ID";
+            ID.Name = "ID";
+            ID.Visible = false;
+            // 
+            // Wykonane_Checked
+            // 
+            Wykonane_Checked.DataPropertyName = "Stan";
+            Wykonane_Checked.FalseValue = "0";
+            Wykonane_Checked.FillWeight = 83.94669F;
+            Wykonane_Checked.HeaderText = "Wykonane";
+            Wykonane_Checked.Name = "Wykonane_Checked";
+            Wykonane_Checked.TrueValue = "1";
+            // 
+            // Type_Column
+            // 
+            Type_Column.DataPropertyName = "Typ";
+            Type_Column.FillWeight = 83.94669F;
+            Type_Column.HeaderText = "Typ";
+            Type_Column.Name = "Type_Column";
+            // 
+            // Nazwa_Column_
+            // 
+            Nazwa_Column_.DataPropertyName = "Nazwa";
+            Nazwa_Column_.HeaderText = "Nazwa";
+            Nazwa_Column_.Name = "Nazwa_Column_";
+            // 
+            // Opis_Column
+            // 
+            Opis_Column.DataPropertyName = "Opis";
+            Opis_Column.FillWeight = 83.94669F;
+            Opis_Column.HeaderText = "Opis";
+            Opis_Column.Name = "Opis_Column";
+            // 
+            // NrCzęści_Column
+            // 
+            NrCzęści_Column.DataPropertyName = "NumerCzęści";
+            NrCzęści_Column.FillWeight = 83.94669F;
+            NrCzęści_Column.HeaderText = "Numer Części";
+            NrCzęści_Column.Name = "NrCzęści_Column";
+            // 
+            // Cena_Column
+            // 
+            Cena_Column.DataPropertyName = "Cena";
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            Cena_Column.DefaultCellStyle = dataGridViewCellStyle2;
+            Cena_Column.FillWeight = 40F;
+            Cena_Column.HeaderText = "Cena";
+            Cena_Column.Name = "Cena_Column";
+            // 
+            // Ilość_Column
+            // 
+            Ilość_Column.DataPropertyName = "Ilość";
+            Ilość_Column.FillWeight = 40F;
+            Ilość_Column.HeaderText = "Ilość";
+            Ilość_Column.Name = "Ilość_Column";
+            // 
+            // Suma_Column
+            // 
+            Suma_Column.DataPropertyName = "Suma";
+            Suma_Column.FillWeight = 40F;
+            Suma_Column.HeaderText = "Suma";
+            Suma_Column.Name = "Suma_Column";
+            // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -789,6 +856,7 @@
             SelectServiceButton.TabIndex = 60;
             SelectServiceButton.Text = "Wybierz usługę";
             SelectServiceButton.UseVisualStyleBackColor = false;
+            SelectServiceButton.Click += SelectServiceButton_Click;
             // 
             // dataGridView1
             // 
@@ -917,73 +985,6 @@
             numericUpDown1.Size = new Size(70, 23);
             numericUpDown1.TabIndex = 54;
             numericUpDown1.Value = new decimal(new int[] { 2000, 0, 0, 0 });
-            // 
-            // ID
-            // 
-            ID.DataPropertyName = "ID";
-            ID.HeaderText = "ID";
-            ID.Name = "ID";
-            ID.Visible = false;
-            // 
-            // Wykonane_Checked
-            // 
-            Wykonane_Checked.DataPropertyName = "Stan";
-            Wykonane_Checked.FalseValue = "0";
-            Wykonane_Checked.FillWeight = 83.94669F;
-            Wykonane_Checked.HeaderText = "Wykonane";
-            Wykonane_Checked.Name = "Wykonane_Checked";
-            Wykonane_Checked.TrueValue = "1";
-            // 
-            // Type_Column
-            // 
-            Type_Column.DataPropertyName = "Typ";
-            Type_Column.FillWeight = 83.94669F;
-            Type_Column.HeaderText = "Typ";
-            Type_Column.Name = "Type_Column";
-            // 
-            // Nazwa_Column_
-            // 
-            Nazwa_Column_.DataPropertyName = "Nazwa";
-            Nazwa_Column_.HeaderText = "Nazwa";
-            Nazwa_Column_.Name = "Nazwa_Column_";
-            // 
-            // Opis_Column
-            // 
-            Opis_Column.DataPropertyName = "Opis";
-            Opis_Column.FillWeight = 83.94669F;
-            Opis_Column.HeaderText = "Opis";
-            Opis_Column.Name = "Opis_Column";
-            // 
-            // NrCzęści_Column
-            // 
-            NrCzęści_Column.DataPropertyName = "NumerCzęści";
-            NrCzęści_Column.FillWeight = 83.94669F;
-            NrCzęści_Column.HeaderText = "Numer Części";
-            NrCzęści_Column.Name = "NrCzęści_Column";
-            // 
-            // Cena_Column
-            // 
-            Cena_Column.DataPropertyName = "Cena";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            Cena_Column.DefaultCellStyle = dataGridViewCellStyle2;
-            Cena_Column.FillWeight = 40F;
-            Cena_Column.HeaderText = "Cena";
-            Cena_Column.Name = "Cena_Column";
-            // 
-            // Ilość_Column
-            // 
-            Ilość_Column.DataPropertyName = "Ilość";
-            Ilość_Column.FillWeight = 40F;
-            Ilość_Column.HeaderText = "Ilość";
-            Ilość_Column.Name = "Ilość_Column";
-            // 
-            // Suma_Column
-            // 
-            Suma_Column.DataPropertyName = "Suma";
-            Suma_Column.FillWeight = 40F;
-            Suma_Column.HeaderText = "Suma";
-            Suma_Column.Name = "Suma_Column";
             // 
             // UC_AddAllData
             // 
