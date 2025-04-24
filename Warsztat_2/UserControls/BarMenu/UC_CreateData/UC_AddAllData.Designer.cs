@@ -92,17 +92,14 @@
             label16 = new Label();
             panel6 = new Panel();
             SelectServiceButton = new Button();
-            dataGridView1 = new DataGridView();
-            dataGridViewButtonColumn1 = new DataGridViewButtonColumn();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewCheckBoxColumn1 = new DataGridViewCheckBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            Column1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            ServiceHistoryView = new DataGridView();
             label17 = new Label();
             ButtonOrderManagement = new Button();
             panel1 = new Panel();
             numericUpDown1 = new NumericUpDown();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             panelKontaktowy.SuspendLayout();
             panelDodatkowy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)YearNumericUpDown).BeginInit();
@@ -110,7 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)ViewRepair).BeginInit();
             panel2.SuspendLayout();
             panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ServiceHistoryView).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
@@ -834,7 +831,7 @@
             panel6.BackColor = Color.FromArgb(64, 64, 70);
             panel6.BorderStyle = BorderStyle.FixedSingle;
             panel6.Controls.Add(SelectServiceButton);
-            panel6.Controls.Add(dataGridView1);
+            panel6.Controls.Add(ServiceHistoryView);
             panel6.ForeColor = Color.WhiteSmoke;
             panel6.Location = new Point(8, 1070);
             panel6.Name = "panel6";
@@ -858,15 +855,15 @@
             SelectServiceButton.UseVisualStyleBackColor = false;
             SelectServiceButton.Click += SelectServiceButton_Click;
             // 
-            // dataGridView1
+            // ServiceHistoryView
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            ServiceHistoryView.AllowUserToAddRows = false;
+            ServiceHistoryView.AllowUserToDeleteRows = false;
+            ServiceHistoryView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ServiceHistoryView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ServiceHistoryView.BorderStyle = BorderStyle.None;
+            ServiceHistoryView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            ServiceHistoryView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -874,9 +871,9 @@
             dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewButtonColumn1, dataGridViewTextBoxColumn1, dataGridViewCheckBoxColumn1, dataGridViewTextBoxColumn2, Column1, dataGridViewTextBoxColumn3 });
+            ServiceHistoryView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            ServiceHistoryView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ServiceHistoryView.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3 });
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -884,53 +881,13 @@
             dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(9, 54);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(930, 162);
-            dataGridView1.TabIndex = 59;
-            // 
-            // dataGridViewButtonColumn1
-            // 
-            dataGridViewButtonColumn1.FillWeight = 50F;
-            dataGridViewButtonColumn1.HeaderText = "Usuń";
-            dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.DataPropertyName = "ID";
-            dataGridViewTextBoxColumn1.HeaderText = "ID";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            dataGridViewCheckBoxColumn1.DataPropertyName = "Stan";
-            dataGridViewCheckBoxColumn1.FalseValue = "0";
-            dataGridViewCheckBoxColumn1.FillWeight = 83.94669F;
-            dataGridViewCheckBoxColumn1.HeaderText = "Wykonane";
-            dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            dataGridViewCheckBoxColumn1.TrueValue = "1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.DataPropertyName = "Typ";
-            dataGridViewTextBoxColumn2.FillWeight = 83.94669F;
-            dataGridViewTextBoxColumn2.HeaderText = "Rodzaj usługi";
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Opis usługi";
-            Column1.Name = "Column1";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.DataPropertyName = "Nazwa";
-            dataGridViewTextBoxColumn3.HeaderText = "Koszt usługi";
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            ServiceHistoryView.DefaultCellStyle = dataGridViewCellStyle5;
+            ServiceHistoryView.EnableHeadersVisualStyles = false;
+            ServiceHistoryView.Location = new Point(9, 54);
+            ServiceHistoryView.Name = "ServiceHistoryView";
+            ServiceHistoryView.RowTemplate.Height = 25;
+            ServiceHistoryView.Size = new Size(930, 162);
+            ServiceHistoryView.TabIndex = 59;
             // 
             // label17
             // 
@@ -986,6 +943,26 @@
             numericUpDown1.TabIndex = 54;
             numericUpDown1.Value = new decimal(new int[] { 2000, 0, 0, 0 });
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            dataGridViewTextBoxColumn1.HeaderText = "ID";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.DataPropertyName = "ServiceName";
+            dataGridViewTextBoxColumn2.FillWeight = 83.94669F;
+            dataGridViewTextBoxColumn2.HeaderText = "Rodzaj usługi";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.DataPropertyName = "Price";
+            dataGridViewTextBoxColumn3.HeaderText = "Cena";
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
             // UC_AddAllData
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1017,7 +994,7 @@
             ((System.ComponentModel.ISupportInitialize)ViewRepair).EndInit();
             panel2.ResumeLayout(false);
             panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ServiceHistoryView).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
@@ -1073,15 +1050,9 @@
         private Button SelectPartButton;
         private Panel panel6;
         private Button SelectServiceButton;
-        private DataGridView dataGridView1;
+        private DataGridView ServiceHistoryView;
         private Label label17;
         private Button ButtonOrderManagement;
-        private DataGridViewButtonColumn dataGridViewButtonColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private Label label21;
         private Label label20;
         private Panel panel1;
@@ -1095,5 +1066,8 @@
         private DataGridViewTextBoxColumn Cena_Column;
         private DataGridViewTextBoxColumn Ilość_Column;
         private DataGridViewTextBoxColumn Suma_Column;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         }
 }

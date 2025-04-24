@@ -26,90 +26,74 @@
         /// </summary>
         private void InitializeComponent()
             {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            button1 = new Button();
-            ViewRepair = new DataGridView();
-            ID = new DataGridViewTextBoxColumn();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            ServiceHistoryView = new DataGridView();
+            ID_Column = new DataGridViewTextBoxColumn();
             RemoveBtn = new DataGridViewButtonColumn();
             ServiceName_Column = new DataGridViewTextBoxColumn();
             Price_Column = new DataGridViewTextBoxColumn();
             ServiceView = new DataGridView();
+            ID_Column_ = new DataGridViewTextBoxColumn();
+            BtnDelete_ = new DataGridViewButtonColumn();
+            SelectBtn = new DataGridViewButtonColumn();
+            ServiceName_Column_ = new DataGridViewTextBoxColumn();
+            Price_Column_ = new DataGridViewTextBoxColumn();
             ServiceTextBox = new TextBox();
             label12 = new Label();
             panelKontaktowy = new Panel();
             AddButton = new Button();
             PriceNumericUpDown = new NumericUpDown();
             label1 = new Label();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewButtonColumn1 = new DataGridViewButtonColumn();
-            SelectBtn = new DataGridViewButtonColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)ViewRepair).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ServiceHistoryView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ServiceView).BeginInit();
             panelKontaktowy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // ServiceHistoryView
             // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            button1.BackColor = Color.FromArgb(94, 148, 255);
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = Color.LightGray;
-            button1.Location = new Point(12, 580);
-            button1.Name = "button1";
-            button1.Size = new Size(687, 35);
-            button1.TabIndex = 59;
-            button1.Text = "Anuluj";
-            button1.UseVisualStyleBackColor = false;
+            ServiceHistoryView.AllowUserToAddRows = false;
+            ServiceHistoryView.AllowUserToDeleteRows = false;
+            ServiceHistoryView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ServiceHistoryView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ServiceHistoryView.BorderStyle = BorderStyle.None;
+            ServiceHistoryView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            ServiceHistoryView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            ServiceHistoryView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            ServiceHistoryView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ServiceHistoryView.Columns.AddRange(new DataGridViewColumn[] { ID_Column, RemoveBtn, ServiceName_Column, Price_Column });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            ServiceHistoryView.DefaultCellStyle = dataGridViewCellStyle2;
+            ServiceHistoryView.EnableHeadersVisualStyles = false;
+            ServiceHistoryView.Location = new Point(12, 60);
+            ServiceHistoryView.Name = "ServiceHistoryView";
+            ServiceHistoryView.RowTemplate.Height = 25;
+            ServiceHistoryView.Size = new Size(687, 251);
+            ServiceHistoryView.TabIndex = 60;
+            ServiceHistoryView.CellContentClick += ServiceHistoryView_CellContentClick;
             // 
-            // ViewRepair
+            // ID_Column
             // 
-            ViewRepair.AllowUserToAddRows = false;
-            ViewRepair.AllowUserToDeleteRows = false;
-            ViewRepair.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ViewRepair.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            ViewRepair.BorderStyle = BorderStyle.None;
-            ViewRepair.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            ViewRepair.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = Color.LightGray;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            ViewRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            ViewRepair.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewRepair.Columns.AddRange(new DataGridViewColumn[] { ID, RemoveBtn, ServiceName_Column, Price_Column });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            ViewRepair.DefaultCellStyle = dataGridViewCellStyle6;
-            ViewRepair.EnableHeadersVisualStyles = false;
-            ViewRepair.Location = new Point(12, 60);
-            ViewRepair.Name = "ViewRepair";
-            ViewRepair.RowTemplate.Height = 25;
-            ViewRepair.Size = new Size(687, 251);
-            ViewRepair.TabIndex = 60;
-            // 
-            // ID
-            // 
-            ID.DataPropertyName = "ID";
-            ID.HeaderText = "ID";
-            ID.Name = "ID";
-            ID.Visible = false;
+            ID_Column.DataPropertyName = "Id";
+            ID_Column.HeaderText = "ID";
+            ID_Column.Name = "ID_Column";
+            ID_Column.Visible = false;
             // 
             // RemoveBtn
             // 
@@ -138,30 +122,64 @@
             ServiceView.BorderStyle = BorderStyle.None;
             ServiceView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             ServiceView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = Color.LightGray;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            ServiceView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.LightGray;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            ServiceView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             ServiceView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ServiceView.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewButtonColumn1, SelectBtn, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3 });
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            ServiceView.DefaultCellStyle = dataGridViewCellStyle8;
+            ServiceView.Columns.AddRange(new DataGridViewColumn[] { ID_Column_, BtnDelete_, SelectBtn, ServiceName_Column_, Price_Column_ });
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            ServiceView.DefaultCellStyle = dataGridViewCellStyle4;
             ServiceView.EnableHeadersVisualStyles = false;
             ServiceView.Location = new Point(12, 323);
             ServiceView.Name = "ServiceView";
             ServiceView.RowTemplate.Height = 25;
             ServiceView.Size = new Size(687, 251);
             ServiceView.TabIndex = 61;
+            ServiceView.CellContentClick += ServiceView_CellContentClick;
+            // 
+            // ID_Column_
+            // 
+            ID_Column_.DataPropertyName = "Id";
+            ID_Column_.HeaderText = "ID";
+            ID_Column_.Name = "ID_Column_";
+            ID_Column_.Visible = false;
+            // 
+            // BtnDelete_
+            // 
+            BtnDelete_.FillWeight = 20F;
+            BtnDelete_.HeaderText = "Usuń";
+            BtnDelete_.Name = "BtnDelete_";
+            // 
+            // SelectBtn
+            // 
+            SelectBtn.FillWeight = 20F;
+            SelectBtn.HeaderText = "Wybierz";
+            SelectBtn.Name = "SelectBtn";
+            // 
+            // ServiceName_Column_
+            // 
+            ServiceName_Column_.DataPropertyName = "ServiceName";
+            ServiceName_Column_.FillWeight = 58.6390762F;
+            ServiceName_Column_.HeaderText = "Usługa";
+            ServiceName_Column_.Name = "ServiceName_Column_";
+            // 
+            // Price_Column_
+            // 
+            Price_Column_.DataPropertyName = "Price";
+            Price_Column_.FillWeight = 58.6390762F;
+            Price_Column_.HeaderText = "Cena";
+            Price_Column_.Name = "Price_Column_";
             // 
             // ServiceTextBox
             // 
@@ -243,39 +261,6 @@
             label1.TabIndex = 62;
             label1.Text = "Cena";
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            dataGridViewTextBoxColumn1.HeaderText = "ID";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewButtonColumn1
-            // 
-            dataGridViewButtonColumn1.FillWeight = 20F;
-            dataGridViewButtonColumn1.HeaderText = "Usuń";
-            dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-            // 
-            // SelectBtn
-            // 
-            SelectBtn.FillWeight = 20F;
-            SelectBtn.HeaderText = "Wybierz";
-            SelectBtn.Name = "SelectBtn";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.DataPropertyName = "ServiceName";
-            dataGridViewTextBoxColumn2.FillWeight = 58.6390762F;
-            dataGridViewTextBoxColumn2.HeaderText = "Usługa";
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.DataPropertyName = "Price";
-            dataGridViewTextBoxColumn3.FillWeight = 58.6390762F;
-            dataGridViewTextBoxColumn3.HeaderText = "Cena";
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
             // Form_AddService
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -284,8 +269,7 @@
             ClientSize = new Size(711, 627);
             Controls.Add(panelKontaktowy);
             Controls.Add(ServiceView);
-            Controls.Add(ViewRepair);
-            Controls.Add(button1);
+            Controls.Add(ServiceHistoryView);
             MaximizeBox = false;
             MaximumSize = new Size(727, 666);
             MinimumSize = new Size(727, 666);
@@ -294,7 +278,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Usługi";
             Load += Form_AddService_Load;
-            ((System.ComponentModel.ISupportInitialize)ViewRepair).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ServiceHistoryView).EndInit();
             ((System.ComponentModel.ISupportInitialize)ServiceView).EndInit();
             panelKontaktowy.ResumeLayout(false);
             panelKontaktowy.PerformLayout();
@@ -303,8 +287,7 @@
             }
 
         #endregion
-        private Button button1;
-        private DataGridView ViewRepair;
+        private DataGridView ServiceHistoryView;
         private DataGridView ServiceView;
         public TextBox ServiceTextBox;
         private Label label12;
@@ -312,14 +295,14 @@
         public NumericUpDown PriceNumericUpDown;
         private Label label1;
         private Button AddButton;
-        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn ID_Column;
         private DataGridViewButtonColumn RemoveBtn;
         private DataGridViewTextBoxColumn ServiceName_Column;
         private DataGridViewTextBoxColumn Price_Column;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewButtonColumn dataGridViewButtonColumn1;
+        private DataGridViewTextBoxColumn ID_Column_;
+        private DataGridViewButtonColumn BtnDelete_;
         private DataGridViewButtonColumn SelectBtn;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn ServiceName_Column_;
+        private DataGridViewTextBoxColumn Price_Column_;
         }
     }
