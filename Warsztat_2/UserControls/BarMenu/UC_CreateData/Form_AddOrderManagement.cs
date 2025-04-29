@@ -181,6 +181,7 @@
                     {"KosztCzęściZMarżą", PricePartWithMarzha},
                     {"KosztPracyRęcznej", FinallPriceNumericUpDown.Value.ToString()},
                     {"KosztKońcowy",  finallyPrice},
+                    {"KosztUsługi", priceOfService},
                     {"WykonanaPraca", WorkPerfomedTextBox.Text},
                     {"WykonawcaPracy", WorkerListBox.SelectedItem},
                     {"UniqueKey", uniqueKey },
