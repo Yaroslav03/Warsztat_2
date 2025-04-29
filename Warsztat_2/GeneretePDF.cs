@@ -27,7 +27,7 @@ namespace Warsztat_2
             #region ReadData
             var companyData = await SqlCmd.LoadDataAsync("WarsztatDB", "DaneFirmy");
             var clientData = await SqlCmd.LoadDataAsync("WarsztatDB", "Klienty", null, "UniqueKey", uniqueKey);
-            var carData = await SqlCmd.LoadDataAsync("WarsztatDB", "Samochód", null, "UniqueKey", uniqueKey);
+            var carData = await SqlCmd.LoadDataAsync("WarsztatDB", "Samochód", null, "UniqueKey", uniqueKey); 
             #endregion
             #region generetePDF
             Document document = new();
@@ -173,8 +173,10 @@ namespace Warsztat_2
             var clientData = await SqlCmd.LoadDataAsync("Archive", "Klienty", null, "UniqueKey", uniqueKey);
             var carData = await SqlCmd.LoadDataAsync("Archive", "Samochód", null, "UniqueKey", uniqueKey);
             var repairCarData = await SqlCmd.LoadListAsync("Archive", "NaprawaSamochodu", "Opis, NumerCzęści, Cena, Ilość", "UniqueKey", uniqueKey);
+            var serviceData = await SqlCmd.LoadListAsync("Archive", "HistoriaUsług", "ServiceName, Price", "UniqueKey", uniqueKey);
             var historyRepairData = await SqlCmd.LoadDataAsync("Archive", "HistoriaNapraw", null, "UniqueKey", uniqueKey);
             var managementData = await SqlCmd.LoadDataAsync("Archive", "ZarządzanieZleceniem", null, "UniqueKey", uniqueKey);
+            
 
             #endregion
             #region generetePDF
@@ -315,8 +317,6 @@ namespace Warsztat_2
             {
                 rowRepair.Cells[x].AddParagraph(RepairWriteTable[x]);
             }
-
-
             #endregion
             #region add repair data to table
             foreach (var repairItem in repairCarData)
@@ -334,6 +334,57 @@ namespace Warsztat_2
             sumPriceRepair.Format.Font.Name = "Courier New"; // Задати назву шрифта
             sumPriceRepair.Format.Font.Size = 10;
             sumPriceRepair.Format.Alignment = ParagraphAlignment.Right;
+
+            #endregion
+            #endregion
+            #region table of services
+            section.AddParagraph();
+            Paragraph ServiceTitle = section.AddParagraph("Usługi");
+            ServiceTitle.Format.Font.Name = "Courier New"; // Задати назву шрифта
+            ServiceTitle.Format.Font.Size = 14;
+
+            #region create a table of service
+            // Додавання таблиці "Історія машини"
+            Table ServiceTable = section.AddTable();
+            ServiceTable.Borders.Width = 0.75;
+            ServiceTable.Format.Alignment = ParagraphAlignment.Center;
+
+            // Додаємо колонки до таблиці
+
+            for(byte i = 0;i < 2;i++)
+                {
+                Column columnService = ServiceTable.AddColumn();
+                columnService.Width = 260; // Зменшуємо ширину колонок
+                if(i > 1)
+                    columnService.Width = 10;
+                }
+
+            Row rowService = ServiceTable.AddRow();
+
+            rowService.HeadingFormat = true;
+            rowService.Format.Font.Name = "Courier New"; // Задати назву шрифта
+
+            string[] ServiceWriteTable = { "Nazwa usługi", "Cena"};
+            for(byte x = 0;x < ServiceWriteTable.Length;x++)
+                {
+                rowService.Cells[x].AddParagraph(ServiceWriteTable[x]);
+                }
+            #endregion
+            #region add data of service to table
+            foreach(var serviceItem in serviceData)
+                {
+                Row dataRowService = ServiceTable.AddRow();
+                dataRowService.Format.Font.Name = "Courier New"; // Задати назву шрифта
+                dataRowService.Format.Font.Size = 10;
+
+                dataRowService.Cells[0].AddParagraph(serviceItem.ContainsKey("ServiceName") ? serviceItem["ServiceName"].ToString() : "");
+                dataRowService.Cells[1].AddParagraph(serviceItem.ContainsKey("Price") ? serviceItem["Price"].ToString() : "");
+     
+                }
+            Paragraph sumPriceService = section.AddParagraph($"Łączna cena: {managementData["KosztUsługi"]}");
+            sumPriceService.Format.Font.Name = "Courier New"; // Задати назву шрифта
+            sumPriceService.Format.Font.Size = 10;
+            sumPriceService.Format.Alignment = ParagraphAlignment.Right;
 
             #endregion
             #endregion
