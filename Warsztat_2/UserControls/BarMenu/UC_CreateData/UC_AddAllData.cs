@@ -15,7 +15,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
         #region variables
         Guid uniqueKey;
         private protected ushort Id_Repair;
-        private string? pricePart;
+        private decimal pricePart, priceService;
         #endregion
         #region event
         public UC_AddAllData()
@@ -25,6 +25,11 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
 
         private async void UC_AddAllData_Load(object sender, EventArgs e)
             {
+            if(uniqueKey == Guid.Empty)
+                {
+                DateAdoptionTimePicker.Text = DateTime.Today.ToString();
+                }
+             
             }
         private async void SaveButton_Click(object sender, EventArgs e)
             {
@@ -39,7 +44,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             {
             SumRepair();
             Form_AddOrderManagement form_AddOrderManagement = new();
-            form_AddOrderManagement.SendDataFromLastWindow(pricePart, uniqueKey);
+            form_AddOrderManagement.SendDataFromLastWindow(pricePart, priceService, uniqueKey);
             form_AddOrderManagement.ShowDialog();
             }
         #endregion
@@ -141,22 +146,31 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                     {"TestDrive", TestDriveChceck.Checked},
                     {"Diagnostyka", DiagnosticTextBox.Text.Trim()},
                     {"Naprawa", RepairTextBox.Text.Trim()},
-                    {"DataPrzyjęcia", ScheduleTimePicker.Text.ToString()},
+                    {"DataPrzyjęcia", DateAdoptionTimePicker.Text.ToString()},
                     {"UniqueKey", uniqueKey }
                 };
             }
         private void SumRepair()
             {
-            decimal totalPrice = 0;
+            decimal totalPriceRepairPart = 0;
+            decimal totalPriceService = 0;
             foreach(DataGridViewRow row in ViewRepair.Rows)
                 {
                 if(row.Cells["Suma_Column"].Value != null && decimal.TryParse(row.Cells["Suma_Column"].Value.ToString(), out decimal price))
                     {
-                    totalPrice += price;
+                    totalPriceRepairPart += price;
                     }
                 }
 
-            pricePart = totalPrice.ToString();
+            foreach(DataGridViewRow row in ServiceHistoryView.Rows)
+                {
+                if(row.Cells["Price_Column"].Value != null && decimal.TryParse(row.Cells["Price_Column"].Value.ToString(), out decimal price))
+                    {
+                    totalPriceService += price;
+                    }
+                }
+            pricePart = totalPriceRepairPart;
+            priceService = totalPriceService;
             }
         #endregion
 
@@ -228,7 +242,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
 
             DiagnosticTextBox.Text = historyData["Diagnostyka"].ToString();
             RepairTextBox.Text = historyData["Naprawa"].ToString();
-            ScheduleTimePicker.Text = historyData["DataPrzyjęcia"].ToString();
+            DateAdoptionTimePicker.Text = historyData["DataPrzyjęcia"].ToString();
             ///
             SaveButton.Text = "Odśwież";
             //

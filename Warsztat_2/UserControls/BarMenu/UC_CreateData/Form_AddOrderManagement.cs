@@ -6,6 +6,7 @@
 
         private string? paymentDay, paymentType, orderAddoptedDay;
         private decimal priceOfPart, PricePartWithMarzha, Marzha, finallyPrice, wasPayed, earningOnParts;
+        private decimal priceOfService;
         uint ID;
         private bool isDataLoadedFromDB = false;
         Guid uniqueKey;
@@ -64,7 +65,7 @@
         private void FinallPriceNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             decimal x = FinallPriceNumericUpDown.Value;
-            finallyPrice = PricePartWithMarzha + x;
+            finallyPrice = PricePartWithMarzha + x + priceOfService;
             LabelFinallyPrice.Text = "Koszt końcowy: " + finallyPrice;
         }
         #endregion
@@ -214,10 +215,12 @@
             string[] columns = { "Imię", "Stanowisko" };
             await SqlCmd.ReadAddDataListBox("SELECT Imię, Stanowisko FROM Pracownicy", columns, WorkerListBox);
         }
-        public void SendDataFromLastWindow(string price, Guid key)
+        public void SendDataFromLastWindow(decimal pricePart, decimal priceService, Guid key)
         {
             uniqueKey = key;
-            priceOfPart = Convert.ToDecimal(price);
+            priceOfPart = pricePart;
+            priceOfService = priceService;
+            labelPriceofService.Text += priceOfService;
             labelPriceofPart.Text += priceOfPart;
         }
         #endregion
@@ -281,7 +284,7 @@
             PricePartWithMarzhaCalculate();
 
             decimal x = FinallPriceNumericUpDown.Value;
-            finallyPrice = PricePartWithMarzha + x;
+            finallyPrice = PricePartWithMarzha + x + priceOfService;
             LabelFinallyPrice.Text = "Koszt końcowy: " + finallyPrice;
 
             earningOnParts = PricePartWithMarzha - priceOfPart;

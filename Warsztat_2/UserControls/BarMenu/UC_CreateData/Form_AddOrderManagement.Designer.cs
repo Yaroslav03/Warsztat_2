@@ -53,6 +53,7 @@
             label1 = new Label();
             marzhaNumericUpDown = new NumericUpDown();
             labelPriceofPart = new Label();
+            labelPriceofService = new Label();
             CloseOrder = new Button();
             panel2 = new Panel();
             CashRadioButton = new RadioButton();
@@ -75,7 +76,7 @@
             LabelFinallyPrice.AutoSize = true;
             LabelFinallyPrice.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             LabelFinallyPrice.ForeColor = Color.FromArgb(224, 224, 224);
-            LabelFinallyPrice.Location = new Point(195, 106);
+            LabelFinallyPrice.Location = new Point(175, 124);
             LabelFinallyPrice.Name = "LabelFinallyPrice";
             LabelFinallyPrice.Size = new Size(116, 21);
             LabelFinallyPrice.TabIndex = 27;
@@ -95,9 +96,9 @@
             WorkerListBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             WorkerListBox.FormattingEnabled = true;
             WorkerListBox.ItemHeight = 21;
-            WorkerListBox.Location = new Point(3, 87);
+            WorkerListBox.Location = new Point(3, 108);
             WorkerListBox.Name = "WorkerListBox";
-            WorkerListBox.Size = new Size(283, 151);
+            WorkerListBox.Size = new Size(283, 130);
             WorkerListBox.TabIndex = 7;
             // 
             // panelDodatkowy
@@ -111,7 +112,7 @@
             panelDodatkowy.ForeColor = Color.DimGray;
             panelDodatkowy.Location = new Point(720, 49);
             panelDodatkowy.Name = "panelDodatkowy";
-            panelDodatkowy.Size = new Size(304, 245);
+            panelDodatkowy.Size = new Size(304, 258);
             panelDodatkowy.TabIndex = 31;
             // 
             // WorkPerfomedTextBox
@@ -121,7 +122,7 @@
             WorkPerfomedTextBox.Cursor = Cursors.IBeam;
             WorkPerfomedTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             WorkPerfomedTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            WorkPerfomedTextBox.Location = new Point(3, 44);
+            WorkPerfomedTextBox.Location = new Point(3, 66);
             WorkPerfomedTextBox.Name = "WorkPerfomedTextBox";
             WorkPerfomedTextBox.PlaceholderText = "Wykonana czyność pracy";
             WorkPerfomedTextBox.Size = new Size(283, 30);
@@ -195,7 +196,6 @@
             // 
             // panel3
             // 
-            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel3.BackColor = Color.FromArgb(64, 64, 70);
             panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Controls.Add(NeitherRadioButton);
@@ -206,7 +206,7 @@
             panel3.ForeColor = Color.DimGray;
             panel3.Location = new Point(12, 160);
             panel3.Name = "panel3";
-            panel3.Size = new Size(300, 134);
+            panel3.Size = new Size(300, 147);
             panel3.TabIndex = 33;
             // 
             // NeitherRadioButton
@@ -252,7 +252,7 @@
             DateOfPay.CalendarTitleForeColor = Color.FromArgb(94, 148, 255);
             DateOfPay.Cursor = Cursors.Hand;
             DateOfPay.CustomFormat = "";
-            DateOfPay.Location = new Point(74, 98);
+            DateOfPay.Location = new Point(74, 117);
             DateOfPay.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             DateOfPay.Name = "DateOfPay";
             DateOfPay.Size = new Size(221, 23);
@@ -322,13 +322,14 @@
             panel4.Controls.Add(LabelFinallyPrice);
             panel4.Controls.Add(label10);
             panel4.Controls.Add(labelPriceofPart);
+            panel4.Controls.Add(labelPriceofService);
             panel4.Controls.Add(LabelPricePartWithMarzha);
             panel4.Controls.Add(label3);
             panel4.Controls.Add(FinallPriceNumericUpDown);
             panel4.ForeColor = Color.DimGray;
             panel4.Location = new Point(318, 160);
             panel4.Name = "panel4";
-            panel4.Size = new Size(396, 134);
+            panel4.Size = new Size(396, 147);
             panel4.TabIndex = 34;
             // 
             // label1
@@ -364,6 +365,17 @@
             labelPriceofPart.TabIndex = 27;
             labelPriceofPart.Text = "Koszt za części:";
             // 
+            // labelPriceofService
+            // 
+            labelPriceofService.AutoSize = true;
+            labelPriceofService.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            labelPriceofService.ForeColor = Color.FromArgb(224, 224, 224);
+            labelPriceofService.Location = new Point(3, 97);
+            labelPriceofService.Name = "labelPriceofService";
+            labelPriceofService.Size = new Size(115, 21);
+            labelPriceofService.TabIndex = 27;
+            labelPriceofService.Text = "Koszt za usługi:";
+            // 
             // CloseOrder
             // 
             CloseOrder.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -382,7 +394,6 @@
             // 
             // panel2
             // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.FromArgb(64, 64, 70);
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(CashRadioButton);
@@ -457,7 +468,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(1036, 298);
+            ClientSize = new Size(1036, 313);
             Controls.Add(panel2);
             Controls.Add(CloseOrder);
             Controls.Add(panelDodatkowy);
@@ -465,7 +476,10 @@
             Controls.Add(panel1);
             Controls.Add(panel3);
             Controls.Add(panel4);
+            MaximumSize = new Size(1052, 352);
+            MinimumSize = new Size(1052, 352);
             Name = "Form_AddOrderManagement";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form_AddOrderManagement";
             Load += UC_AddOrderManagement_Load;
             panelDodatkowy.ResumeLayout(false);
@@ -517,5 +531,6 @@
         private RadioButton NeitherRadioButton;
         private Label label1;
         public NumericUpDown marzhaNumericUpDown;
+        private Label labelPriceofService;
         }
 }
