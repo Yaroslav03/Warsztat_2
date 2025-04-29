@@ -792,6 +792,7 @@ internal class SqlCmd
         "Samochód",
         "NaprawaSamochodu",
         "HistoriaNapraw",
+        "HistoriaUsług",
         "ZarządzanieZleceniem"
     };
 
@@ -907,6 +908,7 @@ internal class SqlCmd
         "Samochód",
         "NaprawaSamochodu",
         "HistoriaNapraw",
+        "HistoriaUsług",
         "ZarządzanieZleceniem"
     };
 
@@ -963,7 +965,8 @@ internal class SqlCmd
         {
             Cursor.Current = Cursors.Default;
         }
-    }
+        }
+    #endregion
     public static async Task<decimal> GetTotalEarningsForCurrentMonthAsync()
     {
         decimal totalEarnings = 0m;
@@ -1187,4 +1190,4 @@ internal class SqlCmd
         Cursor.Current = Cursors.Default;
     }
 }
-#endregion
+
