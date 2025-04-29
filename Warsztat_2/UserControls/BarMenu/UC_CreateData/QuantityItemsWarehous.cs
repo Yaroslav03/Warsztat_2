@@ -5,7 +5,7 @@
         private List<string> transferData = new();
         private string id;
         Guid uniqueKey;
-        string[] values = { "Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma", "DataNapraw" };
+        string[] values = { "Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma" };
 
 
         public QuantityItemsWarehous()

@@ -46,10 +46,11 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             Id_Repair = Convert.ToUInt16(GetCellValue("ID_Column_"));
 
             DescriptionTextBox.Text = GetCellValue("Opis_Column");
-            NazwaTextBox.Text = GetCellValue("Nazwa_Column_");
+            NazwaTextBox.Text = GetCellValue("Nazwa_Column");
             NrPartTextBox.Text = GetCellValue("NrCzęści_Column");
-            PriceNumericUpDown.Text = GetCellValue("Cena_Column");
-            IloscNumericUpDown.Text = GetCellValue("Ilość_Column");
+            PriceNumericUpDown.Text = GetCellValue("Cena_Column_");
+            IloscNumericUpDown.Text = GetCellValue("Ilość_Column_");
+            TypeTextBox.Text = GetCellValue("Type_Column");
 
             StanCheckBox.Checked = GetCellValue("Wykonane_Checked") == "1";
         }
@@ -57,6 +58,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
         private async Task LoadCarData()
         {
             await SqlCmd.LoadData("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, Suma FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
+
         }
         public void TransferUniqueKey(Guid key)
         {
@@ -109,31 +111,34 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 {
                     {"UniqueKey", uniqueKey }
                 };
-            await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan, DataNapraw FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
+            await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
         }
 
         private async void ViewRepair_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(e.ColumnIndex == ViewRepair.Columns["BtnDelete"].Index)
+                {
+                string[] columnData = { "Type_Column", "Nazwa_Column", "Opis_Column", "NrCzęści_Column", "Cena_Column_", "Ilość_Column_", "Suma_Column" };
+                string[] sqlColumns = { "Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma" };
 
-            string[] columnData = { "Type_Column", "Nazwa_Column", "Opis_Column", "NrCzęści_Column", "Cena_Column_", "Ilość_Column_", "Suma_Column" };
-            string[] sqlColumns = { "Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma" };
-
-            GetDataTable(ViewRepair, columnData);
-            var warehouseData = new Dictionary<string, object>();
+                GetDataTable(ViewRepair, columnData);
+                var warehouseData = new Dictionary<string, object>();
 
 
-            for (byte i = 0; i < sqlColumns.Length; i++)
-            {
-                warehouseData.Add(sqlColumns[i], tranferData[i]);
-            }
-            bool IsSuccsesful = await SqlCmd.AddRecordAsync("WarsztatDB", "Magazyn", warehouseData);
-            if (IsSuccsesful)
-            {
-                await SqlCmd.DeleteDataTable(ViewRepair, e, "BtnDelete", "ID_Column_", "NaprawaSamochodu");
-                await SqlCmd.LoadData("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, Suma FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
-            }
-            tranferData.Clear();
-            warehouseData.Clear();
+                for(byte i = 0;i < sqlColumns.Length;i++)
+                    {
+                    warehouseData.Add(sqlColumns[i], tranferData[i]);
+                    }
+                bool IsSuccsesful = await SqlCmd.AddRecordAsync("WarsztatDB", "Magazyn", warehouseData);
+                if(IsSuccsesful)
+                    {
+                    await SqlCmd.DeleteDataTable(ViewRepair, e, "BtnDelete", "ID_Column_", "NaprawaSamochodu");
+                    await SqlCmd.LoadData("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, Suma FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
+                    }
+                tranferData.Clear();
+                warehouseData.Clear();
+                }
+            
         }
 
         private void ViewRepair_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -189,8 +194,6 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
         {
             string[] data = { "ID_Column", "Typ_column", "Nazwa_column_", "Opis_Column_", "NumerCzęści_column", "Cena_column", "Ilość_column", "Sum_Column" };
             GetDataTable(WarehouseView, data);
-            tranferData.Add(DateTime.Now.ToString("D"));
-
 
             if (Convert.ToByte(tranferData[6]) == 1)
             {
@@ -213,7 +216,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
 
         private async void TransferDataWithRemoveSQL()
         {
-            string[] values = { "Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma", "DataNapraw" };
+            string[] values = { "Typ", "Nazwa", "Opis", "NumerCzęści", "Cena", "Ilość", "Suma" };
 
             var transferDataId = new Dictionary<string, object>
                         {
@@ -227,6 +230,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             {
                 repairCarData.Add(values[i], tranferData[i]);
             }
+            repairCarData.Add("Stan", 1);
             repairCarData.Add("UniqueKey", uniqueKey);
 
             bool isSucceed = await SqlCmd.AddRecordAsync("WarsztatDB", "NaprawaSamochodu", repairCarData);
@@ -240,6 +244,11 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
         private async void Form_AddRepair_Load(object sender, EventArgs e)
         {
             await LoadCarData();
+            if(uniqueKey != Guid.Empty)
+                {
+                await LoadRepair();
+                }
+            
         }
 
         private void Form_AddRepair_Leave(object sender, EventArgs e)

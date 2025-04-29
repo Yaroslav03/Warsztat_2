@@ -12,15 +12,23 @@ namespace Warsztat_2
     {
         private uint clientCount, carCount, scheduleCount;
         private decimal sumEarnings, earningOnParts, dependecisOfEmployer, costOfDependecis;
+        private UC_ViewDataCar viewDataCar;
+        private UC_AddAllData addAllData;
         public Form2()
         {
             InitializeComponent();
+
+            viewDataCar = new UC_ViewDataCar();
+            addAllData = new UC_AddAllData();
+            splitContainer1.Panel2.Controls.Clear();
+            splitContainer1.Panel2.Controls.Add(viewDataCar);
+            viewDataCar.CarSelected += ViewDataCar_CarSelected;
         }
         private void AddButton_Click(object sender, EventArgs e)
         {
             //LoadUserControl(new UC_AddData());
             LoadUserControl(new UC_AddAllData());
-        }
+            }
 
         private void WarehouseButton_Click(object sender, EventArgs e)
         {
@@ -34,8 +42,9 @@ namespace Warsztat_2
 
         private void ViewAllCar_Click(object sender, EventArgs e)
         {
-            LoadUserControl(new UC_ViewDataCar());
-        }
+            splitContainer1.Panel2.Controls.Clear();
+            splitContainer1.Panel2.Controls.Add(viewDataCar);
+            }
 
         private void ArchiveButton_Click(object sender, EventArgs e)
         {
@@ -45,8 +54,6 @@ namespace Warsztat_2
         private async void Form2_Load(object sender, EventArgs e)
         {
             await SqlCmd.CheckScheduleCar();
-
-            LoadUserControl(new UC_ViewDataCar());
 
             await LoadDataInterface();
 
@@ -125,5 +132,10 @@ namespace Warsztat_2
         {
             LoadUserControl(new UC_Company());
         }
-    }
+        private void ViewDataCar_CarSelected(object sender, Guid carGuid)
+            {
+            addAllData.SetCarGuid(carGuid); 
+            LoadUserControl(addAllData);
+            }
+        }
 }

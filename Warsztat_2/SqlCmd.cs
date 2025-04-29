@@ -120,7 +120,72 @@ internal class SqlCmd
             Cursor.Current = Cursors.Default;
         }
     }
+    public static async Task UpdateAllData(Guid uniqueKey,
+                                       Dictionary<string, object> сlientData,
+                                       Dictionary<string, object> carData,
+                                       Dictionary<string, object> historyData)
+        {
+        Cursor.Current = Cursors.WaitCursor;
 
+        using SQLiteConnection conn = new(_connectionString);
+        await conn.OpenAsync();
+        using DbTransaction transaction = await conn.BeginTransactionAsync();
+
+        try
+            {
+            // Функція для створення SQL-запиту UPDATE
+            static string GenerateUpdateQuery(string tableName, Dictionary<string, object> data)
+                {
+                string setClause = string.Join(", ", data.Keys.Select(k => $"{k} = @{k}"));
+                return $"UPDATE {tableName} SET {setClause} WHERE UniqueKey = @UniqueKey;";
+                }
+
+            // Оновлення даних клієнта
+            if(сlientData.Count > 0)
+                {
+                string klientQuery = GenerateUpdateQuery("Klienty", сlientData);
+                using SQLiteCommand klientCmd = new(klientQuery, conn, (SQLiteTransaction)transaction);
+                klientCmd.Parameters.AddWithValue("@UniqueKey", uniqueKey);
+                foreach(var column in сlientData)
+                    klientCmd.Parameters.AddWithValue($"@{column.Key}", column.Value ?? DBNull.Value);
+                await klientCmd.ExecuteNonQueryAsync();
+                }
+
+            // Оновлення даних автомобіля
+            if(carData.Count > 0)
+                {
+                string carQuery = GenerateUpdateQuery("Samochód", carData);
+                using SQLiteCommand carCmd = new(carQuery, conn, (SQLiteTransaction)transaction);
+                carCmd.Parameters.AddWithValue("@UniqueKey", uniqueKey);
+                foreach(var column in carData)
+                    carCmd.Parameters.AddWithValue($"@{column.Key}", column.Value ?? DBNull.Value);
+                await carCmd.ExecuteNonQueryAsync();
+                }
+
+            // Оновлення історії ремонту
+            if(historyData.Count > 0)
+                {
+                string historyQuery = GenerateUpdateQuery("HistoriaNapraw", historyData);
+                using SQLiteCommand historyCmd = new(historyQuery, conn, (SQLiteTransaction)transaction);
+                historyCmd.Parameters.AddWithValue("@UniqueKey", uniqueKey);
+                foreach(var column in historyData)
+                    historyCmd.Parameters.AddWithValue($"@{column.Key}", column.Value ?? DBNull.Value);
+                await historyCmd.ExecuteNonQueryAsync();
+                }
+
+            await transaction.CommitAsync();
+            MessageBox.Show("Dane zaktualizowano pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        catch(Exception ex)
+            {
+            await transaction.RollbackAsync();
+            MessageBox.Show($"Błąd aktualizacji: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        finally
+            {
+            Cursor.Current = Cursors.Default;
+            }
+        }
     public static async Task<List<Dictionary<string, object>>> LoadListAsync(string pathName, string tableName, string selectData, string keyColumnName, object keyValue)
     {
         Cursor.Current = Cursors.WaitCursor;
