@@ -11,7 +11,7 @@ namespace Warsztat_2
     public partial class Form2 : Form
     {
         private uint clientCount, carCount, scheduleCount;
-        private decimal sumEarnings, earningOnParts, dependecisOfEmployer, costOfDependecis;
+        private decimal sumEarnings, earningOnParts, dependecisOfEmployer, costOfDependecis, earningService;
         private UC_ViewDataCar viewDataCar;
         private UC_AddAllData addAllData;
         public Form2()
@@ -74,6 +74,7 @@ namespace Warsztat_2
             dependecisOfEmployer = await SqlCmd.GetTotalDependecisOfEmployerForCurrentMonthAsync();
             sumEarnings = await SqlCmd.GetTotalEarningsForCurrentMonthAsync();
             earningOnParts = await SqlCmd.GetTotalEarningsOnPartsForCurrentMonthAsync();
+            earningService = await SqlCmd.GetTotalEarningsOnServicesForCurrentMonthAsync();
 
             if (companyData.ContainsKey("NazwaFirmy"))
             {
@@ -82,9 +83,9 @@ namespace Warsztat_2
             label9.Text += carCount.ToString();
             label5.Text += scheduleCount.ToString();
             label8.Text += clientCount.ToString();
-            label7.Text += sumEarnings + earningOnParts + "zł";
+            label4.Text += sumEarnings + earningOnParts + earningService + "zł";
             label3.Text += (costOfDependecis + dependecisOfEmployer).ToString() + "zł";
-            label2.Text += (sumEarnings + earningOnParts - costOfDependecis - dependecisOfEmployer) + "zł";
+            label2.Text += (sumEarnings + earningOnParts + earningService- costOfDependecis - dependecisOfEmployer) + "zł";
         }
         private async Task DateHistory()
         {

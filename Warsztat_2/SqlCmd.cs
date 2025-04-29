@@ -792,6 +792,7 @@ internal class SqlCmd
         "Samochód",
         "NaprawaSamochodu",
         "HistoriaNapraw",
+        "HistoriaUsług",
         "ZarządzanieZleceniem"
     };
 
@@ -907,6 +908,7 @@ internal class SqlCmd
         "Samochód",
         "NaprawaSamochodu",
         "HistoriaNapraw",
+        "HistoriaUsług",
         "ZarządzanieZleceniem"
     };
 
@@ -963,7 +965,8 @@ internal class SqlCmd
         {
             Cursor.Current = Cursors.Default;
         }
-    }
+        }
+    #endregion
     public static async Task<decimal> GetTotalEarningsForCurrentMonthAsync()
     {
         decimal totalEarnings = 0m;
@@ -1072,6 +1075,60 @@ internal class SqlCmd
         }
         return totalEarnings;
     }
+    public static async Task<decimal> GetTotalEarningsOnServicesForCurrentMonthAsync()
+        {
+        decimal totalEarnings = 0m;
+        try
+            {
+            using SQLiteConnection conn = new("Data Source=Archive.db;Version=3;New=False;Compress=True;");
+            await conn.OpenAsync();
+
+            // Витягуємо всі записи (можна додати початкову приблизну фільтрацію, якщо потрібно)
+            string query = "SELECT KosztUsługi, DataZamknięciaZlecenia FROM ZarządzanieZleceniem";
+
+            using SQLiteCommand cmd = new(query, conn);
+            using DbDataReader reader = await cmd.ExecuteReaderAsync();
+
+            // Отримуємо поточний рік та місяць
+            int currentYear = DateTime.Today.Year;
+            int currentMonth = DateTime.Today.Month;
+
+            while(await reader.ReadAsync())
+                {
+                if(!reader.IsDBNull(0) && !reader.IsDBNull(1))
+                    {
+                    decimal value = Convert.ToDecimal(reader["KosztUsługi"]);
+                    string dateString = reader["DataZamknięciaZlecenia"].ToString();
+
+                    var culture = new System.Globalization.CultureInfo("pl-PL");
+
+                    if(DateTime.TryParse(dateString, culture,
+                        System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
+                        {
+                        // Перевіряємо чи дата належить поточному місяцю та року
+                        if(parsedDate.Year == currentYear && parsedDate.Month == currentMonth)
+                            {
+                            totalEarnings += value;
+                            }
+                        }
+                    else
+                        {
+                        // Якщо дата не розпарсилась, можна або проігнорувати, або зробити логування помилки
+                        }
+                    }
+                }
+            }
+        catch(Exception ex)
+            {
+            MessageBox.Show("Nie przewidziany warunek, proszę zrobić zdjęcie błędu i wysłać na adres yaroslavturbo13@gmail.com: \n" + ex.Message,
+                "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        finally
+            {
+            Cursor.Current = Cursors.Default;
+            }
+        return totalEarnings;
+        }
     public static async Task<decimal> GetTotalDependecisForCurrentMonthAsync()
     {
         decimal totalEarnings = 0m;
@@ -1187,4 +1244,4 @@ internal class SqlCmd
         Cursor.Current = Cursors.Default;
     }
 }
-#endregion
+
