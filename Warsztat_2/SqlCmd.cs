@@ -290,36 +290,47 @@ internal class SqlCmd
         }
         return data;
     }
-    public static async Task<uint> CountDataAsync(string tableName)
-    {
-        Cursor.Current = Cursors.WaitCursor;
-        uint count = 0; // Значення за замовчуванням
-        try
+    public static async Task<(uint Klienty, uint Samochód, uint Zaplanowane)> CountTablesDataAsync()
         {
-            using SQLiteConnection conn = new($"Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;");
+        Cursor.Current = Cursors.WaitCursor;
+
+        uint countKlienty = 0;
+        uint countSamochód = 0;
+        uint countZaplanowane = 0;
+
+        try
+            {
+            using SQLiteConnection conn = new("Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;");
             await conn.OpenAsync();
 
-            // Використання параметра для уникнення SQL-ін'єкцій
-            string query = $"SELECT COUNT(*) FROM \"{tableName}\"";
+            string query = @"
+            SELECT 
+                (SELECT COUNT(*) FROM Klienty),
+                (SELECT COUNT(*) FROM Samochód),
+                (SELECT COUNT(*) FROM ZaplanowaneSamochody);";
 
             using SQLiteCommand cmd = new(query, conn);
+            using DbDataReader reader = await cmd.ExecuteReaderAsync();
 
-            object result = await cmd.ExecuteScalarAsync(); // Використовуємо ExecuteScalar для підрахунку
-            if (result != null && uint.TryParse(result.ToString(), out uint parsedCount))
-            {
-                count = parsedCount; // Зберігаємо значення
+            if(await reader.ReadAsync())
+                {
+                countKlienty = Convert.ToUInt32(reader.GetInt32(0));
+                countSamochód = Convert.ToUInt32(reader.GetInt32(1));
+                countZaplanowane = Convert.ToUInt32(reader.GetInt32(2));
+                }
             }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Nie przewidziany warunek, proszę zrobić zdjęcie błędu i wysłać na adres yaroslavturbo13@gmail.com: \n" + $"table name -> {tableName}" + ex.Message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
+        catch(Exception ex)
+            {
+            MessageBox.Show("Nie przewidziany warunek, proszę zrobić zdjęcie błędu i wysłać na adres yaroslavturbo13@gmail.com:\n" + ex.Message,
+                "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         finally
-        {
+            {
             Cursor.Current = Cursors.Default;
+            }
+
+        return (countKlienty, countSamochód, countZaplanowane);
         }
-        return count; // Повертаємо навіть якщо було виключення
-    }
     public static async Task<decimal> GetMarzaAsync()
     {
         decimal marzha = 0;
@@ -451,28 +462,7 @@ internal class SqlCmd
             }
         }
     }
-    public static async Task CarReadListBoxAsync(ListBox updateListBox, string query, string ColumnName, Dictionary<string, object> columns)
-    {
-        updateListBox.Items.Clear();
 
-        using SQLiteConnection conn = new(_connectionStringCarDB);
-        await conn.OpenAsync();
-
-        using SQLiteCommand cmd = new(query, conn);
-        foreach (var column in columns)
-        {
-            cmd.Parameters.AddWithValue($"@{column.Key}", column.Value ?? DBNull.Value);
-        }
-        using DbDataReader reader = await cmd.ExecuteReaderAsync();
-
-        while (await reader.ReadAsync())
-        {
-            if (reader[ColumnName] != DBNull.Value && !string.IsNullOrEmpty(reader[ColumnName].ToString()))
-            {
-                updateListBox.Items.Add(reader[ColumnName].ToString());
-            }
-        }
-    }
     // Універсальний метод для видалення запису(ів) з будь-якої таблиці
     public static async Task<bool> DeleteRecordAsync(string fileName, string tableName, string whereClause, Dictionary<string, object> whereParams)
     {
@@ -600,146 +590,6 @@ internal class SqlCmd
         }
         data.Clear();
         Cursor.Current = Cursors.Default;
-    }
-    public static async Task LoadBrands(ListBox listBox)
-    {
-        Cursor.Current = Cursors.WaitCursor;
-        try
-        {
-            string query = "SELECT BrandName FROM Brands ORDER BY BrandName";
-
-            using SQLiteConnection conn = new(_connectionStringCarDB);
-            await conn.OpenAsync();
-
-            using SQLiteCommand cmd = new(query, conn);
-            using DbDataReader reader = await cmd.ExecuteReaderAsync();
-
-            while (await reader.ReadAsync()) // Читаємо кілька рядків
-            {
-                listBox.Items.Add(reader["BrandName"].ToString());
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Nie przewidziany warunek: " + ex.Message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-        finally
-        {
-            Cursor.Current = Cursors.Default;
-        }        
-    }
-    public static async Task LoadModels(ListBox listBox,string brandName)
-    {
-        Cursor.Current = Cursors.WaitCursor;
-        try
-        {
-            listBox.Items.Clear();
-            string query = "SELECT ModelName FROM Models WHERE BrandID = (SELECT BrandID FROM Brands WHERE BrandName = @brandName) ORDER BY ModelName";
-            using SQLiteConnection conn = new(_connectionStringCarDB);
-            await conn.OpenAsync();
-
-            using SQLiteCommand cmd = new(query, conn);
-            cmd.Parameters.AddWithValue("@brandName", brandName);
-
-            using DbDataReader reader = await cmd.ExecuteReaderAsync();
-            while (await reader.ReadAsync()) // Читаємо кілька рядків
-            {
-                listBox.Items.Add(reader["ModelName"].ToString());
-            }
-
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Nie przewidziany warunek: " + ex.Message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-        finally
-        {
-            Cursor.Current = Cursors.Default;
-        }
-    }
-    public static async Task LoadEnginesAndYears(ListBox listbox0, ListBox listbox1, string modelName)
-    {
-        Cursor.Current = Cursors.WaitCursor;
-        try
-        {
-            listbox0.Items.Clear();
-            listbox1.Items.Clear();
-            string query = @"SELECT DISTINCT EngineName, StartYear, EndYear FROM Generations g
-                     JOIN Models m ON g.ModelID = m.ModelID
-                     JOIN Engines e ON e.GenerationID = g.GenerationID
-                     WHERE m.ModelName = @modelName ORDER BY StartYear";
-
-            using SQLiteConnection conn = new(_connectionStringCarDB);
-            await conn.OpenAsync();
-
-            using SQLiteCommand cmd = new(query, conn);
-            cmd.Parameters.AddWithValue("@modelName", modelName);
-            using DbDataReader reader = await cmd.ExecuteReaderAsync();
-
-            while (await reader.ReadAsync()) // Читаємо кілька рядків
-            {
-                listbox0.Items.Add(reader["EngineName"].ToString());
-                int startYear = Convert.ToInt32(reader["StartYear"]);
-                int endYear = reader["EndYear"] != DBNull.Value ? Convert.ToInt32(reader["EndYear"]) : DateTime.Now.Year;
-
-                for (int year = startYear; year <= endYear; year++)
-                {
-                    if (!listbox1.Items.Contains(year.ToString()))
-                        listbox1.Items.Add(year.ToString());
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Nie przewidziany warunek: " + ex.Message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-        finally
-        {
-            Cursor.Current = Cursors.Default;
-        }
-    }
-    public static async Task LoadYears(ListBox yearListBox, string engineName, string modelName)
-    {
-        Cursor.Current = Cursors.WaitCursor;
-        try
-        {
-            yearListBox.Items.Clear();
-            string query = @"
-            SELECT DISTINCT g.StartYear, g.EndYear 
-            FROM Generations g
-            JOIN Models m ON g.ModelID = m.ModelID
-            JOIN Engines e ON e.GenerationID = g.GenerationID
-            WHERE m.ModelName = @ModelName AND e.EngineName = @EngineName
-            ORDER BY g.StartYear;";
-
-            using SQLiteConnection conn = new(_connectionStringCarDB);
-            await conn.OpenAsync();
-
-            using SQLiteCommand cmd = new(query, conn);
-            cmd.Parameters.AddWithValue("@ModelName", modelName);
-            cmd.Parameters.AddWithValue("@EngineName", engineName);
-            using DbDataReader reader = await cmd.ExecuteReaderAsync();
-
-            while (await reader.ReadAsync()) // Читаємо результати запиту
-            {
-                int startYear = Convert.ToInt32(reader["StartYear"]);
-                int endYear = reader["EndYear"] != DBNull.Value ? Convert.ToInt32(reader["EndYear"]) : DateTime.Now.Year;
-
-                for (int year = startYear; year <= endYear; year++)
-                {
-                    if (!yearListBox.Items.Contains(year.ToString()))
-                        yearListBox.Items.Add(year.ToString());
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Nie przewidziany warunek: " + ex.Message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-        finally
-        {
-            Cursor.Current = Cursors.Default;
-        }
     }
     #endregion
     #region delete data in DB
@@ -967,153 +817,46 @@ internal class SqlCmd
         }
         }
     #endregion
+
     public static async Task<decimal> GetTotalEarningsForCurrentMonthAsync()
-    {
-        decimal totalEarnings = 0m;
-        try
         {
-            using SQLiteConnection conn = new("Data Source=Archive.db;Version=3;New=False;Compress=True;");
-            await conn.OpenAsync();
+        decimal totalParts = 0m;
+        decimal totalServices = 0m;
+        decimal totalPricaWork = 0m;
 
-            // Витягуємо всі записи (можна додати початкову приблизну фільтрацію, якщо потрібно)
-            string query = "SELECT KosztPracyRęcznej, DataOczekiwaniaOdbioru FROM ZarządzanieZleceniem";
-
-            using SQLiteCommand cmd = new(query, conn);
-            using DbDataReader reader = await cmd.ExecuteReaderAsync();
-
-            // Отримуємо поточний рік та місяць
-            int currentYear = DateTime.Today.Year;
-            int currentMonth = DateTime.Today.Month;
-
-            while (await reader.ReadAsync())
-            {
-                if (!reader.IsDBNull(0) && !reader.IsDBNull(1))
-                {
-                    decimal value = Convert.ToDecimal(reader["KosztPracyRęcznej"]);
-                    string dateString = reader["DataOczekiwaniaOdbioru"].ToString();
-
-                    var culture = new System.Globalization.CultureInfo("pl-PL");
-
-                    if (DateTime.TryParse(dateString, culture,
-                        System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
-                    {
-                        // Перевіряємо чи дата належить поточному місяцю та року
-                        if (parsedDate.Year == currentYear && parsedDate.Month == currentMonth)
-                        {
-                            totalEarnings += value;
-                        }
-                    }
-                    else
-                    {
-                        // Якщо дата не розпарсилась, можна або проігнорувати, або зробити логування помилки
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Nie przewidziany warunek, proszę zrobić zdjęcie błędu i wysłać na adres yaroslavturbo13@gmail.com: \n" + ex.Message,
-                "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-        finally
-        {
-            Cursor.Current = Cursors.Default;
-        }
-        return totalEarnings;
-    }
-    public static async Task<decimal> GetTotalEarningsOnPartsForCurrentMonthAsync()
-    {
-        decimal totalEarnings = 0m;
-        try
-        {
-            using SQLiteConnection conn = new("Data Source=Archive.db;Version=3;New=False;Compress=True;");
-            await conn.OpenAsync();
-
-            // Витягуємо всі записи (можна додати початкову приблизну фільтрацію, якщо потрібно)
-            string query = "SELECT DochódZCzęści, DataZamknięciaZlecenia FROM ZarządzanieZleceniem";
-
-            using SQLiteCommand cmd = new(query, conn);
-            using DbDataReader reader = await cmd.ExecuteReaderAsync();
-
-            // Отримуємо поточний рік та місяць
-            int currentYear = DateTime.Today.Year;
-            int currentMonth = DateTime.Today.Month;
-
-            while (await reader.ReadAsync())
-            {
-                if (!reader.IsDBNull(0) && !reader.IsDBNull(1))
-                {
-                    decimal value = Convert.ToDecimal(reader["DochódZCzęści"]);
-                    string dateString = reader["DataZamknięciaZlecenia"].ToString();
-
-                    var culture = new System.Globalization.CultureInfo("pl-PL");
-
-                    if (DateTime.TryParse(dateString, culture,
-                        System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
-                    {
-                        // Перевіряємо чи дата належить поточному місяцю та року
-                        if (parsedDate.Year == currentYear && parsedDate.Month == currentMonth)
-                        {
-                            totalEarnings += value;
-                        }
-                    }
-                    else
-                    {
-                        // Якщо дата не розпарсилась, можна або проігнорувати, або зробити логування помилки
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Nie przewidziany warunek, proszę zrobić zdjęcie błędu i wysłać na adres yaroslavturbo13@gmail.com: \n" + ex.Message,
-                "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-        finally
-        {
-            Cursor.Current = Cursors.Default;
-        }
-        return totalEarnings;
-    }
-    public static async Task<decimal> GetTotalEarningsOnServicesForCurrentMonthAsync()
-        {
-        decimal totalEarnings = 0m;
         try
             {
             using SQLiteConnection conn = new("Data Source=Archive.db;Version=3;New=False;Compress=True;");
             await conn.OpenAsync();
 
-            // Витягуємо всі записи (можна додати початкову приблизну фільтрацію, якщо потрібно)
-            string query = "SELECT KosztUsługi, DataZamknięciaZlecenia FROM ZarządzanieZleceniem";
-
+            string query = "SELECT KosztCzęściZMarżą, KosztUsługi, KosztPracyRęcznej, DataZamknięciaZlecenia FROM ZarządzanieZleceniem";
             using SQLiteCommand cmd = new(query, conn);
             using DbDataReader reader = await cmd.ExecuteReaderAsync();
 
-            // Отримуємо поточний рік та місяць
             int currentYear = DateTime.Today.Year;
             int currentMonth = DateTime.Today.Month;
+            var culture = new System.Globalization.CultureInfo("pl-PL");
 
             while(await reader.ReadAsync())
                 {
-                if(!reader.IsDBNull(0) && !reader.IsDBNull(1))
+                if(!reader.IsDBNull(3))
                     {
-                    decimal value = Convert.ToDecimal(reader["KosztUsługi"]);
                     string dateString = reader["DataZamknięciaZlecenia"].ToString();
-
-                    var culture = new System.Globalization.CultureInfo("pl-PL");
-
-                    if(DateTime.TryParse(dateString, culture,
-                        System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
+                    if(DateTime.TryParse(dateString, culture, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
                         {
-                        // Перевіряємо чи дата належить поточному місяцю та року
                         if(parsedDate.Year == currentYear && parsedDate.Month == currentMonth)
                             {
-                            totalEarnings += value;
+                            if(!reader.IsDBNull(0))
+                                totalParts += Convert.ToDecimal(reader["KosztCzęściZMarżą"]);
+                            if(!reader.IsDBNull(1))
+                                totalServices += Convert.ToDecimal(reader["KosztUsługi"]);
+                            if(!reader.IsDBNull(2))
+                                totalPricaWork += Convert.ToDecimal(reader["KosztPracyRęcznej"]);
                             }
                         }
                     else
                         {
-                        // Якщо дата не розпарсилась, можна або проігнорувати, або зробити логування помилки
+                        // Логування проблеми з датою
                         }
                     }
                 }
@@ -1127,54 +870,55 @@ internal class SqlCmd
             {
             Cursor.Current = Cursors.Default;
             }
-        return totalEarnings;
+
+        return totalParts + totalServices + totalPricaWork;
         }
     public static async Task<decimal> GetTotalDependecisForCurrentMonthAsync()
-    {
+        {
         decimal totalEarnings = 0m;
         string[] dataWithFilter = { "StałeWydatkiFirmy", "WydatkiFirmy  WHERE date(substr(DataPotrącenia, 7, 4) || '-' || substr(DataPotrącenia, 4, 2) || '-' ||substr(DataPotrącenia, 1, 2))" +
-                                                                          ">= date('now', 'start of month') AND date(substr(DataPotrącenia, 7, 4) || '-' || substr(DataPotrącenia, 4, 2) || '-' ||substr(DataPotrącenia, 1, 2)) < " +
-                                                                          "date('now', 'start of month', '+1 month')" };
+                                                                             ">= date('now', 'start of month') AND date(substr(DataPotrącenia, 7, 4) || '-' || substr(DataPotrącenia, 4, 2) || '-' ||substr(DataPotrącenia, 1, 2)) < " +
+                                                                             "date('now', 'start of month', '+1 month')" };
         try
-        {
+            {
             using SQLiteConnection conn = new("Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;");
             await conn.OpenAsync();
-            foreach (string data in dataWithFilter)
-            {
+            foreach(string data in dataWithFilter)
+                {
                 string query = $"SELECT CenaWydatku, DataPotrącenia FROM {data}";
 
                 using SQLiteCommand cmd = new(query, conn);
                 using DbDataReader reader = await cmd.ExecuteReaderAsync();
 
 
-                while (await reader.ReadAsync())
-                {
-                    if (!reader.IsDBNull(0))
+                while(await reader.ReadAsync())
                     {
+                    if(!reader.IsDBNull(0))
+                        {
                         decimal value = Convert.ToDecimal(reader["CenaWydatku"]);
 
                         totalEarnings += value;
+                        }
                     }
                 }
-            }
 
-        }
-        catch (Exception ex)
-        {
+            }
+        catch(Exception ex)
+            {
             // Обробка виключення
-        }
+            }
         finally
-        {
+            {
             Cursor.Current = Cursors.Default;
-        }
+            }
         return totalEarnings;
-    }
+        }
     public static async Task<decimal> GetTotalDependecisOfEmployerForCurrentMonthAsync()
-    {
+        {
         decimal totalDependecis = 0m;
 
         try
-        {
+            {
             using SQLiteConnection conn = new("Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;");
             await conn.OpenAsync();
 
@@ -1184,26 +928,26 @@ internal class SqlCmd
             using DbDataReader reader = await cmd.ExecuteReaderAsync();
 
 
-            while (await reader.ReadAsync())
-            {
-                if (!reader.IsDBNull(0))
+            while(await reader.ReadAsync())
                 {
+                if(!reader.IsDBNull(0))
+                    {
                     decimal value = Convert.ToDecimal(reader["Zarobek"]);
 
                     totalDependecis += value;
+                    }
                 }
             }
-        }
-        catch (Exception ex)
-        {
+        catch(Exception ex)
+            {
             // Обробка виключення
-        }
+            }
         finally
-        {
+            {
             Cursor.Current = Cursors.Default;
-        }
+            }
         return totalDependecis;
-    }
+        }
     public async static Task CheckScheduleCar()
     {
         Cursor.Current = Cursors.WaitCursor;
@@ -1244,4 +988,3 @@ internal class SqlCmd
         Cursor.Current = Cursors.Default;
     }
 }
-

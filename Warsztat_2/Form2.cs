@@ -67,14 +67,12 @@ namespace Warsztat_2
         private async Task LoadDataInterface()
         {
             var companyData = await SqlCmd.LoadDataAsync("WarsztatDB", "DaneFirmy");
-            clientCount = await SqlCmd.CountDataAsync("Klienty");
-            carCount = await SqlCmd.CountDataAsync("Samochód");
-            scheduleCount = await SqlCmd.CountDataAsync("ZaplanowaneSamochody");
+            var (clientCount, carCount, scheduleCount) = await SqlCmd.CountTablesDataAsync();
+
             costOfDependecis = await SqlCmd.GetTotalDependecisForCurrentMonthAsync();
             dependecisOfEmployer = await SqlCmd.GetTotalDependecisOfEmployerForCurrentMonthAsync();
-            sumEarnings = await SqlCmd.GetTotalEarningsForCurrentMonthAsync();
-            earningOnParts = await SqlCmd.GetTotalEarningsOnPartsForCurrentMonthAsync();
-            earningService = await SqlCmd.GetTotalEarningsOnServicesForCurrentMonthAsync();
+
+            decimal sum = await SqlCmd.GetTotalEarningsForCurrentMonthAsync();
 
             if (companyData.ContainsKey("NazwaFirmy"))
             {
@@ -83,9 +81,9 @@ namespace Warsztat_2
             label9.Text += carCount.ToString();
             label5.Text += scheduleCount.ToString();
             label8.Text += clientCount.ToString();
-            label4.Text += sumEarnings + earningOnParts + earningService + "zł";
+            label4.Text += sum + "zł";
             label3.Text += (costOfDependecis + dependecisOfEmployer).ToString() + "zł";
-            label2.Text += (sumEarnings + earningOnParts + earningService- costOfDependecis - dependecisOfEmployer) + "zł";
+            label2.Text += (sum- costOfDependecis - dependecisOfEmployer) + "zł";
         }
         private async Task DateHistory()
         {
