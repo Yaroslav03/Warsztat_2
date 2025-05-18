@@ -29,13 +29,15 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 {
                 DateAdoptionTimePicker.Text = DateTime.Today.ToString();
                 }
-             
+
             }
         private async void SaveButton_Click(object sender, EventArgs e)
             {
             if(await CheckDataBeforeSave())
                 {
                 await (SaveButton.Text == "Odśwież" ? UpdateData() : SaveData());
+
+
                 }
             }
 
@@ -203,7 +205,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 };
                 await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);
                 }
-            
+
             }
         private void VINTextBox_TextChanged(object sender, EventArgs e)
             {
@@ -255,5 +257,9 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             }
 
 
+        private void AddCarFromDBButton_Click_1(object sender, EventArgs e)
+            {
+
+            }
         }
     };
