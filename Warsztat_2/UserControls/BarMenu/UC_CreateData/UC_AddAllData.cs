@@ -189,6 +189,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                     {"UniqueKey", uniqueKey }
                 };
                 await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
+                ViewRepair.ClearSelection();
                 }
             }
         private async void SelectServiceButton_Click(object sender, EventArgs e)
@@ -203,7 +204,8 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 {
                     {"UniqueKey", uniqueKey }
                 };
-                await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);
+                await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);               
+                ServiceHistoryView.ClearSelection();
                 }
 
             }
@@ -254,6 +256,8 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 };
             await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
             await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);
+            ViewRepair.ClearSelection();
+            ServiceHistoryView.ClearSelection();
             }
 
 

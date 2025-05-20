@@ -672,7 +672,6 @@
             ViewRepair.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ViewRepair.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ViewRepair.BorderStyle = BorderStyle.None;
-            ViewRepair.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             ViewRepair.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
@@ -844,7 +843,6 @@
             ServiceHistoryView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ServiceHistoryView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ServiceHistoryView.BorderStyle = BorderStyle.None;
-            ServiceHistoryView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             ServiceHistoryView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(100, 88, 255);
