@@ -12,16 +12,13 @@ namespace Warsztat_2
     {
         private uint clientCount, carCount, scheduleCount;
         private decimal sumEarnings, earningOnParts, dependecisOfEmployer, costOfDependecis, earningService;
-        private UC_ViewDataCar viewDataCar;
-        private UC_AddAllData addAllData;
+        private readonly UC_ViewDataCar viewDataCar = new();
+        private readonly UC_AddAllData addAllData = new();
         public Form2()
         {
             InitializeComponent();
 
-            viewDataCar = new UC_ViewDataCar();
-            addAllData = new UC_AddAllData();
-            splitContainer1.Panel2.Controls.Clear();
-            splitContainer1.Panel2.Controls.Add(viewDataCar);
+            ViewDataCar();
             viewDataCar.CarSelected += ViewDataCar_CarSelected;
         }
         private void AddButton_Click(object sender, EventArgs e)
@@ -42,9 +39,8 @@ namespace Warsztat_2
 
         private void ViewAllCar_Click(object sender, EventArgs e)
         {
-            splitContainer1.Panel2.Controls.Clear();
-            splitContainer1.Panel2.Controls.Add(viewDataCar);
-            }
+            ViewDataCar();
+        }
 
         private void ArchiveButton_Click(object sender, EventArgs e)
         {
@@ -64,6 +60,12 @@ namespace Warsztat_2
         {
             Settings.ChangeWindow(control, splitContainer1.Panel2);
         }
+        private void ViewDataCar()
+            {
+            viewDataCar.Dock = DockStyle.Fill;
+            splitContainer1.Panel2.Controls.Clear();
+            splitContainer1.Panel2.Controls.Add(viewDataCar);
+            }
         private async Task LoadDataInterface()
         {
             var companyData = await SqlCmd.LoadDataAsync("WarsztatDB", "DaneFirmy");
