@@ -127,6 +127,12 @@
                 CarSelected?.Invoke(this, uniqueKey);
                 }
             }
-         public event EventHandler<Guid> CarSelected;
+
+        private async void UC_ViewDataCar_VisibleChanged(object sender, EventArgs e)
+            {
+            await LoadDB();
+            }
+
+        public event EventHandler<Guid> CarSelected;
         }
     }

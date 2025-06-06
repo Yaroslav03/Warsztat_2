@@ -29,13 +29,15 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 {
                 DateAdoptionTimePicker.Text = DateTime.Today.ToString();
                 }
-             
+
             }
         private async void SaveButton_Click(object sender, EventArgs e)
             {
             if(await CheckDataBeforeSave())
                 {
                 await (SaveButton.Text == "Odśwież" ? UpdateData() : SaveData());
+
+
                 }
             }
 
@@ -187,6 +189,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                     {"UniqueKey", uniqueKey }
                 };
                 await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
+                ViewRepair.ClearSelection();
                 }
             }
         private async void SelectServiceButton_Click(object sender, EventArgs e)
@@ -201,9 +204,10 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 {
                     {"UniqueKey", uniqueKey }
                 };
-                await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);
+                await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);               
+                ServiceHistoryView.ClearSelection();
                 }
-            
+
             }
         private void VINTextBox_TextChanged(object sender, EventArgs e)
             {
@@ -252,8 +256,14 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 };
             await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
             await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);
+            ViewRepair.ClearSelection();
+            ServiceHistoryView.ClearSelection();
             }
 
 
+        private void AddCarFromDBButton_Click_1(object sender, EventArgs e)
+            {
+
+            }
         }
     };

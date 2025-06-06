@@ -12,16 +12,13 @@ namespace Warsztat_2
     {
         private uint clientCount, carCount, scheduleCount;
         private decimal sumEarnings, earningOnParts, dependecisOfEmployer, costOfDependecis, earningService;
-        private UC_ViewDataCar viewDataCar;
-        private UC_AddAllData addAllData;
+        private readonly UC_ViewDataCar viewDataCar = new();
+        private readonly UC_AddAllData addAllData = new();
         public Form2()
         {
             InitializeComponent();
 
-            viewDataCar = new UC_ViewDataCar();
-            addAllData = new UC_AddAllData();
-            splitContainer1.Panel2.Controls.Clear();
-            splitContainer1.Panel2.Controls.Add(viewDataCar);
+            ViewDataCar();
             viewDataCar.CarSelected += ViewDataCar_CarSelected;
         }
         private void AddButton_Click(object sender, EventArgs e)
@@ -42,9 +39,8 @@ namespace Warsztat_2
 
         private void ViewAllCar_Click(object sender, EventArgs e)
         {
-            splitContainer1.Panel2.Controls.Clear();
-            splitContainer1.Panel2.Controls.Add(viewDataCar);
-            }
+            ViewDataCar();
+        }
 
         private void ArchiveButton_Click(object sender, EventArgs e)
         {
@@ -64,17 +60,21 @@ namespace Warsztat_2
         {
             Settings.ChangeWindow(control, splitContainer1.Panel2);
         }
+        private void ViewDataCar()
+            {
+            viewDataCar.Dock = DockStyle.Fill;
+            splitContainer1.Panel2.Controls.Clear();
+            splitContainer1.Panel2.Controls.Add(viewDataCar);
+            }
         private async Task LoadDataInterface()
         {
             var companyData = await SqlCmd.LoadDataAsync("WarsztatDB", "DaneFirmy");
-            clientCount = await SqlCmd.CountDataAsync("Klienty");
-            carCount = await SqlCmd.CountDataAsync("Samochód");
-            scheduleCount = await SqlCmd.CountDataAsync("ZaplanowaneSamochody");
+            var (clientCount, carCount, scheduleCount) = await SqlCmd.CountTablesDataAsync();
+
             costOfDependecis = await SqlCmd.GetTotalDependecisForCurrentMonthAsync();
             dependecisOfEmployer = await SqlCmd.GetTotalDependecisOfEmployerForCurrentMonthAsync();
-            sumEarnings = await SqlCmd.GetTotalEarningsForCurrentMonthAsync();
-            earningOnParts = await SqlCmd.GetTotalEarningsOnPartsForCurrentMonthAsync();
-            earningService = await SqlCmd.GetTotalEarningsOnServicesForCurrentMonthAsync();
+
+            decimal sum = await SqlCmd.GetTotalEarningsForCurrentMonthAsync();
 
             if (companyData.ContainsKey("NazwaFirmy"))
             {
@@ -83,9 +83,9 @@ namespace Warsztat_2
             label9.Text += carCount.ToString();
             label5.Text += scheduleCount.ToString();
             label8.Text += clientCount.ToString();
-            label4.Text += sumEarnings + earningOnParts + earningService + "zł";
+            label4.Text += sum + "zł";
             label3.Text += (costOfDependecis + dependecisOfEmployer).ToString() + "zł";
-            label2.Text += (sumEarnings + earningOnParts + earningService- costOfDependecis - dependecisOfEmployer) + "zł";
+            label2.Text += (sum- costOfDependecis - dependecisOfEmployer) + "zł";
         }
         private async Task DateHistory()
         {

@@ -27,7 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
+            {
             splitContainer1 = new SplitContainer();
             panel2 = new Panel();
             label2 = new Label();
@@ -93,7 +93,7 @@
             label2.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(224, 224, 224);
             label2.ImeMode = ImeMode.NoControl;
-            label2.Location = new Point(35, 237);
+            label2.Location = new Point(25, 173);
             label2.Name = "label2";
             label2.Size = new Size(228, 17);
             label2.TabIndex = 1;
@@ -105,7 +105,7 @@
             label3.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(224, 224, 224);
             label3.ImeMode = ImeMode.NoControl;
-            label3.Location = new Point(-3, 207);
+            label3.Location = new Point(8, 144);
             label3.Name = "label3";
             label3.Size = new Size(266, 17);
             label3.TabIndex = 1;
@@ -117,7 +117,7 @@
             label4.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(224, 224, 224);
             label4.ImeMode = ImeMode.NoControl;
-            label4.Location = new Point(0, 181);
+            label4.Location = new Point(8, 118);
             label4.Name = "label4";
             label4.Size = new Size(266, 17);
             label4.TabIndex = 1;
@@ -129,7 +129,7 @@
             label5.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(224, 224, 224);
             label5.ImeMode = ImeMode.NoControl;
-            label5.Location = new Point(25, 134);
+            label5.Location = new Point(25, 69);
             label5.Name = "label5";
             label5.Size = new Size(238, 17);
             label5.TabIndex = 1;
@@ -141,7 +141,7 @@
             label6.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = Color.FromArgb(224, 224, 224);
             label6.ImeMode = ImeMode.NoControl;
-            label6.Location = new Point(0, 181);
+            label6.Location = new Point(8, 118);
             label6.Name = "label6";
             label6.Size = new Size(266, 17);
             label6.TabIndex = 1;
@@ -153,7 +153,7 @@
             label7.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = Color.FromArgb(224, 224, 224);
             label7.ImeMode = ImeMode.NoControl;
-            label7.Location = new Point(35, 237);
+            label7.Location = new Point(25, 173);
             label7.Name = "label7";
             label7.Size = new Size(228, 17);
             label7.TabIndex = 1;
@@ -165,7 +165,7 @@
             label8.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label8.ForeColor = Color.FromArgb(224, 224, 224);
             label8.ImeMode = ImeMode.NoControl;
-            label8.Location = new Point(8, 49);
+            label8.Location = new Point(8, 11);
             label8.Name = "label8";
             label8.Size = new Size(235, 17);
             label8.TabIndex = 1;
@@ -177,7 +177,7 @@
             label9.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label9.ForeColor = Color.FromArgb(224, 224, 224);
             label9.ImeMode = ImeMode.NoControl;
-            label9.Location = new Point(25, 105);
+            label9.Location = new Point(25, 40);
             label9.Name = "label9";
             label9.Size = new Size(238, 17);
             label9.TabIndex = 1;
@@ -320,7 +320,7 @@
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ResumeLayout(false);
-        }
+            }
 
         #endregion
 

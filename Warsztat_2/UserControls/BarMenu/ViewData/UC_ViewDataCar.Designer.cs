@@ -231,6 +231,7 @@
             Name = "UC_ViewDataCar";
             Size = new Size(1000, 615);
             Load += UC_ViewDataCar_Load;
+            VisibleChanged += UC_ViewDataCar_VisibleChanged;
             ((System.ComponentModel.ISupportInitialize)ViewActualData).EndInit();
             ResumeLayout(false);
             PerformLayout();
