@@ -662,7 +662,10 @@ internal class SqlCmd
         }
         foreach (var row in dataForTables["ZarządzanieZleceniem"])
         {
-            row["DataZamknięciaZlecenia"] = DateTime.Today.ToString("D");
+            if(row["DataZamknięciaZlecenia"] == DBNull.Value || string.IsNullOrWhiteSpace(row["DataZamknięciaZlecenia"].ToString()))
+                {
+                row["DataZamknięciaZlecenia"] = DateTime.Today.ToString("D");
+                }           
         }
 
 
