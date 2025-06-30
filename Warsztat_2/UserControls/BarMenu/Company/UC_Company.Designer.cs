@@ -49,15 +49,6 @@
             label2 = new Label();
             NumerTelefonuTextBox = new MaskedTextBox();
             ViewEmployers = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            BtnDeleteEmployer = new DataGridViewButtonColumn();
-            dataGridViewButtonColumn2 = new DataGridViewButtonColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
             EarningPriceNumericUpDown = new NumericUpDown();
             DateOfEmploymentTimePicker = new DateTimePicker();
             label3 = new Label();
@@ -100,6 +91,15 @@
             dataGridViewTextBoxColumn15 = new DataGridViewTextBoxColumn();
             label14 = new Label();
             panel4 = new Panel();
+            ID_Column_Employer = new DataGridViewTextBoxColumn();
+            BtnDeleteEmployer = new DataGridViewButtonColumn();
+            dataGridViewButtonColumn2 = new DataGridViewButtonColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ViewEmployers).BeginInit();
             ((System.ComponentModel.ISupportInitialize)EarningPriceNumericUpDown).BeginInit();
@@ -281,7 +281,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ViewEmployers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewEmployers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewEmployers.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, BtnDeleteEmployer, dataGridViewButtonColumn2, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7 });
+            ViewEmployers.Columns.AddRange(new DataGridViewColumn[] { ID_Column_Employer, BtnDeleteEmployer, dataGridViewButtonColumn2, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7 });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -297,61 +297,6 @@
             ViewEmployers.Size = new Size(1091, 251);
             ViewEmployers.TabIndex = 42;
             ViewEmployers.CellContentClick += ViewEmployers_CellContentClick;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.DataPropertyName = "ID_Column";
-            dataGridViewTextBoxColumn1.HeaderText = "ID";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // BtnDeleteEmployer
-            // 
-            BtnDeleteEmployer.FillWeight = 50F;
-            BtnDeleteEmployer.HeaderText = "Usuń";
-            BtnDeleteEmployer.Name = "BtnDeleteEmployer";
-            // 
-            // dataGridViewButtonColumn2
-            // 
-            dataGridViewButtonColumn2.FillWeight = 50F;
-            dataGridViewButtonColumn2.HeaderText = "Archiwum";
-            dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.DataPropertyName = "Imię";
-            dataGridViewTextBoxColumn2.HeaderText = "Imię";
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.DataPropertyName = "Nazwisko";
-            dataGridViewTextBoxColumn3.HeaderText = "Nazwisko";
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewTextBoxColumn4.DataPropertyName = "Telefon";
-            dataGridViewTextBoxColumn4.HeaderText = "Nr. Telefonu";
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            dataGridViewTextBoxColumn5.DataPropertyName = "Stanowisko";
-            dataGridViewTextBoxColumn5.HeaderText = "Stanowisko";
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewTextBoxColumn6.DataPropertyName = "Zarobek";
-            dataGridViewTextBoxColumn6.HeaderText = "Pensja miesięczna";
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            dataGridViewTextBoxColumn7.DataPropertyName = "DataZatrudnienia";
-            dataGridViewTextBoxColumn7.HeaderText = "Data zatrudnienia";
-            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             // 
             // EarningPriceNumericUpDown
             // 
@@ -872,6 +817,61 @@
             panel4.Size = new Size(1102, 299);
             panel4.TabIndex = 31;
             // 
+            // ID_Column_Employer
+            // 
+            ID_Column_Employer.DataPropertyName = "ID";
+            ID_Column_Employer.HeaderText = "ID";
+            ID_Column_Employer.Name = "ID_Column_Employer";
+            ID_Column_Employer.Visible = false;
+            // 
+            // BtnDeleteEmployer
+            // 
+            BtnDeleteEmployer.FillWeight = 50F;
+            BtnDeleteEmployer.HeaderText = "Usuń";
+            BtnDeleteEmployer.Name = "BtnDeleteEmployer";
+            // 
+            // dataGridViewButtonColumn2
+            // 
+            dataGridViewButtonColumn2.FillWeight = 50F;
+            dataGridViewButtonColumn2.HeaderText = "Archiwum";
+            dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.DataPropertyName = "Imię";
+            dataGridViewTextBoxColumn2.HeaderText = "Imię";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.DataPropertyName = "Nazwisko";
+            dataGridViewTextBoxColumn3.HeaderText = "Nazwisko";
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.DataPropertyName = "Telefon";
+            dataGridViewTextBoxColumn4.HeaderText = "Nr. Telefonu";
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.DataPropertyName = "Stanowisko";
+            dataGridViewTextBoxColumn5.HeaderText = "Stanowisko";
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.DataPropertyName = "Zarobek";
+            dataGridViewTextBoxColumn6.HeaderText = "Pensja miesięczna";
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewTextBoxColumn7.DataPropertyName = "DataZatrudnienia";
+            dataGridViewTextBoxColumn7.HeaderText = "Data zatrudnienia";
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
             // UC_Company
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -954,7 +954,12 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn ID_Column_;
+        private DataGridViewButtonColumn BtnDelete_;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private DataGridViewTextBoxColumn ID_Column_Employer;
         private DataGridViewButtonColumn BtnDeleteEmployer;
         private DataGridViewButtonColumn dataGridViewButtonColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -963,10 +968,5 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private DataGridViewTextBoxColumn ID_Column_;
-        private DataGridViewButtonColumn BtnDelete_;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-    }
+        }
 }

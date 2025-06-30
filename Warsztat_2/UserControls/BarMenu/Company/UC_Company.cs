@@ -96,10 +96,10 @@ namespace Warsztat_2.UserControls.BarMenu.Company
         }
         private async void ViewEmployers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string? id = ViewEmployers.Rows[e.RowIndex].Cells["ID_Column"].Value.ToString();
+            string? id = ViewEmployers.Rows[e.RowIndex].Cells["ID_Column_Employer"].Value.ToString();
             int selectedIndex = (int)ViewEmployers.CurrentRow.Index;
 
-            if (ViewEmployers.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value && id != null)
+            if (ViewEmployers.Rows[e.RowIndex].Cells["ID_Column_Employer"].Value != DBNull.Value && id != null)
             {
                 if (e.ColumnIndex == ViewEmployers.Columns["BtnDeleteEmployer"].Index)
                 {
