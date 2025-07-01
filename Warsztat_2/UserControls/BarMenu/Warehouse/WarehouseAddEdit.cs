@@ -6,6 +6,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
     {
         WarehouseModel warehouseModel = new WarehouseModel();
         private readonly SqlCmd sqlCmd = new();
+        decimal sum;
 
         uint id;
 
@@ -24,7 +25,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
                     {"Opis", DescriptionTextBox.Text.Trim()},
                     {"Cena",  PriceNumericUpDown.Value},
                     {"Ilość", QuantityNumericUpDown.Value},
-                    {"Suma",label1.Text},
+                    {"Suma", sum},
                 };
             var dataId = new Dictionary<string, object>
                 {
@@ -47,7 +48,6 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
         public void SetDataEdit(WarehouseModel Data)
         {//сетування даних при переході між класами
             warehouseModel = Data;
-
         }
         private void AutocompleteData()
         {
@@ -79,7 +79,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
         }
         private void Sum()
         {
-            decimal sum = PriceNumericUpDown.Value * QuantityNumericUpDown.Value;
+            sum = PriceNumericUpDown.Value * QuantityNumericUpDown.Value;
             label1.Text = sum.ToString();
         }
 
