@@ -31,7 +31,9 @@
             Button AddCategoryButton;
             Button RemoveCategoryButton;
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             CategorylistBox = new ListBox();
             label4 = new Label();
             UpdateCategoryList = new Label();
@@ -223,14 +225,14 @@
             WarehouseView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             WarehouseView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             WarehouseView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete_, ID_Column, Typ_column, NumerCzęści_column, Nazwa_column_, Opis_column_, Ilość_column, Cena_column, Suma_Column });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            WarehouseView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            WarehouseView.DefaultCellStyle = dataGridViewCellStyle4;
             WarehouseView.EnableHeadersVisualStyles = false;
             WarehouseView.Location = new Point(216, 39);
             WarehouseView.Name = "WarehouseView";
@@ -285,12 +287,18 @@
             // Cena_column
             // 
             Cena_column.DataPropertyName = "Cena";
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            Cena_column.DefaultCellStyle = dataGridViewCellStyle2;
             Cena_column.HeaderText = "Cena";
             Cena_column.Name = "Cena_column";
             // 
             // Suma_Column
             // 
             Suma_Column.DataPropertyName = "Suma";
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            Suma_Column.DefaultCellStyle = dataGridViewCellStyle3;
             Suma_Column.HeaderText = "Suma";
             Suma_Column.Name = "Suma_Column";
             // 
