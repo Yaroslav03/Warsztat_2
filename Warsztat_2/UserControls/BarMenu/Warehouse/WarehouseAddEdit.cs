@@ -61,9 +61,10 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
         }
         public void ClearTextBox()
         {
+            warehouseModel = new();
             NumberPartTextBox.Text = NameTextBox.Text = DescriptionTextBox.Text = String.Empty;
             PriceNumericUpDown.Value = 0;
-            QuantityNumericUpDown.Value = 1;
+            QuantityNumericUpDown.Value = 1; 
             label1.Text = "0";
         }
 

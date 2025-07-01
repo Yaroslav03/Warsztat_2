@@ -131,7 +131,6 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
                 PrepareDataToRead();
 
                 warehouseAddEdit.SetDataEdit(warehouseModel);
-                warehouseAddEdit.ClearTextBox();
                 warehouseAddEdit.ShowDialog();
 
                 await LoadTable();
