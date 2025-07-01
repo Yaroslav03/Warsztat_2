@@ -27,7 +27,7 @@
         /// jej zawartości w edytorze kodu.
         /// </summary>
         private void InitializeComponent()
-        {
+            {
             Button AddCategoryButton;
             Button RemoveCategoryButton;
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
@@ -312,7 +312,7 @@
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)WarehouseView).EndInit();
             ResumeLayout(false);
-        }
+            }
 
         #endregion
         private Label label4;

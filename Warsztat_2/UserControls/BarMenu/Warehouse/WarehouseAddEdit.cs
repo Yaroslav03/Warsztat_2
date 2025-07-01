@@ -49,7 +49,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
             warehouseModel = Data;
 
         }
-        public void AutocompleteData()
+        private void AutocompleteData()
         {
             CategoryListBox.SelectedItem = warehouseModel.Type;
             NumberPartTextBox.Text = warehouseModel.PartNumber;
@@ -91,9 +91,9 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
             }
             else if (warehouseModel.Id > 0)
             {
+                AutocompleteData();
                 AddEditWarehouseButton.Text = "Odśwież";
-            }
-
+            }            
         }
     }
 }
