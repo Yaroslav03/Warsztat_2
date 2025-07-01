@@ -15,6 +15,8 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
             InitializeComponent();
         }
 
+        public Action? RefreshWarehouseTable;
+
         private async void AddEditWarehouseButton_Click(object sender, EventArgs e)
         {
             var data = new Dictionary<string, object>
@@ -36,6 +38,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
             if (AddEditWarehouseButton.Text == "Zapisz")
             {
                 await SqlCmd.AddRecordAsync("WarsztatDB", "Magazyn", data);
+                RefreshWarehouseTable?.Invoke();
                 MessageBox.Show($"{magazyn[0]} ({magazyn[1]}) o numerze [{magazyn[2]}] został dodany do magazynu, kliknij OK żeby dodać kolejny", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 magazyn = null;
                 warehouseModel.Clear();
@@ -43,7 +46,9 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
             }
             await SqlCmd.UpdateRecordAsync("Magazyn", data, "ID=@ID", dataId);
             warehouseModel.Clear();
-        }
+
+            RefreshWarehouseTable?.Invoke();
+            }
 
         public void SetDataEdit(WarehouseModel Data)
         {//сетування даних при переході між класами

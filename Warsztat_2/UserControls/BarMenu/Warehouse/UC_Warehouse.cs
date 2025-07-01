@@ -5,7 +5,6 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
     public partial class UC_Warehouse : UserControl
     {
         private WarehouseModel warehouseModel = new WarehouseModel();
-        private readonly WarehouseAddEdit warehouseAddEdit = new();
         private readonly SqlCmd sqlCmd = new();
         public UC_Warehouse()
         {
@@ -13,10 +12,10 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
         }
         private async void WarehouseAddButton_Click(object sender, EventArgs e)
         {
-            warehouseAddEdit.ClearTextBox();
-            warehouseAddEdit.ShowDialog();
-
-            await LoadTable();
+            WarehouseAddEdit warehouseAddEditNew = new();
+            warehouseAddEditNew.ClearTextBox();
+            warehouseAddEditNew.RefreshWarehouseTable = async () => await LoadTable();
+            warehouseAddEditNew.ShowDialog();
         }
 
         private async void UC_Warehouse_Load(object sender, EventArgs e)
@@ -125,13 +124,15 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
         }
 
         private async void WarehouseView_DoubleClick(object sender, EventArgs e)
-        {
+        {           
             if (WarehouseView.CurrentRow != null && WarehouseView.CurrentRow.Cells["Typ_column"].Value != DBNull.Value)
             {
+                WarehouseAddEdit warehouseAddEditNew = new();
                 PrepareDataToRead();
 
-                warehouseAddEdit.SetDataEdit(warehouseModel);
-                warehouseAddEdit.ShowDialog();
+                warehouseAddEditNew.SetDataEdit(warehouseModel);
+                warehouseAddEditNew.RefreshWarehouseTable = async () => await LoadTable();
+                warehouseAddEditNew.ShowDialog();
 
                 await LoadTable();
             }
