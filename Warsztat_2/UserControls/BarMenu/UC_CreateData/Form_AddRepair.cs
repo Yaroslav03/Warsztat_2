@@ -1,4 +1,6 @@
-﻿namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
+﻿using System.Globalization;
+
+namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
     public partial class Form_AddRepair :Form {
         #region variables
         private List<string> tranferData = new();
@@ -115,7 +117,18 @@
 
                 for(byte i = 0;i < sqlColumns.Length;i++)
                     {
-                    warehouseData.Add(sqlColumns[i], tranferData[i]);
+                    string value = tranferData[i];
+
+                    // Перевірка для числових полів
+                    if(sqlColumns[i] == "Cena" || sqlColumns[i] == "Suma")
+                        {
+                        if(decimal.TryParse(value, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal decValue))
+                            {
+                            value = decValue.ToString(CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                    warehouseData.Add(sqlColumns[i], value);
                     }
                 bool IsSuccsesful = await SqlCmd.AddRecordAsync("WarsztatDB", "Magazyn", warehouseData);
                 if(IsSuccsesful)
@@ -126,7 +139,6 @@
                 tranferData.Clear();
                 warehouseData.Clear();
                 }
-
             }
 
         private void ViewRepair_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -216,7 +228,19 @@
 
             for(byte i = 0;i < tranferData.Count;i++)
                 {
-                repairCarData.Add(values[i], tranferData[i]);
+                string value = tranferData[i];
+
+                // Якщо це поле "Cena" або "Suma" — обробляємо як десяткове число
+                if(values[i] == "Cena" || values[i] == "Suma")
+                    {
+                    if(decimal.TryParse(value, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal decValue))
+                        {
+                        // Перетворюємо в рядок із крапкою як роздільником (інваріантна культура)
+                        value = decValue.ToString(CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                repairCarData.Add(values[i], value);
                 }
             repairCarData.Add("Stan", 1);
             repairCarData.Add("UniqueKey", uniqueKey);

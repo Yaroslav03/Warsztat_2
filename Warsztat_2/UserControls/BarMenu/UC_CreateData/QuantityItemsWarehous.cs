@@ -1,4 +1,6 @@
-﻿namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
+﻿using System.Globalization;
+
+namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
     public partial class QuantityItemsWarehous :Form {
         private List<string> transferData = new();
         private string id;
@@ -29,7 +31,7 @@
             }
         private void QuantityNumericUpDown_ValueChanged(object sender, EventArgs e)
             {
-            QuantityNumericUpDown.Maximum = Convert.ToDecimal(transferData[4]);
+            QuantityNumericUpDown.Maximum = Convert.ToDecimal(transferData[5]);
             }
         private void CancelButton_Click(object sender, EventArgs e)
             {
@@ -49,7 +51,19 @@
 
             for(byte i = 0;i < transferData.Count;i++)
                 {
-                repairCarData.Add(values[i], transferData[i]);
+                string value = transferData[i];
+
+                // Якщо це поле "Cena" або "Suma" — обробляємо як десяткове число
+                if(values[i] == "Cena" || values[i] == "Suma")
+                    {
+                    if(decimal.TryParse(value, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal decValue))
+                        {
+                        // Перетворюємо в рядок із крапкою як роздільником (інваріантна культура)
+                        value = decValue.ToString(CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                repairCarData.Add(values[i], value);
                 }
             repairCarData.Add("UniqueKey", uniqueKey);
             return repairCarData;

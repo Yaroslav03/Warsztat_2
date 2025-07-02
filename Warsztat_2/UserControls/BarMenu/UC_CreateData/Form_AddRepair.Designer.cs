@@ -29,10 +29,13 @@
         private void InitializeComponent()
             {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             TypeTextBox = new TextBox();
             IloscNumericUpDown = new NumericUpDown();
             label1 = new Label();
@@ -289,14 +292,14 @@
             ViewRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewRepair.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ViewRepair.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID_Column_, Wykonane_Checked, Type_Column, Nazwa_Column, Opis_Column, NrCzęści_Column, Cena_Column_, Ilość_Column_, Suma_Column });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            ViewRepair.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            ViewRepair.DefaultCellStyle = dataGridViewCellStyle4;
             ViewRepair.EnableHeadersVisualStyles = false;
             ViewRepair.Location = new Point(14, 14);
             ViewRepair.Name = "ViewRepair";
@@ -375,6 +378,9 @@
             // Suma_Column
             // 
             Suma_Column.DataPropertyName = "Suma";
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            Suma_Column.DefaultCellStyle = dataGridViewCellStyle3;
             Suma_Column.FillWeight = 40F;
             Suma_Column.HeaderText = "Suma";
             Suma_Column.Name = "Suma_Column";
@@ -411,24 +417,24 @@
             WarehouseView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             WarehouseView.BorderStyle = BorderStyle.None;
             WarehouseView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            WarehouseView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            WarehouseView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            WarehouseView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete_Warehouse_, SelectButton, ID_Column, Typ_column, Nazwa_column_, NumerCzęści_column, Opis_Column_, Ilość_column, Cena_column, Sum_Column });
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle5.ForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            WarehouseView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            WarehouseView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            WarehouseView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            WarehouseView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete_Warehouse_, SelectButton, ID_Column, Typ_column, Nazwa_column_, NumerCzęści_column, Opis_Column_, Ilość_column, Cena_column, Sum_Column });
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            WarehouseView.DefaultCellStyle = dataGridViewCellStyle8;
             WarehouseView.EnableHeadersVisualStyles = false;
             WarehouseView.Location = new Point(3, 260);
             WarehouseView.Name = "WarehouseView";
@@ -487,12 +493,18 @@
             // Cena_column
             // 
             Cena_column.DataPropertyName = "Cena";
+            dataGridViewCellStyle6.Format = "C2";
+            dataGridViewCellStyle6.NullValue = null;
+            Cena_column.DefaultCellStyle = dataGridViewCellStyle6;
             Cena_column.HeaderText = "Cena";
             Cena_column.Name = "Cena_column";
             // 
             // Sum_Column
             // 
             Sum_Column.DataPropertyName = "Suma";
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = null;
+            Sum_Column.DefaultCellStyle = dataGridViewCellStyle7;
             Sum_Column.HeaderText = "Suma";
             Sum_Column.Name = "Sum_Column";
             // 
