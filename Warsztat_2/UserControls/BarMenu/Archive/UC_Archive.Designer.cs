@@ -27,7 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
+            {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             ViewActualData = new DataGridView();
@@ -72,7 +72,7 @@
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.DimGray;
+            dataGridViewCellStyle2.ForeColor = Color.WhiteSmoke;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
@@ -175,7 +175,7 @@
             panelDodatkowy.BorderStyle = BorderStyle.FixedSingle;
             panelDodatkowy.Controls.Add(OrderButton);
             panelDodatkowy.Controls.Add(ViewActualData);
-            panelDodatkowy.ForeColor = Color.DimGray;
+            panelDodatkowy.ForeColor = Color.WhiteSmoke;
             panelDodatkowy.Location = new Point(3, 3);
             panelDodatkowy.Name = "panelDodatkowy";
             panelDodatkowy.Size = new Size(1037, 609);
@@ -208,7 +208,7 @@
             ((System.ComponentModel.ISupportInitialize)ViewActualData).EndInit();
             panelDodatkowy.ResumeLayout(false);
             ResumeLayout(false);
-        }
+            }
 
         #endregion
 

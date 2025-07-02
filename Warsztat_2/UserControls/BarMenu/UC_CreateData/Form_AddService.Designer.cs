@@ -241,7 +241,7 @@
             // 
             // PriceNumericUpDown
             // 
-            PriceNumericUpDown.BackColor = Color.FromArgb(64, 64, 70);
+            PriceNumericUpDown.BackColor = Color.White;
             PriceNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
             PriceNumericUpDown.Location = new Point(390, 3);
             PriceNumericUpDown.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });

@@ -297,7 +297,7 @@
             // 
             // YearNumericUpDown
             // 
-            YearNumericUpDown.BackColor = Color.FromArgb(64, 64, 70);
+            YearNumericUpDown.BackColor = Color.White;
             YearNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
             YearNumericUpDown.Location = new Point(475, 49);
             YearNumericUpDown.Maximum = new decimal(new int[] { 2030, 0, 0, 0 });
