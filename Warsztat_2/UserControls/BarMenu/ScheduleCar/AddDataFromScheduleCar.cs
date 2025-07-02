@@ -76,7 +76,6 @@
                     {"Zlecenie", ProblemTextBox.Text.Trim()},
                     {"NrRejestracji", RegistrationNumberTextBox.Text.Trim()},
                     {"Przebieg", MileageTextBox.Text.Trim()},
-                    {"VIN", VINTextBox.Text.Trim()},
                     {"UniqueKey", uniqueKey}
                 };
             var scheduleCarID = new Dictionary<string, object>
