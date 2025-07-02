@@ -1,26 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Warsztat_2.UserControls.BarMenu.Company
-{
-    public partial class UC_Company : UserControl
-    {
+﻿namespace Warsztat_2.UserControls.BarMenu.Company {
+    public partial class UC_Company :UserControl {
         private byte id;
         public UC_Company()
-        {
+            {
             InitializeComponent();
-        }
+            }
 
         #region Event
         private async void SaveCompanyExpensesMonthBtn_Click(object sender, EventArgs e)
-        {
+            {
             var data = new Dictionary<string, object>
                 {
                     {"NazwaWydatku", NameExpencess.Text.Trim()},
@@ -31,9 +19,9 @@ namespace Warsztat_2.UserControls.BarMenu.Company
             await LoadDataActualMonth();
             PriceExpencessNumericUpDown.Value = 0;
             NameExpencess.Text = string.Empty;
-        }
+            }
         private async void BtnSaveDateOfDeduction_Click(object sender, EventArgs e)
-        {
+            {
             var data = new Dictionary<string, object>
                 {
                     {"NazwaWydatku", ExpenseNameTextBox.Text.Trim()},
@@ -44,32 +32,32 @@ namespace Warsztat_2.UserControls.BarMenu.Company
             await SqlCmd.LoadData("SELECT ID, NazwaWydatku, CenaWydatku, DataPotrącenia FROM StałeWydatkiFirmy", ViewDataOfDeduction, "StałeWydatkiFirmy", "Load table WydatkiFirmy From DB");
             PriceNumericUpDown.Value = 0;
             ExpenseNameTextBox.Text = string.Empty;
-        }
+            }
         private async void ViewDataOfDeduction_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+            {
             await SqlCmd.DeleteDataTable(ViewDataOfDeduction, e, "BtnDelete", "ID_Column", "StałeWydatkiFirmy");
-        }
+            }
         private async void ViewCompanyExpensesMonth_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+            {
             await SqlCmd.DeleteDataTable(ViewCompanyExpensesMonth, e, "BtnDelete_", "ID_Column_", "WydatkiFirmy");
-        }
+            }
         private async void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked == true)
             {
+            if(checkBox1.Checked == true)
+                {
                 await SqlCmd.LoadData(@"SELECT ID, NazwaWydatku, CenaWydatku, DataPotrącenia FROM WydatkiFirmy", ViewCompanyExpensesMonth, "WydatkiFirmy", "Load table WydatkiFirmy From DB");
-            }
+                }
             else
-            {
+                {
                 await LoadDataActualMonth();
+                }
             }
-        }
         private async void UC_Company_Load(object sender, EventArgs e)
-        {
+            {
             await LoadData();
-        }
+            }
         private async void SaveCompanyDataButton_Click(object sender, EventArgs e)
-        {
+            {
             var data = new Dictionary<string, object>
                 {
                     {"NazwaFirmy",   NazwaFirmyTextBox.Text.Trim()},
@@ -84,44 +72,44 @@ namespace Warsztat_2.UserControls.BarMenu.Company
                  {
                      {"ID", id} // Тут можна використовувати фактичний ID, який вам потрібен
                 };
-            if (SaveCompanyDataButton.Text == "Zapisz")
-            {
+            if(SaveCompanyDataButton.Text == "Zapisz")
+                {
                 await SqlCmd.AddRecordAsync("WarsztatDB", "DaneFirmy", data);
-            }
-            else if (SaveCompanyDataButton.Text == "Odśwież")
-            {
+                }
+            else if(SaveCompanyDataButton.Text == "Odśwież")
+                {
                 await SqlCmd.UpdateRecordAsync("DaneFirmy", data, "ID = @ID", whereParams);
-            }
+                }
             SaveCompanyDataButton.Text = "Odśwież";
-        }
+            }
         private async void ViewEmployers_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+            {
             string? id = ViewEmployers.Rows[e.RowIndex].Cells["ID_Column_Employer"].Value.ToString();
             int selectedIndex = (int)ViewEmployers.CurrentRow.Index;
 
-            if (ViewEmployers.Rows[e.RowIndex].Cells["ID_Column_Employer"].Value != DBNull.Value && id != null)
-            {
-                if (e.ColumnIndex == ViewEmployers.Columns["BtnDeleteEmployer"].Index)
+            if(ViewEmployers.Rows[e.RowIndex].Cells["ID_Column_Employer"].Value != DBNull.Value && id != null)
                 {
+                if(e.ColumnIndex == ViewEmployers.Columns["BtnDeleteEmployer"].Index)
+                    {
                     var idEmployer = new Dictionary<string, object>
                         {
                         {"ID", id}
                         };
                     bool isSucceed = await SqlCmd.DeleteRecordAsync("WarsztatDB", "Pracownicy", "ID=@ID", idEmployer);
-                    if (isSucceed)
-                    {
+                    if(isSucceed)
+                        {
                         ViewEmployers.Rows.RemoveAt(selectedIndex);
+                        }
+                    }
+                else if(e.ColumnIndex == ViewEmployers.Columns["ArchiveBtn"].Index)
+                    {
+                    await SqlCmd.SendToArchiveOneTable(id);
                     }
                 }
-                else if (e.ColumnIndex == ViewEmployers.Columns["ArchiveBtn"].Index)
-                {
-                    await SqlCmd.SendToArchiveOneTable(id);
-                }
-            }
 
-        }
+            }
         private async void EmployerAddButton_Click(object sender, EventArgs e)
-        {
+            {
             var data = new Dictionary<string, object>
                 {
                     {"Imię", ImiePracownikaTextBox.Text.Trim()},
@@ -134,11 +122,11 @@ namespace Warsztat_2.UserControls.BarMenu.Company
                 };
             await SqlCmd.AddRecordAsync("WarsztatDB", "Pracownicy", data);
             await SqlCmd.LoadData("SELECT ID, Imię, Nazwisko, Telefon, Stanowisko, Zarobek, DataZatrudnienia FROM Pracownicy", ViewEmployers, "ViewData", "error", null, "Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;");
-        }
+            }
         #endregion
         #region Method
         private async Task LoadDataActualMonth()
-        {
+            {
             await SqlCmd.LoadData(@"SELECT ID, NazwaWydatku, CenaWydatku, DataPotrącenia FROM WydatkiFirmy 
       WHERE date(
               substr(DataPotrącenia, 7, 4) || '-' ||
@@ -151,16 +139,16 @@ namespace Warsztat_2.UserControls.BarMenu.Company
               substr(DataPotrącenia, 1, 2)
             ) < date('now', 'start of month', '+1 month')",
     ViewCompanyExpensesMonth, "WydatkiFirmy", "Load table WydatkiFirmy From DB");
-        }
+            }
         private async Task LoadData()
-        {
+            {
             await SqlCmd.LoadData("SELECT ID, NazwaWydatku, CenaWydatku, DataPotrącenia FROM StałeWydatkiFirmy", ViewDataOfDeduction, "StałeWydatkiFirmy", "Load table WydatkiFirmy From DB");
             await LoadDataActualMonth();
             await SqlCmd.LoadData("SELECT ID, Imię, Nazwisko, Telefon, Stanowisko, Zarobek, DataZatrudnienia FROM Pracownicy", ViewEmployers, "ViewData", "error", null, "Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;");
             var data = await SqlCmd.LoadDataAsync("WarsztatDB", "DaneFirmy", SaveCompanyDataButton);
 
-            if (data.Count > 0)
-            {
+            if(data.Count > 0)
+                {
                 id = Convert.ToByte(data["ID"].ToString());
                 NazwaFirmyTextBox.Text = data["NazwaFirmy"].ToString();
                 AdresFirmyTextBox.Text = data["AdresFirmy"].ToString();
@@ -169,9 +157,9 @@ namespace Warsztat_2.UserControls.BarMenu.Company
                 NumerBDOTextBox.Text = data["BDO"].ToString();
                 KontoBankoweTextBox.Text = data["KontoBankowe"].ToString();
                 MarzaTextBox.Text = data["Marża"].ToString();
+                }
+
             }
-           
-        }
         #endregion
+        }
     }
-}

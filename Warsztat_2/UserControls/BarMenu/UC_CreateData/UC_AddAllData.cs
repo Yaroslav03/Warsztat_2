@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SQLite;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 
-namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
-{
+namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
     public partial class UC_AddAllData :UserControl {
         #region variables
         Guid uniqueKey;
@@ -204,7 +194,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 {
                     {"UniqueKey", uniqueKey }
                 };
-                await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);               
+                await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);
                 ServiceHistoryView.ClearSelection();
                 }
 

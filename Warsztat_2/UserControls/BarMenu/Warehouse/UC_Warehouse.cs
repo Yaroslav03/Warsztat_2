@@ -1,7 +1,6 @@
 ﻿using Warsztat_2.Models;
 
-namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
-{
+namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
     public partial class UC_Warehouse :UserControl {
         private WarehouseModel warehouseModel = new WarehouseModel();
         private readonly SqlCmd sqlCmd = new();
@@ -119,11 +118,11 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse
 
         private async void WarehouseView_CellContentClick(object sender, DataGridViewCellEventArgs e)
             {
-            if(e.ColumnIndex == WarehouseView.Columns["BtnDelete_"].Index && 
+            if(e.ColumnIndex == WarehouseView.Columns["BtnDelete_"].Index &&
                 MessageBox.Show("Na pewno chcesz usunąć te dane?", "Potwierdzenie usunięcia", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                 await SqlCmd.DeleteDataTable(WarehouseView, e, "BtnDelete_", "ID_Column", "Magazyn");
-                }               
+                }
             }
 
         private async void WarehouseView_DoubleClick(object sender, EventArgs e)

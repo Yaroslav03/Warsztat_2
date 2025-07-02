@@ -282,9 +282,9 @@
             label10.ForeColor = Color.FromArgb(224, 224, 224);
             label10.Location = new Point(3, 34);
             label10.Name = "label10";
-            label10.Size = new Size(142, 21);
+            label10.Size = new Size(205, 21);
             label10.TabIndex = 27;
-            label10.Text = "Koszt ręcznej pracy";
+            label10.Text = "Koszt demontażu i montażu:";
             // 
             // LabelPricePartWithMarzha
             // 
@@ -303,7 +303,7 @@
             FinallPriceNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
             FinallPriceNumericUpDown.DecimalPlaces = 2;
             FinallPriceNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            FinallPriceNumericUpDown.Location = new Point(151, 32);
+            FinallPriceNumericUpDown.Location = new Point(214, 32);
             FinallPriceNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             FinallPriceNumericUpDown.Name = "FinallPriceNumericUpDown";
             FinallPriceNumericUpDown.Size = new Size(70, 23);
@@ -345,7 +345,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(224, 224, 224);
-            label1.Location = new Point(291, 9);
+            label1.Location = new Point(321, 9);
             label1.Name = "label1";
             label1.Size = new Size(53, 21);
             label1.TabIndex = 29;
@@ -356,7 +356,7 @@
             marzhaNumericUpDown.BackColor = Color.White;
             marzhaNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
             marzhaNumericUpDown.DecimalPlaces = 2;
-            marzhaNumericUpDown.Location = new Point(291, 32);
+            marzhaNumericUpDown.Location = new Point(321, 32);
             marzhaNumericUpDown.Name = "marzhaNumericUpDown";
             marzhaNumericUpDown.Size = new Size(70, 23);
             marzhaNumericUpDown.TabIndex = 28;

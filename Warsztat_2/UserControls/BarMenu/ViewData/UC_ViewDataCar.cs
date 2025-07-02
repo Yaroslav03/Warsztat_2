@@ -1,5 +1,4 @@
-﻿namespace Warsztat_2._0.UserControls
-{
+﻿namespace Warsztat_2._0.UserControls {
     public partial class UC_ViewDataCar :UserControl {
         #region VALUE
         private readonly string[] connectionStringArray = new string[] { "Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;", "Data Source=Archive.db;Version=3;New=False;Compress=True;" };

@@ -1,7 +1,5 @@
-﻿namespace Warsztat_2
-{
-    public class Client
-    {
+﻿namespace Warsztat_2 {
+    public class Client {
         public byte ID { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
@@ -9,14 +7,13 @@
         public string? NIP { get; set; }
         public string? AdressCompany { get; set; }
         public static Client Reset()
-        {
+            {
             return new Client();
+            }
         }
-    }
     public record ChceckSchedule(string? Name, string? PhoneNumber, string? Marka, string? Model, string? Problem, string? ScheduleCar);
 
-    public class Car
-    {
+    public class Car {
         public string? Marka { get; set; }
         public string? Model { get; set; }
         public string? Engine { get; set; }
@@ -25,12 +22,11 @@
         public string? VIN { get; set; }
 
         public static Car Reset()
-        {
+            {
             return new Car();
+            }
         }
-    }
-    class Pay
-    {
+    class Pay {
         public ushort PriceFinall { get; set; }
         public ushort PricePartMarg { get; set; }
         public ushort EstimatedCost { get; set; }
@@ -38,12 +34,11 @@
         public string? CardCode { get; set; }
 
         public static Pay Reset()
-        {
+            {
             return new Pay();
+            }
         }
-    }
-    class HistoryCar
-    {
+    class HistoryCar {
         public string? DateofAdoption { get; set; }
         public string? NumberofRegister { get; set; }
         public string? Mileage { get; set; }
@@ -57,10 +52,9 @@
         public string? DateOfAcceptance { get; set; }
 
         public static HistoryCar Reset() { return new HistoryCar(); }
-    }
+        }
 
-    public class Repair
-    {
+    public class Repair {
         public string? Problem { get; set; }
         public string? ScheduleCar { get; set; }
         public string? AdmissionDateCar { get; set; }
@@ -73,12 +67,11 @@
         public bool Stan { get; set; }
         public string? DateOfAcceptance { get; set; }
         public static Repair Reset()
-        {
+            {
             return new Repair();
+            }
         }
-    }
-    public class OrderManagment
-    {
+    public class OrderManagment {
         /// <summary>
         /// Status zlecnia
         /// </summary>
@@ -98,9 +91,8 @@
         public string? WorkPerfomed { get; set; }
         public string? Employer { get; set; }
         public static OrderManagment Reset() { return new OrderManagment(); }
-    }
-    public class WarehouseData
-    {
+        }
+    public class WarehouseData {
         public ushort? Id { get; set; }
         public string? Type { get; set; }
         public string? PartNumber { get; set; } //Numer części
@@ -111,8 +103,8 @@
         public string? Sum { get; set; }
 
         public static WarehouseData Reset()
-        {
+            {
             return new WarehouseData();
+            }
         }
     }
-}

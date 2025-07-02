@@ -1,20 +1,18 @@
-﻿namespace Warsztat_2.UserControls.BarMenu.Archive
-{
-    public partial class UC_Archive : UserControl
-    {
+﻿namespace Warsztat_2.UserControls.BarMenu.Archive {
+    public partial class UC_Archive :UserControl {
         private Guid uniqueKey;
         private readonly string connectionStringArchive = "Data Source=Archive.db;Version=3;New=False;Compress=True;";
         public UC_Archive()
-        {
+            {
             InitializeComponent();
-        }
+            }
 
         private async void UC_Archive_Load(object sender, EventArgs e)
-        {
+            {
             await LoadDB();
-        }
+            }
         private async Task LoadDB()
-        {
+            {
             string query = @"
     SELECT 
         Klienty.ID,
@@ -36,34 +34,34 @@
     WHERE Klienty.UniqueKey IS NOT NULL";
 
             await SqlCmd.LoadData(query, ViewActualData, "ViewData", "error", null, "Data Source=Archive.db;Version=3;New=False;Compress=True;");
-        }
+            }
 
         private async void ViewActualData_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+            {
             string? id = ViewActualData.Rows[e.RowIndex].Cells["ID_Column"].Value.ToString();
             int selectedIndex = (int)ViewActualData.CurrentRow.Index;
 
             uniqueKey = await SqlCmd.GetUniqueKey(id, "Klienty", "Data Source=Archive.db;Version=3;New=False;Compress=True;");
 
-            if (e.ColumnIndex == ViewActualData.Columns["BtnRecover"].Index && ViewActualData.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value && id != null)
-            {
+            if(e.ColumnIndex == ViewActualData.Columns["BtnRecover"].Index && ViewActualData.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value && id != null)
+                {
                 Guid uniqueKey = await SqlCmd.GetUniqueKey(id, "Klienty", "Data Source=Archive.db;Version=3;New=False;Compress=True;");
                 bool isSucceed = await SqlCmd.RecoverData(uniqueKey);
-                if (isSucceed)
-                {
+                if(isSucceed)
+                    {
                     MessageBox.Show("Dane zostałe przywrócone do domyślnej tablicy danych");
                     ViewActualData.Rows.RemoveAt(selectedIndex);
+                    }
+                }
+            }
+
+        private void OrderButton_Click(object sender, EventArgs e)
+            {
+            if(uniqueKey != Guid.Empty)
+                {
+                GeneretePDF pdf = new();
+                pdf.Create(uniqueKey);
                 }
             }
         }
-
-        private void OrderButton_Click(object sender, EventArgs e)
-        {
-            if (uniqueKey != Guid.Empty)
-            {
-                GeneretePDF pdf = new();
-                pdf.Create(uniqueKey);
-            }
-        }
     }
-}
