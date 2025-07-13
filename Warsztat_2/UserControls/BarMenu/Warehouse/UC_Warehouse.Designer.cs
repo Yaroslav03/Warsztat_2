@@ -50,8 +50,9 @@
             NumerCzęści_column = new DataGridViewTextBoxColumn();
             Nazwa_column_ = new DataGridViewTextBoxColumn();
             Opis_column_ = new DataGridViewTextBoxColumn();
-            Ilość_column = new DataGridViewTextBoxColumn();
             Cena_column = new DataGridViewTextBoxColumn();
+            Ilość_column = new DataGridViewTextBoxColumn();
+            EarningParts_Column = new DataGridViewTextBoxColumn();
             Suma_Column = new DataGridViewTextBoxColumn();
             AddCategoryButton = new Button();
             RemoveCategoryButton = new Button();
@@ -224,7 +225,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             WarehouseView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             WarehouseView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            WarehouseView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete_, ID_Column, Typ_column, NumerCzęści_column, Nazwa_column_, Opis_column_, Ilość_column, Cena_column, Suma_Column });
+            WarehouseView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete_, ID_Column, Typ_column, NumerCzęści_column, Nazwa_column_, Opis_column_, Cena_column, Ilość_column, EarningParts_Column, Suma_Column });
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -278,12 +279,6 @@
             Opis_column_.HeaderText = "Opis";
             Opis_column_.Name = "Opis_column_";
             // 
-            // Ilość_column
-            // 
-            Ilość_column.DataPropertyName = "Ilość";
-            Ilość_column.HeaderText = "Ilość";
-            Ilość_column.Name = "Ilość_column";
-            // 
             // Cena_column
             // 
             Cena_column.DataPropertyName = "Cena";
@@ -292,6 +287,19 @@
             Cena_column.DefaultCellStyle = dataGridViewCellStyle2;
             Cena_column.HeaderText = "Cena";
             Cena_column.Name = "Cena_column";
+            // 
+            // Ilość_column
+            // 
+            Ilość_column.DataPropertyName = "Ilość";
+            Ilość_column.HeaderText = "Ilość";
+            Ilość_column.Name = "Ilość_column";
+            // 
+            // EarningParts_Column
+            // 
+            EarningParts_Column.DataPropertyName = "ZarobekCzęści";
+            EarningParts_Column.HeaderText = "Dochód z części";
+            EarningParts_Column.Name = "EarningParts_Column";
+            EarningParts_Column.Visible = false;
             // 
             // Suma_Column
             // 
@@ -349,8 +357,9 @@
         private DataGridViewTextBoxColumn NumerCzęści_column;
         private DataGridViewTextBoxColumn Nazwa_column_;
         private DataGridViewTextBoxColumn Opis_column_;
-        private DataGridViewTextBoxColumn Ilość_column;
         private DataGridViewTextBoxColumn Cena_column;
+        private DataGridViewTextBoxColumn Ilość_column;
+        private DataGridViewTextBoxColumn EarningParts_Column;
         private DataGridViewTextBoxColumn Suma_Column;
         }
 }

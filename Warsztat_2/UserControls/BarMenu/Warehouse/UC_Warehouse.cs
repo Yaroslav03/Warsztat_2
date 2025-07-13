@@ -23,7 +23,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
             }
         public async Task LoadTable()
             {
-            await SqlCmd.LoadData("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, Suma FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
+            await SqlCmd.LoadData("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, ZarobekCzęści, Suma FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
             WarehouseView.Columns["ID_Column"].Visible = false;
             }
         private void PrepareDataToRead()
@@ -37,6 +37,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
                 Description = WarehouseView.CurrentRow.Cells["Opis_column_"].Value.ToString(),
                 Price = Convert.ToDecimal(WarehouseView.CurrentRow.Cells["Cena_column"].Value.ToString()),
                 Quantity = Convert.ToByte(WarehouseView.CurrentRow.Cells["Ilość_column"].Value.ToString()),
+                EarningParts = Convert.ToDecimal(WarehouseView.CurrentRow.Cells["EarningParts_Column"].Value.ToString()),
                 Sum = WarehouseView.CurrentRow.Cells["Suma_Column"].Value.ToString()
                 };
             }

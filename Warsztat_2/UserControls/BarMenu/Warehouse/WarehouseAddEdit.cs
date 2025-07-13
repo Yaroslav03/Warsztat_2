@@ -25,7 +25,9 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
                     {"Opis", DescriptionTextBox.Text.Trim()},
                     {"Cena",  PriceNumericUpDown.Value},
                     {"Ilość", QuantityNumericUpDown.Value},
-                    {"Suma", sum},
+                    {"ZarobekCzęści", EarningNumericUpDown.Value},
+                    {"SumaZarobku", EarningNumericUpDown.Value * QuantityNumericUpDown.Value},
+                    {"Suma", sum},                    
                 };
             var dataId = new Dictionary<string, object>
                 {
@@ -59,6 +61,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
             NameTextBox.Text = warehouseModel.Name;
             DescriptionTextBox.Text = warehouseModel.Description;
             PriceNumericUpDown.Value = (decimal)warehouseModel.Price;
+            EarningNumericUpDown.Value = (decimal)warehouseModel.EarningParts;
             QuantityNumericUpDown.Value = (byte)warehouseModel.Quantity;
             label1.Text = warehouseModel.Sum;
             }
@@ -66,7 +69,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
             {
             warehouseModel = new();
             NumberPartTextBox.Text = NameTextBox.Text = DescriptionTextBox.Text = String.Empty;
-            PriceNumericUpDown.Value = 0;
+            PriceNumericUpDown.Value = EarningNumericUpDown.Value = 0;
             QuantityNumericUpDown.Value = 1;
             label1.Text = "0";
             }
@@ -80,9 +83,13 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
             {
             Sum();
             }
+        private void EarningNumericUpDown_ValueChanged(object sender, EventArgs e)
+            {
+            Sum();
+            }
         private void Sum()
             {
-            sum = PriceNumericUpDown.Value * QuantityNumericUpDown.Value;
+            sum = (PriceNumericUpDown.Value + EarningNumericUpDown.Value) * QuantityNumericUpDown.Value ;
             label1.Text = sum.ToString();
             }
 

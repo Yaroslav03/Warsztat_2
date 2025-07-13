@@ -3,7 +3,7 @@
         #region variables
 
         private string? paymentDay, paymentType, orderAddoptedDay;
-        private decimal priceOfPart, PricePartWithMarzha, Marzha, finallyPrice, wasPayed, earningOnParts;
+        private decimal priceOfPart, PricePartWithMarzha, Marzha, finallyPrice, wasPayed, earningPartsNew;
         private decimal priceOfService;
         uint ID;
         private bool isDataLoadedFromDB = false;
@@ -89,14 +89,12 @@
             marzhaNumericUpDown.Value = Marzha;
 
             PricePartWithMarzhaCalculate();
-
-            earningOnParts = PricePartWithMarzha - priceOfPart;
             }
         private void PricePartWithMarzhaCalculate()
             {
 
             PricePartWithMarzha = Math.Round(priceOfPart * (1 + (Marzha / 100)), 2);
-            LabelPricePartWithMarzha.Text = "Koszt za części z marzą: " + PricePartWithMarzha;
+            LabelPricePartWithMarzha.Text = "Części brutto: " + PricePartWithMarzha;
             }
         private async Task LoadDataFromDB()
             {
@@ -183,7 +181,7 @@
                     {"WykonanaPraca", WorkPerfomedTextBox.Text},
                     {"WykonawcaPracy", WorkerListBox.SelectedItem},
                     {"UniqueKey", uniqueKey },
-                    {"DochódZCzęści", earningOnParts},
+                    {"DochódZCzęści", earningPartsNew},
                     {"Marża", Marzha}
                 };
             }
@@ -214,13 +212,13 @@
             string[] columns = { "Imię", "Stanowisko" };
             await SqlCmd.ReadAddDataListBox("SELECT Imię, Stanowisko FROM Pracownicy", columns, WorkerListBox);
             }
-        public void SendDataFromLastWindow(decimal pricePart, decimal priceService, Guid key)
+        public void SendDataFromLastWindow(decimal pricePart, decimal priceService, decimal earningParts, Guid key)
             {
             uniqueKey = key;
-            priceOfPart = pricePart;
             priceOfService = priceService;
+            earningPartsNew = earningParts;
+            priceOfPart = pricePart;
             labelPriceofService.Text += priceOfService;
-            labelPriceofPart.Text += priceOfPart;
             }
         #endregion
         #region CheckBoxes and RadioBoxes
@@ -286,7 +284,11 @@
             finallyPrice = PricePartWithMarzha + x + priceOfService;
             LabelFinallyPrice.Text = "Koszt końcowy: " + finallyPrice;
 
-            earningOnParts = PricePartWithMarzha - priceOfPart;
+            }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+            {
+
             }
         }
     }

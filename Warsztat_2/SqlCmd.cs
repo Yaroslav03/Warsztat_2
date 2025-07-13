@@ -821,16 +821,14 @@ internal class SqlCmd {
 
     public static async Task<decimal> GetTotalEarningsForCurrentMonthAsync()
         {
-        decimal totalParts = 0m;
-        decimal totalServices = 0m;
-        decimal totalPricaWork = 0m;
-
+        decimal total = 0m;
         try
             {
             using SQLiteConnection conn = new("Data Source=Archive.db;Version=3;New=False;Compress=True;");
             await conn.OpenAsync();
 
-            string query = "SELECT KosztCzęściZMarżą, KosztUsługi, KosztPracyRęcznej, DataZamknięciaZlecenia FROM ZarządzanieZleceniem";
+            string[] sqlData = { "DochódZCzęści", "KosztUsługi", "KosztPracyRęcznej" };
+            string query = "SELECT DochódZCzęści, KosztUsługi, KosztPracyRęcznej, DataZamknięciaZlecenia FROM ZarządzanieZleceniem";
             using SQLiteCommand cmd = new(query, conn);
             using DbDataReader reader = await cmd.ExecuteReaderAsync();
 
@@ -843,23 +841,23 @@ internal class SqlCmd {
                 if(!reader.IsDBNull(3))
                     {
                     string dateString = reader["DataZamknięciaZlecenia"].ToString();
+
                     if(DateTime.TryParse(dateString, culture, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
                         {
                         if(parsedDate.Year == currentYear && parsedDate.Month == currentMonth)
                             {
-                            if(!reader.IsDBNull(0))
-                                totalParts += Convert.ToDecimal(reader["KosztCzęściZMarżą"]);
-                            if(!reader.IsDBNull(1))
-                                totalServices += Convert.ToDecimal(reader["KosztUsługi"]);
-                            if(!reader.IsDBNull(2))
-                                totalPricaWork += Convert.ToDecimal(reader["KosztPracyRęcznej"]);
+                            for(byte x = 0;x < 3;x++)
+                                {
+                                if(!reader.IsDBNull(x))
+                                    total += Convert.ToDecimal(reader[$"{sqlData[x]}"]);
+                                }
                             }
                         }
+                    }                    
                     else
                         {
                         // Логування проблеми з датою
                         }
-                    }
                 }
             }
         catch(Exception ex)
@@ -871,8 +869,7 @@ internal class SqlCmd {
             {
             Cursor.Current = Cursors.Default;
             }
-
-        return totalParts + totalServices + totalPricaWork;
+        return total;
         }
     public static async Task<decimal> GetTotalDependecisForCurrentMonthAsync()
         {

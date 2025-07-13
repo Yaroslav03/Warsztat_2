@@ -106,7 +106,6 @@
             Name = "QuantityItemsWarehous";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "QuantityItemsWarehous";
-            Load += QuantityItemsWarehous_Load;
             ((System.ComponentModel.ISupportInitialize)QuantityNumericUpDown).EndInit();
             ResumeLayout(false);
             PerformLayout();

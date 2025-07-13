@@ -6,6 +6,7 @@
         public string PartNumber { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public decimal EarningParts { get; set; }
         public byte Quantity { get; set; }
         public string Sum { get; set; }
 
@@ -18,6 +19,7 @@
             Description = null;
             Price = 0;
             Quantity = 0;
+            EarningParts = 0;
             Sum = null;
             }
         }
