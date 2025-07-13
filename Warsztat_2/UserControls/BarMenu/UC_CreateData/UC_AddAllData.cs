@@ -69,7 +69,6 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             var fieldsToCheck = new Dictionary<string, string>
     {
         { "*Brakuje danych do imienia", NameTextBox.Text.Trim() },
-        { "*Brakuje danych do nazwiska", SurnameTextBox.Text.Trim()},
         { "*Brakuje danych do telefonu", TelephoneTextBox.Text.Trim()},
         { "*Brakuje danych do marki", MarkaTextBox.Text.Trim()},
         { "*Brakuje danych do modelu", ModelTextBox.Text.Trim()},
