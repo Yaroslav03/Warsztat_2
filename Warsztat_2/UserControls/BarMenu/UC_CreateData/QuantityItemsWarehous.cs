@@ -15,6 +15,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
         private void SaveButton_Click(object sender, EventArgs e)
             {
             byte quantity = (byte)QuantityNumericUpDown.Value;
+            Transfer.Add("Stan", 1);
             if(quantity == Convert.ToByte(Transfer["Ilość"]))
                 {
                 TransferAllData();
