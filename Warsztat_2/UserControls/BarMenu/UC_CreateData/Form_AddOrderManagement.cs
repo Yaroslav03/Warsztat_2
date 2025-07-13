@@ -126,7 +126,7 @@
                     CashRadioButton.Checked = true;
                     PaidnumericUpDown.Value = wasPayed; // Припускаємо, що wasPayed збережено у базі
                     }
-                else if(paymentType == "kartą płatniczą")
+                else if(paymentType == "kartą")
                     {
                     radioButton2.Checked = true;
                     }
@@ -165,7 +165,7 @@
                 {
                 paymentDay = DateOfPay.Text.ToString();
                 }
-
+            paymentType = CashRadioButton.Checked ? "gotówka" : "kartą";
             return new Dictionary<string, object>
                 {
                     {"VIN", Vin_Label.Text},
@@ -248,14 +248,12 @@
             }
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
             {
-            paymentType = "gotówka";
             label5.Show();
             PaidnumericUpDown.Show();
             }
 
         private void RadioButton2_CheckedChanged(object sender, EventArgs e)
             {
-            paymentType = "kartą płatniczą";
             label5.Hide();
             PaidnumericUpDown.Hide();
             PaidnumericUpDown.Value = 0;
