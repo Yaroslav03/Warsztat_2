@@ -1,9 +1,7 @@
 ﻿using Warsztat_2.UserControls.BarMenu.ScheduleCar;
 
-namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
-{
-    internal class EditDataScheduleCar
-    {
+namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar {
+    internal class EditDataScheduleCar {
 
         private Car car = new();
         private Repair repair = new();
@@ -11,17 +9,17 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
 
 
         public async void SaveData(UC_ScheduleCar selectTab)
-        {
+            {
             var scheduleCarData = GetScheduleCar(selectTab);
 
             bool isSucced = await SqlCmd.AddRecordAsync("WarsztatDB", "ZaplanowaneSamochody", scheduleCarData);
-            if (isSucced)
-            {
+            if(isSucced)
+                {
                 MessageBox.Show($"Samochód został zaplanowany, kliknij OK żeby dodać kolejny", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-        }
         private Dictionary<string, object> GetScheduleCar(UC_ScheduleCar selectTab)
-        {
+            {
             return new Dictionary<string, object>
                 {
                     {"Imię",  selectTab.NameTextBox.Text.Trim()},
@@ -35,12 +33,12 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
 
                     {"DataPrzyjęcia",  selectTab.ScheduleTimePicker.Text},
                 };
-        }
+            }
 
         /*ID = Convert.ToByte(selectTab.ID_label.Text),*/
 
         public async void UpdateData(UC_ScheduleCar selectTab)
-        {
+            {
             var scheduleCarData = GetScheduleCar(selectTab);
             var scheduleCarID = new Dictionary<string, object>
                 {
@@ -48,18 +46,18 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
                 };
             await SqlCmd.UpdateRecordAsync("ZaplanowaneSamochody", scheduleCarData, "ID=@ID", scheduleCarID);
 
-        }
+            }
 
         public void SetDataEdit(Client clientToEdit, Car carToEdit, Repair repairToEdit)
-        {//сетування даних при переході між класами
+            {//сетування даних при переході між класами
             client = clientToEdit;
             car = carToEdit;
             repair = repairToEdit;
 
-        }
+            }
 
         public void AutocompleteData(UC_ScheduleCar selectTab)
-        {
+            {
             selectTab.ID_label.Text = client.ID.ToString();
 
             selectTab.NameTextBox.Text = client.Name;
@@ -72,9 +70,9 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
             selectTab.ProblemCar.Text = repair.Problem;
 
             selectTab.ScheduleTimePicker.Text = repair.ScheduleCar;
-        }
+            }
         public static void ClearTextBox(UC_ScheduleCar editData)
-        {
+            {
             editData.NameTextBox.Text = editData.SurnameTextBox.Text = editData.TelephonTextBox.Text = string.Empty;
 
             editData.CarComboBox.SelectedItem = editData.ScheduleModelTextBox0.Text = editData.ProblemCar.Text = string.Empty;
@@ -82,6 +80,6 @@ namespace Warsztat_2._0.UserControls.BarMenu.ScheduleCar
             editData.ScheduleTimePicker.Text = DateTime.Today.ToString("D");
 
             editData.ID_label.Text = "0";
+            }
         }
     }
-}

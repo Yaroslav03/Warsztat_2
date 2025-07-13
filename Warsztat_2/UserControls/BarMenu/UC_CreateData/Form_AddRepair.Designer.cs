@@ -29,10 +29,13 @@
         private void InitializeComponent()
             {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             TypeTextBox = new TextBox();
             IloscNumericUpDown = new NumericUpDown();
             label1 = new Label();
@@ -48,6 +51,9 @@
             StanCheckBox = new CheckBox();
             panel1 = new Panel();
             ViewRepair = new DataGridView();
+            label6 = new Label();
+            panel2 = new Panel();
+            WarehouseView = new DataGridView();
             BtnDelete = new DataGridViewButtonColumn();
             ID_Column_ = new DataGridViewTextBoxColumn();
             Wykonane_Checked = new DataGridViewCheckBoxColumn();
@@ -57,10 +63,9 @@
             NrCzęści_Column = new DataGridViewTextBoxColumn();
             Cena_Column_ = new DataGridViewTextBoxColumn();
             Ilość_Column_ = new DataGridViewTextBoxColumn();
+            EarningParts_Column_ = new DataGridViewTextBoxColumn();
+            SumaZarobku_Column = new DataGridViewTextBoxColumn();
             Suma_Column = new DataGridViewTextBoxColumn();
-            label6 = new Label();
-            panel2 = new Panel();
-            WarehouseView = new DataGridView();
             BtnDelete_Warehouse_ = new DataGridViewButtonColumn();
             SelectButton = new DataGridViewButtonColumn();
             ID_Column = new DataGridViewTextBoxColumn();
@@ -70,6 +75,8 @@
             Opis_Column_ = new DataGridViewTextBoxColumn();
             Ilość_column = new DataGridViewTextBoxColumn();
             Cena_column = new DataGridViewTextBoxColumn();
+            EarningParts_Column = new DataGridViewTextBoxColumn();
+            SumaZarobku_Column_Warehouse = new DataGridViewTextBoxColumn();
             Sum_Column = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)IloscNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).BeginInit();
@@ -288,15 +295,15 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ViewRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewRepair.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ViewRepair.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID_Column_, Wykonane_Checked, Type_Column, Nazwa_Column, Opis_Column, NrCzęści_Column, Cena_Column_, Ilość_Column_, Suma_Column });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            ViewRepair.DefaultCellStyle = dataGridViewCellStyle3;
+            ViewRepair.Columns.AddRange(new DataGridViewColumn[] { BtnDelete, ID_Column_, Wykonane_Checked, Type_Column, Nazwa_Column, Opis_Column, NrCzęści_Column, Cena_Column_, Ilość_Column_, EarningParts_Column_, SumaZarobku_Column, Suma_Column });
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            ViewRepair.DefaultCellStyle = dataGridViewCellStyle4;
             ViewRepair.EnableHeadersVisualStyles = false;
             ViewRepair.Location = new Point(14, 14);
             ViewRepair.Name = "ViewRepair";
@@ -305,6 +312,64 @@
             ViewRepair.TabIndex = 23;
             ViewRepair.CellContentClick += ViewRepair_CellContentClick;
             ViewRepair.MouseDoubleClick += ViewRepair_MouseDoubleClick;
+            // 
+            // label6
+            // 
+            label6.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.ForeColor = Color.FromArgb(224, 224, 224);
+            label6.Location = new Point(678, 229);
+            label6.Name = "label6";
+            label6.Size = new Size(224, 28);
+            label6.TabIndex = 25;
+            label6.Text = "Aktulalny stan na magazynie";
+            // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.BackColor = Color.FromArgb(64, 64, 70);
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(WarehouseView);
+            panel2.Controls.Add(ViewRepair);
+            panel2.Controls.Add(label6);
+            panel2.ForeColor = Color.WhiteSmoke;
+            panel2.Location = new Point(12, 139);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(976, 508);
+            panel2.TabIndex = 29;
+            // 
+            // WarehouseView
+            // 
+            WarehouseView.AllowUserToAddRows = false;
+            WarehouseView.AllowUserToDeleteRows = false;
+            WarehouseView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            WarehouseView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            WarehouseView.BorderStyle = BorderStyle.None;
+            WarehouseView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            WarehouseView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            WarehouseView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            WarehouseView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete_Warehouse_, SelectButton, ID_Column, Typ_column, Nazwa_column_, NumerCzęści_column, Opis_Column_, Ilość_column, Cena_column, EarningParts_Column, SumaZarobku_Column_Warehouse, Sum_Column });
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            WarehouseView.DefaultCellStyle = dataGridViewCellStyle8;
+            WarehouseView.EnableHeadersVisualStyles = false;
+            WarehouseView.Location = new Point(3, 260);
+            WarehouseView.Name = "WarehouseView";
+            WarehouseView.RowTemplate.Height = 25;
+            WarehouseView.Size = new Size(968, 243);
+            WarehouseView.TabIndex = 38;
+            WarehouseView.CellContentClick += WarehouseView_CellContentClick;
             // 
             // BtnDelete
             // 
@@ -372,78 +437,38 @@
             Ilość_Column_.HeaderText = "Ilość";
             Ilość_Column_.Name = "Ilość_Column_";
             // 
+            // EarningParts_Column_
+            // 
+            EarningParts_Column_.DataPropertyName = "ZarobekCzęści";
+            EarningParts_Column_.HeaderText = "koszt własny netto / szt.";
+            EarningParts_Column_.Name = "EarningParts_Column_";
+            // 
+            // SumaZarobku_Column
+            // 
+            SumaZarobku_Column.DataPropertyName = "SumaZarobku";
+            SumaZarobku_Column.HeaderText = "Suma zarobku części";
+            SumaZarobku_Column.Name = "SumaZarobku_Column";
+            SumaZarobku_Column.Visible = false;
+            // 
             // Suma_Column
             // 
             Suma_Column.DataPropertyName = "Suma";
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            Suma_Column.DefaultCellStyle = dataGridViewCellStyle3;
             Suma_Column.FillWeight = 40F;
             Suma_Column.HeaderText = "Suma";
             Suma_Column.Name = "Suma_Column";
             // 
-            // label6
-            // 
-            label6.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.ForeColor = Color.FromArgb(224, 224, 224);
-            label6.Location = new Point(678, 229);
-            label6.Name = "label6";
-            label6.Size = new Size(224, 28);
-            label6.TabIndex = 25;
-            label6.Text = "Aktulalny stan na magazynie";
-            // 
-            // panel2
-            // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.BackColor = Color.FromArgb(64, 64, 70);
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(WarehouseView);
-            panel2.Controls.Add(ViewRepair);
-            panel2.Controls.Add(label6);
-            panel2.ForeColor = Color.WhiteSmoke;
-            panel2.Location = new Point(12, 139);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(976, 508);
-            panel2.TabIndex = 29;
-            // 
-            // WarehouseView
-            // 
-            WarehouseView.AllowUserToAddRows = false;
-            WarehouseView.AllowUserToDeleteRows = false;
-            WarehouseView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            WarehouseView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            WarehouseView.BorderStyle = BorderStyle.None;
-            WarehouseView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            WarehouseView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            WarehouseView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            WarehouseView.Columns.AddRange(new DataGridViewColumn[] { BtnDelete_Warehouse_, SelectButton, ID_Column, Typ_column, Nazwa_column_, NumerCzęści_column, Opis_Column_, Ilość_column, Cena_column, Sum_Column });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            WarehouseView.DefaultCellStyle = dataGridViewCellStyle5;
-            WarehouseView.EnableHeadersVisualStyles = false;
-            WarehouseView.Location = new Point(3, 260);
-            WarehouseView.Name = "WarehouseView";
-            WarehouseView.RowTemplate.Height = 25;
-            WarehouseView.Size = new Size(968, 243);
-            WarehouseView.TabIndex = 38;
-            WarehouseView.CellContentClick += WarehouseView_CellContentClick;
-            // 
             // BtnDelete_Warehouse_
             // 
+            BtnDelete_Warehouse_.FillWeight = 97.01071F;
             BtnDelete_Warehouse_.HeaderText = "Usuń";
             BtnDelete_Warehouse_.Name = "BtnDelete_Warehouse_";
             // 
             // SelectButton
             // 
+            SelectButton.FillWeight = 97.01071F;
             SelectButton.HeaderText = "Wybierz";
             SelectButton.Name = "SelectButton";
             // 
@@ -457,42 +482,69 @@
             // Typ_column
             // 
             Typ_column.DataPropertyName = "Typ";
+            Typ_column.FillWeight = 97.01071F;
             Typ_column.HeaderText = "Typ";
             Typ_column.Name = "Typ_column";
             // 
             // Nazwa_column_
             // 
             Nazwa_column_.DataPropertyName = "Nazwa";
+            Nazwa_column_.FillWeight = 97.01071F;
             Nazwa_column_.HeaderText = "Nazwa";
             Nazwa_column_.Name = "Nazwa_column_";
             // 
             // NumerCzęści_column
             // 
             NumerCzęści_column.DataPropertyName = "NumerCzęści";
+            NumerCzęści_column.FillWeight = 97.01071F;
             NumerCzęści_column.HeaderText = "Numer Części";
             NumerCzęści_column.Name = "NumerCzęści_column";
             // 
             // Opis_Column_
             // 
             Opis_Column_.DataPropertyName = "Opis";
+            Opis_Column_.FillWeight = 97.01071F;
             Opis_Column_.HeaderText = "Opis";
             Opis_Column_.Name = "Opis_Column_";
             // 
             // Ilość_column
             // 
             Ilość_column.DataPropertyName = "Ilość";
+            Ilość_column.FillWeight = 97.01071F;
             Ilość_column.HeaderText = "Ilość";
             Ilość_column.Name = "Ilość_column";
             // 
             // Cena_column
             // 
             Cena_column.DataPropertyName = "Cena";
+            dataGridViewCellStyle6.Format = "C2";
+            dataGridViewCellStyle6.NullValue = null;
+            Cena_column.DefaultCellStyle = dataGridViewCellStyle6;
+            Cena_column.FillWeight = 97.01071F;
             Cena_column.HeaderText = "Cena";
             Cena_column.Name = "Cena_column";
+            // 
+            // EarningParts_Column
+            // 
+            EarningParts_Column.DataPropertyName = "ZarobekCzęści";
+            EarningParts_Column.FillWeight = 126.903564F;
+            EarningParts_Column.HeaderText = "koszt własny netto / szt.";
+            EarningParts_Column.Name = "EarningParts_Column";
+            // 
+            // SumaZarobku_Column_Warehouse
+            // 
+            SumaZarobku_Column_Warehouse.DataPropertyName = "SumaZarobku";
+            SumaZarobku_Column_Warehouse.HeaderText = "Suma zarobku części";
+            SumaZarobku_Column_Warehouse.Name = "SumaZarobku_Column_Warehouse";
+            SumaZarobku_Column_Warehouse.Visible = false;
             // 
             // Sum_Column
             // 
             Sum_Column.DataPropertyName = "Suma";
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = null;
+            Sum_Column.DefaultCellStyle = dataGridViewCellStyle7;
+            Sum_Column.FillWeight = 97.01071F;
             Sum_Column.HeaderText = "Suma";
             Sum_Column.Name = "Sum_Column";
             // 
@@ -507,7 +559,6 @@
             Name = "Form_AddRepair";
             Text = "Form_AddRepair";
             Load += Form_AddRepair_Load;
-            Leave += Form_AddRepair_Leave;
             ((System.ComponentModel.ISupportInitialize)IloscNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).EndInit();
             panel1.ResumeLayout(false);
@@ -548,16 +599,6 @@
         private DataGridView WarehouseView;
         private DataGridViewButtonColumn _BtnDelete_Warehouse_;
         private DataGridViewTextBoxColumn _ID_Column;
-        private DataGridViewButtonColumn BtnDelete_Warehouse_;
-        private DataGridViewButtonColumn SelectButton;
-        private DataGridViewTextBoxColumn ID_Column;
-        private DataGridViewTextBoxColumn Typ_column;
-        private DataGridViewTextBoxColumn Nazwa_column_;
-        private DataGridViewTextBoxColumn NumerCzęści_column;
-        private DataGridViewTextBoxColumn Opis_Column_;
-        private DataGridViewTextBoxColumn Ilość_column;
-        private DataGridViewTextBoxColumn Cena_column;
-        private DataGridViewTextBoxColumn Sum_Column;
         private DataGridViewButtonColumn BtnDelete;
         private DataGridViewTextBoxColumn ID_Column_;
         private DataGridViewCheckBoxColumn Wykonane_Checked;
@@ -567,6 +608,20 @@
         private DataGridViewTextBoxColumn NrCzęści_Column;
         private DataGridViewTextBoxColumn Cena_Column_;
         private DataGridViewTextBoxColumn Ilość_Column_;
+        private DataGridViewTextBoxColumn EarningParts_Column_;
+        private DataGridViewTextBoxColumn SumaZarobku_Column;
         private DataGridViewTextBoxColumn Suma_Column;
+        private DataGridViewButtonColumn BtnDelete_Warehouse_;
+        private DataGridViewButtonColumn SelectButton;
+        private DataGridViewTextBoxColumn ID_Column;
+        private DataGridViewTextBoxColumn Typ_column;
+        private DataGridViewTextBoxColumn Nazwa_column_;
+        private DataGridViewTextBoxColumn NumerCzęści_column;
+        private DataGridViewTextBoxColumn Opis_Column_;
+        private DataGridViewTextBoxColumn Ilość_column;
+        private DataGridViewTextBoxColumn Cena_column;
+        private DataGridViewTextBoxColumn EarningParts_Column;
+        private DataGridViewTextBoxColumn SumaZarobku_Column_Warehouse;
+        private DataGridViewTextBoxColumn Sum_Column;
         }
 }

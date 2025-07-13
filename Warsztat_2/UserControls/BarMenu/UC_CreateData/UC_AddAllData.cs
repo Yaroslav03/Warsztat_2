@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SQLite;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 
-namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
-{
+namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
     public partial class UC_AddAllData :UserControl {
         #region variables
         Guid uniqueKey;
         private protected ushort Id_Repair;
-        private decimal pricePart, priceService;
+        private decimal pricePart, priceService, earningParts;
         #endregion
         #region event
         public UC_AddAllData()
@@ -36,8 +26,6 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             if(await CheckDataBeforeSave())
                 {
                 await (SaveButton.Text == "Odśwież" ? UpdateData() : SaveData());
-
-
                 }
             }
 
@@ -46,7 +34,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             {
             SumRepair();
             Form_AddOrderManagement form_AddOrderManagement = new();
-            form_AddOrderManagement.SendDataFromLastWindow(pricePart, priceService, uniqueKey);
+            form_AddOrderManagement.SendDataFromLastWindow(pricePart, priceService, earningParts, uniqueKey);
             form_AddOrderManagement.ShowDialog();
             }
         #endregion
@@ -81,7 +69,6 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             var fieldsToCheck = new Dictionary<string, string>
     {
         { "*Brakuje danych do imienia", NameTextBox.Text.Trim() },
-        { "*Brakuje danych do nazwiska", SurnameTextBox.Text.Trim()},
         { "*Brakuje danych do telefonu", TelephoneTextBox.Text.Trim()},
         { "*Brakuje danych do marki", MarkaTextBox.Text.Trim()},
         { "*Brakuje danych do modelu", ModelTextBox.Text.Trim()},
@@ -156,6 +143,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
             {
             decimal totalPriceRepairPart = 0;
             decimal totalPriceService = 0;
+            decimal totalEarningParts = 0;
             foreach(DataGridViewRow row in ViewRepair.Rows)
                 {
                 if(row.Cells["Suma_Column"].Value != null && decimal.TryParse(row.Cells["Suma_Column"].Value.ToString(), out decimal price))
@@ -171,8 +159,16 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                     totalPriceService += price;
                     }
                 }
+            foreach(DataGridViewRow row in ViewRepair.Rows)
+                {
+                if(row.Cells["SumaZarobku_Column"].Value != null && decimal.TryParse(row.Cells["SumaZarobku_Column"].Value.ToString(), out decimal price))
+                    {
+                    totalEarningParts += price;
+                    }
+                }
             pricePart = totalPriceRepairPart;
             priceService = totalPriceService;
+            earningParts = totalEarningParts;
             }
         #endregion
 
@@ -188,7 +184,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 {
                     {"UniqueKey", uniqueKey }
                 };
-                await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
+                await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, ZarobekCzęści, SumaZarobku, SumaZarobku, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
                 ViewRepair.ClearSelection();
                 }
             }
@@ -204,7 +200,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 {
                     {"UniqueKey", uniqueKey }
                 };
-                await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);               
+                await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);
                 ServiceHistoryView.ClearSelection();
                 }
 
@@ -254,16 +250,10 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
                 {
                     {"UniqueKey", uniqueKey }
                 };
-            await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
+            await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, ZarobekCzęści, SumaZarobku, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
             await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);
             ViewRepair.ClearSelection();
             ServiceHistoryView.ClearSelection();
-            }
-
-
-        private void AddCarFromDBButton_Click_1(object sender, EventArgs e)
-            {
-
             }
         }
     };

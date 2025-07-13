@@ -52,7 +52,6 @@
             panel4 = new Panel();
             label1 = new Label();
             marzhaNumericUpDown = new NumericUpDown();
-            labelPriceofPart = new Label();
             labelPriceofService = new Label();
             CloseOrder = new Button();
             panel2 = new Panel();
@@ -84,8 +83,9 @@
             // 
             // label7
             // 
-            label7.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(185, 4);
+            label7.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.ForeColor = Color.FromArgb(224, 224, 224);
+            label7.Location = new Point(3, 4);
             label7.Name = "label7";
             label7.Size = new Size(114, 28);
             label7.TabIndex = 0;
@@ -168,7 +168,8 @@
             // 
             // label13
             // 
-            label13.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.ForeColor = Color.FromArgb(224, 224, 224);
             label13.Location = new Point(3, 0);
             label13.Name = "label13";
             label13.Size = new Size(153, 28);
@@ -178,6 +179,7 @@
             // realiseOrderCheck
             // 
             realiseOrderCheck.AutoSize = true;
+            realiseOrderCheck.ForeColor = Color.FromArgb(224, 224, 224);
             realiseOrderCheck.Location = new Point(3, 49);
             realiseOrderCheck.Name = "realiseOrderCheck";
             realiseOrderCheck.Size = new Size(128, 19);
@@ -213,6 +215,7 @@
             // 
             NeitherRadioButton.AutoSize = true;
             NeitherRadioButton.Checked = true;
+            NeitherRadioButton.ForeColor = Color.FromArgb(224, 224, 224);
             NeitherRadioButton.Location = new Point(3, 29);
             NeitherRadioButton.Name = "NeitherRadioButton";
             NeitherRadioButton.Size = new Size(48, 19);
@@ -225,6 +228,7 @@
             // OtherDatePayCheck
             // 
             OtherDatePayCheck.AutoSize = true;
+            OtherDatePayCheck.ForeColor = Color.FromArgb(224, 224, 224);
             OtherDatePayCheck.Location = new Point(3, 79);
             OtherDatePayCheck.Name = "OtherDatePayCheck";
             OtherDatePayCheck.Size = new Size(74, 19);
@@ -236,6 +240,7 @@
             // TodayPaycheck
             // 
             TodayPaycheck.AutoSize = true;
+            TodayPaycheck.ForeColor = Color.FromArgb(224, 224, 224);
             TodayPaycheck.Location = new Point(3, 54);
             TodayPaycheck.Name = "TodayPaycheck";
             TodayPaycheck.Size = new Size(58, 19);
@@ -261,8 +266,9 @@
             // 
             // label2
             // 
-            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(3, 2);
+            label2.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(224, 224, 224);
+            label2.Location = new Point(3, 1);
             label2.Name = "label2";
             label2.Size = new Size(159, 28);
             label2.TabIndex = 0;
@@ -275,20 +281,20 @@
             label10.ForeColor = Color.FromArgb(224, 224, 224);
             label10.Location = new Point(3, 34);
             label10.Name = "label10";
-            label10.Size = new Size(142, 21);
+            label10.Size = new Size(205, 21);
             label10.TabIndex = 27;
-            label10.Text = "Koszt ręcznej pracy";
+            label10.Text = "Koszt demontażu i montażu:";
             // 
             // LabelPricePartWithMarzha
             // 
             LabelPricePartWithMarzha.AutoSize = true;
             LabelPricePartWithMarzha.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             LabelPricePartWithMarzha.ForeColor = Color.FromArgb(224, 224, 224);
-            LabelPricePartWithMarzha.Location = new Point(3, 76);
+            LabelPricePartWithMarzha.Location = new Point(3, 60);
             LabelPricePartWithMarzha.Name = "LabelPricePartWithMarzha";
-            LabelPricePartWithMarzha.Size = new Size(171, 21);
+            LabelPricePartWithMarzha.Size = new Size(103, 21);
             LabelPricePartWithMarzha.TabIndex = 27;
-            LabelPricePartWithMarzha.Text = "Koszt za części z marzą:";
+            LabelPricePartWithMarzha.Text = "Części brutto:";
             // 
             // FinallPriceNumericUpDown
             // 
@@ -296,7 +302,7 @@
             FinallPriceNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
             FinallPriceNumericUpDown.DecimalPlaces = 2;
             FinallPriceNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            FinallPriceNumericUpDown.Location = new Point(151, 32);
+            FinallPriceNumericUpDown.Location = new Point(214, 32);
             FinallPriceNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             FinallPriceNumericUpDown.Name = "FinallPriceNumericUpDown";
             FinallPriceNumericUpDown.Size = new Size(70, 23);
@@ -305,10 +311,11 @@
             // 
             // label3
             // 
-            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(224, 224, 224);
             label3.Location = new Point(3, 2);
             label3.Name = "label3";
-            label3.Size = new Size(196, 28);
+            label3.Size = new Size(153, 28);
             label3.TabIndex = 0;
             label3.Text = "Wycena kosztów";
             // 
@@ -321,7 +328,6 @@
             panel4.Controls.Add(marzhaNumericUpDown);
             panel4.Controls.Add(LabelFinallyPrice);
             panel4.Controls.Add(label10);
-            panel4.Controls.Add(labelPriceofPart);
             panel4.Controls.Add(labelPriceofService);
             panel4.Controls.Add(LabelPricePartWithMarzha);
             panel4.Controls.Add(label3);
@@ -331,13 +337,14 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(396, 147);
             panel4.TabIndex = 34;
+            panel4.Paint += panel4_Paint;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(224, 224, 224);
-            label1.Location = new Point(291, 9);
+            label1.Location = new Point(321, 9);
             label1.Name = "label1";
             label1.Size = new Size(53, 21);
             label1.TabIndex = 29;
@@ -348,29 +355,18 @@
             marzhaNumericUpDown.BackColor = Color.White;
             marzhaNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
             marzhaNumericUpDown.DecimalPlaces = 2;
-            marzhaNumericUpDown.Location = new Point(291, 32);
+            marzhaNumericUpDown.Location = new Point(321, 32);
             marzhaNumericUpDown.Name = "marzhaNumericUpDown";
             marzhaNumericUpDown.Size = new Size(70, 23);
             marzhaNumericUpDown.TabIndex = 28;
             marzhaNumericUpDown.ValueChanged += marzhaNumericUpDown_ValueChanged;
-            // 
-            // labelPriceofPart
-            // 
-            labelPriceofPart.AutoSize = true;
-            labelPriceofPart.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelPriceofPart.ForeColor = Color.FromArgb(224, 224, 224);
-            labelPriceofPart.Location = new Point(3, 55);
-            labelPriceofPart.Name = "labelPriceofPart";
-            labelPriceofPart.Size = new Size(113, 21);
-            labelPriceofPart.TabIndex = 27;
-            labelPriceofPart.Text = "Koszt za części:";
             // 
             // labelPriceofService
             // 
             labelPriceofService.AutoSize = true;
             labelPriceofService.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             labelPriceofService.ForeColor = Color.FromArgb(224, 224, 224);
-            labelPriceofService.Location = new Point(3, 97);
+            labelPriceofService.Location = new Point(3, 86);
             labelPriceofService.Name = "labelPriceofService";
             labelPriceofService.Size = new Size(115, 21);
             labelPriceofService.TabIndex = 27;
@@ -411,7 +407,8 @@
             // 
             CashRadioButton.AutoSize = true;
             CashRadioButton.Checked = true;
-            CashRadioButton.Location = new Point(21, 25);
+            CashRadioButton.ForeColor = Color.FromArgb(224, 224, 224);
+            CashRadioButton.Location = new Point(21, 32);
             CashRadioButton.Name = "CashRadioButton";
             CashRadioButton.Size = new Size(72, 19);
             CashRadioButton.TabIndex = 30;
@@ -423,7 +420,8 @@
             // radioButton2
             // 
             radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(103, 25);
+            radioButton2.ForeColor = Color.FromArgb(224, 224, 224);
+            radioButton2.Location = new Point(103, 32);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(52, 19);
             radioButton2.TabIndex = 30;
@@ -444,10 +442,11 @@
             // 
             // label8
             // 
-            label8.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(103, 0);
+            label8.Font = new Font("Bahnschrift Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.ForeColor = Color.FromArgb(224, 224, 224);
+            label8.Location = new Point(3, 1);
             label8.Name = "label8";
-            label8.Size = new Size(196, 28);
+            label8.Size = new Size(159, 28);
             label8.TabIndex = 0;
             label8.Text = "Sposób Płatności";
             // 
@@ -527,7 +526,6 @@
         private Label label5;
         private Label label8;
         public NumericUpDown PaidnumericUpDown;
-        private Label labelPriceofPart;
         private RadioButton NeitherRadioButton;
         private Label label1;
         public NumericUpDown marzhaNumericUpDown;

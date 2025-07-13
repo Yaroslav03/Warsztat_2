@@ -37,7 +37,7 @@
             // 
             // QuantityNumericUpDown
             // 
-            QuantityNumericUpDown.BackColor = Color.FromArgb(64, 64, 70);
+            QuantityNumericUpDown.BackColor = Color.White;
             QuantityNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
             QuantityNumericUpDown.Location = new Point(136, 12);
             QuantityNumericUpDown.Maximum = new decimal(new int[] { 200, 0, 0, 0 });
@@ -106,7 +106,6 @@
             Name = "QuantityItemsWarehous";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "QuantityItemsWarehous";
-            Load += QuantityItemsWarehous_Load;
             ((System.ComponentModel.ISupportInitialize)QuantityNumericUpDown).EndInit();
             ResumeLayout(false);
             PerformLayout();

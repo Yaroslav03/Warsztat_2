@@ -27,10 +27,13 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
+            {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             ViewActualData = new DataGridView();
+            panelDodatkowy = new Panel();
+            OrderButton = new Button();
             ID_Column = new DataGridViewTextBoxColumn();
             BtnDelete = new DataGridViewButtonColumn();
             BtnRecover = new DataGridViewButtonColumn();
@@ -45,8 +48,6 @@
             WykonawaPracy_Column = new DataGridViewTextBoxColumn();
             KosztKońcowy_Column = new DataGridViewTextBoxColumn();
             VIN_Column = new DataGridViewTextBoxColumn();
-            panelDodatkowy = new Panel();
-            OrderButton = new Button();
             ((System.ComponentModel.ISupportInitialize)ViewActualData).BeginInit();
             panelDodatkowy.SuspendLayout();
             SuspendLayout();
@@ -69,14 +70,14 @@
             ViewActualData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewActualData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ViewActualData.Columns.AddRange(new DataGridViewColumn[] { ID_Column, BtnDelete, BtnRecover, DataPrzyjęcia_Column, DataZamknięciaZlecenia_Column, Imię_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Column7, WykonawaPracy_Column, KosztKońcowy_Column, VIN_Column });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.DimGray;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            ViewActualData.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            ViewActualData.DefaultCellStyle = dataGridViewCellStyle3;
             ViewActualData.EnableHeadersVisualStyles = false;
             ViewActualData.Location = new Point(3, 64);
             ViewActualData.Name = "ViewActualData";
@@ -84,6 +85,34 @@
             ViewActualData.Size = new Size(1029, 540);
             ViewActualData.TabIndex = 38;
             ViewActualData.CellContentClick += ViewActualData_CellContentClick;
+            // 
+            // panelDodatkowy
+            // 
+            panelDodatkowy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelDodatkowy.BackColor = Color.FromArgb(64, 64, 70);
+            panelDodatkowy.BorderStyle = BorderStyle.FixedSingle;
+            panelDodatkowy.Controls.Add(OrderButton);
+            panelDodatkowy.Controls.Add(ViewActualData);
+            panelDodatkowy.ForeColor = Color.WhiteSmoke;
+            panelDodatkowy.Location = new Point(3, 3);
+            panelDodatkowy.Name = "panelDodatkowy";
+            panelDodatkowy.Size = new Size(1037, 609);
+            panelDodatkowy.TabIndex = 39;
+            // 
+            // OrderButton
+            // 
+            OrderButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            OrderButton.BackColor = Color.FromArgb(94, 148, 255);
+            OrderButton.FlatAppearance.BorderSize = 0;
+            OrderButton.FlatStyle = FlatStyle.Flat;
+            OrderButton.ForeColor = Color.LightGray;
+            OrderButton.Location = new Point(877, 36);
+            OrderButton.Name = "OrderButton";
+            OrderButton.Size = new Size(155, 22);
+            OrderButton.TabIndex = 39;
+            OrderButton.Text = "Zlecenie";
+            OrderButton.UseVisualStyleBackColor = false;
+            OrderButton.Click += OrderButton_Click;
             // 
             // ID_Column
             // 
@@ -159,6 +188,9 @@
             // KosztKońcowy_Column
             // 
             KosztKońcowy_Column.DataPropertyName = "KosztKońcowy";
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            KosztKońcowy_Column.DefaultCellStyle = dataGridViewCellStyle2;
             KosztKońcowy_Column.HeaderText = "Koszt Końcowy";
             KosztKońcowy_Column.Name = "KosztKońcowy_Column";
             // 
@@ -167,34 +199,6 @@
             VIN_Column.DataPropertyName = "VIN";
             VIN_Column.HeaderText = "VIN";
             VIN_Column.Name = "VIN_Column";
-            // 
-            // panelDodatkowy
-            // 
-            panelDodatkowy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelDodatkowy.BackColor = Color.FromArgb(64, 64, 70);
-            panelDodatkowy.BorderStyle = BorderStyle.FixedSingle;
-            panelDodatkowy.Controls.Add(OrderButton);
-            panelDodatkowy.Controls.Add(ViewActualData);
-            panelDodatkowy.ForeColor = Color.DimGray;
-            panelDodatkowy.Location = new Point(3, 3);
-            panelDodatkowy.Name = "panelDodatkowy";
-            panelDodatkowy.Size = new Size(1037, 609);
-            panelDodatkowy.TabIndex = 39;
-            // 
-            // OrderButton
-            // 
-            OrderButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            OrderButton.BackColor = Color.FromArgb(94, 148, 255);
-            OrderButton.FlatAppearance.BorderSize = 0;
-            OrderButton.FlatStyle = FlatStyle.Flat;
-            OrderButton.ForeColor = Color.LightGray;
-            OrderButton.Location = new Point(877, 36);
-            OrderButton.Name = "OrderButton";
-            OrderButton.Size = new Size(155, 22);
-            OrderButton.TabIndex = 39;
-            OrderButton.Text = "Zlecenie";
-            OrderButton.UseVisualStyleBackColor = false;
-            OrderButton.Click += OrderButton_Click;
             // 
             // UC_Archive
             // 
@@ -208,12 +212,13 @@
             ((System.ComponentModel.ISupportInitialize)ViewActualData).EndInit();
             panelDodatkowy.ResumeLayout(false);
             ResumeLayout(false);
-        }
+            }
 
         #endregion
 
         private DataGridView ViewActualData;
         private Panel panelDodatkowy;
+        private Button OrderButton;
         private DataGridViewTextBoxColumn ID_Column;
         private DataGridViewButtonColumn BtnDelete;
         private DataGridViewButtonColumn BtnRecover;
@@ -228,6 +233,5 @@
         private DataGridViewTextBoxColumn WykonawaPracy_Column;
         private DataGridViewTextBoxColumn KosztKońcowy_Column;
         private DataGridViewTextBoxColumn VIN_Column;
-        private Button OrderButton;
-    }
+        }
 }
