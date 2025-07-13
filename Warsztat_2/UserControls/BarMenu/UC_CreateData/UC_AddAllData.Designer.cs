@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
             {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
             panelKontaktowy = new Panel();
             label6 = new Label();
             AdressCompanyTextBox = new TextBox();
@@ -79,6 +79,17 @@
             label13 = new Label();
             SaveButton = new Button();
             ViewRepair = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            Wykonane_Checked = new DataGridViewCheckBoxColumn();
+            Type_Column = new DataGridViewTextBoxColumn();
+            Nazwa_Column_ = new DataGridViewTextBoxColumn();
+            Opis_Column = new DataGridViewTextBoxColumn();
+            NrCzęści_Column = new DataGridViewTextBoxColumn();
+            Cena_Column = new DataGridViewTextBoxColumn();
+            Ilość_Column = new DataGridViewTextBoxColumn();
+            EarningParts_Columns = new DataGridViewTextBoxColumn();
+            SumaZarobku_Column = new DataGridViewTextBoxColumn();
+            Suma_Column = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
             SelectPartButton = new Button();
             label16 = new Label();
@@ -92,17 +103,6 @@
             ButtonOrderManagement = new Button();
             panel1 = new Panel();
             numericUpDown1 = new NumericUpDown();
-            ID = new DataGridViewTextBoxColumn();
-            Wykonane_Checked = new DataGridViewCheckBoxColumn();
-            Type_Column = new DataGridViewTextBoxColumn();
-            Nazwa_Column_ = new DataGridViewTextBoxColumn();
-            Opis_Column = new DataGridViewTextBoxColumn();
-            NrCzęści_Column = new DataGridViewTextBoxColumn();
-            Cena_Column = new DataGridViewTextBoxColumn();
-            Ilość_Column = new DataGridViewTextBoxColumn();
-            EarningParts_Columns = new DataGridViewTextBoxColumn();
-            SumaZarobku_Column = new DataGridViewTextBoxColumn();
-            Suma_Column = new DataGridViewTextBoxColumn();
             panelKontaktowy.SuspendLayout();
             panelDodatkowy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)YearNumericUpDown).BeginInit();
@@ -178,7 +178,7 @@
             NIPTextBox.Cursor = Cursors.IBeam;
             NIPTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             NIPTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            NIPTextBox.Location = new Point(684, 41);
+            NIPTextBox.Location = new Point(686, 41);
             NIPTextBox.Name = "NIPTextBox";
             NIPTextBox.PlaceholderText = "Wpisz NIP";
             NIPTextBox.Size = new Size(155, 23);
@@ -226,7 +226,7 @@
             SurnameTextBox.Cursor = Cursors.IBeam;
             SurnameTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             SurnameTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            SurnameTextBox.Location = new Point(91, 70);
+            SurnameTextBox.Location = new Point(94, 70);
             SurnameTextBox.Name = "SurnameTextBox";
             SurnameTextBox.PlaceholderText = "Wpisz nazwisko";
             SurnameTextBox.Size = new Size(155, 23);
@@ -250,7 +250,7 @@
             NameTextBox.Cursor = Cursors.IBeam;
             NameTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             NameTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            NameTextBox.Location = new Point(56, 42);
+            NameTextBox.Location = new Point(64, 41);
             NameTextBox.Name = "NameTextBox";
             NameTextBox.PlaceholderText = "Wpisz imię";
             NameTextBox.Size = new Size(155, 23);
@@ -354,7 +354,7 @@
             EngineTextBox.Cursor = Cursors.IBeam;
             EngineTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             EngineTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            EngineTextBox.Location = new Point(301, 48);
+            EngineTextBox.Location = new Point(301, 47);
             EngineTextBox.Margin = new Padding(3, 4, 3, 4);
             EngineTextBox.Name = "EngineTextBox";
             EngineTextBox.PlaceholderText = "1.6 THP";
@@ -369,7 +369,7 @@
             ModelTextBox.Cursor = Cursors.IBeam;
             ModelTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             ModelTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            ModelTextBox.Location = new Point(111, 76);
+            ModelTextBox.Location = new Point(105, 74);
             ModelTextBox.Margin = new Padding(3, 4, 3, 4);
             ModelTextBox.Name = "ModelTextBox";
             ModelTextBox.PlaceholderText = "508";
@@ -404,7 +404,7 @@
             MarkaTextBox.Cursor = Cursors.IBeam;
             MarkaTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             MarkaTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            MarkaTextBox.Location = new Point(99, 45);
+            MarkaTextBox.Location = new Point(99, 44);
             MarkaTextBox.Margin = new Padding(3, 4, 3, 4);
             MarkaTextBox.Name = "MarkaTextBox";
             MarkaTextBox.PlaceholderText = "Peugeout";
@@ -553,6 +553,7 @@
             RegistrationNumberTextBox.BackColor = Color.FromArgb(64, 64, 70);
             RegistrationNumberTextBox.BorderStyle = BorderStyle.None;
             RegistrationNumberTextBox.CausesValidation = false;
+            RegistrationNumberTextBox.CharacterCasing = CharacterCasing.Upper;
             RegistrationNumberTextBox.Cursor = Cursors.IBeam;
             RegistrationNumberTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             RegistrationNumberTextBox.ForeColor = Color.FromArgb(224, 224, 224);
@@ -677,30 +678,114 @@
             ViewRepair.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ViewRepair.BorderStyle = BorderStyle.None;
             ViewRepair.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.LightGray;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            ViewRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = Color.LightGray;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            ViewRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             ViewRepair.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ViewRepair.Columns.AddRange(new DataGridViewColumn[] { ID, Wykonane_Checked, Type_Column, Nazwa_Column_, Opis_Column, NrCzęści_Column, Cena_Column, Ilość_Column, EarningParts_Columns, SumaZarobku_Column, Suma_Column });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            ViewRepair.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            ViewRepair.DefaultCellStyle = dataGridViewCellStyle11;
             ViewRepair.EnableHeadersVisualStyles = false;
             ViewRepair.Location = new Point(9, 44);
             ViewRepair.Name = "ViewRepair";
             ViewRepair.RowTemplate.Height = 25;
             ViewRepair.Size = new Size(930, 222);
             ViewRepair.TabIndex = 58;
+            // 
+            // ID
+            // 
+            ID.DataPropertyName = "ID";
+            ID.HeaderText = "ID";
+            ID.Name = "ID";
+            ID.Visible = false;
+            // 
+            // Wykonane_Checked
+            // 
+            Wykonane_Checked.DataPropertyName = "Stan";
+            Wykonane_Checked.FalseValue = "0";
+            Wykonane_Checked.FillWeight = 83.94669F;
+            Wykonane_Checked.HeaderText = "Wykonane";
+            Wykonane_Checked.Name = "Wykonane_Checked";
+            Wykonane_Checked.TrueValue = "1";
+            // 
+            // Type_Column
+            // 
+            Type_Column.DataPropertyName = "Typ";
+            Type_Column.FillWeight = 83.94669F;
+            Type_Column.HeaderText = "Typ";
+            Type_Column.Name = "Type_Column";
+            // 
+            // Nazwa_Column_
+            // 
+            Nazwa_Column_.DataPropertyName = "Nazwa";
+            Nazwa_Column_.HeaderText = "Nazwa";
+            Nazwa_Column_.Name = "Nazwa_Column_";
+            // 
+            // Opis_Column
+            // 
+            Opis_Column.DataPropertyName = "Opis";
+            Opis_Column.FillWeight = 83.94669F;
+            Opis_Column.HeaderText = "Opis";
+            Opis_Column.Name = "Opis_Column";
+            // 
+            // NrCzęści_Column
+            // 
+            NrCzęści_Column.DataPropertyName = "NumerCzęści";
+            NrCzęści_Column.FillWeight = 83.94669F;
+            NrCzęści_Column.HeaderText = "Numer Części";
+            NrCzęści_Column.Name = "NrCzęści_Column";
+            // 
+            // Cena_Column
+            // 
+            Cena_Column.DataPropertyName = "Cena";
+            dataGridViewCellStyle9.Format = "C2";
+            dataGridViewCellStyle9.NullValue = null;
+            Cena_Column.DefaultCellStyle = dataGridViewCellStyle9;
+            Cena_Column.FillWeight = 40F;
+            Cena_Column.HeaderText = "Cena";
+            Cena_Column.Name = "Cena_Column";
+            // 
+            // Ilość_Column
+            // 
+            Ilość_Column.DataPropertyName = "Ilość";
+            Ilość_Column.FillWeight = 40F;
+            Ilość_Column.HeaderText = "Ilość";
+            Ilość_Column.Name = "Ilość_Column";
+            // 
+            // EarningParts_Columns
+            // 
+            EarningParts_Columns.DataPropertyName = "ZarobekCzęści";
+            EarningParts_Columns.HeaderText = "Dochód z częsci";
+            EarningParts_Columns.Name = "EarningParts_Columns";
+            EarningParts_Columns.Visible = false;
+            // 
+            // SumaZarobku_Column
+            // 
+            SumaZarobku_Column.DataPropertyName = "SumaZarobku";
+            SumaZarobku_Column.HeaderText = "SumaZarobku";
+            SumaZarobku_Column.Name = "SumaZarobku_Column";
+            SumaZarobku_Column.Visible = false;
+            // 
+            // Suma_Column
+            // 
+            Suma_Column.DataPropertyName = "Suma";
+            dataGridViewCellStyle10.Format = "C2";
+            dataGridViewCellStyle10.NullValue = null;
+            Suma_Column.DefaultCellStyle = dataGridViewCellStyle10;
+            Suma_Column.FillWeight = 40F;
+            Suma_Column.HeaderText = "Suma";
+            Suma_Column.Name = "Suma_Column";
             // 
             // panel2
             // 
@@ -781,24 +866,24 @@
             ServiceHistoryView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ServiceHistoryView.BorderStyle = BorderStyle.None;
             ServiceHistoryView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = Color.LightGray;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            ServiceHistoryView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = Color.LightGray;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            ServiceHistoryView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             ServiceHistoryView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ServiceHistoryView.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, Price_Column });
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            ServiceHistoryView.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle14.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle14.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            ServiceHistoryView.DefaultCellStyle = dataGridViewCellStyle14;
             ServiceHistoryView.EnableHeadersVisualStyles = false;
             ServiceHistoryView.Location = new Point(9, 54);
             ServiceHistoryView.Name = "ServiceHistoryView";
@@ -823,9 +908,9 @@
             // Price_Column
             // 
             Price_Column.DataPropertyName = "Price";
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = null;
-            Price_Column.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle13.Format = "C2";
+            dataGridViewCellStyle13.NullValue = null;
+            Price_Column.DefaultCellStyle = dataGridViewCellStyle13;
             Price_Column.HeaderText = "Cena";
             Price_Column.Name = "Price_Column";
             // 
@@ -882,90 +967,6 @@
             numericUpDown1.Size = new Size(70, 23);
             numericUpDown1.TabIndex = 54;
             numericUpDown1.Value = new decimal(new int[] { 2000, 0, 0, 0 });
-            // 
-            // ID
-            // 
-            ID.DataPropertyName = "ID";
-            ID.HeaderText = "ID";
-            ID.Name = "ID";
-            ID.Visible = false;
-            // 
-            // Wykonane_Checked
-            // 
-            Wykonane_Checked.DataPropertyName = "Stan";
-            Wykonane_Checked.FalseValue = "0";
-            Wykonane_Checked.FillWeight = 83.94669F;
-            Wykonane_Checked.HeaderText = "Wykonane";
-            Wykonane_Checked.Name = "Wykonane_Checked";
-            Wykonane_Checked.TrueValue = "1";
-            // 
-            // Type_Column
-            // 
-            Type_Column.DataPropertyName = "Typ";
-            Type_Column.FillWeight = 83.94669F;
-            Type_Column.HeaderText = "Typ";
-            Type_Column.Name = "Type_Column";
-            // 
-            // Nazwa_Column_
-            // 
-            Nazwa_Column_.DataPropertyName = "Nazwa";
-            Nazwa_Column_.HeaderText = "Nazwa";
-            Nazwa_Column_.Name = "Nazwa_Column_";
-            // 
-            // Opis_Column
-            // 
-            Opis_Column.DataPropertyName = "Opis";
-            Opis_Column.FillWeight = 83.94669F;
-            Opis_Column.HeaderText = "Opis";
-            Opis_Column.Name = "Opis_Column";
-            // 
-            // NrCzęści_Column
-            // 
-            NrCzęści_Column.DataPropertyName = "NumerCzęści";
-            NrCzęści_Column.FillWeight = 83.94669F;
-            NrCzęści_Column.HeaderText = "Numer Części";
-            NrCzęści_Column.Name = "NrCzęści_Column";
-            // 
-            // Cena_Column
-            // 
-            Cena_Column.DataPropertyName = "Cena";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            Cena_Column.DefaultCellStyle = dataGridViewCellStyle2;
-            Cena_Column.FillWeight = 40F;
-            Cena_Column.HeaderText = "Cena";
-            Cena_Column.Name = "Cena_Column";
-            // 
-            // Ilość_Column
-            // 
-            Ilość_Column.DataPropertyName = "Ilość";
-            Ilość_Column.FillWeight = 40F;
-            Ilość_Column.HeaderText = "Ilość";
-            Ilość_Column.Name = "Ilość_Column";
-            // 
-            // EarningParts_Columns
-            // 
-            EarningParts_Columns.DataPropertyName = "ZarobekCzęści";
-            EarningParts_Columns.HeaderText = "Dochód z częsci";
-            EarningParts_Columns.Name = "EarningParts_Columns";
-            EarningParts_Columns.Visible = false;
-            // 
-            // SumaZarobku_Column
-            // 
-            SumaZarobku_Column.DataPropertyName = "SumaZarobku";
-            SumaZarobku_Column.HeaderText = "SumaZarobku";
-            SumaZarobku_Column.Name = "SumaZarobku_Column";
-            SumaZarobku_Column.Visible = false;
-            // 
-            // Suma_Column
-            // 
-            Suma_Column.DataPropertyName = "Suma";
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            Suma_Column.DefaultCellStyle = dataGridViewCellStyle3;
-            Suma_Column.FillWeight = 40F;
-            Suma_Column.HeaderText = "Suma";
-            Suma_Column.Name = "Suma_Column";
             // 
             // UC_AddAllData
             // 
