@@ -27,7 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
+            {
             panelKontaktowy = new Panel();
             AdressCompanyTextBox = new TextBox();
             NIPTextBox = new TextBox();
@@ -45,8 +45,8 @@
             EngineTextBox = new TextBox();
             panel9 = new Panel();
             NumLenghtNadwoziaLabel = new Label();
-            label4 = new Label();
             VINTextBox = new TextBox();
+            label4 = new Label();
             panel6 = new Panel();
             SaveDataButton = new Button();
             panel12 = new Panel();
@@ -204,6 +204,7 @@
             RegistrationNumberTextBox.BackColor = Color.FromArgb(64, 64, 70);
             RegistrationNumberTextBox.BorderStyle = BorderStyle.None;
             RegistrationNumberTextBox.CausesValidation = false;
+            RegistrationNumberTextBox.CharacterCasing = CharacterCasing.Upper;
             RegistrationNumberTextBox.Cursor = Cursors.IBeam;
             RegistrationNumberTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             RegistrationNumberTextBox.ForeColor = Color.FromArgb(224, 224, 224);
@@ -275,17 +276,6 @@
             NumLenghtNadwoziaLabel.TabIndex = 19;
             NumLenghtNadwoziaLabel.Text = "0";
             // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.ForeColor = Color.FromArgb(224, 224, 224);
-            label4.Location = new Point(6, 55);
-            label4.Name = "label4";
-            label4.Size = new Size(40, 21);
-            label4.TabIndex = 20;
-            label4.Text = "VIN:";
-            // 
             // VINTextBox
             // 
             VINTextBox.BackColor = Color.FromArgb(64, 64, 70);
@@ -301,6 +291,17 @@
             VINTextBox.Size = new Size(243, 22);
             VINTextBox.TabIndex = 4;
             VINTextBox.TextChanged += VINTextBox_TextChanged;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.ForeColor = Color.FromArgb(224, 224, 224);
+            label4.Location = new Point(6, 55);
+            label4.Name = "label4";
+            label4.Size = new Size(40, 21);
+            label4.TabIndex = 20;
+            label4.Text = "VIN:";
             // 
             // panel6
             // 
@@ -393,7 +394,6 @@
             // 
             YearOfProductionNumericUpDown.BackColor = Color.White;
             YearOfProductionNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
-            YearOfProductionNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
             YearOfProductionNumericUpDown.Location = new Point(122, 65);
             YearOfProductionNumericUpDown.Maximum = new decimal(new int[] { 2050, 0, 0, 0 });
             YearOfProductionNumericUpDown.Minimum = new decimal(new int[] { 1900, 0, 0, 0 });
@@ -473,7 +473,7 @@
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)YearOfProductionNumericUpDown).EndInit();
             ResumeLayout(false);
-        }
+            }
 
         #endregion
 
