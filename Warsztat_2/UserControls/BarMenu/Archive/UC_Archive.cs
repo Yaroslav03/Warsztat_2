@@ -38,20 +38,35 @@
 
         private async void ViewActualData_CellContentClick(object sender, DataGridViewCellEventArgs e)
             {
-            string? id = ViewActualData.Rows[e.RowIndex].Cells["ID_Column"].Value.ToString();
-            int selectedIndex = (int)ViewActualData.CurrentRow.Index;
+            // 1) клік по заголовку/за межами таблиці – ігноруємо
+            if(e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            uniqueKey = await SqlCmd.GetUniqueKey(id, "Klienty", "Data Source=Archive.db;Version=3;New=False;Compress=True;");
+            var grid = (DataGridView)sender;
 
-            if(e.ColumnIndex == ViewActualData.Columns["BtnRecover"].Index && ViewActualData.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value && id != null)
+            // 2) реагуємо лише на кнопку "BtnRecover"
+            if(grid.Columns[e.ColumnIndex].Name != "BtnRecover") return;
+
+            // 3) беремо саме той рядок, по якому клікнули
+            var row = grid.Rows[e.RowIndex];
+
+            var idObj = row.Cells["ID_Column"].Value;
+            if(idObj == null || idObj == DBNull.Value) return;
+
+            string id = idObj.ToString();
+
+            // 4) один виклик для отримання ключа
+            Guid uniqueKey = await SqlCmd.GetUniqueKey(
+                id, "Klienty", "Data Source=Archive.db;Version=3;New=False;Compress=True;");
+
+            bool ok = await SqlCmd.RecoverData(uniqueKey);
+            if(ok)
                 {
-                Guid uniqueKey = await SqlCmd.GetUniqueKey(id, "Klienty", "Data Source=Archive.db;Version=3;New=False;Compress=True;");
-                bool isSucceed = await SqlCmd.RecoverData(uniqueKey);
-                if(isSucceed)
-                    {
-                    MessageBox.Show("Dane zostałe przywrócone do domyślnej tablicy danych");
-                    ViewActualData.Rows.RemoveAt(selectedIndex);
-                    }
+                MessageBox.Show("Dane zostałe przywrócone do domyślnej tablicy danych");
+
+                // 5) видаляємо саме той рядок (після сортування індекси могли змінитися)
+                grid.Rows.RemoveAt(e.RowIndex);
+                // Якщо грід прив'язаний до BindingSource, роби так:
+                // ((BindingSource)grid.DataSource).RemoveAt(grid.Rows[e.RowIndex].Index);
                 }
             }
 
