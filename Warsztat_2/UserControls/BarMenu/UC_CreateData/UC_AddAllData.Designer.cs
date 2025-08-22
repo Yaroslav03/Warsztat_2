@@ -36,6 +36,8 @@
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             panelKontaktowy = new Panel();
+            label22 = new Label();
+            CompanyNameTextBox = new TextBox();
             label6 = new Label();
             AdressCompanyTextBox = new TextBox();
             label3 = new Label();
@@ -103,8 +105,6 @@
             ButtonOrderManagement = new Button();
             panel1 = new Panel();
             numericUpDown1 = new NumericUpDown();
-            label22 = new Label();
-            CompanyNameTextBox = new TextBox();
             panelKontaktowy.SuspendLayout();
             panelDodatkowy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)YearNumericUpDown).BeginInit();
@@ -139,6 +139,30 @@
             panelKontaktowy.Name = "panelKontaktowy";
             panelKontaktowy.Size = new Size(962, 128);
             panelKontaktowy.TabIndex = 5;
+            // 
+            // label22
+            // 
+            label22.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label22.ForeColor = Color.FromArgb(224, 224, 224);
+            label22.Location = new Point(366, 69);
+            label22.Name = "label22";
+            label22.Size = new Size(119, 28);
+            label22.TabIndex = 33;
+            label22.Text = "Nazwa Firmy:";
+            // 
+            // CompanyNameTextBox
+            // 
+            CompanyNameTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            CompanyNameTextBox.BorderStyle = BorderStyle.None;
+            CompanyNameTextBox.CausesValidation = false;
+            CompanyNameTextBox.Cursor = Cursors.IBeam;
+            CompanyNameTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            CompanyNameTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            CompanyNameTextBox.Location = new Point(491, 71);
+            CompanyNameTextBox.Name = "CompanyNameTextBox";
+            CompanyNameTextBox.PlaceholderText = "Wpisz Adres Firmy";
+            CompanyNameTextBox.Size = new Size(459, 23);
+            CompanyNameTextBox.TabIndex = 32;
             // 
             // label6
             // 
@@ -218,7 +242,7 @@
             label4.ForeColor = Color.FromArgb(224, 224, 224);
             label4.Location = new Point(4, 69);
             label4.Name = "label4";
-            label4.Size = new Size(87, 28);
+            label4.Size = new Size(84, 28);
             label4.TabIndex = 25;
             label4.Text = "Nazwisko:";
             // 
@@ -971,30 +995,6 @@
             numericUpDown1.Size = new Size(70, 23);
             numericUpDown1.TabIndex = 54;
             numericUpDown1.Value = new decimal(new int[] { 2000, 0, 0, 0 });
-            // 
-            // label22
-            // 
-            label22.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label22.ForeColor = Color.FromArgb(224, 224, 224);
-            label22.Location = new Point(366, 69);
-            label22.Name = "label22";
-            label22.Size = new Size(119, 28);
-            label22.TabIndex = 33;
-            label22.Text = "Nazwa Firmy:";
-            // 
-            // CompanyNameTextBox
-            // 
-            CompanyNameTextBox.BackColor = Color.FromArgb(64, 64, 70);
-            CompanyNameTextBox.BorderStyle = BorderStyle.None;
-            CompanyNameTextBox.CausesValidation = false;
-            CompanyNameTextBox.Cursor = Cursors.IBeam;
-            CompanyNameTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            CompanyNameTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            CompanyNameTextBox.Location = new Point(491, 71);
-            CompanyNameTextBox.Name = "CompanyNameTextBox";
-            CompanyNameTextBox.PlaceholderText = "Wpisz Adres Firmy";
-            CompanyNameTextBox.Size = new Size(459, 23);
-            CompanyNameTextBox.TabIndex = 32;
             // 
             // UC_AddAllData
             // 
