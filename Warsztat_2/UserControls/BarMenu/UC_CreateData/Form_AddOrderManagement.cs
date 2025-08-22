@@ -192,6 +192,7 @@
             if(isSucceed)
                 {
                 MessageBox.Show("Zlecenie zostało zapisane");
+                ButtonOrderManagementSave.Text = "Odśwież";
                 }
             }
         private async Task UpdateDB()
