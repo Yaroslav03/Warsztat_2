@@ -10,7 +10,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="PDFsharp-MigraDoc-GDI" Version="6.1.1" />
+		<PackageReference Include="PDFsharp-MigraDoc-GDI" Version="6.2.1" />
 		<PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
 	</ItemGroup>
 
