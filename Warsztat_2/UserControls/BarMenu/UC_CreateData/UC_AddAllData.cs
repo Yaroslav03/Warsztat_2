@@ -19,7 +19,6 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 {
                 DateAdoptionTimePicker.Text = DateTime.Today.ToString();
                 }
-
             }
         private async void SaveButton_Click(object sender, EventArgs e)
             {
@@ -28,7 +27,6 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 await (SaveButton.Text == "Odśwież" ? UpdateData() : SaveData());
                 }
             }
-
 
         private void ButtonOrderManagement_Click(object sender, EventArgs e)
             {
@@ -108,6 +106,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                     {"NrTelefonu", TelephoneTextBox.Text.Trim()},
                     {"NIP", NIPTextBox.Text.Trim()},
                     {"AdresFirmy", AdressCompanyTextBox.Text.Trim()},
+                    {"NazwaFirmyKlienta", CompanyNameTextBox.Text.Trim()},
                     {"UniqueKey", uniqueKey}
                 };
             }
@@ -225,6 +224,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             TelephoneTextBox.Text = clientData["NrTelefonu"].ToString();
             NIPTextBox.Text = clientData["NIP"].ToString();
             AdressCompanyTextBox.Text = clientData["AdresFirmy"].ToString();
+            CompanyNameTextBox.Text = clientData["NazwaFirmyKlienta"].ToString();
             //car
             MarkaTextBox.Text = carData["Marka"].ToString();
             ModelTextBox.Text = carData["Model"].ToString();

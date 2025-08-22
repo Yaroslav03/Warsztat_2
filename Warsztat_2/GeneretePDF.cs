@@ -614,7 +614,7 @@ namespace Warsztat_2 {
             clientInfo.AddFormattedText("Nabywca:", TextFormat.Bold);
 
             clientInfo.AddLineBreak();
-            clientInfo.AddText($"Nazwa firmy: ");
+            clientInfo.AddText($"Nazwa firmy: {clientData["NazwaFirmyKlienta"]}");
 
             clientInfo.AddLineBreak();
             clientInfo.AddText($"Adres Firmy: {clientData["AdresFirmy"]}");
