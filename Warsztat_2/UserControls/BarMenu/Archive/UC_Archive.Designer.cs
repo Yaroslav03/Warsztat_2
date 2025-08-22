@@ -32,8 +32,6 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             ViewActualData = new DataGridView();
-            panelDodatkowy = new Panel();
-            OrderButton = new Button();
             ID_Column = new DataGridViewTextBoxColumn();
             BtnDelete = new DataGridViewButtonColumn();
             BtnRecover = new DataGridViewButtonColumn();
@@ -48,6 +46,8 @@
             WykonawaPracy_Column = new DataGridViewTextBoxColumn();
             KosztKońcowy_Column = new DataGridViewTextBoxColumn();
             VIN_Column = new DataGridViewTextBoxColumn();
+            panelDodatkowy = new Panel();
+            OrderButton = new Button();
             ((System.ComponentModel.ISupportInitialize)ViewActualData).BeginInit();
             panelDodatkowy.SuspendLayout();
             SuspendLayout();
@@ -85,34 +85,6 @@
             ViewActualData.Size = new Size(1029, 540);
             ViewActualData.TabIndex = 38;
             ViewActualData.CellContentClick += ViewActualData_CellContentClick;
-            // 
-            // panelDodatkowy
-            // 
-            panelDodatkowy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelDodatkowy.BackColor = Color.FromArgb(64, 64, 70);
-            panelDodatkowy.BorderStyle = BorderStyle.FixedSingle;
-            panelDodatkowy.Controls.Add(OrderButton);
-            panelDodatkowy.Controls.Add(ViewActualData);
-            panelDodatkowy.ForeColor = Color.WhiteSmoke;
-            panelDodatkowy.Location = new Point(3, 3);
-            panelDodatkowy.Name = "panelDodatkowy";
-            panelDodatkowy.Size = new Size(1037, 609);
-            panelDodatkowy.TabIndex = 39;
-            // 
-            // OrderButton
-            // 
-            OrderButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            OrderButton.BackColor = Color.FromArgb(94, 148, 255);
-            OrderButton.FlatAppearance.BorderSize = 0;
-            OrderButton.FlatStyle = FlatStyle.Flat;
-            OrderButton.ForeColor = Color.LightGray;
-            OrderButton.Location = new Point(877, 36);
-            OrderButton.Name = "OrderButton";
-            OrderButton.Size = new Size(155, 22);
-            OrderButton.TabIndex = 39;
-            OrderButton.Text = "Zlecenie";
-            OrderButton.UseVisualStyleBackColor = false;
-            OrderButton.Click += OrderButton_Click;
             // 
             // ID_Column
             // 
@@ -199,6 +171,34 @@
             VIN_Column.DataPropertyName = "VIN";
             VIN_Column.HeaderText = "VIN";
             VIN_Column.Name = "VIN_Column";
+            // 
+            // panelDodatkowy
+            // 
+            panelDodatkowy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelDodatkowy.BackColor = Color.FromArgb(64, 64, 70);
+            panelDodatkowy.BorderStyle = BorderStyle.FixedSingle;
+            panelDodatkowy.Controls.Add(OrderButton);
+            panelDodatkowy.Controls.Add(ViewActualData);
+            panelDodatkowy.ForeColor = Color.WhiteSmoke;
+            panelDodatkowy.Location = new Point(3, 3);
+            panelDodatkowy.Name = "panelDodatkowy";
+            panelDodatkowy.Size = new Size(1037, 609);
+            panelDodatkowy.TabIndex = 39;
+            // 
+            // OrderButton
+            // 
+            OrderButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            OrderButton.BackColor = Color.FromArgb(94, 148, 255);
+            OrderButton.FlatAppearance.BorderSize = 0;
+            OrderButton.FlatStyle = FlatStyle.Flat;
+            OrderButton.ForeColor = Color.LightGray;
+            OrderButton.Location = new Point(877, 36);
+            OrderButton.Name = "OrderButton";
+            OrderButton.Size = new Size(155, 22);
+            OrderButton.TabIndex = 39;
+            OrderButton.Text = "Faktura";
+            OrderButton.UseVisualStyleBackColor = false;
+            OrderButton.Click += OrderButton_Click;
             // 
             // UC_Archive
             // 

@@ -49,6 +49,15 @@
             label2 = new Label();
             NumerTelefonuTextBox = new MaskedTextBox();
             ViewEmployers = new DataGridView();
+            ID_Column_Employer = new DataGridViewTextBoxColumn();
+            BtnDeleteEmployer = new DataGridViewButtonColumn();
+            dataGridViewButtonColumn2 = new DataGridViewButtonColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
             EarningPriceNumericUpDown = new NumericUpDown();
             DateOfEmploymentTimePicker = new DateTimePicker();
             label3 = new Label();
@@ -91,15 +100,7 @@
             dataGridViewTextBoxColumn15 = new DataGridViewTextBoxColumn();
             label14 = new Label();
             panel4 = new Panel();
-            ID_Column_Employer = new DataGridViewTextBoxColumn();
-            BtnDeleteEmployer = new DataGridViewButtonColumn();
-            dataGridViewButtonColumn2 = new DataGridViewButtonColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            EmailTextBox = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ViewEmployers).BeginInit();
             ((System.ComponentModel.ISupportInitialize)EarningPriceNumericUpDown).BeginInit();
@@ -226,6 +227,7 @@
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(64, 64, 70);
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(EmailTextBox);
             panel1.Controls.Add(SaveCompanyDataButton);
             panel1.Controls.Add(MarzaTextBox);
             panel1.Controls.Add(NrTelefonuTextBox);
@@ -297,6 +299,61 @@
             ViewEmployers.Size = new Size(1091, 251);
             ViewEmployers.TabIndex = 42;
             ViewEmployers.CellContentClick += ViewEmployers_CellContentClick;
+            // 
+            // ID_Column_Employer
+            // 
+            ID_Column_Employer.DataPropertyName = "ID";
+            ID_Column_Employer.HeaderText = "ID";
+            ID_Column_Employer.Name = "ID_Column_Employer";
+            ID_Column_Employer.Visible = false;
+            // 
+            // BtnDeleteEmployer
+            // 
+            BtnDeleteEmployer.FillWeight = 50F;
+            BtnDeleteEmployer.HeaderText = "Usuń";
+            BtnDeleteEmployer.Name = "BtnDeleteEmployer";
+            // 
+            // dataGridViewButtonColumn2
+            // 
+            dataGridViewButtonColumn2.FillWeight = 50F;
+            dataGridViewButtonColumn2.HeaderText = "Archiwum";
+            dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.DataPropertyName = "Imię";
+            dataGridViewTextBoxColumn2.HeaderText = "Imię";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.DataPropertyName = "Nazwisko";
+            dataGridViewTextBoxColumn3.HeaderText = "Nazwisko";
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.DataPropertyName = "Telefon";
+            dataGridViewTextBoxColumn4.HeaderText = "Nr. Telefonu";
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.DataPropertyName = "Stanowisko";
+            dataGridViewTextBoxColumn5.HeaderText = "Stanowisko";
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.DataPropertyName = "Zarobek";
+            dataGridViewTextBoxColumn6.HeaderText = "Pensja miesięczna";
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewTextBoxColumn7.DataPropertyName = "DataZatrudnienia";
+            dataGridViewTextBoxColumn7.HeaderText = "Data zatrudnienia";
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             // 
             // EarningPriceNumericUpDown
             // 
@@ -817,60 +874,17 @@
             panel4.Size = new Size(1102, 299);
             panel4.TabIndex = 31;
             // 
-            // ID_Column_Employer
+            // EmailTextBox
             // 
-            ID_Column_Employer.DataPropertyName = "ID";
-            ID_Column_Employer.HeaderText = "ID";
-            ID_Column_Employer.Name = "ID_Column_Employer";
-            ID_Column_Employer.Visible = false;
-            // 
-            // BtnDeleteEmployer
-            // 
-            BtnDeleteEmployer.FillWeight = 50F;
-            BtnDeleteEmployer.HeaderText = "Usuń";
-            BtnDeleteEmployer.Name = "BtnDeleteEmployer";
-            // 
-            // dataGridViewButtonColumn2
-            // 
-            dataGridViewButtonColumn2.FillWeight = 50F;
-            dataGridViewButtonColumn2.HeaderText = "Archiwum";
-            dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.DataPropertyName = "Imię";
-            dataGridViewTextBoxColumn2.HeaderText = "Imię";
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.DataPropertyName = "Nazwisko";
-            dataGridViewTextBoxColumn3.HeaderText = "Nazwisko";
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewTextBoxColumn4.DataPropertyName = "Telefon";
-            dataGridViewTextBoxColumn4.HeaderText = "Nr. Telefonu";
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            dataGridViewTextBoxColumn5.DataPropertyName = "Stanowisko";
-            dataGridViewTextBoxColumn5.HeaderText = "Stanowisko";
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewTextBoxColumn6.DataPropertyName = "Zarobek";
-            dataGridViewTextBoxColumn6.HeaderText = "Pensja miesięczna";
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            dataGridViewTextBoxColumn7.DataPropertyName = "DataZatrudnienia";
-            dataGridViewTextBoxColumn7.HeaderText = "Data zatrudnienia";
-            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            EmailTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            EmailTextBox.CausesValidation = false;
+            EmailTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            EmailTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            EmailTextBox.Location = new Point(16, 152);
+            EmailTextBox.Name = "EmailTextBox";
+            EmailTextBox.PlaceholderText = "E-Mail";
+            EmailTextBox.Size = new Size(307, 30);
+            EmailTextBox.TabIndex = 8;
             // 
             // UC_Company
             // 
@@ -968,5 +982,6 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private TextBox EmailTextBox;
         }
 }
