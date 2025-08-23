@@ -601,7 +601,7 @@ namespace Warsztat_2 {
             companyInfo.AddText($"Nr. telefonu: {companyData["NrTelefonu"]}");
 
             companyInfo.AddLineBreak();
-            companyInfo.AddText($"E-mail: aleksauto@i.ua");
+            companyInfo.AddText($"E-mail: {companyData["Email"]}");
 
             companyInfo.AddLineBreak();
             companyInfo.AddText($"Konto Bankowe: {companyData["KontoBankowe"]}");
