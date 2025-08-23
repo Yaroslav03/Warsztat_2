@@ -49,6 +49,8 @@
             WykonawaPracy_Column = new DataGridViewTextBoxColumn();
             KosztKońcowy_Column = new DataGridViewTextBoxColumn();
             VIN_Column = new DataGridViewTextBoxColumn();
+            SearchTextBox = new TextBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)ViewActualData).BeginInit();
             SuspendLayout();
             // 
@@ -222,11 +224,37 @@
             VIN_Column.HeaderText = "VIN";
             VIN_Column.Name = "VIN_Column";
             // 
+            // SearchTextBox
+            // 
+            SearchTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            SearchTextBox.CausesValidation = false;
+            SearchTextBox.Cursor = Cursors.IBeam;
+            SearchTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            SearchTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            SearchTextBox.Location = new Point(3, 26);
+            SearchTextBox.Name = "SearchTextBox";
+            SearchTextBox.Size = new Size(240, 30);
+            SearchTextBox.TabIndex = 32;
+            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(224, 224, 224);
+            label2.Location = new Point(3, 6);
+            label2.Name = "label2";
+            label2.Size = new Size(132, 21);
+            label2.TabIndex = 31;
+            label2.Text = "Szukaj za słowem";
+            // 
             // UC_ViewDataCar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
+            Controls.Add(SearchTextBox);
+            Controls.Add(label2);
             Controls.Add(ViewActualData);
             Controls.Add(PathButton);
             Controls.Add(InsuranceButton);
@@ -261,5 +289,7 @@
         private DataGridViewTextBoxColumn WykonawaPracy_Column;
         private DataGridViewTextBoxColumn KosztKońcowy_Column;
         private DataGridViewTextBoxColumn VIN_Column;
+        private TextBox SearchTextBox;
+        private Label label2;
         }
     }

@@ -32,11 +32,6 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             ViewActualData = new DataGridView();
-            panelDodatkowy = new Panel();
-            panel2 = new Panel();
-            SearchTextBox = new TextBox();
-            label1 = new Label();
-            OrderButton = new Button();
             ID_Column = new DataGridViewTextBoxColumn();
             BtnDelete = new DataGridViewButtonColumn();
             BtnRecover = new DataGridViewButtonColumn();
@@ -51,9 +46,12 @@
             WykonawaPracy_Column = new DataGridViewTextBoxColumn();
             KosztKońcowy_Column = new DataGridViewTextBoxColumn();
             VIN_Column = new DataGridViewTextBoxColumn();
+            panelDodatkowy = new Panel();
+            SearchTextBox = new TextBox();
+            label1 = new Label();
+            OrderButton = new Button();
             ((System.ComponentModel.ISupportInitialize)ViewActualData).BeginInit();
             panelDodatkowy.SuspendLayout();
-            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // ViewActualData
@@ -89,71 +87,6 @@
             ViewActualData.Size = new Size(1029, 540);
             ViewActualData.TabIndex = 38;
             ViewActualData.CellContentClick += ViewActualData_CellContentClick;
-            // 
-            // panelDodatkowy
-            // 
-            panelDodatkowy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelDodatkowy.BackColor = Color.FromArgb(64, 64, 70);
-            panelDodatkowy.BorderStyle = BorderStyle.FixedSingle;
-            panelDodatkowy.Controls.Add(panel2);
-            panelDodatkowy.Controls.Add(OrderButton);
-            panelDodatkowy.Controls.Add(ViewActualData);
-            panelDodatkowy.ForeColor = Color.WhiteSmoke;
-            panelDodatkowy.Location = new Point(3, 3);
-            panelDodatkowy.Name = "panelDodatkowy";
-            panelDodatkowy.Size = new Size(1037, 609);
-            panelDodatkowy.TabIndex = 39;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(64, 64, 70);
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(SearchTextBox);
-            panel2.Controls.Add(label1);
-            panel2.ForeColor = Color.DimGray;
-            panel2.Location = new Point(3, 3);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(250, 55);
-            panel2.TabIndex = 40;
-            // 
-            // SearchTextBox
-            // 
-            SearchTextBox.BackColor = Color.FromArgb(64, 64, 70);
-            SearchTextBox.CausesValidation = false;
-            SearchTextBox.Cursor = Cursors.IBeam;
-            SearchTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            SearchTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            SearchTextBox.Location = new Point(5, 20);
-            SearchTextBox.Name = "SearchTextBox";
-            SearchTextBox.Size = new Size(240, 30);
-            SearchTextBox.TabIndex = 26;
-            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.FromArgb(224, 224, 224);
-            label1.Location = new Point(5, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(157, 21);
-            label1.TabIndex = 0;
-            label1.Text = "Wyszukaj za słowami";
-            // 
-            // OrderButton
-            // 
-            OrderButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            OrderButton.BackColor = Color.FromArgb(94, 148, 255);
-            OrderButton.FlatAppearance.BorderSize = 0;
-            OrderButton.FlatStyle = FlatStyle.Flat;
-            OrderButton.ForeColor = Color.LightGray;
-            OrderButton.Location = new Point(877, 36);
-            OrderButton.Name = "OrderButton";
-            OrderButton.Size = new Size(155, 22);
-            OrderButton.TabIndex = 39;
-            OrderButton.Text = "Faktura";
-            OrderButton.UseVisualStyleBackColor = false;
-            OrderButton.Click += OrderButton_Click;
             // 
             // ID_Column
             // 
@@ -241,6 +174,60 @@
             VIN_Column.HeaderText = "VIN";
             VIN_Column.Name = "VIN_Column";
             // 
+            // panelDodatkowy
+            // 
+            panelDodatkowy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelDodatkowy.BackColor = Color.FromArgb(64, 64, 70);
+            panelDodatkowy.BorderStyle = BorderStyle.FixedSingle;
+            panelDodatkowy.Controls.Add(SearchTextBox);
+            panelDodatkowy.Controls.Add(label1);
+            panelDodatkowy.Controls.Add(OrderButton);
+            panelDodatkowy.Controls.Add(ViewActualData);
+            panelDodatkowy.ForeColor = Color.WhiteSmoke;
+            panelDodatkowy.Location = new Point(3, 3);
+            panelDodatkowy.Name = "panelDodatkowy";
+            panelDodatkowy.Size = new Size(1037, 609);
+            panelDodatkowy.TabIndex = 39;
+            // 
+            // SearchTextBox
+            // 
+            SearchTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            SearchTextBox.CausesValidation = false;
+            SearchTextBox.Cursor = Cursors.IBeam;
+            SearchTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            SearchTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            SearchTextBox.Location = new Point(3, 28);
+            SearchTextBox.Name = "SearchTextBox";
+            SearchTextBox.Size = new Size(240, 30);
+            SearchTextBox.TabIndex = 26;
+            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(224, 224, 224);
+            label1.Location = new Point(3, 8);
+            label1.Name = "label1";
+            label1.Size = new Size(132, 21);
+            label1.TabIndex = 0;
+            label1.Text = "Szukaj za słowem";
+            // 
+            // OrderButton
+            // 
+            OrderButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            OrderButton.BackColor = Color.FromArgb(94, 148, 255);
+            OrderButton.FlatAppearance.BorderSize = 0;
+            OrderButton.FlatStyle = FlatStyle.Flat;
+            OrderButton.ForeColor = Color.LightGray;
+            OrderButton.Location = new Point(877, 36);
+            OrderButton.Name = "OrderButton";
+            OrderButton.Size = new Size(155, 22);
+            OrderButton.TabIndex = 39;
+            OrderButton.Text = "Faktura";
+            OrderButton.UseVisualStyleBackColor = false;
+            OrderButton.Click += OrderButton_Click;
+            // 
             // UC_Archive
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -252,8 +239,7 @@
             Load += UC_Archive_Load;
             ((System.ComponentModel.ISupportInitialize)ViewActualData).EndInit();
             panelDodatkowy.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            panelDodatkowy.PerformLayout();
             ResumeLayout(false);
             }
 
@@ -276,7 +262,6 @@
         private DataGridViewTextBoxColumn WykonawaPracy_Column;
         private DataGridViewTextBoxColumn KosztKońcowy_Column;
         private DataGridViewTextBoxColumn VIN_Column;
-        private Panel panel2;
         private TextBox SearchTextBox;
         private Label label1;
         private DataGridViewTextBoxColumn Zlecenie_Column;
