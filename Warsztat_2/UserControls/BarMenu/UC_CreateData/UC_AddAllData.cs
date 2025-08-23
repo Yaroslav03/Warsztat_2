@@ -117,6 +117,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 {"Marka", MarkaTextBox.Text.Trim()},
                 {"Model", ModelTextBox.Text.Trim()},
                 {"Silnik", EngineTextBox.Text.Trim()},
+                {"KodSilnika", IdEngineTextBox.Text.Trim()},
                 {"RokProdukcji", YearNumericUpDown.Value.ToString()},
                 {"VIN", VINTextBox.Text},
                 {"UniqueKey", uniqueKey}
@@ -229,6 +230,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             MarkaTextBox.Text = carData["Marka"].ToString();
             ModelTextBox.Text = carData["Model"].ToString();
             EngineTextBox.Text = carData["Silnik"].ToString();
+            IdEngineTextBox.Text = carData["KodSilnika"].ToString();
             YearNumericUpDown.Value = Convert.ToUInt32(carData["RokProdukcji"]);
             VINTextBox.Text = carData["VIN"].ToString();
             //history

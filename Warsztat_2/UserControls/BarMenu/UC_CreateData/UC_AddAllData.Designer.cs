@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
             {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
             panelKontaktowy = new Panel();
             label22 = new Label();
             CompanyNameTextBox = new TextBox();
@@ -50,6 +50,8 @@
             NameTextBox = new TextBox();
             label1 = new Label();
             panelDodatkowy = new Panel();
+            IdEngineTextBox = new TextBox();
+            label23 = new Label();
             label8 = new Label();
             YearNumericUpDown = new NumericUpDown();
             VINTextBox = new TextBox();
@@ -300,6 +302,8 @@
             panelDodatkowy.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelDodatkowy.BackColor = Color.FromArgb(64, 64, 70);
             panelDodatkowy.BorderStyle = BorderStyle.FixedSingle;
+            panelDodatkowy.Controls.Add(IdEngineTextBox);
+            panelDodatkowy.Controls.Add(label23);
             panelDodatkowy.Controls.Add(label8);
             panelDodatkowy.Controls.Add(YearNumericUpDown);
             panelDodatkowy.Controls.Add(VINTextBox);
@@ -317,11 +321,36 @@
             panelDodatkowy.Size = new Size(962, 123);
             panelDodatkowy.TabIndex = 6;
             // 
+            // IdEngineTextBox
+            // 
+            IdEngineTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            IdEngineTextBox.BorderStyle = BorderStyle.None;
+            IdEngineTextBox.CausesValidation = false;
+            IdEngineTextBox.Cursor = Cursors.IBeam;
+            IdEngineTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            IdEngineTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            IdEngineTextBox.Location = new Point(343, 58);
+            IdEngineTextBox.Margin = new Padding(3, 4, 3, 4);
+            IdEngineTextBox.Name = "IdEngineTextBox";
+            IdEngineTextBox.PlaceholderText = "5FN";
+            IdEngineTextBox.Size = new Size(144, 23);
+            IdEngineTextBox.TabIndex = 57;
+            // 
+            // label23
+            // 
+            label23.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label23.ForeColor = Color.FromArgb(224, 224, 224);
+            label23.Location = new Point(249, 58);
+            label23.Name = "label23";
+            label23.Size = new Size(93, 21);
+            label23.TabIndex = 56;
+            label23.Text = "Kod Silnika:";
+            // 
             // label8
             // 
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label8.ForeColor = Color.FromArgb(224, 224, 224);
-            label8.Location = new Point(469, 25);
+            label8.Location = new Point(475, 0);
             label8.Name = "label8";
             label8.Size = new Size(110, 21);
             label8.TabIndex = 55;
@@ -331,7 +360,7 @@
             // 
             YearNumericUpDown.BackColor = Color.White;
             YearNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
-            YearNumericUpDown.Location = new Point(475, 49);
+            YearNumericUpDown.Location = new Point(481, 24);
             YearNumericUpDown.Maximum = new decimal(new int[] { 2030, 0, 0, 0 });
             YearNumericUpDown.Minimum = new decimal(new int[] { 1960, 0, 0, 0 });
             YearNumericUpDown.Name = "YearNumericUpDown";
@@ -348,7 +377,7 @@
             VINTextBox.Cursor = Cursors.IBeam;
             VINTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             VINTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            VINTextBox.Location = new Point(290, 78);
+            VINTextBox.Location = new Point(78, 87);
             VINTextBox.Name = "VINTextBox";
             VINTextBox.PlaceholderText = "Wpisz tu Nr. VIN";
             VINTextBox.Size = new Size(255, 23);
@@ -359,7 +388,7 @@
             // 
             label10.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label10.ForeColor = Color.FromArgb(224, 224, 224);
-            label10.Location = new Point(239, 78);
+            label10.Location = new Point(27, 87);
             label10.Name = "label10";
             label10.Size = new Size(45, 21);
             label10.TabIndex = 46;
@@ -368,7 +397,7 @@
             // NumLenghtNadwoziaLabel
             // 
             NumLenghtNadwoziaLabel.ForeColor = Color.Silver;
-            NumLenghtNadwoziaLabel.Location = new Point(244, 104);
+            NumLenghtNadwoziaLabel.Location = new Point(38, 108);
             NumLenghtNadwoziaLabel.Name = "NumLenghtNadwoziaLabel";
             NumLenghtNadwoziaLabel.Size = new Size(34, 16);
             NumLenghtNadwoziaLabel.TabIndex = 45;
@@ -382,7 +411,7 @@
             EngineTextBox.Cursor = Cursors.IBeam;
             EngineTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             EngineTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            EngineTextBox.Location = new Point(301, 47);
+            EngineTextBox.Location = new Point(306, 26);
             EngineTextBox.Margin = new Padding(3, 4, 3, 4);
             EngineTextBox.Name = "EngineTextBox";
             EngineTextBox.PlaceholderText = "1.6 THP";
@@ -397,7 +426,7 @@
             ModelTextBox.Cursor = Cursors.IBeam;
             ModelTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             ModelTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            ModelTextBox.Location = new Point(105, 74);
+            ModelTextBox.Location = new Point(105, 56);
             ModelTextBox.Margin = new Padding(3, 4, 3, 4);
             ModelTextBox.Name = "ModelTextBox";
             ModelTextBox.PlaceholderText = "508";
@@ -408,7 +437,7 @@
             // 
             label11.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label11.ForeColor = Color.FromArgb(224, 224, 224);
-            label11.Location = new Point(27, 74);
+            label11.Location = new Point(27, 56);
             label11.Name = "label11";
             label11.Size = new Size(72, 21);
             label11.TabIndex = 50;
@@ -418,7 +447,7 @@
             // 
             label9.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label9.ForeColor = Color.FromArgb(224, 224, 224);
-            label9.Location = new Point(244, 47);
+            label9.Location = new Point(249, 26);
             label9.Name = "label9";
             label9.Size = new Size(65, 21);
             label9.TabIndex = 52;
@@ -432,7 +461,7 @@
             MarkaTextBox.Cursor = Cursors.IBeam;
             MarkaTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             MarkaTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            MarkaTextBox.Location = new Point(99, 44);
+            MarkaTextBox.Location = new Point(99, 26);
             MarkaTextBox.Margin = new Padding(3, 4, 3, 4);
             MarkaTextBox.Name = "MarkaTextBox";
             MarkaTextBox.PlaceholderText = "Peugeout";
@@ -443,7 +472,7 @@
             // 
             label12.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label12.ForeColor = Color.FromArgb(224, 224, 224);
-            label12.Location = new Point(27, 44);
+            label12.Location = new Point(27, 26);
             label12.Name = "label12";
             label12.Size = new Size(66, 21);
             label12.TabIndex = 48;
@@ -706,24 +735,24 @@
             ViewRepair.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ViewRepair.BorderStyle = BorderStyle.None;
             ViewRepair.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.LightGray;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            ViewRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = Color.LightGray;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            ViewRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             ViewRepair.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ViewRepair.Columns.AddRange(new DataGridViewColumn[] { ID, Wykonane_Checked, Type_Column, Nazwa_Column_, Opis_Column, NrCzęści_Column, Cena_Column, Ilość_Column, EarningParts_Columns, SumaZarobku_Column, Suma_Column });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            ViewRepair.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            ViewRepair.DefaultCellStyle = dataGridViewCellStyle11;
             ViewRepair.EnableHeadersVisualStyles = false;
             ViewRepair.Location = new Point(9, 44);
             ViewRepair.Name = "ViewRepair";
@@ -777,9 +806,9 @@
             // Cena_Column
             // 
             Cena_Column.DataPropertyName = "Cena";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            Cena_Column.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.Format = "C2";
+            dataGridViewCellStyle9.NullValue = null;
+            Cena_Column.DefaultCellStyle = dataGridViewCellStyle9;
             Cena_Column.FillWeight = 40F;
             Cena_Column.HeaderText = "Cena";
             Cena_Column.Name = "Cena_Column";
@@ -808,9 +837,9 @@
             // Suma_Column
             // 
             Suma_Column.DataPropertyName = "Suma";
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            Suma_Column.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle10.Format = "C2";
+            dataGridViewCellStyle10.NullValue = null;
+            Suma_Column.DefaultCellStyle = dataGridViewCellStyle10;
             Suma_Column.FillWeight = 40F;
             Suma_Column.HeaderText = "Suma";
             Suma_Column.Name = "Suma_Column";
@@ -894,24 +923,24 @@
             ServiceHistoryView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ServiceHistoryView.BorderStyle = BorderStyle.None;
             ServiceHistoryView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = Color.LightGray;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            ServiceHistoryView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = Color.LightGray;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            ServiceHistoryView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             ServiceHistoryView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ServiceHistoryView.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, Price_Column });
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            ServiceHistoryView.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle14.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle14.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            ServiceHistoryView.DefaultCellStyle = dataGridViewCellStyle14;
             ServiceHistoryView.EnableHeadersVisualStyles = false;
             ServiceHistoryView.Location = new Point(9, 54);
             ServiceHistoryView.Name = "ServiceHistoryView";
@@ -936,9 +965,9 @@
             // Price_Column
             // 
             Price_Column.DataPropertyName = "Price";
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = null;
-            Price_Column.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle13.Format = "C2";
+            dataGridViewCellStyle13.NullValue = null;
+            Price_Column.DefaultCellStyle = dataGridViewCellStyle13;
             Price_Column.HeaderText = "Cena";
             Price_Column.Name = "Price_Column";
             // 
@@ -1105,5 +1134,7 @@
         private DataGridViewTextBoxColumn Suma_Column;
         private Label label22;
         private TextBox CompanyNameTextBox;
+        public TextBox IdEngineTextBox;
+        private Label label23;
         }
 }
