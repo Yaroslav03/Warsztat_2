@@ -1,7 +1,13 @@
-﻿namespace Warsztat_2.UserControls.BarMenu.Archive {
+﻿using System.Data;
+using System.Windows.Forms;
+using Warsztat_2._0;
+
+namespace Warsztat_2.UserControls.BarMenu.Archive {
     public partial class UC_Archive :UserControl {
         private Guid uniqueKey;
         private readonly string connectionStringArchive = "Data Source=Archive.db;Version=3;New=False;Compress=True;";
+        private readonly BindingSource _bs = new();
+
         public UC_Archive()
             {
             InitializeComponent();
@@ -42,15 +48,16 @@
             if(e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
             string? id = ViewActualData.Rows[e.RowIndex].Cells["ID_Column"].Value.ToString();
-            int selectedIndex = (int)ViewActualData.CurrentRow.Index; 
-            uniqueKey = await SqlCmd.GetUniqueKey(id, "Klienty", "Data Source=Archive.db;Version=3;New=False;Compress=True;"); 
+            int selectedIndex = (int)ViewActualData.CurrentRow.Index;
+            uniqueKey = await SqlCmd.GetUniqueKey(id, "Klienty", "Data Source=Archive.db;Version=3;New=False;Compress=True;");
 
-            if(e.ColumnIndex == ViewActualData.Columns["BtnRecover"].Index && ViewActualData.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value && id != null) 
+            if(e.ColumnIndex == ViewActualData.Columns["BtnRecover"].Index && ViewActualData.Rows[e.RowIndex].Cells["ID_Column"].Value != DBNull.Value && id != null)
                 {
-                Guid uniqueKey = await SqlCmd.GetUniqueKey(id, "Klienty", "Data Source=Archive.db;Version=3;New=False;Compress=True;"); 
-                bool isSucceed = await SqlCmd.RecoverData(uniqueKey); 
-                if(isSucceed) 
-                    { MessageBox.Show("Dane zostałe przywrócone do domyślnej tablicy danych"); 
+                Guid uniqueKey = await SqlCmd.GetUniqueKey(id, "Klienty", "Data Source=Archive.db;Version=3;New=False;Compress=True;");
+                bool isSucceed = await SqlCmd.RecoverData(uniqueKey);
+                if(isSucceed)
+                    {
+                    MessageBox.Show("Dane zostałe przywrócone do domyślnej tablicy danych");
                     ViewActualData.Rows.RemoveAt(selectedIndex);
                     }
                 }
@@ -62,6 +69,25 @@
                 {
                 GeneretePDF pdf = new();
                 pdf.Create(uniqueKey);
+                }
+            }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+            {
+            var dataTable = ViewActualData.DataSource as DataTable;
+            if(dataTable != null)
+                {
+                if(!string.IsNullOrEmpty(SearchTextBox.Text))
+                    {
+                    dataTable.DefaultView.RowFilter = string.Format(
+                        "Imię LIKE '%{0}%' OR Nazwisko LIKE '%{0}%' OR NrTelefonu LIKE '%{0}%' OR Marka LIKE '%{0}%' OR Model LIKE '%{0}%' OR VIN LIKE '%{0}%' OR Zlecenie LIKE '%{0}%'",
+                        SearchTextBox.Text);
+                    Settings.SearchTextBox(SearchTextBox, ViewActualData);
+                    }                
+                else
+                    {
+                    dataTable.DefaultView.RowFilter = string.Empty;
+                    }
                 }
             }
         }
