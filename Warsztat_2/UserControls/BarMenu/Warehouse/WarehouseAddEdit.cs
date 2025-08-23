@@ -5,6 +5,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
         WarehouseModel warehouseModel = new WarehouseModel();
         private readonly SqlCmd sqlCmd = new();
         decimal sum;
+        private const decimal VAT_RATE = 0.23m;
 
         uint id;
 
@@ -19,7 +20,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
             {
             var data = new Dictionary<string, object>
                 {
-                    {"Typ",  CategoryListBox.SelectedItem?.ToString() ?? "Brak"},
+                    {"Typ",  CategoryComboBox.SelectedItem?.ToString() ?? "Brak"},
                     {"Nazwa", NameTextBox.Text.Trim()},
                     {"NumerCzęści", NumberPartTextBox.Text.Trim() },
                     {"Opis", DescriptionTextBox.Text.Trim()},
@@ -56,14 +57,14 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
             }
         private void AutocompleteData()
             {
-            CategoryListBox.SelectedItem = warehouseModel.Type;
+            CategoryComboBox.SelectedItem = warehouseModel.Type;
             NumberPartTextBox.Text = warehouseModel.PartNumber;
             NameTextBox.Text = warehouseModel.Name;
             DescriptionTextBox.Text = warehouseModel.Description;
             PriceNumericUpDown.Value = (decimal)warehouseModel.Price;
             EarningNumericUpDown.Value = (decimal)warehouseModel.EarningParts;
             QuantityNumericUpDown.Value = (byte)warehouseModel.Quantity;
-            label1.Text = warehouseModel.Sum;
+            //label1.Text = warehouseModel.Sum;
             }
         public void ClearTextBox()
             {
@@ -71,7 +72,7 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
             NumberPartTextBox.Text = NameTextBox.Text = DescriptionTextBox.Text = String.Empty;
             PriceNumericUpDown.Value = EarningNumericUpDown.Value = 0;
             QuantityNumericUpDown.Value = 1;
-            label1.Text = "0";
+            priceBRUTTO.Text = priceVAT.Text = priceNetto.Text = "0 PLN";
             }
 
         private void PriceNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -89,13 +90,17 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
             }
         private void Sum()
             {
-            sum = (PriceNumericUpDown.Value + EarningNumericUpDown.Value) * QuantityNumericUpDown.Value ;
-            label1.Text = sum.ToString();
+            sum = Math.Round((PriceNumericUpDown.Value + EarningNumericUpDown.Value) * QuantityNumericUpDown.Value, 2,MidpointRounding.AwayFromZero);
+            priceNetto.Text = $"{sum} PLN";
+
+            decimal vat = 0.23m * sum;
+            priceVAT.Text = $"{Math.Round(vat, 2, MidpointRounding.AwayFromZero)} PLN";
+            priceBRUTTO.Text = $"{Math.Round(vat + sum, 2, MidpointRounding.AwayFromZero)} PLN";
             }
 
         private async void WarehouseAddEdit_Load(object sender, EventArgs e)
             {
-            await SqlCmd.ReadRecordListBoxAsync(CategoryListBox, "SELECT Typ FROM Kategorie", "Typ");
+            await SqlCmd.ReadRecordComboBoxAsync(CategoryComboBox, "SELECT Typ FROM Kategorie", "Typ");
             if(warehouseModel.Id == 0)
                 {
                 AddEditWarehouseButton.Text = "Zapisz";

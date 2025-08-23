@@ -43,6 +43,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             NazwaTextBox.Text = GetCellValue("Nazwa_Column");
             NrPartTextBox.Text = GetCellValue("NrCzęści_Column");
             PriceNumericUpDown.Text = GetCellValue("Cena_Column_");
+            PriceEarningNumericUpDown.Value = Convert.ToDecimal(GetCellValue("EarningParts_Column_"));
             IloscNumericUpDown.Text = GetCellValue("Ilość_Column_");
             TypeTextBox.Text = GetCellValue("Type_Column");
 
@@ -70,6 +71,11 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
 
             await SqlCmd.UpdateRecordAsync("NaprawaSamochodu", repairUpdateData, "ID=@ID", repairId);
 
+
+            foreach(TextBox tb in panel1.Controls.OfType<TextBox>())
+                {
+                tb.Clear();
+                }
             Id_Repair = 0;
             StanCheckBox.Checked = false;
             ButtonRepairSave.Text = "Zapisz";
@@ -87,6 +93,8 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                             {"Ilość", (byte)IloscNumericUpDown.Value},
                             {"Suma", Convert.ToDecimal(SumLabel.Text)},
                             {"Stan", StanCheckBox.Checked},
+                            {"ZarobekCzęści", PriceEarningNumericUpDown.Value },
+                            {"SumaZarobku", PriceEarningNumericUpDown.Value * IloscNumericUpDown.Value },
                             {"UniqueKey", uniqueKey }
                         };
             }
@@ -113,15 +121,15 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 {
                 Transfer = ReadDataTable(ViewRepair, columnRepair);
                 Transfer.Remove("ID");
-                }
-            
-            bool IsSuccsesful = await SqlCmd.AddRecordAsync("WarsztatDB", "Magazyn", Transfer);
-            if(IsSuccsesful)
-                {
-                await SqlCmd.DeleteDataTable(ViewRepair, e, "BtnDelete", "ID_Column_", "NaprawaSamochodu");
-                await SqlCmd.LoadData("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, ZarobekCzęści, SumaZarobku, Suma FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
-                }
-            Transfer.Clear();
+
+                bool IsSuccsesful = await SqlCmd.AddRecordAsync("WarsztatDB", "Magazyn", Transfer);
+                if(IsSuccsesful)
+                    {
+                    await SqlCmd.DeleteDataTable(ViewRepair, e, "BtnDelete", "ID_Column_", "NaprawaSamochodu");
+                    await SqlCmd.LoadData("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, ZarobekCzęści, SumaZarobku, Suma FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
+                    }
+                Transfer.Clear();
+                }            
             }
 
         private void ViewRepair_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -139,9 +147,13 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             {
             Sum();
             }
+        private void PriceEarningNumericUpDown_ValueChanged(object sender, EventArgs e)
+            {
+            Sum();
+            }
         private void Sum()
             {
-            decimal sum = PriceNumericUpDown.Value * IloscNumericUpDown.Value;
+            decimal sum = (PriceNumericUpDown.Value + PriceEarningNumericUpDown.Value) * IloscNumericUpDown.Value;
             SumLabel.Text = sum.ToString();
             }
 
@@ -180,7 +192,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             {
             Transfer.Clear();
 
-                Dictionary<string, object> rowData = new();
+            Dictionary<string, object> rowData = new();
 
             foreach(string column in columnName)
                 {
@@ -191,13 +203,13 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                     rowData.Add(key, dec.ToString(CultureInfo.InvariantCulture));
                 else
                     rowData.Add(key, cellValue?.ToString() ?? string.Empty);
-                }                        
+                }
             return rowData;
             }
 
         private async void TransferDataWithRemoveSQL()
             {
-            var transferDataId = new Dictionary<string, object> 
+            var transferDataId = new Dictionary<string, object>
                 {
                     {"ID", Transfer["ID"]}
                 };
@@ -222,5 +234,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 await LoadRepair();
                 }
             }
+
+
         }
     }

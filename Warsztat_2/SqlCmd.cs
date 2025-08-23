@@ -460,6 +460,24 @@ internal class SqlCmd {
                 }
             }
         }
+    public static async Task ReadRecordComboBoxAsync(ComboBox comboBox, string query, string ColumnName)
+        {
+        comboBox.Items.Clear();
+
+        using SQLiteConnection conn = new(_connectionString);
+        await conn.OpenAsync();
+
+        using SQLiteCommand cmd = new(query, conn);
+        using DbDataReader reader = await cmd.ExecuteReaderAsync();
+
+        while(await reader.ReadAsync())
+            {
+            if(reader[ColumnName] != DBNull.Value && !string.IsNullOrEmpty(reader[ColumnName].ToString()))
+                {
+                comboBox.Items.Add(reader[ColumnName].ToString());
+                }
+            }
+        }
 
     // Універсальний метод для видалення запису(ів) з будь-якої таблиці
     public static async Task<bool> DeleteRecordAsync(string fileName, string tableName, string whereClause, Dictionary<string, object> whereParams)

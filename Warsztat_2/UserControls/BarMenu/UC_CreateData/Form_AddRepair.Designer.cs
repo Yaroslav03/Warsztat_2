@@ -42,7 +42,6 @@
             ButtonRepairSave = new Button();
             SumLabel = new Label();
             label3 = new Label();
-            label4 = new Label();
             label5 = new Label();
             NazwaTextBox = new TextBox();
             NrPartTextBox = new TextBox();
@@ -50,6 +49,8 @@
             PriceNumericUpDown = new NumericUpDown();
             StanCheckBox = new CheckBox();
             panel1 = new Panel();
+            label2 = new Label();
+            PriceEarningNumericUpDown = new NumericUpDown();
             ViewRepair = new DataGridView();
             label6 = new Label();
             panel2 = new Panel();
@@ -81,6 +82,7 @@
             ((System.ComponentModel.ISupportInitialize)IloscNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PriceEarningNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ViewRepair).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)WarehouseView).BeginInit();
@@ -93,7 +95,7 @@
             TypeTextBox.CausesValidation = false;
             TypeTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             TypeTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            TypeTextBox.Location = new Point(12, 67);
+            TypeTextBox.Location = new Point(12, 72);
             TypeTextBox.Name = "TypeTextBox";
             TypeTextBox.PlaceholderText = "Typ";
             TypeTextBox.Size = new Size(139, 30);
@@ -104,7 +106,7 @@
             IloscNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             IloscNumericUpDown.BackColor = Color.White;
             IloscNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
-            IloscNumericUpDown.Location = new Point(604, 28);
+            IloscNumericUpDown.Location = new Point(628, 28);
             IloscNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             IloscNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             IloscNumericUpDown.Name = "IloscNumericUpDown";
@@ -119,11 +121,11 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(224, 224, 224);
-            label1.Location = new Point(520, 4);
+            label1.Location = new Point(511, 4);
             label1.Name = "label1";
-            label1.Size = new Size(45, 21);
+            label1.Size = new Size(99, 21);
             label1.TabIndex = 1;
-            label1.Text = "Cena";
+            label1.Text = "Cena zakupu";
             // 
             // ButtonRepairSave
             // 
@@ -133,7 +135,7 @@
             ButtonRepairSave.FlatStyle = FlatStyle.Flat;
             ButtonRepairSave.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             ButtonRepairSave.ForeColor = Color.LightGray;
-            ButtonRepairSave.Location = new Point(811, 64);
+            ButtonRepairSave.Location = new Point(838, 69);
             ButtonRepairSave.Name = "ButtonRepairSave";
             ButtonRepairSave.Size = new Size(131, 30);
             ButtonRepairSave.TabIndex = 6;
@@ -147,7 +149,7 @@
             SumLabel.AutoSize = true;
             SumLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             SumLabel.ForeColor = Color.FromArgb(224, 224, 224);
-            SumLabel.Location = new Point(717, 30);
+            SumLabel.Location = new Point(768, 80);
             SumLabel.Name = "SumLabel";
             SumLabel.Size = new Size(19, 21);
             SumLabel.TabIndex = 1;
@@ -159,23 +161,11 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(224, 224, 224);
-            label3.Location = new Point(690, 28);
+            label3.Location = new Point(651, 81);
             label3.Name = "label3";
-            label3.Size = new Size(21, 21);
+            label3.Size = new Size(99, 21);
             label3.TabIndex = 1;
-            label3.Text = "=";
-            // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.ForeColor = Color.FromArgb(224, 224, 224);
-            label4.Location = new Point(585, 30);
-            label4.Name = "label4";
-            label4.Size = new Size(17, 21);
-            label4.TabIndex = 1;
-            label4.Text = "*";
+            label3.Text = "Cena NETTO:";
             // 
             // label5
             // 
@@ -222,7 +212,7 @@
             DescriptionTextBox.CausesValidation = false;
             DescriptionTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             DescriptionTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            DescriptionTextBox.Location = new Point(157, 67);
+            DescriptionTextBox.Location = new Point(157, 72);
             DescriptionTextBox.Name = "DescriptionTextBox";
             DescriptionTextBox.PlaceholderText = "Opis";
             DescriptionTextBox.Size = new Size(327, 30);
@@ -246,7 +236,7 @@
             // 
             StanCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             StanCheckBox.AutoSize = true;
-            StanCheckBox.Location = new Point(811, 39);
+            StanCheckBox.Location = new Point(838, 44);
             StanCheckBox.Name = "StanCheckBox";
             StanCheckBox.Size = new Size(82, 19);
             StanCheckBox.TabIndex = 4;
@@ -258,13 +248,14 @@
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(64, 64, 70);
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(PriceEarningNumericUpDown);
             panel1.Controls.Add(TypeTextBox);
             panel1.Controls.Add(IloscNumericUpDown);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(ButtonRepairSave);
             panel1.Controls.Add(SumLabel);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(label4);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(NazwaTextBox);
             panel1.Controls.Add(NrPartTextBox);
@@ -276,6 +267,32 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(976, 112);
             panel1.TabIndex = 27;
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(224, 224, 224);
+            label2.Location = new Point(511, 54);
+            label2.Name = "label2";
+            label2.Size = new Size(122, 21);
+            label2.TabIndex = 9;
+            label2.Text = "Cena  sprzedaży";
+            // 
+            // PriceEarningNumericUpDown
+            // 
+            PriceEarningNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            PriceEarningNumericUpDown.BackColor = Color.White;
+            PriceEarningNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
+            PriceEarningNumericUpDown.DecimalPlaces = 2;
+            PriceEarningNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
+            PriceEarningNumericUpDown.Location = new Point(511, 78);
+            PriceEarningNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            PriceEarningNumericUpDown.Name = "PriceEarningNumericUpDown";
+            PriceEarningNumericUpDown.Size = new Size(70, 23);
+            PriceEarningNumericUpDown.TabIndex = 8;
+            PriceEarningNumericUpDown.ValueChanged += PriceEarningNumericUpDown_ValueChanged;
             // 
             // ViewRepair
             // 
@@ -427,7 +444,7 @@
             dataGridViewCellStyle2.NullValue = null;
             Cena_Column_.DefaultCellStyle = dataGridViewCellStyle2;
             Cena_Column_.FillWeight = 40F;
-            Cena_Column_.HeaderText = "Cena";
+            Cena_Column_.HeaderText = "Cena 1 szt.";
             Cena_Column_.Name = "Cena_Column_";
             // 
             // Ilość_Column_
@@ -442,6 +459,7 @@
             EarningParts_Column_.DataPropertyName = "ZarobekCzęści";
             EarningParts_Column_.HeaderText = "koszt własny netto / szt.";
             EarningParts_Column_.Name = "EarningParts_Column_";
+            EarningParts_Column_.Visible = false;
             // 
             // SumaZarobku_Column
             // 
@@ -457,7 +475,7 @@
             dataGridViewCellStyle3.NullValue = null;
             Suma_Column.DefaultCellStyle = dataGridViewCellStyle3;
             Suma_Column.FillWeight = 40F;
-            Suma_Column.HeaderText = "Suma";
+            Suma_Column.HeaderText = "Cena netto";
             Suma_Column.Name = "Suma_Column";
             // 
             // BtnDelete_Warehouse_
@@ -530,6 +548,7 @@
             EarningParts_Column.FillWeight = 126.903564F;
             EarningParts_Column.HeaderText = "koszt własny netto / szt.";
             EarningParts_Column.Name = "EarningParts_Column";
+            EarningParts_Column.Visible = false;
             // 
             // SumaZarobku_Column_Warehouse
             // 
@@ -545,7 +564,7 @@
             dataGridViewCellStyle7.NullValue = null;
             Sum_Column.DefaultCellStyle = dataGridViewCellStyle7;
             Sum_Column.FillWeight = 97.01071F;
-            Sum_Column.HeaderText = "Suma";
+            Sum_Column.HeaderText = "Cena Netto";
             Sum_Column.Name = "Sum_Column";
             // 
             // Form_AddRepair
@@ -563,6 +582,7 @@
             ((System.ComponentModel.ISupportInitialize)PriceNumericUpDown).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PriceEarningNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)ViewRepair).EndInit();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)WarehouseView).EndInit();
@@ -577,7 +597,6 @@
         private Button ButtonRepairSave;
         private Label SumLabel;
         private Label label3;
-        private Label label4;
         private Label label5;
         private TextBox NazwaTextBox;
         private TextBox NrPartTextBox;
@@ -599,6 +618,8 @@
         private DataGridView WarehouseView;
         private DataGridViewButtonColumn _BtnDelete_Warehouse_;
         private DataGridViewTextBoxColumn _ID_Column;
+        private Label label2;
+        private NumericUpDown PriceEarningNumericUpDown;
         private DataGridViewButtonColumn BtnDelete;
         private DataGridViewTextBoxColumn ID_Column_;
         private DataGridViewCheckBoxColumn Wykonane_Checked;

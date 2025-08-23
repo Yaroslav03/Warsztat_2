@@ -67,6 +67,7 @@
                     {"BDO",  NumerBDOTextBox.Text.Trim()},
                     {"KontoBankowe", KontoBankoweTextBox.Text.Trim()},
                     {"Marża",MarzaTextBox.Text.Trim()},
+                    {"Email", EmailTextBox.Text.Trim() }
                 };
             var whereParams = new Dictionary<string, object>
                  {
@@ -157,6 +158,7 @@
                 NumerBDOTextBox.Text = data["BDO"].ToString();
                 KontoBankoweTextBox.Text = data["KontoBankowe"].ToString();
                 MarzaTextBox.Text = data["Marża"].ToString();
+                EmailTextBox.Text = data["Email"].ToString();
                 }
 
             }

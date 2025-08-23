@@ -1,4 +1,6 @@
-﻿namespace Warsztat_2._0.UserControls {
+﻿using System.Data;
+
+namespace Warsztat_2._0.UserControls {
     public partial class UC_ViewDataCar :UserControl {
         #region VALUE
         private readonly string[] connectionStringArray = new string[] { "Data Source=WarsztatDB.db;Version=3;New=False;Compress=True;", "Data Source=Archive.db;Version=3;New=False;Compress=True;" };
@@ -130,6 +132,25 @@
         private async void UC_ViewDataCar_VisibleChanged(object sender, EventArgs e)
             {
             await LoadDB();
+            }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+            {
+            var dataTable = ViewActualData.DataSource as DataTable;
+            if(dataTable != null)
+                {
+                if(!string.IsNullOrEmpty(SearchTextBox.Text))
+                    {
+                    dataTable.DefaultView.RowFilter = string.Format(
+                        "Imię LIKE '%{0}%' OR Nazwisko LIKE '%{0}%' OR NrTelefonu LIKE '%{0}%' OR Marka LIKE '%{0}%' OR Model LIKE '%{0}%' OR VIN LIKE '%{0}%' OR Zlecenie LIKE '%{0}%'",
+                        SearchTextBox.Text);
+                    Settings.SearchTextBox(SearchTextBox, ViewActualData);
+                    }
+                else
+                    {
+                    dataTable.DefaultView.RowFilter = string.Empty;
+                    }
+                }
             }
 
         public event EventHandler<Guid> CarSelected;

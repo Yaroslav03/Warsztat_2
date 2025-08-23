@@ -36,6 +36,8 @@
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             panelKontaktowy = new Panel();
+            label22 = new Label();
+            CompanyNameTextBox = new TextBox();
             label6 = new Label();
             AdressCompanyTextBox = new TextBox();
             label3 = new Label();
@@ -120,6 +122,8 @@
             panelKontaktowy.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelKontaktowy.BackColor = Color.FromArgb(64, 64, 70);
             panelKontaktowy.BorderStyle = BorderStyle.FixedSingle;
+            panelKontaktowy.Controls.Add(label22);
+            panelKontaktowy.Controls.Add(CompanyNameTextBox);
             panelKontaktowy.Controls.Add(label6);
             panelKontaktowy.Controls.Add(AdressCompanyTextBox);
             panelKontaktowy.Controls.Add(label3);
@@ -133,14 +137,38 @@
             panelKontaktowy.ForeColor = Color.DimGray;
             panelKontaktowy.Location = new Point(3, 37);
             panelKontaktowy.Name = "panelKontaktowy";
-            panelKontaktowy.Size = new Size(962, 109);
+            panelKontaktowy.Size = new Size(962, 128);
             panelKontaktowy.TabIndex = 5;
+            // 
+            // label22
+            // 
+            label22.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label22.ForeColor = Color.FromArgb(224, 224, 224);
+            label22.Location = new Point(366, 69);
+            label22.Name = "label22";
+            label22.Size = new Size(119, 28);
+            label22.TabIndex = 33;
+            label22.Text = "Nazwa Firmy:";
+            // 
+            // CompanyNameTextBox
+            // 
+            CompanyNameTextBox.BackColor = Color.FromArgb(64, 64, 70);
+            CompanyNameTextBox.BorderStyle = BorderStyle.None;
+            CompanyNameTextBox.CausesValidation = false;
+            CompanyNameTextBox.Cursor = Cursors.IBeam;
+            CompanyNameTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            CompanyNameTextBox.ForeColor = Color.FromArgb(224, 224, 224);
+            CompanyNameTextBox.Location = new Point(491, 71);
+            CompanyNameTextBox.Name = "CompanyNameTextBox";
+            CompanyNameTextBox.PlaceholderText = "Wpisz Adres Firmy";
+            CompanyNameTextBox.Size = new Size(459, 23);
+            CompanyNameTextBox.TabIndex = 32;
             // 
             // label6
             // 
             label6.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = Color.FromArgb(224, 224, 224);
-            label6.Location = new Point(299, 69);
+            label6.Location = new Point(366, 97);
             label6.Name = "label6";
             label6.Size = new Size(119, 28);
             label6.TabIndex = 31;
@@ -154,7 +182,7 @@
             AdressCompanyTextBox.Cursor = Cursors.IBeam;
             AdressCompanyTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             AdressCompanyTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            AdressCompanyTextBox.Location = new Point(424, 71);
+            AdressCompanyTextBox.Location = new Point(491, 99);
             AdressCompanyTextBox.Name = "AdressCompanyTextBox";
             AdressCompanyTextBox.PlaceholderText = "Wpisz Adres Firmy";
             AdressCompanyTextBox.Size = new Size(459, 23);
@@ -164,7 +192,7 @@
             // 
             label3.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(224, 224, 224);
-            label3.Location = new Point(641, 41);
+            label3.Location = new Point(366, 41);
             label3.Name = "label3";
             label3.Size = new Size(41, 28);
             label3.TabIndex = 29;
@@ -178,7 +206,7 @@
             NIPTextBox.Cursor = Cursors.IBeam;
             NIPTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             NIPTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            NIPTextBox.Location = new Point(686, 41);
+            NIPTextBox.Location = new Point(411, 41);
             NIPTextBox.Name = "NIPTextBox";
             NIPTextBox.PlaceholderText = "Wpisz NIP";
             NIPTextBox.Size = new Size(155, 23);
@@ -188,7 +216,7 @@
             // 
             label5.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(224, 224, 224);
-            label5.Location = new Point(288, 40);
+            label5.Location = new Point(4, 98);
             label5.Name = "label5";
             label5.Size = new Size(130, 28);
             label5.TabIndex = 27;
@@ -202,7 +230,7 @@
             TelephoneTextBox.Cursor = Cursors.IBeam;
             TelephoneTextBox.Font = new Font("Arial", 15F, FontStyle.Regular, GraphicsUnit.Point);
             TelephoneTextBox.ForeColor = Color.FromArgb(224, 224, 224);
-            TelephoneTextBox.Location = new Point(424, 42);
+            TelephoneTextBox.Location = new Point(140, 100);
             TelephoneTextBox.Name = "TelephoneTextBox";
             TelephoneTextBox.PlaceholderText = "Wpisz nr. telefonu";
             TelephoneTextBox.Size = new Size(164, 23);
@@ -214,7 +242,7 @@
             label4.ForeColor = Color.FromArgb(224, 224, 224);
             label4.Location = new Point(4, 69);
             label4.Name = "label4";
-            label4.Size = new Size(87, 28);
+            label4.Size = new Size(84, 28);
             label4.TabIndex = 25;
             label4.Text = "Nazwisko:";
             // 
@@ -284,7 +312,7 @@
             panelDodatkowy.Controls.Add(MarkaTextBox);
             panelDodatkowy.Controls.Add(label12);
             panelDodatkowy.ForeColor = Color.DimGray;
-            panelDodatkowy.Location = new Point(1, 187);
+            panelDodatkowy.Location = new Point(0, 209);
             panelDodatkowy.Name = "panelDodatkowy";
             panelDodatkowy.Size = new Size(962, 123);
             panelDodatkowy.TabIndex = 6;
@@ -426,7 +454,7 @@
             label7.Anchor = AnchorStyles.Top;
             label7.Font = new Font("Bahnschrift Condensed", 20F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = Color.FromArgb(224, 224, 224);
-            label7.Location = new Point(398, 149);
+            label7.Location = new Point(398, 168);
             label7.Name = "label7";
             label7.Size = new Size(187, 35);
             label7.TabIndex = 32;
@@ -453,7 +481,7 @@
             panel5.Controls.Add(DiagnosticTextBox);
             panel5.Controls.Add(OrderTextBox);
             panel5.ForeColor = Color.DimGray;
-            panel5.Location = new Point(3, 347);
+            panel5.Location = new Point(3, 369);
             panel5.Name = "panel5";
             panel5.Size = new Size(960, 324);
             panel5.TabIndex = 37;
@@ -647,7 +675,7 @@
             label13.Anchor = AnchorStyles.Top;
             label13.Font = new Font("Bahnschrift Condensed", 20F, FontStyle.Regular, GraphicsUnit.Point);
             label13.ForeColor = Color.FromArgb(224, 224, 224);
-            label13.Location = new Point(427, 313);
+            label13.Location = new Point(428, 335);
             label13.Name = "label13";
             label13.Size = new Size(89, 31);
             label13.TabIndex = 56;
@@ -662,7 +690,7 @@
             SaveButton.FlatStyle = FlatStyle.Flat;
             SaveButton.Font = new Font("Bahnschrift Condensed", 15F, FontStyle.Regular, GraphicsUnit.Point);
             SaveButton.ForeColor = Color.LightGray;
-            SaveButton.Location = new Point(1, 690);
+            SaveButton.Location = new Point(1, 712);
             SaveButton.Name = "SaveButton";
             SaveButton.Size = new Size(962, 35);
             SaveButton.TabIndex = 57;
@@ -795,7 +823,7 @@
             panel2.Controls.Add(SelectPartButton);
             panel2.Controls.Add(ViewRepair);
             panel2.ForeColor = Color.WhiteSmoke;
-            panel2.Location = new Point(8, 762);
+            panel2.Location = new Point(8, 784);
             panel2.Name = "panel2";
             panel2.Size = new Size(948, 271);
             panel2.TabIndex = 59;
@@ -822,7 +850,7 @@
             label16.Anchor = AnchorStyles.Top;
             label16.Font = new Font("Bahnschrift Condensed", 20F, FontStyle.Regular, GraphicsUnit.Point);
             label16.ForeColor = Color.FromArgb(224, 224, 224);
-            label16.Location = new Point(359, 728);
+            label16.Location = new Point(359, 750);
             label16.Name = "label16";
             label16.Size = new Size(211, 31);
             label16.TabIndex = 60;
@@ -836,7 +864,7 @@
             panel6.Controls.Add(SelectServiceButton);
             panel6.Controls.Add(ServiceHistoryView);
             panel6.ForeColor = Color.WhiteSmoke;
-            panel6.Location = new Point(8, 1070);
+            panel6.Location = new Point(8, 1092);
             panel6.Name = "panel6";
             panel6.Size = new Size(948, 221);
             panel6.TabIndex = 62;
@@ -919,7 +947,7 @@
             label17.Anchor = AnchorStyles.Top;
             label17.Font = new Font("Bahnschrift Condensed", 20F, FontStyle.Regular, GraphicsUnit.Point);
             label17.ForeColor = Color.FromArgb(224, 224, 224);
-            label17.Location = new Point(344, 1036);
+            label17.Location = new Point(344, 1058);
             label17.Name = "label17";
             label17.Size = new Size(211, 31);
             label17.TabIndex = 63;
@@ -950,7 +978,7 @@
             panel1.Controls.Add(numericUpDown1);
             panel1.Controls.Add(ButtonOrderManagement);
             panel1.ForeColor = Color.DimGray;
-            panel1.Location = new Point(152, 1297);
+            panel1.Location = new Point(155, 1321);
             panel1.Name = "panel1";
             panel1.Size = new Size(584, 45);
             panel1.TabIndex = 66;
@@ -987,7 +1015,7 @@
             Controls.Add(label7);
             Controls.Add(label1);
             Name = "UC_AddAllData";
-            Size = new Size(963, 1342);
+            Size = new Size(963, 1366);
             Load += UC_AddAllData_Load;
             panelKontaktowy.ResumeLayout(false);
             panelKontaktowy.PerformLayout();
@@ -1075,5 +1103,7 @@
         private DataGridViewTextBoxColumn EarningParts_Columns;
         private DataGridViewTextBoxColumn SumaZarobku_Column;
         private DataGridViewTextBoxColumn Suma_Column;
+        private Label label22;
+        private TextBox CompanyNameTextBox;
         }
 }
