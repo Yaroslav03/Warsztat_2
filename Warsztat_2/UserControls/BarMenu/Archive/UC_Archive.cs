@@ -68,7 +68,15 @@ namespace Warsztat_2.UserControls.BarMenu.Archive {
             if(uniqueKey != Guid.Empty)
                 {
                 GeneretePDF pdf = new();
-                pdf.Create(uniqueKey);
+                pdf.OrderPDF(uniqueKey);
+                }
+            }
+        private void InvoiceButton_Click(object sender, EventArgs e)
+            {
+            if(uniqueKey != Guid.Empty)
+                {
+                GeneretePDF pdf = new();
+                pdf.InvoicePDF(uniqueKey);
                 }
             }
 
@@ -83,7 +91,7 @@ namespace Warsztat_2.UserControls.BarMenu.Archive {
                         "Imię LIKE '%{0}%' OR Nazwisko LIKE '%{0}%' OR NrTelefonu LIKE '%{0}%' OR Marka LIKE '%{0}%' OR Model LIKE '%{0}%' OR VIN LIKE '%{0}%' OR Zlecenie LIKE '%{0}%'",
                         SearchTextBox.Text);
                     Settings.SearchTextBox(SearchTextBox, ViewActualData);
-                    }                
+                    }
                 else
                     {
                     dataTable.DefaultView.RowFilter = string.Empty;
