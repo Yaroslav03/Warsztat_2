@@ -31,10 +31,6 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             ServiceHistoryView = new DataGridView();
-            ID_Column = new DataGridViewTextBoxColumn();
-            RemoveBtn = new DataGridViewButtonColumn();
-            ServiceName_Column = new DataGridViewTextBoxColumn();
-            Price_Column = new DataGridViewTextBoxColumn();
             ServiceView = new DataGridView();
             ID_Column_ = new DataGridViewTextBoxColumn();
             BtnDelete_ = new DataGridViewButtonColumn();
@@ -47,6 +43,11 @@
             AddButton = new Button();
             PriceNumericUpDown = new NumericUpDown();
             label1 = new Label();
+            ID_Column = new DataGridViewTextBoxColumn();
+            RemoveBtn = new DataGridViewButtonColumn();
+            SelectBtn_ = new DataGridViewButtonColumn();
+            ServiceName_Column = new DataGridViewTextBoxColumn();
+            Price_Column = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)ServiceHistoryView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ServiceView).BeginInit();
             panelKontaktowy.SuspendLayout();
@@ -71,7 +72,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ServiceHistoryView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ServiceHistoryView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ServiceHistoryView.Columns.AddRange(new DataGridViewColumn[] { ID_Column, RemoveBtn, ServiceName_Column, Price_Column });
+            ServiceHistoryView.Columns.AddRange(new DataGridViewColumn[] { ID_Column, RemoveBtn, SelectBtn_, ServiceName_Column, Price_Column });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 70);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -87,31 +88,6 @@
             ServiceHistoryView.Size = new Size(687, 251);
             ServiceHistoryView.TabIndex = 60;
             ServiceHistoryView.CellContentClick += ServiceHistoryView_CellContentClick;
-            // 
-            // ID_Column
-            // 
-            ID_Column.DataPropertyName = "Id";
-            ID_Column.HeaderText = "ID";
-            ID_Column.Name = "ID_Column";
-            ID_Column.Visible = false;
-            // 
-            // RemoveBtn
-            // 
-            RemoveBtn.FillWeight = 20F;
-            RemoveBtn.HeaderText = "Usuń";
-            RemoveBtn.Name = "RemoveBtn";
-            // 
-            // ServiceName_Column
-            // 
-            ServiceName_Column.DataPropertyName = "ServiceName";
-            ServiceName_Column.HeaderText = "Usługa";
-            ServiceName_Column.Name = "ServiceName_Column";
-            // 
-            // Price_Column
-            // 
-            Price_Column.DataPropertyName = "Price";
-            Price_Column.HeaderText = "Cena";
-            Price_Column.Name = "Price_Column";
             // 
             // ServiceView
             // 
@@ -243,6 +219,7 @@
             // 
             PriceNumericUpDown.BackColor = Color.White;
             PriceNumericUpDown.BorderStyle = BorderStyle.FixedSingle;
+            PriceNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
             PriceNumericUpDown.Location = new Point(390, 3);
             PriceNumericUpDown.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             PriceNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
@@ -260,6 +237,39 @@
             label1.Size = new Size(66, 29);
             label1.TabIndex = 62;
             label1.Text = "Cena";
+            // 
+            // ID_Column
+            // 
+            ID_Column.DataPropertyName = "Id";
+            ID_Column.HeaderText = "ID";
+            ID_Column.Name = "ID_Column";
+            ID_Column.Visible = false;
+            // 
+            // RemoveBtn
+            // 
+            RemoveBtn.FillWeight = 23.1841259F;
+            RemoveBtn.HeaderText = "Usuń";
+            RemoveBtn.Name = "RemoveBtn";
+            // 
+            // SelectBtn_
+            // 
+            SelectBtn_.FillWeight = 23.18412F;
+            SelectBtn_.HeaderText = "Wybierz";
+            SelectBtn_.Name = "SelectBtn_";
+            // 
+            // ServiceName_Column
+            // 
+            ServiceName_Column.DataPropertyName = "ServiceName";
+            ServiceName_Column.FillWeight = 115.920631F;
+            ServiceName_Column.HeaderText = "Usługa";
+            ServiceName_Column.Name = "ServiceName_Column";
+            // 
+            // Price_Column
+            // 
+            Price_Column.DataPropertyName = "Price";
+            Price_Column.FillWeight = 115.920631F;
+            Price_Column.HeaderText = "Cena";
+            Price_Column.Name = "Price_Column";
             // 
             // Form_AddService
             // 
@@ -295,14 +305,15 @@
         public NumericUpDown PriceNumericUpDown;
         private Label label1;
         private Button AddButton;
-        private DataGridViewTextBoxColumn ID_Column;
-        private DataGridViewButtonColumn RemoveBtn;
-        private DataGridViewTextBoxColumn ServiceName_Column;
-        private DataGridViewTextBoxColumn Price_Column;
         private DataGridViewTextBoxColumn ID_Column_;
         private DataGridViewButtonColumn BtnDelete_;
         private DataGridViewButtonColumn SelectBtn;
         private DataGridViewTextBoxColumn ServiceName_Column_;
         private DataGridViewTextBoxColumn Price_Column_;
+        private DataGridViewTextBoxColumn ID_Column;
+        private DataGridViewButtonColumn RemoveBtn;
+        private DataGridViewButtonColumn SelectBtn_;
+        private DataGridViewTextBoxColumn ServiceName_Column;
+        private DataGridViewTextBoxColumn Price_Column;
         }
     }
