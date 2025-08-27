@@ -695,7 +695,8 @@ internal class SqlCmd {
                 // 1. Додаємо всі рядки
                 foreach(var rowData in rows)
                     {
-                    bool isSucceed = await AddRecordAsync("Archive", table, rowData);
+                    var toInsert = RemoveAutoPK(rowData);
+                    bool isSucceed = await AddRecordAsync("Archive", table, toInsert);
                     if(!isSucceed)
                         {
                         MessageBox.Show(
@@ -729,6 +730,14 @@ internal class SqlCmd {
             {
             Cursor.Current = Cursors.Default;
             }
+        }
+    static Dictionary<string, object> RemoveAutoPK(Dictionary<string, object> row)
+        {
+        var skip = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+            "ID", "id"
+            };
+        return row.Where(kv => !skip.Contains(kv.Key)).ToDictionary(kv => kv.Key, kv => kv.Value);
         }
     public static async Task<bool> SendToArchiveOneTable(string ID)
         {
@@ -805,7 +814,8 @@ internal class SqlCmd {
                 // 1. Додаємо всі рядки
                 foreach(var rowData in rows)
                     {
-                    bool isSucceed = await AddRecordAsync("WarsztatDB", table, rowData);
+                    var toInsert = RemoveAutoPK(rowData);
+                    bool isSucceed = await AddRecordAsync("WarsztatDB", table, toInsert);
                     if(!isSucceed)
                         {
                         MessageBox.Show(
