@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
             {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             ViewActualData = new DataGridView();
             ID_Column = new DataGridViewTextBoxColumn();
             BtnDelete = new DataGridViewButtonColumn();
@@ -63,24 +63,24 @@
             ViewActualData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ViewActualData.BorderStyle = BorderStyle.None;
             ViewActualData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.LightGray;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            ViewActualData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            ViewActualData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ViewActualData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ViewActualData.Columns.AddRange(new DataGridViewColumn[] { ID_Column, BtnDelete, BtnRecover, DataPrzyjęcia_Column, DataZamknięciaZlecenia_Column, Imię_Column, Nazwisko_Column, Telefon_Column, Marka_Column, Model_Column, Zlecenie_Column, WykonawaPracy_Column, KosztKońcowy_Column, VIN_Column });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(64, 64, 70);
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            ViewActualData.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(64, 64, 70);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            ViewActualData.DefaultCellStyle = dataGridViewCellStyle3;
             ViewActualData.EnableHeadersVisualStyles = false;
             ViewActualData.Location = new Point(3, 64);
             ViewActualData.Name = "ViewActualData";
@@ -88,6 +88,7 @@
             ViewActualData.Size = new Size(1029, 540);
             ViewActualData.TabIndex = 38;
             ViewActualData.CellContentClick += ViewActualData_CellContentClick;
+            ViewActualData.CellDoubleClick += ViewActualData_CellDoubleClick;
             // 
             // ID_Column
             // 
@@ -163,9 +164,9 @@
             // KosztKońcowy_Column
             // 
             KosztKońcowy_Column.DataPropertyName = "KosztKońcowy";
-            dataGridViewCellStyle5.Format = "C2";
-            dataGridViewCellStyle5.NullValue = null;
-            KosztKońcowy_Column.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            KosztKońcowy_Column.DefaultCellStyle = dataGridViewCellStyle2;
             KosztKońcowy_Column.HeaderText = "Koszt Końcowy";
             KosztKońcowy_Column.Name = "KosztKońcowy_Column";
             // 

@@ -289,5 +289,15 @@
             {
 
             }
+
+        private void labelPriceofService_Click(object sender, EventArgs e)
+            {
+
+            }
+
+        private void LabelFinallyPrice_Click(object sender, EventArgs e)
+            {
+
+            }
         }
     }

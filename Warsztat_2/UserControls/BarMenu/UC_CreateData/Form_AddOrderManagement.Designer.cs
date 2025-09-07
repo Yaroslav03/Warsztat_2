@@ -80,6 +80,7 @@
             LabelFinallyPrice.Size = new Size(116, 21);
             LabelFinallyPrice.TabIndex = 27;
             LabelFinallyPrice.Text = "Koszt końcowy:";
+            LabelFinallyPrice.Click += LabelFinallyPrice_Click;
             // 
             // label7
             // 
@@ -295,6 +296,7 @@
             LabelPricePartWithMarzha.Size = new Size(103, 21);
             LabelPricePartWithMarzha.TabIndex = 27;
             LabelPricePartWithMarzha.Text = "Części brutto:";
+            //LabelPricePartWithMarzha.Click += this.LabelPricePartWithMarzha_Click;
             // 
             // FinallPriceNumericUpDown
             // 
@@ -371,6 +373,7 @@
             labelPriceofService.Size = new Size(115, 21);
             labelPriceofService.TabIndex = 27;
             labelPriceofService.Text = "Koszt za usługi:";
+            labelPriceofService.Click += labelPriceofService_Click;
             // 
             // CloseOrder
             // 

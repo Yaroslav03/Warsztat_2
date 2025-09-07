@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Windows.Forms;
 using Warsztat_2._0;
+using Warsztat_2._0.UserControls.BarMenu.Warehouse;
 
 namespace Warsztat_2.UserControls.BarMenu.Archive {
     public partial class UC_Archive :UserControl {
@@ -97,6 +98,13 @@ namespace Warsztat_2.UserControls.BarMenu.Archive {
                     dataTable.DefaultView.RowFilter = string.Empty;
                     }
                 }
+            }
+
+        private void ViewActualData_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+            {
+            Form_ViewDataArchive viewDataArchive = new();
+            viewDataArchive.ReadData(uniqueKey);
+            viewDataArchive.ShowDialog();
             }
         }
     }
