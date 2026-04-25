@@ -2,19 +2,17 @@
 
 namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
     public partial class WarehouseAddEdit :Form {
-        WarehouseModel warehouseModel = new WarehouseModel();
+        WarehouseModel warehouseModel = new();
         private readonly SqlCmd sqlCmd = new();
         decimal sum;
         private const decimal VAT_RATE = 0.23m;
-
-        uint id;
 
         public WarehouseAddEdit()
             {
             InitializeComponent();
             }
 
-        public Action? RefreshWarehouseTable;
+        public Func<Task>? RefreshWarehouseTable;
 
         private async void AddEditWarehouseButton_Click(object sender, EventArgs e)
             {
@@ -34,22 +32,20 @@ namespace Warsztat_2._0.UserControls.BarMenu.Warehouse {
                 {
                     {"ID", warehouseModel.Id}
                 };
-            string[] magazyn = { $"{data["Nazwa"].ToString()}", $"{data["Opis"].ToString()}", $"{data["NumerCzęści"].ToString()}" };
+            string[] magazyn = { $"{data["Nazwa"]}", $"{data["Opis"]}", $"{data["NumerCzęści"]}" };
 
-            if(AddEditWarehouseButton.Text == "Zapisz")
-                {
+            if (AddEditWarehouseButton.Text == "Zapisz")
+            {
                 await SqlCmd.AddRecordAsync("WarsztatDB", "Magazyn", data);
-                RefreshWarehouseTable?.Invoke();
+                if (RefreshWarehouseTable != null) await RefreshWarehouseTable();
                 MessageBox.Show($"{magazyn[0]} ({magazyn[1]}) o numerze [{magazyn[2]}] został dodany do magazynu, kliknij OK żeby dodać kolejny", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                magazyn = null;
                 warehouseModel.Clear();
                 return;
-                }
+            }
             await SqlCmd.UpdateRecordAsync("Magazyn", data, "ID=@ID", dataId);
             warehouseModel.Clear();
-
-            RefreshWarehouseTable?.Invoke();
-            }
+            if (RefreshWarehouseTable != null) await RefreshWarehouseTable();
+        }
 
         public void SetDataEdit(WarehouseModel Data)
             {//сетування даних при переході між класами

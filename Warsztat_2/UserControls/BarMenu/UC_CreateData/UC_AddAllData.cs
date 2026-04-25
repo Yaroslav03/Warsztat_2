@@ -211,7 +211,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             VINTextBox.Text = String.Concat(VINTextBox.Text.Where(char.IsLetterOrDigit));
             NumLenghtNadwoziaLabel.Text = VINTextBox.Text.Length.ToString();
             }
-        public async void SetCarGuid(Guid key)
+        public async Task SetCarGuid(Guid key)
             {
             uniqueKey = key;
 
