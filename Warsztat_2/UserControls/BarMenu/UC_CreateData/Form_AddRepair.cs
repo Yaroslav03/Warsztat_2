@@ -120,16 +120,55 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
             if(e.ColumnIndex == ViewRepair.Columns["BtnDelete"].Index)
                 {
                 Transfer = ReadDataTable(ViewRepair, columnRepair);
-                Transfer.Remove("ID");
+                string partNumber = Transfer["NumerCzęści"]?.ToString() ?? string.Empty;
+                byte returningQty = Convert.ToByte(Transfer["Ilość"]);
+                decimal price = Convert.ToDecimal(Transfer["Cena"], CultureInfo.InvariantCulture);
+                decimal profit = Convert.ToDecimal(Transfer["ZarobekCzęści"], CultureInfo.InvariantCulture);
 
-                bool IsSuccsesful = await SqlCmd.AddRecordAsync("WarsztatDB", "Magazyn", Transfer);
-                if(IsSuccsesful)
+                // Szukaj istniejącego rekordu w Magazyn po NumerCzęści
+                var existing = await SqlCmd.LoadDataAsync("WarsztatDB", "Magazyn", null, "NumerCzęści", partNumber);
+
+                if (existing != null && existing.Count > 0)
+                {
+                    // Rekord istnieje — dodaj ilość do istniejącego
+                    byte existingQty = Convert.ToByte(existing["Ilość"]);
+                    byte newQty = (byte)(existingQty + returningQty);
+
+                    var updatedData = new Dictionary<string, object>
                     {
-                    await SqlCmd.DeleteDataTable(ViewRepair, e, "BtnDelete", "ID_Column_", "NaprawaSamochodu");
-                    await SqlCmd.LoadData("SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, ZarobekCzęści, SumaZarobku, Suma FROM Magazyn", WarehouseView, "Warehouse", "Load table Warehouse From DB");
-                    }
+                        ["Ilość"] = newQty,
+                        ["Suma"] = (price + profit) * newQty,
+                        ["SumaZarobku"] = profit * newQty
+                    };
+
+                    var whereId = new Dictionary<string, object>
+            {
+                { "ID", existing["ID"] }
+            };
+
+                    await SqlCmd.UpdateRecordAsync("Magazyn", updatedData, "ID=@ID", whereId);
+                }
+                else
+                {
+                    // Brak rekordu w magazynie — dodaj jako nowy
+                    Transfer.Remove("ID");
+                    Transfer.Remove("UniqueKey");
+                    Transfer.Remove("Stan");
+                    await SqlCmd.AddRecordAsync("WarsztatDB", "Magazyn", Transfer);
+                }
+
+                // Usuń z listy napraw
+                await SqlCmd.DeleteDataTable(ViewRepair, e, "BtnDelete", "ID_Column_", "NaprawaSamochodu");
+
+                // Odśwież obie tabele
+                await LoadRepair();
+                await SqlCmd.LoadData(
+                    "SELECT ID, Typ, Nazwa, NumerCzęści, Opis, Cena, Ilość, ZarobekCzęści, SumaZarobku, Suma FROM Magazyn",
+                    WarehouseView, "Warehouse", "Load table Warehouse From DB"
+                );
+
                 Transfer.Clear();
-                }            
+            }            
             }
 
         private void ViewRepair_MouseDoubleClick(object sender, MouseEventArgs e)
