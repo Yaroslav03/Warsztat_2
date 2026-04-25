@@ -27,7 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-            {
+        {
             label4 = new Label();
             label5 = new Label();
             DescriptionTextBox = new TextBox();
@@ -167,7 +167,7 @@
             PriceNumericUpDown.ForeColor = Color.FromArgb(224, 224, 224);
             PriceNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
             PriceNumericUpDown.Location = new Point(108, 3);
-            PriceNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            PriceNumericUpDown.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             PriceNumericUpDown.Name = "PriceNumericUpDown";
             PriceNumericUpDown.Size = new Size(75, 25);
             PriceNumericUpDown.TabIndex = 26;
@@ -205,7 +205,7 @@
             EarningNumericUpDown.ForeColor = Color.FromArgb(224, 224, 224);
             EarningNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
             EarningNumericUpDown.Location = new Point(237, 3);
-            EarningNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            EarningNumericUpDown.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             EarningNumericUpDown.Name = "EarningNumericUpDown";
             EarningNumericUpDown.Size = new Size(75, 25);
             EarningNumericUpDown.TabIndex = 30;
@@ -462,7 +462,7 @@
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel3.PerformLayout();
             ResumeLayout(false);
-            }
+        }
 
         #endregion
         private Label label4;
