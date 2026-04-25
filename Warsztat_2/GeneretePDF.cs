@@ -73,7 +73,7 @@ namespace Warsztat_2 {
             clientInfo.AddFormattedText("Klient:", TextFormat.Bold);
 
             clientInfo.AddLineBreak();
-            clientInfo.AddText($"{clientData["Imię"]} {clientData["Nazwisko"]}, zwanny dalej zamawiającym.");
+            clientInfo.AddText($"{clientData["Imię"]} {clientData["Nazwisko"]},\n zwanny dalej zamawiającym.");
 
             #endregion
             #region car
@@ -83,7 +83,7 @@ namespace Warsztat_2 {
             entrepreneurInfo.AddFormattedText("Wykonawca usługi", TextFormat.Bold);
 
             entrepreneurInfo.AddLineBreak();
-            entrepreneurInfo.AddText($"{companyData["NazwaFirmy"]}, zwany dalej wykonawcą");
+            entrepreneurInfo.AddText($"{companyData["NazwaFirmy"]},\n zwany dalej wykonawcą.");
 
             #endregion
             #endregion

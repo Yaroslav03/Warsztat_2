@@ -14,22 +14,22 @@ namespace Warsztat_2.UserControls.BarMenu.Archive {
             {
             InitializeComponent();
             }
-        public async void ReadData(Guid uniqueKey)
+        public async Task ReadData(Guid uniqueKey)
             {
             var searchKey = new Dictionary<string, object>
                 {
                     {"UniqueKey", uniqueKey }
                 };
-            CompleteClientData(uniqueKey);
-            CompleteCarData(uniqueKey);
-            CompleteHistoryData(uniqueKey);
-            CompleteManagementData(uniqueKey);
+            await CompleteClientData(uniqueKey);
+            await CompleteCarData(uniqueKey);
+            await CompleteHistoryData(uniqueKey);
+            await CompleteManagementData(uniqueKey);
 
             string _connectionStringArchive = "Data Source=Archive.db;Version=3;New=False;Compress=True;";
             await SqlCmd.LoadData($"SELECT Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, ZarobekCzęści, SumaZarobku, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey, _connectionStringArchive);
             await SqlCmd.LoadData($"SELECT  ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey, _connectionStringArchive);
             }
-        private async void CompleteClientData(Guid uniqueKey)
+        private async Task CompleteClientData(Guid uniqueKey)
             {
             var clientData = await SqlCmd.LoadDataAsync("Archive", "Klienty", null, "UniqueKey", uniqueKey);
             NameTextBox.Text = clientData["Imię"].ToString();
@@ -39,7 +39,7 @@ namespace Warsztat_2.UserControls.BarMenu.Archive {
             NameCompanyTextBox.Text = clientData["NazwaFirmyKlienta"].ToString();
             AdressCompanyTextBox.Text = clientData["AdresFirmy"].ToString();
             }
-        private async void CompleteCarData(Guid uniqueKey)
+        private async Task CompleteCarData(Guid uniqueKey)
             {
             var carData = await SqlCmd.LoadDataAsync("Archive", "Samochód", null, "UniqueKey", uniqueKey);
             BrandTextBox.Text = carData["Marka"].ToString();
@@ -49,7 +49,7 @@ namespace Warsztat_2.UserControls.BarMenu.Archive {
             CodeEngineTextBox.Text = carData["KodSilnika"].ToString();
             YearOfProductionNUD.Value = Convert.ToInt32(carData["RokProdukcji"]);
             }
-        private async void CompleteHistoryData(Guid uniqueKey)
+        private async Task CompleteHistoryData(Guid uniqueKey)
             {
             var historyRepairData = await SqlCmd.LoadDataAsync("Archive", "HistoriaNapraw", null, "UniqueKey", uniqueKey);
             OrderTextBox.Text = historyRepairData["Zlecenie"].ToString();
@@ -65,7 +65,7 @@ namespace Warsztat_2.UserControls.BarMenu.Archive {
 
             OrderAddoptedTimePicker.Value = Convert.ToDateTime(historyRepairData["DataPrzyjęcia"]).Date;
             }
-        private async void CompleteManagementData(Guid uniqueKey)
+        private async Task CompleteManagementData(Guid uniqueKey)
             {
             var managementData = await SqlCmd.LoadDataAsync("Archive", "ZarządzanieZleceniem", null, "UniqueKey", uniqueKey);
 
@@ -84,11 +84,6 @@ namespace Warsztat_2.UserControls.BarMenu.Archive {
                 {
                 radioButtonCard.Checked = true;
                 }
-            }
-
-        private void label24_Click(object sender, EventArgs e)
-            {
-
             }
         }
     }

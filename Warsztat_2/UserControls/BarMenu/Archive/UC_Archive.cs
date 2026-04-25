@@ -100,10 +100,10 @@ namespace Warsztat_2.UserControls.BarMenu.Archive {
                 }
             }
 
-        private void ViewActualData_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private async void ViewActualData_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
             {
             Form_ViewDataArchive viewDataArchive = new();
-            viewDataArchive.ReadData(uniqueKey);
+            await viewDataArchive.ReadData(uniqueKey);
             viewDataArchive.ShowDialog();
             }
         }

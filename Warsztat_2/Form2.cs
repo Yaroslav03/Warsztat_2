@@ -91,11 +91,11 @@ namespace Warsztat_2 {
             // Перевірка на null і наявність ключа "Data"
             if(historyData == null || !historyData.ContainsKey("Data") || historyData["Data"]?.ToString() != DateTime.Now.ToString("MM.yyyy"))
                 {
-                DateHistoryInsert();
+                 await DateHistoryInsert();
                 }
             else if(historyData.ContainsKey("Data") && historyData["Data"]?.ToString() == DateTime.Now.ToString("MM.yyyy"))
                 {
-                DateHistoryUpdate(historyData["Id"].ToString());
+                await DateHistoryUpdate(historyData["Id"].ToString());
                 }
             }
         private Dictionary<string, object> GetDataHistory()
@@ -110,14 +110,14 @@ namespace Warsztat_2 {
                     {"Data", DateTime.Now.ToString("MM.yyyy")}
                 };
             }
-        private async void DateHistoryInsert()
+        private async Task DateHistoryInsert()
             {
             var historyWarsztat = GetDataHistory();
 
             await SqlCmd.AddRecordAsync("WarsztatDB", "HistoriaWarsztatu", historyWarsztat);
             }
 
-        private async void DateHistoryUpdate(string IdValue)
+        private async Task DateHistoryUpdate(string IdValue)
             {
             var historyWarsztat = GetDataHistory();
             var id = new Dictionary<string, object>
@@ -131,9 +131,9 @@ namespace Warsztat_2 {
             {
             LoadUserControl(new UC_Company());
             }
-        private void ViewDataCar_CarSelected(object sender, Guid carGuid)
+        private async void ViewDataCar_CarSelected(object sender, Guid carGuid)
             {
-            addAllData.SetCarGuid(carGuid);
+            await addAllData.SetCarGuid(carGuid);
             LoadUserControl(addAllData);
             }
         }

@@ -75,13 +75,17 @@
                 };
             if(SaveCompanyDataButton.Text == "Zapisz")
                 {
-                await SqlCmd.AddRecordAsync("WarsztatDB", "DaneFirmy", data);
-                }
+                bool isSucceed = await SqlCmd.AddRecordAsync("WarsztatDB", "DaneFirmy", data);
+                if(isSucceed)
+                    {
+                    SaveCompanyDataButton.Text = "Odśwież";
+                    }
+            }
             else if(SaveCompanyDataButton.Text == "Odśwież")
                 {
                 await SqlCmd.UpdateRecordAsync("DaneFirmy", data, "ID = @ID", whereParams);
                 }
-            SaveCompanyDataButton.Text = "Odśwież";
+            
             }
         private async void ViewEmployers_CellContentClick(object sender, DataGridViewCellEventArgs e)
             {
@@ -104,8 +108,12 @@
                     }
                 else if(e.ColumnIndex == ViewEmployers.Columns["ArchiveBtn"].Index)
                     {
-                    await SqlCmd.SendToArchiveOneTable(id);
-                    }
+                    bool isSucceed = await SqlCmd.SendToArchiveOneTable(id);
+                    if (isSucceed)
+                    {
+                        ViewEmployers.Rows.RemoveAt(selectedIndex);
+                    }    
+                }
                 }
 
             }
