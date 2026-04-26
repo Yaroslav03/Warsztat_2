@@ -21,8 +21,8 @@ namespace Warsztat_2 {
             }
         private void AddButton_Click(object sender, EventArgs e)
             {
-            //LoadUserControl(new UC_AddData());
-            LoadUserControl(new UC_AddAllData());
+            addAllData.ClearForm();
+            LoadUserControl(addAllData);
             }
 
         private void WarehouseButton_Click(object sender, EventArgs e)

@@ -1,7 +1,8 @@
 ﻿using System.Data;
 
 namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
-    public partial class UC_AddAllData :UserControl {
+    public partial class UC_AddAllData : UserControl
+    {
         #region variables
         Guid uniqueKey;
         private protected ushort Id_Repair;
@@ -9,47 +10,69 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
         #endregion
         #region event
         public UC_AddAllData()
-            {
+        {
             InitializeComponent();
-            }
+        }
 
         private async void UC_AddAllData_Load(object sender, EventArgs e)
+        {
+            if (uniqueKey == Guid.Empty)
             {
-            if(uniqueKey == Guid.Empty)
-                {
                 DateAdoptionTimePicker.Text = DateTime.Today.ToString();
-                }
             }
+        }
         private async void SaveButton_Click(object sender, EventArgs e)
+        {
+            if (await CheckDataBeforeSave())
             {
-            if(await CheckDataBeforeSave())
-                {
                 await (SaveButton.Text == "Odśwież" ? UpdateData() : SaveData());
-                }
             }
+        }
 
         private void ButtonOrderManagement_Click(object sender, EventArgs e)
-            {
+        {
             SumRepair();
             Form_AddOrderManagement form_AddOrderManagement = new();
             form_AddOrderManagement.SendDataFromLastWindow(pricePart, priceService, earningParts, uniqueKey);
             form_AddOrderManagement.ShowDialog();
-            }
+        }
         #endregion
 
         #region Method
+        private void HideInternalColumns()
+        {
+            if (ViewRepair.Columns["ZarobekCzęści"] != null)
+                ViewRepair.Columns["ZarobekCzęści"].Visible = false;
+            if (ViewRepair.Columns["SumaZarobku"] != null)
+                ViewRepair.Columns["SumaZarobku"].Visible = false;
+        }
+        public void ClearForm()
+        {
+            uniqueKey = Guid.Empty;
+            NameTextBox.Text = SurNameTextBox.Text = TelephoneTextBox.Text = string.Empty;
+            NIPTextBox.Text = AdressCompanyTextBox.Text = CompanyNameTextBox.Text = string.Empty;
+            MarkaTextBox.Text = ModelTextBox.Text = EngineTextBox.Text = IdEngineTextBox.Text = string.Empty;
+            VINTextBox.Text = RegistrationNumberTextBox.Text = MileageTextBox.Text = string.Empty;
+            OrderTextBox.Text = DiagnosticTextBox.Text = RepairTextBox.Text = string.Empty;
+            YearNumericUpDown.Value = DateTime.Today.Year;
+            DateAdoptionTimePicker.Text = DateTime.Today.ToString();
+            LeftDocumentsCheck.Checked = LeftKeyChceck.Checked = TestDriveChceck.Checked = false;
+            ViewRepair.DataSource = null;
+            ServiceHistoryView.DataSource = null;
+            SaveButton.Text = "Zapisz";
+        }
         private async Task UpdateData()
-            {
+        {
             await SqlCmd.UpdateAllData(
                 uniqueKey,
                 GetClientData(),
                 GetCarData(),
                 GetHistoryData()
                 );
-            }
+        }
 
         private async Task SaveData()
-            {
+        {
             uniqueKey = Guid.NewGuid();
 
             await SqlCmd.SaveAllData
@@ -58,15 +81,15 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 GetCarData(),
                 GetHistoryData()
             );
-            }
+        }
 
         private async Task<bool> CheckDataBeforeSave()
-            {
+        {
             bool check = true;
 
             var fieldsToCheck = new Dictionary<string, string>
     {
-        { "*Brakuje danych do imienia", NameTextBox.Text.Trim() },
+        { "*Brakuje danych do imienia", MarkaTextBox.Text.Trim() },
         { "*Brakuje danych do telefonu", TelephoneTextBox.Text.Trim()},
         { "*Brakuje danych do marki", MarkaTextBox.Text.Trim()},
         { "*Brakuje danych do modelu", ModelTextBox.Text.Trim()},
@@ -82,36 +105,36 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 .Where(f => f.Value == null || string.IsNullOrWhiteSpace(f.Value.ToString()))
                 .Select(f => f.Key)
                 .ToList();
-            if(VINTextBox.Text.Length != 17)
-                {
+            if (VINTextBox.Text.Length != 17)
+            {
                 nulldata.Add($"Numer VIN musi mieć dokładnie 17 znaków. Aktualna długość: {VINTextBox.Text.Length}");
-                }
+            }
 
 
-            if(nulldata.Any())
-                {
+            if (nulldata.Any())
+            {
                 MessageBox.Show($"Brakuje danych do następnych komórek danych:\n\n{string.Join("\n\n", nulldata)}",
                                 "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
-                }
+            }
 
             return true;
-            }
+        }
         private Dictionary<string, object> GetClientData()
-            {
+        {
             return new Dictionary<string, object>
                 {
-                    {"Imię", NameTextBox.Text.Trim()},
-                    {"Nazwisko", SurnameTextBox.Text.Trim()},
+                    {"Imię", MarkaTextBox.Text.Trim()},
+                    {"Nazwisko", SurNameTextBox.Text.Trim()},
                     {"NrTelefonu", TelephoneTextBox.Text.Trim()},
                     {"NIP", NIPTextBox.Text.Trim()},
                     {"AdresFirmy", AdressCompanyTextBox.Text.Trim()},
                     {"NazwaFirmyKlienta", CompanyNameTextBox.Text.Trim()},
                     {"UniqueKey", uniqueKey}
                 };
-            }
+        }
         private Dictionary<string, object> GetCarData()
-            {
+        {
             return new Dictionary<string, object>
             {
                 {"Marka", MarkaTextBox.Text.Trim()},
@@ -122,9 +145,9 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 {"VIN", VINTextBox.Text},
                 {"UniqueKey", uniqueKey}
             };
-            }
+        }
         private Dictionary<string, object> GetHistoryData()
-            {
+        {
             return new Dictionary<string, object>
                 {
                     {"NrRejestracji", RegistrationNumberTextBox.Text.Trim()},
@@ -138,44 +161,44 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                     {"DataPrzyjęcia", DateAdoptionTimePicker.Text.ToString()},
                     {"UniqueKey", uniqueKey }
                 };
-            }
+        }
         private void SumRepair()
-            {
+        {
             decimal totalPriceRepairPart = 0;
             decimal totalPriceService = 0;
             decimal totalEarningParts = 0;
-            foreach(DataGridViewRow row in ViewRepair.Rows)
+            foreach (DataGridViewRow row in ViewRepair.Rows)
+            {
+                if (row.Cells["Suma_Column"].Value != null && decimal.TryParse(row.Cells["Suma_Column"].Value.ToString(), out decimal price))
                 {
-                if(row.Cells["Suma_Column"].Value != null && decimal.TryParse(row.Cells["Suma_Column"].Value.ToString(), out decimal price))
-                    {
                     totalPriceRepairPart += price;
-                    }
                 }
+            }
 
-            foreach(DataGridViewRow row in ServiceHistoryView.Rows)
+            foreach (DataGridViewRow row in ServiceHistoryView.Rows)
+            {
+                if (row.Cells["Price_Column"].Value != null && decimal.TryParse(row.Cells["Price_Column"].Value.ToString(), out decimal price))
                 {
-                if(row.Cells["Price_Column"].Value != null && decimal.TryParse(row.Cells["Price_Column"].Value.ToString(), out decimal price))
-                    {
                     totalPriceService += price;
-                    }
                 }
-            foreach(DataGridViewRow row in ViewRepair.Rows)
+            }
+            foreach (DataGridViewRow row in ViewRepair.Rows)
+            {
+                if (row.Cells["SumaZarobku_Column"].Value != null && decimal.TryParse(row.Cells["SumaZarobku_Column"].Value.ToString(), out decimal price))
                 {
-                if(row.Cells["SumaZarobku_Column"].Value != null && decimal.TryParse(row.Cells["SumaZarobku_Column"].Value.ToString(), out decimal price))
-                    {
                     totalEarningParts += price;
-                    }
                 }
+            }
             pricePart = totalPriceRepairPart;
             priceService = totalPriceService;
             earningParts = totalEarningParts;
-            }
+        }
         #endregion
 
         private async void SelectPartButton_Click(object sender, EventArgs e)
+        {
+            if (uniqueKey != Guid.Empty)
             {
-            if(uniqueKey != Guid.Empty)
-                {
                 Form_AddRepair addRepair = new();
                 addRepair.TransferUniqueKey(uniqueKey);
                 addRepair.ShowDialog();
@@ -186,12 +209,13 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 };
                 await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, ZarobekCzęści, SumaZarobku, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
                 ViewRepair.ClearSelection();
-                }
+                HideInternalColumns();
             }
+        }
         private async void SelectServiceButton_Click(object sender, EventArgs e)
+        {
+            if (uniqueKey != Guid.Empty)
             {
-            if(uniqueKey != Guid.Empty)
-                {
                 Form_AddService addService = new();
                 addService.TransferUniqueKey(uniqueKey);
                 addService.ShowDialog();
@@ -202,17 +226,17 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 };
                 await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);
                 ServiceHistoryView.ClearSelection();
-                }
-
             }
+
+        }
         private void VINTextBox_TextChanged(object sender, EventArgs e)
-            {
+        {
             VINTextBox.MaxLength = 17;
             VINTextBox.Text = String.Concat(VINTextBox.Text.Where(char.IsLetterOrDigit));
-            NumLenghtNadwoziaLabel.Text = VINTextBox.Text.Length.ToString();
-            }
+            VINlabel.Text ="VIN: " + VINTextBox.Text.Length.ToString();
+        }
         public async Task SetCarGuid(Guid key)
-            {
+        {
             uniqueKey = key;
 
             var clientData = await SqlCmd.LoadDataAsync("WarsztatDB", "Klienty", null, "UniqueKey", uniqueKey);
@@ -221,7 +245,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
 
             //client
             NameTextBox.Text = clientData["Imię"].ToString();
-            SurnameTextBox.Text = clientData["Nazwisko"].ToString();
+            SurNameTextBox.Text = clientData["Nazwisko"].ToString();
             TelephoneTextBox.Text = clientData["NrTelefonu"].ToString();
             NIPTextBox.Text = clientData["NIP"].ToString();
             AdressCompanyTextBox.Text = clientData["AdresFirmy"].ToString();
@@ -252,10 +276,11 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData {
                 {
                     {"UniqueKey", uniqueKey }
                 };
-            await SqlCmd.LoadData($"SELECT ID, Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, ZarobekCzęści, SumaZarobku, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
-            await SqlCmd.LoadData($"SELECT Id, ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);
+            await SqlCmd.LoadData($"SELECT Typ, Nazwa, Opis, NumerCzęści, Cena, Ilość, ZarobekCzęści, SumaZarobku, Suma, Stan FROM NaprawaSamochodu WHERE UniqueKey=@UniqueKey", ViewRepair, "Repair", "Load table Repair from DB", searchKey);
+            await SqlCmd.LoadData($"SELECT ServiceName, Price FROM HistoriaUsług WHERE UniqueKey=@UniqueKey", ServiceHistoryView, "Service", "Load table Service from DB", searchKey);
+            HideInternalColumns();
             ViewRepair.ClearSelection();
             ServiceHistoryView.ClearSelection();
-            }
         }
-    };
+    }
+};
