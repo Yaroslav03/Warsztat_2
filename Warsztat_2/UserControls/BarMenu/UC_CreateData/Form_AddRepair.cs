@@ -73,7 +73,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
 
             await SqlCmd.UpdateRecordAsync("NaprawaSamochodu", repairUpdateData, "ID=@ID", repairId);
 
-            foreach (TextBox tb in panel1.Controls.OfType<TextBox>())
+            foreach (TextBox tb in tableLayoutPanel1.Controls.OfType<TextBox>())
             {
                 tb.Clear();
             }
@@ -198,7 +198,7 @@ namespace Warsztat_2.UserControls.BarMenu.UC_CreateData
         private void Sum()
         {
             decimal sum = (PriceNumericUpDown.Value + PriceEarningNumericUpDown.Value) * IloscNumericUpDown.Value;
-            SumLabel.Text = sum.ToString();
+            SumLabel.Text = sum.ToString() + "zł";
         }
 
         private async void WarehouseView_CellContentClick(object sender, DataGridViewCellEventArgs e)
